@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Resolve_Arguments_Test</RootNamespace>
+    <RootNamespace>Resolve_Argument_Test</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Resolve-Arguments\Resolve-Arguments.csproj" />
+    <ProjectReference Include="..\Resolve-Arguments\Resolve-Argument.csproj" />
   </ItemGroup>
 
 </Project>

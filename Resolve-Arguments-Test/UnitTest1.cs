@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace PowerShellCmdletInCSharpExample.Tests
+namespace PowerShellResolveArgument.Tests
 {
-	public class GetRepeatedPhraseCmdletTests
+	public class ResolveArgumentCmdletTests
 	{
 		public class GetRepeatedString
 		{
@@ -17,7 +17,7 @@ namespace PowerShellCmdletInCSharpExample.Tests
 					// Arrange.
 					var phrase = "A test phrase.";
 					int numberOfTimesToRepeat = 3;
-					var cmdlet = new GetRepeatedPhraseCmdlet()
+					var cmdlet = new ResolveArgumentCmdlet()
 					{
 						Phrase = phrase,
 						NumberOfTimesToRepeatPhrase = numberOfTimesToRepeat

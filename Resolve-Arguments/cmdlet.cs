@@ -28,20 +28,55 @@ using System.Management.Automation;
 using System.Text;
 
 
-namespace PowerShellCmdletInCSharpExample
+namespace PowerShellResolveArgument
 {
-    [Cmdlet(VerbsCommon.Get, "RepeatedPhrase")]
+    [Cmdlet(VerbsDiagnostic.Resolve, "Argument")]
     [OutputType(typeof(string))]
-    public class GetRepeatedPhraseCmdlet : Cmdlet
+    public class ResolveArgumentCmdlet : Cmdlet
     {
-        [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
-        [Alias("Word")]
-        [ValidateNotNullOrEmpty()]
-        public string Phrase { get; set; }
+        /// <summary>
+        /// The List, ListCommand or L flag request the cmdlet to return a list of
+        /// supported commands.This flag is mutually exclusive of all other flags.
+        /// </summary>
+        [Parameter(
+            Mandatory = false,
+            ParameterSetName = "ListCommand",
+            ValueFromPipeline = true,
+            ValueFromPipelineByPropertyName = true)]
+        [Alias("List", "ListCommand", "L")]
+        public string? ListCommand { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ValueFromPipelineByPropertyName = true)]
+        /// <summary>
+        /// The Init command generates and invokes a PowerShell script to add the 
+        /// cmdlet as an Argument Resolver in PowerShell.
+        /// </summary>
+        [Parameter(
+            Mandatory = false,
+            ParameterSetName = "InitCommand",
+            ValueFromPipeline = true,
+            ValueFromPipelineByPropertyName = true)]
+        [Alias("Init", "I")]
+        public string? InvokeInitScript { get; set; }
+
+
+        [Parameter(
+            Position = 0,
+            Mandatory = false,
+            ParameterSetName = "CommandToResolve",
+            ValueFromPipeline = true,
+            ValueFromPipelineByPropertyName = true
+            )]
+        [Alias("Word")]
+        public string? Phrase { get; set; }
+
+        [Parameter(
+            Position = 1,
+            Mandatory = false,
+            ParameterSetName = "CommandToResolve",
+            ValueFromPipelineByPropertyName = true
+            )]
         [Alias("Repeat")]
-        public int NumberOfTimesToRepeatPhrase { get; set; }
+        public int? NumberOfTimesToRepeatPhrase { get; set; }
 
         protected override void ProcessRecord()
         {
