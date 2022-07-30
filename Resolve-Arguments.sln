@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resolve-Arguments", "Resolve-Arguments\Resolve-Arguments.csproj", "{849E9001-88D0-40F9-B4EC-E855970B0F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resolve-Arguments", "Resolve-Arguments\Resolve-Arguments.csproj", "{849E9001-88D0-40F9-B4EC-E855970B0F61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resolve-Arguments-Test", "Resolve-Arguments-Test\Resolve-Arguments-Test.csproj", "{83FA08F2-47F0-4703-BAD4-FE5866824FEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{849E9001-88D0-40F9-B4EC-E855970B0F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{849E9001-88D0-40F9-B4EC-E855970B0F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{849E9001-88D0-40F9-B4EC-E855970B0F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
