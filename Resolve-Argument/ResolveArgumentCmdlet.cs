@@ -1,4 +1,9 @@
-﻿namespace Resolve_Argument
+﻿// <copyright file="ResolveArgumentCmdlet.cs" company="Tanzo Creative Ltd">
+// Copyright (c) Tanzo Creative Ltd. All rights reserved.
+// Licensed under the Apache 2.0 license. See LICENSE.txt file in the project root for full license information.
+// </copyright>
+
+namespace Resolve_Argument
 {
     using System.Management.Automation;
     using System.Text;
@@ -35,7 +40,8 @@
         public string? InvokeInitScript { get; set; }
 
         /// <summary>
-        /// Gets or sets to be completed
+        /// Gets or sets to be completed.
+        /// TODO Complete documentation.
         /// </summary>
         [Parameter(
             Mandatory = false,
@@ -45,36 +51,50 @@
         [Alias("Print", "p")]
         public string? PrintScript { get; set; }
 
+        /// <summary>
+        /// Gets or sets to be completed.
+        /// TODO Complete documentation.
+        /// </summary>
         [Parameter(
             Position = 0,
             Mandatory = false,
             ParameterSetName = "Resolve",
             ValueFromPipeline = true,
-            ValueFromPipelineByPropertyName = true
-            )]
+            ValueFromPipelineByPropertyName = true)]
         [Alias("Word")]
         public string? Phrase { get; set; }
 
+        /// <summary>
+        /// Gets or sets to be completed.
+        /// TODO Complete documentation.
+        /// </summary>
         [Parameter(
             Position = 1,
             Mandatory = false,
             ParameterSetName = "Resolve",
-            ValueFromPipelineByPropertyName = true
-            )]
+            ValueFromPipelineByPropertyName = true)]
         [Alias("Repeat")]
         public int? NumberOfTimesToRepeatPhrase { get; set; }
 
+        /// <summary>
+        /// Process record when all options are defined.
+        /// - Validate input
+        /// - Process record
+        /// - Output object.
+        /// TODO Complete documentation.
+        /// </summary>
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
 
             var result = new StringBuilder();
-            for (int i = 0; i < NumberOfTimesToRepeatPhrase; i++)
+            for (int i = 0; i < this.NumberOfTimesToRepeatPhrase; i++)
             {
-                result.Append(Phrase);
+                result.Append(this.Phrase);
             }
 
-            WriteObject(result.ToString()); // This is what actually "returns" output.
+            // This "returns" output.
+            this.WriteObject(result.ToString());
         }
     }
 }
