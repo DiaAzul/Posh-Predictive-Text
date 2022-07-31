@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace PowerShellResolveArgument.Tests
+namespace Resolve_Argument.Tests
 {
 	public class ResolveArgumentCmdletTests
 	{
