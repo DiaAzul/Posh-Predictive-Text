@@ -24,7 +24,7 @@ namespace Resolve_Argument
             ParameterSetName = "ListCommand",
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
-        [Alias("List", "ListCommand", "l")]
+        [Alias("List", "l")]
         public string? ListCommand { get; set; }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Resolve_Argument
             ParameterSetName = "Init",
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
-        [Alias("Init", "i")]
+        [Alias("i")]
         public string? InvokeInitScript { get; set; }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Resolve_Argument
         /// </summary>
         [Parameter(
             Mandatory = false,
-            ParameterSetName = "PrintScipt",
+            ParameterSetName = "PrintScript",
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
         [Alias("Print", "p")]
