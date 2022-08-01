@@ -1,6 +1,6 @@
-# Resolve-Arguments
+# Resolve-Argument
 
-PowerShell cmdlet to resolve arguments for thid-party commands.
+PowerShell cmdlet to provide suggested completions for command arguments.
 
 The commands supported by this cmdlet are:
 
@@ -9,4 +9,3 @@ The commands supported by this cmdlet are:
 - mamaba
 - pip
 - python
-
