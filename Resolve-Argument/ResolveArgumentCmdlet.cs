@@ -11,54 +11,57 @@ namespace Resolve_Argument
     /// <summary>
     /// The Resolve-Argument cmdlet provides auto-complete for arguments in PowerShell.
     /// </summary>
-    [Cmdlet(VerbsDiagnostic.Resolve, "Argument")]
-    [OutputType(typeof(string))]
-    public class ResolveArgumentCmdlet : Cmdlet
+    [Cmdlet(
+        VerbsDiagnostic.Resolve,
+        "Argument",
+        DefaultParameterSetName = "Resolve")]
+    [OutputType(typeof(string))] // TODO Change output type to record or string.
+    public class ResolveArgumentCmdlet : PSCmdlet
     {
         /// <summary>
         /// Gets or sets the flag indicating List, ListCommand or L flag
         /// supported commands.This flag is mutually exclusive of all other flags.
         /// </summary>
         [Parameter(
+            ParameterSetName = "ListCommands",
             Mandatory = false,
-            ParameterSetName = "ListCommand",
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
         [Alias("List", "l")]
-        public string? ListCommand { get; set; }
+        public SwitchParameter ListCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the flag indicating Init command generates and invokes
         /// a PowerShell script to add the cmdlet as an Argument Resolver in PowerShell.
         /// </summary>
         [Parameter(
+            ParameterSetName = "Initialise",
             Mandatory = false,
-            ParameterSetName = "Init",
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
-        [Alias("i")]
-        public string? InvokeInitScript { get; set; }
+        [Alias("Init", "i")]
+        public SwitchParameter Initialise { get; set; }
 
         /// <summary>
         /// Gets or sets to be completed.
-        /// TODO Complete documentation.
+        /// TODO Complete documentation for PrintScipt parameter.
         /// </summary>
         [Parameter(
-            Mandatory = false,
             ParameterSetName = "PrintScript",
+            Mandatory = false,
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
         [Alias("Print", "p")]
-        public string? PrintScript { get; set; }
+        public SwitchParameter PrintScript { get; set; }
 
         /// <summary>
         /// Gets or sets to be completed.
-        /// TODO Complete documentation.
+        /// TODO Implement Resolve-Argument processing parameters.
         /// </summary>
         [Parameter(
             Position = 0,
-            Mandatory = false,
             ParameterSetName = "Resolve",
+            Mandatory = false,
             ValueFromPipeline = true,
             ValueFromPipelineByPropertyName = true)]
         [Alias("Word")]
@@ -66,12 +69,11 @@ namespace Resolve_Argument
 
         /// <summary>
         /// Gets or sets to be completed.
-        /// TODO Complete documentation.
         /// </summary>
         [Parameter(
             Position = 1,
-            Mandatory = false,
             ParameterSetName = "Resolve",
+            Mandatory = false,
             ValueFromPipelineByPropertyName = true)]
         [Alias("Repeat")]
         public int? NumberOfTimesToRepeatPhrase { get; set; }
@@ -81,21 +83,33 @@ namespace Resolve_Argument
         /// - Validate input
         /// - Process record
         /// - Output object.
-        /// TODO Complete documentation.
-        ///
-        /// Override the ProcessRecord function to process each item in the pipeline,
-        /// and optionally also the BeginProcessing (to do initialization),
-        /// EndProcessing (to do finalization), and StopProcessing (to handle abnormal
-        /// termination) functions.
+        /// TODO Complete documentation for ProcessRecord
         /// </summary>
         protected override void ProcessRecord()
         {
-            base.ProcessRecord();
-
             var result = new StringBuilder();
-            for (int i = 0; i < this.NumberOfTimesToRepeatPhrase; i++)
+
+            switch (this.ParameterSetName)
             {
-                result.Append(this.Phrase);
+                case "ListCommands":
+                    result.Append("Listicles.");
+                    break;
+                case "Initialise":
+                    result.Append("Initialise.");
+                    break;
+                case "PrintScript":
+                    result.Append("Print Script.");
+                    break;
+                case "Resolve":
+                    for (int i = 0; i < this.NumberOfTimesToRepeatPhrase; i++)
+                    {
+                        result.Append(this.Phrase);
+                    }
+
+                    break;
+                default:
+                    result.Append("Yo. I'm the default.");
+                    break;
             }
 
             // This "returns" output.
