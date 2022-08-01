@@ -9,18 +9,19 @@ namespace Resolve_Argument
     using System.Text;
 
     /// <summary>
-    /// The Resolve-Argument cmdlet provides auto-complete for arguments in PowerShell.
+    /// The Resolve-Argument cmdlet provides auto-complete of command arguments in PowerShell.
     /// </summary>
     [Cmdlet(
         VerbsDiagnostic.Resolve,
         "Argument",
         DefaultParameterSetName = "Resolve")]
-    [OutputType(typeof(string))] // TODO Change output type to record or string.
+    [OutputType(typeof(string))]
+    [OutputType(typeof(CompletionResult))]
     public class ResolveArgumentCmdlet : PSCmdlet
     {
         /// <summary>
-        /// Gets or sets the flag indicating List, ListCommand or L flag
-        /// supported commands.This flag is mutually exclusive of all other flags.
+        /// Gets or sets the switch indicating List, ListCommand or L flag
+        /// supported commands.
         /// </summary>
         [Parameter(
             ParameterSetName = "ListCommands",
@@ -83,7 +84,7 @@ namespace Resolve_Argument
         /// - Validate input
         /// - Process record
         /// - Output object.
-        /// TODO Complete documentation for ProcessRecord
+        /// TODO Complete documentation for ProcessRecord.
         /// </summary>
         protected override void ProcessRecord()
         {
@@ -93,27 +94,33 @@ namespace Resolve_Argument
             {
                 case "ListCommands":
                     result.Append("Listicles.");
+                    this.WriteObject(result.ToString());
                     break;
                 case "Initialise":
                     result.Append("Initialise.");
+                    this.WriteObject(result.ToString());
                     break;
                 case "PrintScript":
-                    result.Append("Print Script.");
+                    CompletionResult response = new CompletionResult(
+                        "Command",
+                        "ListItem",
+                        CompletionResultType.ParameterValue,
+                        "ToolTip");
+                    // result.Append(response);
+                    this.WriteObject(response);
                     break;
                 case "Resolve":
                     for (int i = 0; i < this.NumberOfTimesToRepeatPhrase; i++)
                     {
                         result.Append(this.Phrase);
                     }
-
+                    this.WriteObject(result.ToString());
                     break;
                 default:
                     result.Append("Yo. I'm the default.");
+                    this.WriteObject(result.ToString());
                     break;
             }
-
-            // This "returns" output.
-            this.WriteObject(result.ToString());
         }
     }
 }
