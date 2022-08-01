@@ -82,6 +82,11 @@ namespace Resolve_Argument
         /// - Process record
         /// - Output object.
         /// TODO Complete documentation.
+        ///
+        /// Override the ProcessRecord function to process each item in the pipeline,
+        /// and optionally also the BeginProcessing (to do initialization),
+        /// EndProcessing (to do finalization), and StopProcessing (to handle abnormal
+        /// termination) functions.
         /// </summary>
         protected override void ProcessRecord()
         {
