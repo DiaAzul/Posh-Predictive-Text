@@ -1,8 +1,10 @@
 # Resolve-Argument
 
-PowerShell cmdlet to provide suggested completions for command arguments.
+PowerShell cmdlet providing tab-completion for third party commands.
 
-The commands supported by this cmdlet are:
+PowerShell provides tab-completion for built-in commands. This reduces error and improves productivity.
+
+Commands supported by this cmdlet are:
 
 - git
 - conda

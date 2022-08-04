@@ -117,4 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="HELP_LISTCOMMANDS" xml:space="preserve">
+    <value>List commands supported with tab-expansion of arguments</value>
+  </data>
+  <data name="HELP_TEXT" xml:space="preserve">
+    <value>This is the help text</value>
+  </data>
+  <data name="LIST_OF_COMMANDS" xml:space="preserve">
+    <value>
+Resolve-Argument supports the following commands:
+
+    Conda
+    Git
+    Mamba
+    Pip
+    Python
+</value>
+  </data>
 </root>

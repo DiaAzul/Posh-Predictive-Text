@@ -1,6 +1,6 @@
 
 
-namespace Resolve_Argument.Tests
+namespace ResolveArgument.Tests
 {
     using System.Collections.ObjectModel;
     using System.Management.Automation;
@@ -8,6 +8,9 @@ namespace Resolve_Argument.Tests
     using System.Management.Automation.Runspaces;
     using Xunit;
 
+    /// <summary>
+    /// Create PowerShell shells for testing.
+    /// </summary>
     public static class PSTestShell
     {
         /// <summary>
@@ -44,7 +47,7 @@ namespace Resolve_Argument.Tests
                     using var powerShell = PSTestShell.GetConfiguredShell();
                     powerShell.AddCommand("resolve-argument");
                     powerShell.AddParameter("list");
-                    var expectedResult = "Listicles.";
+                    var expectedResult = Resolve_Argument.UIStrings.LIST_OF_COMMANDS;
                     // Act
                     Collection<PSObject> results = powerShell.Invoke();
                     // Assert

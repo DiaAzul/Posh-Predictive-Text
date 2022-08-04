@@ -3,11 +3,13 @@
 // Licensed under the Apache 2.0 license. See LICENSE.txt file in the project root for full license information.
 // </copyright>
 
-namespace Resolve_Argument
+namespace ResolveArgument
 {
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
+    using System.Resources;
+    using System.Reflection;
 
     /// <summary>
     /// The Resolve-Argument cmdlet provides auto-complete of command arguments in PowerShell.
@@ -132,7 +134,7 @@ namespace Resolve_Argument
             switch (this.ParameterSetName)
             {
                 case "ListCommands":
-                    result.Append("Listicles.");
+                    result.Append(Resolve_Argument.UIStrings.LIST_OF_COMMANDS);
                     this.WriteObject(result.ToString());
                     break;
                 case "Initialise":
