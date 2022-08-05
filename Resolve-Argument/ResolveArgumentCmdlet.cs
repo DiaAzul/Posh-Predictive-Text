@@ -11,10 +11,35 @@ namespace ResolveArgument
     using System.Resources;
     using System.Reflection;
 
-    /// <summary>
-    /// The Resolve-Argument cmdlet provides auto-complete of command arguments in PowerShell.
-    /// </summary>
-    [Cmdlet(
+
+    internal static class LOGGER
+    {
+        internal static void Write(string text)
+        {
+            string LOGFILE = @"C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt";
+            // This text is added only once to the file.
+            if (!File.Exists(LOGFILE))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(LOGFILE))
+                {
+                    sw.WriteLine(text);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.AppendText(LOGFILE))
+                {
+                    sw.WriteLine(text);
+                }
+            }
+        }
+    }
+
+/// <summary>
+/// The Resolve-Argument cmdlet provides auto-complete of command arguments in PowerShell.
+/// </summary>
+[Cmdlet(
         VerbsDiagnostic.Resolve,
         "Argument",
         DefaultParameterSetName = "Resolve")]
@@ -28,9 +53,6 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "ListCommands",
-            Mandatory = false,
-            ValueFromPipeline = true,
-            ValueFromPipelineByPropertyName = true,
             HelpMessage = "List commands supported with tab-expansion of arguments")]
         [Alias("List", "l")]
         public SwitchParameter ListCommands { get; set; }
@@ -41,9 +63,6 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "Initialise",
-            Mandatory = false,
-            ValueFromPipeline = true,
-            ValueFromPipelineByPropertyName = true,
             HelpMessage = "Initialise tab-expansion of arguments")]
         [Alias("Init", "i")]
         public SwitchParameter Initialise { get; set; }
@@ -54,45 +73,16 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "PrintScript",
-            Mandatory = false,
-            ValueFromPipeline = true,
-            ValueFromPipelineByPropertyName = true,
             HelpMessage = "Print PowerShell script used to initialise tab-expansion of arguments")]
         [Alias("Print", "p")]
         public SwitchParameter PrintScript { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the command for which the script block is
-        /// providing tab completion.
+        /// Gets or sets the partial word provided before the user pressed Tab.
         /// </summary>
         [Parameter(
             Position = 0,
             ParameterSetName = "Resolve",
-            Mandatory = false,
-            ValueFromPipeline = true,
-            ValueFromPipelineByPropertyName = true,
-            HelpMessage = "Command enered by user at the prompt")]
-        public string? CommandName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the parameter whose value requires tab completion.
-        /// </summary>
-        [Parameter(
-            Position = 1,
-            ParameterSetName = "Resolve",
-            Mandatory = false,
-            ValueFromPipelineByPropertyName = true,
-            HelpMessage = "Parameter that requires tab-completion")]
-        public string? ParameterName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the value the user has provided before they pressed Tab.
-        /// </summary>
-        [Parameter(
-            Position = 2,
-            ParameterSetName = "Resolve",
-            Mandatory = false,
-            ValueFromPipelineByPropertyName = true,
             HelpMessage = "Value provided by the user before they pressed tab")]
         public string? WordToComplete { get; set; }
 
@@ -100,24 +90,19 @@ namespace ResolveArgument
         /// Gets or sets the Abstract Syntax Tree (AST) for the current input line.
         /// </summary>
         [Parameter(
-            Position = 3,
+            Position = 1,
             ParameterSetName = "Resolve",
-            Mandatory = false,
-            ValueFromPipelineByPropertyName = true,
             HelpMessage = "Abstract Syntax Tree for current input line")]
-        public CommandAst? CommandAST { get; set; }
+        public CommandAst? CommandAst { get; set; }
 
         /// <summary>
-        /// Gets or sets the hashtable containing the $PSBoundParameters for the cmdlet,
-        /// before the user pressed Tab.
+        /// Gets or sets the position of the cursor when tab was pressed.
         /// </summary>
         [Parameter(
-            Position = 4,
+            Position = 2,
             ParameterSetName = "Resolve",
-            Mandatory = false,
-            ValueFromPipelineByPropertyName = true,
-            HelpMessage = "Hashtable of parameters already entered on the command line")]
-        public string[]? FakeBoundParameters { get; set; }
+            HelpMessage = "Command enered by user at the prompt")]
+        public int? CursorPosition { get; set; }
 
         /// <summary>
         /// Process record when all options are defined.
@@ -130,7 +115,7 @@ namespace ResolveArgument
         {
             base.ProcessRecord();
             var result = new StringBuilder();
-
+            LOGGER.Write("PROCESSING");
             switch (this.ParameterSetName)
             {
                 case "ListCommands":
@@ -138,14 +123,16 @@ namespace ResolveArgument
                     this.WriteObject(result.ToString());
                     break;
                 case "Initialise":
-                    result.Append("Initialise.");
+                    result.Append(Resolve_Argument.UIStrings.POSH_INIT_SCRIPT);
                     this.WriteObject(result.ToString());
                     break;
                 case "PrintScript":
-                    result.Append("Print.");
+                    var localised_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "git");
+                    result.Append(localised_script);
                     this.WriteObject(result.ToString());
                     break;
                 case "Resolve":
+                    LOGGER.Write("IN RESOLVE!");
                     CompletionResult response = new(
                         "Command",
                         "ListItem",

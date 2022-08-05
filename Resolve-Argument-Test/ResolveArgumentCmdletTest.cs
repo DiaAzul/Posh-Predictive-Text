@@ -62,7 +62,7 @@ namespace ResolveArgument.Tests
                     using var powerShell = PSTestShell.GetConfiguredShell();
                     powerShell.AddCommand("resolve-argument");
                     powerShell.AddParameter("Initialise");
-                    var expectedResult = "Initialise.";
+                    var expectedResult = Resolve_Argument.UIStrings.POSH_INIT_SCRIPT;
                     // Act
                     Collection<PSObject> results = powerShell.Invoke();
                     // Assert

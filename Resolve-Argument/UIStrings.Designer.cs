@@ -80,7 +80,7 @@ namespace Resolve_Argument {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Resolve-Argument supports the following commands:
+        ///Resolve-Argument provides tab-completion for the following commands:
         ///
         ///    Conda
         ///    Git
@@ -92,6 +92,32 @@ namespace Resolve_Argument {
         public static string LIST_OF_COMMANDS {
             get {
                 return ResourceManager.GetString("LIST_OF_COMMANDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get-Process.
+        /// </summary>
+        public static string POSH_INIT_SCRIPT {
+            get {
+                return ResourceManager.GetString("POSH_INIT_SCRIPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+        ///    param(
+        ///        [string]$wordToComplete, 
+        ///        [System.Management.Automation.Language.CommandAst]$commandAst,
+        ///        [int]$cursorPosition)
+        ///
+        ///    $timestamp = Get-Date -Format &quot;yyyy-MM-dd HH:mm:ss&quot;
+        ///    &quot;[$timestamp] $cursorPosition, $wordToComplete, $commandAst&quot; | Out-File -Append &quot;C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt&quot;
+        ///    Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosi [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string REGISTER_COMMAND_SCRIPT {
+            get {
+                return ResourceManager.GetString("REGISTER_COMMAND_SCRIPT", resourceCulture);
             }
         }
     }

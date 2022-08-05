@@ -125,7 +125,7 @@
   </data>
   <data name="LIST_OF_COMMANDS" xml:space="preserve">
     <value>
-Resolve-Argument supports the following commands:
+Resolve-Argument provides tab-completion for the following commands:
 
     Conda
     Git
@@ -133,5 +133,20 @@ Resolve-Argument supports the following commands:
     Pip
     Python
 </value>
+  </data>
+  <data name="POSH_INIT_SCRIPT" xml:space="preserve">
+    <value>Get-Process</value>
+  </data>
+  <data name="REGISTER_COMMAND_SCRIPT" xml:space="preserve">
+    <value>Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+    param(
+        [string]$wordToComplete, 
+        [System.Management.Automation.Language.CommandAst]$commandAst,
+        [int]$cursorPosition)
+
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "[$timestamp] $cursorPosition, $wordToComplete, $commandAst" | Out-File -Append "C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt"
+    Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+}</value>
   </data>
 </root>
