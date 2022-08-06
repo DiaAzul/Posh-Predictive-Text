@@ -8,33 +8,6 @@ namespace ResolveArgument
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
-    using System.Resources;
-    using System.Reflection;
-
-
-    internal static class LOGGER
-    {
-        internal static void Write(string text)
-        {
-            string LOGFILE = @"C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt";
-            // This text is added only once to the file.
-            if (!File.Exists(LOGFILE))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(LOGFILE))
-                {
-                    sw.WriteLine(text);
-                }
-            }
-            else
-            {
-                using (StreamWriter sw = File.AppendText(LOGFILE))
-                {
-                    sw.WriteLine(text);
-                }
-            }
-        }
-    }
 
 /// <summary>
 /// The Resolve-Argument cmdlet provides auto-complete of command arguments in PowerShell.
@@ -115,7 +88,7 @@ namespace ResolveArgument
         {
             base.ProcessRecord();
             var result = new StringBuilder();
-            LOGGER.Write("PROCESSING");
+
             switch (this.ParameterSetName)
             {
                 case "ListCommands":
@@ -132,11 +105,12 @@ namespace ResolveArgument
                     this.WriteObject(result.ToString());
                     break;
                 case "Resolve":
-                    LOGGER.Write("IN RESOLVE!");
+                    LOGGER.Write("Resolving word: " + this.WordToComplete);
+                    LOGGER.Write("Resolving AST: " + this.CommandAst);
                     CompletionResult response = new(
-                        "Command",
+                        this.WordToComplete + "a",
                         "ListItem",
-                        CompletionResultType.ParameterValue,
+                        CompletionResultType.ParameterValue, //Need to change this for ast.
                         "ToolTip");
 
                     this.WriteObject(response);
