@@ -1,0 +1,21 @@
+usage: conda-script.py info [-h] [--json] [-v] [-q] [-a] [--base] [-e] [-s]
+                            [--unsafe-channels]
+
+Display information about current conda install.
+
+Options:
+
+optional arguments:
+  -h, --help         Show this help message and exit.
+  -a, --all          Show all information.
+  --base             Display base environment path.
+  -e, --envs         List all known conda environments.
+  -s, --system       List environment variables.
+  --unsafe-channels  Display list of channels with tokens exposed.
+
+Output, Prompt, and Flow Control Options:
+  --json             Report all output as json. Suitable for using conda
+                     programmatically.
+  -v, --verbose      Use once for info, twice for debug, three times for
+                     trace.
+  -q, --quiet        Do not display progress bar.

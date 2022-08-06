@@ -1,0 +1,41 @@
+usage: conda-script.py run [-h] [-n ENVIRONMENT | -p PATH] [-v] [--dev]
+                           [--debug-wrapper-scripts] [--cwd CWD]
+                           [--no-capture-output] [--live-stream]
+                           ...
+
+Run an executable in a conda environment.
+
+Example usage::
+
+    $ conda create -y -n my-python-env python=3
+    $ conda run -n my-python-env python --version
+
+Options:
+
+positional arguments:
+  executable_call       Executable name, with additional arguments to be
+                        passed to the executable on invocation.
+
+optional arguments:
+  -h, --help            Show this help message and exit.
+  -v, --verbose         Use once for info, twice for debug, three times for
+                        trace.
+  --dev                 Sets `CONDA_EXE` to `python -m conda`, assuming the
+                        CWD contains the root of conda development sources.
+                        This is mainly for use during tests where we test new
+                        conda source against old Python versions.
+  --debug-wrapper-scripts
+                        When this is set, where implemented, the shell wrapper
+                        scriptswill echo to stderr a lot of debugging
+                        information.
+  --cwd CWD             Current working directory for command to run in.
+                        Defaults to cwd
+  --no-capture-output   Don't capture stdout/stderr
+  --live-stream         Display the output for the subprocess stdout and
+                        stderr on real time.
+
+Target Environment Specification:
+  -n ENVIRONMENT, --name ENVIRONMENT
+                        Name of environment.
+  -p PATH, --prefix PATH
+                        Full path to environment location (i.e. prefix).

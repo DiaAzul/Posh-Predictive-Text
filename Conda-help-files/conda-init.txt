@@ -1,0 +1,46 @@
+usage: conda-script.py init [-h] [--all] [--reverse] [--anaconda-prompt]
+                            [--json] [-v] [-q] [-d]
+                            [shells ...]
+
+Initialize conda for shell interaction. [Experimental]
+
+Options:
+
+positional arguments:
+  shells             One or more shells to be initialized. If not given, the
+                     default value is 'bash' on unix and 'cmd.exe' on Windows.
+                     Use the '--all' flag to initialize all shells. Currently
+                     compatible shells are {bash, cmd.exe, fish, powershell,
+                     tcsh, xonsh, zsh}
+
+optional arguments:
+  -h, --help         Show this help message and exit.
+  --all              Initialize all currently available shells.
+  --anaconda-prompt  Add an 'Anaconda Prompt' icon to your desktop.
+  -d, --dry-run      Only display what would have been done.
+
+setup type:
+  --reverse          Undo past effects of conda init.
+
+Output, Prompt, and Flow Control Options:
+  --json             Report all output as json. Suitable for using conda
+                     programmatically.
+  -v, --verbose      Use once for info, twice for debug, three times for
+                     trace.
+  -q, --quiet        Do not display progress bar.
+
+Key parts of conda's functionality require that it interact directly with the shell
+within which conda is being invoked. The `conda activate` and `conda deactivate` commands
+specifically are shell-level commands. That is, they affect the state (e.g. environment
+variables) of the shell context being interacted with. Other core commands, like
+`conda create` and `conda install`, also necessarily interact with the shell environment.
+They're therefore implemented in ways specific to each shell. Each shell must be configured
+to make use of them.
+
+This command makes changes to your system that are specific and customized for each shell.
+To see the specific files and locations on your system that will be affected before, use the
+'--dry-run' flag.  To see the exact changes that are being or will be made to each location,
+use the '--verbose' flag.
+
+IMPORTANT: After running `conda init`, most shells will need to be closed and restarted
+           for changes to take effect.

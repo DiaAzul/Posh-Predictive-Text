@@ -1,0 +1,28 @@
+usage: conda-script.py package [-h] [-n ENVIRONMENT | -p PATH]
+                               [-w PATH [PATH ...]] [-r] [-u]
+                               [--pkg-name PKG_NAME]
+                               [--pkg-version PKG_VERSION]
+                               [--pkg-build PKG_BUILD]
+
+Low-level conda package utility. (EXPERIMENTAL)
+
+Options:
+
+optional arguments:
+  -h, --help            Show this help message and exit.
+  -w PATH [PATH ...], --which PATH [PATH ...]
+                        Given some PATH print which conda package the file
+                        came from.
+  -r, --reset           Remove all untracked files and exit.
+  -u, --untracked       Display all untracked files and exit.
+  --pkg-name PKG_NAME   Package name of the created package.
+  --pkg-version PKG_VERSION
+                        Package version of the created package.
+  --pkg-build PKG_BUILD
+                        Package build number of the created package.
+
+Target Environment Specification:
+  -n ENVIRONMENT, --name ENVIRONMENT
+                        Name of environment.
+  -p PATH, --prefix PATH
+                        Full path to environment location (i.e. prefix).
