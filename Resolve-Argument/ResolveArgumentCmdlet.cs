@@ -89,35 +89,42 @@ namespace ResolveArgument
             base.ProcessRecord();
             var result = new StringBuilder();
 
-            switch (this.ParameterSetName)
+            switch (ParameterSetName)
             {
                 case "ListCommands":
                     result.Append(Resolve_Argument.UIStrings.LIST_OF_COMMANDS);
-                    this.WriteObject(result.ToString());
+                    WriteObject(result.ToString());
                     break;
                 case "Initialise":
                     result.Append(Resolve_Argument.UIStrings.POSH_INIT_SCRIPT);
-                    this.WriteObject(result.ToString());
+                    WriteObject(result.ToString());
                     break;
                 case "PrintScript":
                     var localised_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "git");
                     result.Append(localised_script);
-                    this.WriteObject(result.ToString());
+                    WriteObject(result.ToString());
                     break;
                 case "Resolve":
-                    LOGGER.Write("Resolving word: " + this.WordToComplete);
-                    LOGGER.Write("Resolving AST: " + this.CommandAst);
+                    LOGGER.Write("Resolving word: " + WordToComplete);
+                    LOGGER.Write("Resolving AST: " + CommandAst);
+                    var visitor = new ResolvingVisitor();
+                    CommandAst.Visit(visitor);
+
+                    LOGGER.Write($"First Command: {visitor.getFirstCommand()}");
+                    LOGGER.Write($"Last Command: {visitor.getLastCommand()}");
+                    LOGGER.Write($"Prior Command: {visitor.getPriorCommand()}");
+
                     CompletionResult response = new(
-                        this.WordToComplete + "a",
+                        WordToComplete + "a",
                         "ListItem",
                         CompletionResultType.ParameterValue, //Need to change this for ast.
                         "ToolTip");
 
-                    this.WriteObject(response);
+                    WriteObject(response);
                     break;
                 default:
                     result.Append("Yo. I'm the default.");
-                    this.WriteObject(result.ToString());
+                    WriteObject(result.ToString());
                     break;
             }
         }
