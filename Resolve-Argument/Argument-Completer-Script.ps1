@@ -24,6 +24,21 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
         [int]$cursorPosition)
 
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "[$timestamp] $cursorPosition, $wordToComplete, $commandAst" | Out-File -Append "C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt"
-    Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+    "[$timestamp] $cursorPosition, $wordToComplete, $commandAst" | Out-File -Append "C:\templogfiles\logfile.txt"
+    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+
+    $suggestions | Out-File -Append "C:\templogfiles\logfile.txt"
+
+    $suggestions 
+}
+
+Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+    param(
+        [string]$wordToComplete, 
+        [System.Management.Automation.Language.CommandAst]$commandAst,
+        [int]$cursorPosition)
+
+    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+
+    $suggestions 
 }

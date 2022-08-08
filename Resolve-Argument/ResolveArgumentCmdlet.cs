@@ -105,26 +105,43 @@ namespace ResolveArgument
                     WriteObject(result.ToString());
                     break;
                 case "Resolve":
+                    // CompletionResultType: https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.completionresulttype?view=powershellsdk-7.0.0
+
                     LOGGER.Write("Resolving word: " + WordToComplete);
                     LOGGER.Write("Resolving AST: " + CommandAst);
-                    var visitor = new ResolvingVisitor();
-                    CommandAst.Visit(visitor);
+                    var commands = new Commands();
+                    CommandAst?.Visit(commands);
 
-                    LOGGER.Write($"First Command: {visitor.getFirstCommand()}");
-                    LOGGER.Write($"Last Command: {visitor.getLastCommand()}");
-                    LOGGER.Write($"Prior Command: {visitor.getPriorCommand()}");
+                    LOGGER.Write($"First Command: {commands.FirstCommand?.Value}");
+                    LOGGER.Write($"Last Command: {commands.LastCommand?.Value}");
+                    LOGGER.Write($"Prior Command: {commands.PriorCommand?.Value}");
+
+
 
                     CompletionResult response = new(
                         WordToComplete + "a",
-                        "ListItem",
-                        CompletionResultType.ParameterValue, //Need to change this for ast.
+                        WordToComplete + "a",
+                        CompletionResultType.ParameterName, //Need to change this for ast.
                         "ToolTip");
+                    // WriteObject(response);
 
-                    WriteObject(response);
+                    CompletionResult response2 = new(
+                        WordToComplete + "b",
+                        WordToComplete + "b",
+                        CompletionResultType.ParameterName, //Need to change this for ast.
+                        "ToolTip");
+                    // WriteObject(response2);
+
+                    List<CompletionResult> suggestions = new();
+                    suggestions.Add(response);
+                    suggestions.Add(response2);
+                    WriteObject(suggestions);
+
                     break;
                 default:
                     result.Append("Yo. I'm the default.");
                     WriteObject(result.ToString());
+
                     break;
             }
         }

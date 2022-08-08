@@ -1,338 +1,188 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ResolveArgument
 {
     using System.Management.Automation.Language;
-    internal class ResolvingVisitor : AstVisitor
+
+    /// <summary>
+    /// Token representing each distinct item entered by the 
+    /// user after the command prompt. The value of token is
+    /// the text entered by the user. Type is the abstract
+    /// syntax tree node type and used to identify parameters
+    /// from other inputs.
+    /// </summary>
+    internal struct Token
     {
-        private List<string> elements;
+        public string Value;
+        public Type Type;
+    }
 
-        internal ResolvingVisitor()
+    /// <summary>
+    /// Implements a visitor for the PowerShell abstract syntax tree.
+    /// Reads the input no the command line and creates an ordered list of
+    /// tokens representing user input.
+    /// </summary>
+    internal class Commands : AstVisitor
+    {
+        private readonly List<Token> tokens;
+
+        internal Commands()
         {
-            this.elements = new List<string>();
+            this.tokens = new List<Token>();
         }
 
-        internal string getFirstCommand()
+        /// <summary>
+        /// Returns the first token in the command list.
+        /// </summary>
+        internal Token? FirstCommand
         {
-            return this.elements[0];
+            get
+            {
+                if (tokens.Count > 0)
+                {
+                    return this.tokens[0];
+                }
+                else
+                {
+                    return null;
+                 }
+            }
         }
 
-        internal string getLastCommand()
+        /// <summary>
+        /// Returns the last token in the command list.
+        /// </summary>
+        internal Token? LastCommand
         {
-            return this.elements[this.elements.Count - 1];
+            get
+            {
+                if (tokens.Count > 1)
+                {
+                    return this.tokens [this.tokens.Count - 1];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
-        internal string getPriorCommand()
+        /// <summary>
+        /// Returns the second to last token in the command list.
+        /// </summary>
+        internal Token? PriorCommand
         {
-            return this.elements[this.elements.Count - 2];
+            get
+            {
+                if (tokens.Count > 2)
+                {
+                    return this.tokens[this.tokens.Count - 2];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
+        /// <summary>
+        /// Default action if the token has not been processed by a
+        /// more specific token handler. Adds the token text with a
+        /// generic text type.
+        /// </summary>
+        /// <param name="ast">Node in the abstract syntax tree.</param>
+        /// <returns>Flag to continue processing the abstract syntax tree.</returns>
         public override AstVisitAction DefaultVisit(Ast ast)
         {
-            string text = ast.ToString();
-            this.elements.Add(text);
-            LOGGER.Write($"Hello AST: {text}");
+            Token token = new()
+            {
+                Value = ast.ToString(),
+                Type = typeof(string)
+            };
+            this.tokens.Add(token);
+            LOGGER.Write($"Default: {token.Value}, {token.Type}");
 
             return AstVisitAction.Continue;
         }
 
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override string? ToString()
-        {
-            return base.ToString();
-        }
-
-        public override AstVisitAction VisitArrayExpression(ArrayExpressionAst arrayExpressionAst)
-        {
-            return base.VisitArrayExpression(arrayExpressionAst);
-        }
-
-        public override AstVisitAction VisitArrayLiteral(ArrayLiteralAst arrayLiteralAst)
-        {
-            return base.VisitArrayLiteral(arrayLiteralAst);
-        }
-
-        public override AstVisitAction VisitAssignmentStatement(AssignmentStatementAst assignmentStatementAst)
-        {
-            return base.VisitAssignmentStatement(assignmentStatementAst);
-        }
-
-        public override AstVisitAction VisitAttribute(AttributeAst attributeAst)
-        {
-            return base.VisitAttribute(attributeAst);
-        }
-
-        public override AstVisitAction VisitAttributedExpression(AttributedExpressionAst attributedExpressionAst)
-        {
-            return base.VisitAttributedExpression(attributedExpressionAst);
-        }
-
-        public override AstVisitAction VisitBinaryExpression(BinaryExpressionAst binaryExpressionAst)
-        {
-            return base.VisitBinaryExpression(binaryExpressionAst);
-        }
-
-        public override AstVisitAction VisitBlockStatement(BlockStatementAst blockStatementAst)
-        {
-            return base.VisitBlockStatement(blockStatementAst);
-        }
-
-        public override AstVisitAction VisitBreakStatement(BreakStatementAst breakStatementAst)
-        {
-            return base.VisitBreakStatement(breakStatementAst);
-        }
-
-        public override AstVisitAction VisitCatchClause(CatchClauseAst catchClauseAst)
-        {
-            return base.VisitCatchClause(catchClauseAst);
-        }
-
+        /// <summary>
+        /// Process commandAst node in the abstract syntax tree. Does not 
+        /// process this node and skips to next node in the tree.
+        /// </summary>
+        /// <param name="commandAst">Node in the abstract syntax tree.</param>
+        /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitCommand(CommandAst commandAst)
         {
+            // Do not process top level node, skip to children.
+            return AstVisitAction.Continue;
+        }
 
-            LOGGER.Write("Yo, this is a command");
+        /// <summary>
+        /// Process CommandExpressionAst node in the abstract syntax tree.
+        /// Add a token to the list of tokens on the command line.
+        /// </summary>
+        /// <param name="commandExpressionAst"></param>
+        /// <returns>Continue to next node</returns>
+        public override AstVisitAction VisitCommandExpression(CommandExpressionAst commandExpressionAst)
+        {
+            Token token = new()
+            {
+                Value = commandExpressionAst.ToString(),
+                Type = commandExpressionAst.GetType(),
+            };
+            this.tokens.Add(token);
+            LOGGER.Write($"Command expression: {token.Value}, {token.Type}");
 
             return AstVisitAction.Continue;
         }
 
-        public override AstVisitAction VisitCommandExpression(CommandExpressionAst commandExpressionAst)
-        {
-            return base.VisitCommandExpression(commandExpressionAst);
-        }
-
+        /// <summary>
+        /// Process CommandParameterAst node in the abstract syntax tree.
+        /// Add token to the list of tokens on the command line.
+        /// </summary>
+        /// <param name="commandParameterAst">Node in the abstract syntax tree.</param>
+        /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
         {
-            return base.VisitCommandParameter(commandParameterAst);
+            Token token = new()
+            {
+                Value = commandParameterAst.ToString(),
+                Type = commandParameterAst.GetType(),
+            };
+            this.tokens.Add(token);
+            LOGGER.Write($"Command parameter: {token.Value}, {token.Type}");
+
+            return AstVisitAction.Continue;
         }
 
-        public override AstVisitAction VisitConstantExpression(ConstantExpressionAst constantExpressionAst)
-        {
-            return base.VisitConstantExpression(constantExpressionAst);
-        }
-
-        public override AstVisitAction VisitContinueStatement(ContinueStatementAst continueStatementAst)
-        {
-            return base.VisitContinueStatement(continueStatementAst);
-        }
-
-        public override AstVisitAction VisitConvertExpression(ConvertExpressionAst convertExpressionAst)
-        {
-            return base.VisitConvertExpression(convertExpressionAst);
-        }
-
-        public override AstVisitAction VisitDataStatement(DataStatementAst dataStatementAst)
-        {
-            return base.VisitDataStatement(dataStatementAst);
-        }
-
-        public override AstVisitAction VisitDoUntilStatement(DoUntilStatementAst doUntilStatementAst)
-        {
-            return base.VisitDoUntilStatement(doUntilStatementAst);
-        }
-
-        public override AstVisitAction VisitDoWhileStatement(DoWhileStatementAst doWhileStatementAst)
-        {
-            return base.VisitDoWhileStatement(doWhileStatementAst);
-        }
-
-        public override AstVisitAction VisitErrorExpression(ErrorExpressionAst errorExpressionAst)
-        {
-            return base.VisitErrorExpression(errorExpressionAst);
-        }
-
-        public override AstVisitAction VisitErrorStatement(ErrorStatementAst errorStatementAst)
-        {
-            return base.VisitErrorStatement(errorStatementAst);
-        }
-
-        public override AstVisitAction VisitExitStatement(ExitStatementAst exitStatementAst)
-        {
-            return base.VisitExitStatement(exitStatementAst);
-        }
-
-        public override AstVisitAction VisitExpandableStringExpression(ExpandableStringExpressionAst expandableStringExpressionAst)
-        {
-            return base.VisitExpandableStringExpression(expandableStringExpressionAst);
-        }
-
-        public override AstVisitAction VisitFileRedirection(FileRedirectionAst redirectionAst)
-        {
-            return base.VisitFileRedirection(redirectionAst);
-        }
-
-        public override AstVisitAction VisitForEachStatement(ForEachStatementAst forEachStatementAst)
-        {
-            return base.VisitForEachStatement(forEachStatementAst);
-        }
-
-        public override AstVisitAction VisitForStatement(ForStatementAst forStatementAst)
-        {
-            return base.VisitForStatement(forStatementAst);
-        }
-
-        public override AstVisitAction VisitFunctionDefinition(FunctionDefinitionAst functionDefinitionAst)
-        {
-            return base.VisitFunctionDefinition(functionDefinitionAst);
-        }
-
-        public override AstVisitAction VisitHashtable(HashtableAst hashtableAst)
-        {
-            return base.VisitHashtable(hashtableAst);
-        }
-
-        public override AstVisitAction VisitIfStatement(IfStatementAst ifStmtAst)
-        {
-            return base.VisitIfStatement(ifStmtAst);
-        }
-
-        public override AstVisitAction VisitIndexExpression(IndexExpressionAst indexExpressionAst)
-        {
-            return base.VisitIndexExpression(indexExpressionAst);
-        }
-
-        public override AstVisitAction VisitInvokeMemberExpression(InvokeMemberExpressionAst methodCallAst)
-        {
-            return base.VisitInvokeMemberExpression(methodCallAst);
-        }
-
-        public override AstVisitAction VisitMemberExpression(MemberExpressionAst memberExpressionAst)
-        {
-            return base.VisitMemberExpression(memberExpressionAst);
-        }
-
-        public override AstVisitAction VisitMergingRedirection(MergingRedirectionAst redirectionAst)
-        {
-            return base.VisitMergingRedirection(redirectionAst);
-        }
-
-        public override AstVisitAction VisitNamedAttributeArgument(NamedAttributeArgumentAst namedAttributeArgumentAst)
-        {
-            return base.VisitNamedAttributeArgument(namedAttributeArgumentAst);
-        }
-
-        public override AstVisitAction VisitNamedBlock(NamedBlockAst namedBlockAst)
-        {
-            LOGGER.Write("Named Block.");
-            return base.VisitNamedBlock(namedBlockAst);
-        }
-
-        public override AstVisitAction VisitParamBlock(ParamBlockAst paramBlockAst)
-        {
-            return base.VisitParamBlock(paramBlockAst);
-        }
-
-        public override AstVisitAction VisitParameter(ParameterAst parameterAst)
-        {
-            return base.VisitParameter(parameterAst);
-        }
-
-        public override AstVisitAction VisitParenExpression(ParenExpressionAst parenExpressionAst)
-        {
-            return base.VisitParenExpression(parenExpressionAst);
-        }
-
-        public override AstVisitAction VisitPipeline(PipelineAst pipelineAst)
-        {
-            LOGGER.Write("Pipeline.");
-
-            return base.VisitPipeline(pipelineAst);
-        }
-
-        public override AstVisitAction VisitReturnStatement(ReturnStatementAst returnStatementAst)
-        {
-            return base.VisitReturnStatement(returnStatementAst);
-        }
-
-        public override AstVisitAction VisitScriptBlock(ScriptBlockAst scriptBlockAst)
-        {
-            LOGGER.Write("SCRIPT BLOCK");
-
-            return base.VisitScriptBlock(scriptBlockAst);
-        }
-
-        public override AstVisitAction VisitScriptBlockExpression(ScriptBlockExpressionAst scriptBlockExpressionAst)
-        {
-            return base.VisitScriptBlockExpression(scriptBlockExpressionAst);
-        }
-
-        public override AstVisitAction VisitStatementBlock(StatementBlockAst statementBlockAst)
-        {
-            return base.VisitStatementBlock(statementBlockAst);
-        }
-
+        /// <summary>
+        /// Process stringConstantExpressionAst node in the abstract syntax tree.
+        /// 
+        /// Identifies Gnu/Posix formatted parameters which start with a double dash and
+        /// reclassifies them as CommandParameterAst type.
+        /// 
+        /// Adds token to the list of tokens on the command line.
+        /// </summary>
+        /// <param name="stringConstantExpressionAst">Node in the abstract syntax tree.</param>
+        /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitStringConstantExpression(StringConstantExpressionAst stringConstantExpressionAst)
         {
-            LOGGER.Write("String constant expression.");
+            Token token = new()
+            {
+                Value = stringConstantExpressionAst.ToString(),
+                Type = stringConstantExpressionAst.StaticType
+            };
 
-            return base.VisitStringConstantExpression(stringConstantExpressionAst);
-        }
+            // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
+            // Reclassify them as CommandParameters.
+            if ((token.Value.Length > 2) & (token.Value[..2] == "--"))
+            {
+                token.Type = typeof(CommandParameterAst);
+            }
 
-        public override AstVisitAction VisitSubExpression(SubExpressionAst subExpressionAst)
-        {
-            return base.VisitSubExpression(subExpressionAst);
-        }
+            this.tokens.Add(token);
+            LOGGER.Write($"String constant expression: {token.Value}, {token.Type}");
 
-        public override AstVisitAction VisitSwitchStatement(SwitchStatementAst switchStatementAst)
-        {
-            return base.VisitSwitchStatement(switchStatementAst);
-        }
-
-        public override AstVisitAction VisitThrowStatement(ThrowStatementAst throwStatementAst)
-        {
-            return base.VisitThrowStatement(throwStatementAst);
-        }
-
-        public override AstVisitAction VisitTrap(TrapStatementAst trapStatementAst)
-        {
-            return base.VisitTrap(trapStatementAst);
-        }
-
-        public override AstVisitAction VisitTryStatement(TryStatementAst tryStatementAst)
-        {
-            return base.VisitTryStatement(tryStatementAst);
-        }
-
-        public override AstVisitAction VisitTypeConstraint(TypeConstraintAst typeConstraintAst)
-        {
-            return base.VisitTypeConstraint(typeConstraintAst);
-        }
-
-        public override AstVisitAction VisitTypeExpression(TypeExpressionAst typeExpressionAst)
-        {
-            return base.VisitTypeExpression(typeExpressionAst);
-        }
-
-        public override AstVisitAction VisitUnaryExpression(UnaryExpressionAst unaryExpressionAst)
-        {
-            return base.VisitUnaryExpression(unaryExpressionAst);
-        }
-
-        public override AstVisitAction VisitUsingExpression(UsingExpressionAst usingExpressionAst)
-        {
-            return base.VisitUsingExpression(usingExpressionAst);
-        }
-
-        public override AstVisitAction VisitVariableExpression(VariableExpressionAst variableExpressionAst)
-        {
-            return base.VisitVariableExpression(variableExpressionAst);
-        }
-
-        public override AstVisitAction VisitWhileStatement(WhileStatementAst whileStatementAst)
-        {
-            return base.VisitWhileStatement(whileStatementAst);
+            return AstVisitAction.Continue;
         }
     }
 }

@@ -144,9 +144,8 @@ Resolve-Argument provides tab-completion for the following commands:
         [System.Management.Automation.Language.CommandAst]$commandAst,
         [int]$cursorPosition)
 
-    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "[$timestamp] $cursorPosition, $wordToComplete, $commandAst" | Out-File -Append "C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt"
-    Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+    $suggestions
 }</value>
   </data>
 </root>

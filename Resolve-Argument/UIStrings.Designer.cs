@@ -111,9 +111,9 @@ namespace Resolve_Argument {
         ///        [System.Management.Automation.Language.CommandAst]$commandAst,
         ///        [int]$cursorPosition)
         ///
-        ///    $timestamp = Get-Date -Format &quot;yyyy-MM-dd HH:mm:ss&quot;
-        ///    &quot;[$timestamp] $cursorPosition, $wordToComplete, $commandAst&quot; | Out-File -Append &quot;C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt&quot;
-        ///    Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosi [rest of string was truncated]&quot;;.
+        ///    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+        ///    $suggestions
+        ///}.
         /// </summary>
         public static string REGISTER_COMMAND_SCRIPT {
             get {
