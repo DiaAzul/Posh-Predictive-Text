@@ -6,7 +6,7 @@ namespace ResolveArgument
     /// </summary>
     internal static class LOGGER
     {
-        private const string LOGFILE = @"C:\workspace\csharp\POSH-Resolve-Argument\logfile.txt";
+        private const string LOGFILE = @"C:\templogfiles\logfile.txt";
         internal static void Write(string text)
         {
             string timestamp = DateTime.Now.ToString("s");
