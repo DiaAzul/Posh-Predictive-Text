@@ -1,0 +1,3242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>clean</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove unused packages and caches.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>compare</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Compare packages between conda environments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>config</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Modify configuration values in .condarc. This is modeled</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>create</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Create a new conda environment from a list of specified packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>env</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Manage environments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>help</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Displays a list of available conda commands and their help strings.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>info</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Display information about current conda install.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>init</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>EXPERIMENTAL. Initialize conda for shell interaction.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>install</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Installs a list of packages into a specified conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>list</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List linked packages in a conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>package</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>EXPERIMENTAL. Low-level conda package utility.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>remove</ARGUMENT>
+        <ALIAS>uninstall</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove a list of packages from a specified conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>run</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Run an executable in a conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>search</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Search for packages and display associated information.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>update</ARGUMENT>
+        <ALIAS>Upgrade</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Updates conda packages to the latest compatible version.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>ARGUMENT</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>conda</COMMAND>
+        <COMMAND_PATH>conda</COMMAND_PATH>
+        <TYPE>ARGUMENT</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--version</ARGUMENT>
+        <ALIAS>-V</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show the conda version number and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Removal Targets</COMMAND_GROUP>
+        <ARGUMENT>--all</ARGUMENT>
+        <ALIAS>-a</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove index cache, lock files, unused cache packages, and tarballs.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Removal Targets</COMMAND_GROUP>
+        <ARGUMENT>--index-cache</ARGUMENT>
+        <ALIAS>-i</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove index cache.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Removal Targets</COMMAND_GROUP>
+        <ARGUMENT>--packages</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove unused packages from writable package caches.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Removal Targets</COMMAND_GROUP>
+        <ARGUMENT>--tarballs</ARGUMENT>
+        <ALIAS>-t</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove cached package tarballs.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Removal Targets</COMMAND_GROUP>
+        <ARGUMENT>--force-pkgs-dirs</ARGUMENT>
+        <ALIAS>-f</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove all writable package caches.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Removal Targets</COMMAND_GROUP>
+        <ARGUMENT>--tempfiles</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>TEMPFILES</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Remove temporary files that could not be deleted earlier due to being in-use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>clean</COMMAND>
+        <COMMAND_PATH>conda.clean</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--yes</ARGUMENT>
+        <ALIAS>-y</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not ask for confirmation.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Compare</COMMAND>
+        <COMMAND_PATH>conda.compare</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Path to the environment file that is to be compared against.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Compare</COMMAND>
+        <COMMAND_PATH>conda.compare</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Compare</COMMAND>
+        <COMMAND_PATH>conda.compare</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Compare</COMMAND>
+        <COMMAND_PATH>conda.compare</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Compare</COMMAND>
+        <COMMAND_PATH>conda.compare</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Compare</COMMAND>
+        <COMMAND_PATH>conda.compare</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Config File Location Selection</COMMAND_GROUP>
+        <ARGUMENT>--system</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Write to the system .condarc file at</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Config File Location Selection</COMMAND_GROUP>
+        <ARGUMENT>--env</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Write to the active conda environment .condarc file</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config File Location Selection</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Write to the given file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config SubCommands</COMMAND_GROUP>
+        <ARGUMENT>--show</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SHOW</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Display configuration values as calculated and compiled.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Config SubCommands</COMMAND_GROUP>
+        <ARGUMENT>--show-sources</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Display all identified configuration sources.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Config SubCommands</COMMAND_GROUP>
+        <ARGUMENT>--validate</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Validate all configuration sources.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config SubCommands</COMMAND_GROUP>
+        <ARGUMENT>--describe</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>DESCRIBE</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Describe given configuration parameters.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Config SubCommands</COMMAND_GROUP>
+        <ARGUMENT>--write-default</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Write the default configuration to a file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--get</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>KEY</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Get a configuration value.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--append</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>LIST_KEY_VALUE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Add one configuration value to the end of a list key.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--add</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>LIST_KEY_VALUE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Add one configuration value to the beginning of a list key.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--prepend</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>LIST_KEY_VALUE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Add one configuration value to the beginning of a list key.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--set</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>KEY_VALUE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Set a boolean or string key</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--remove</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>LIST_KEY_VALUE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Remove a configuration value from a list key.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--remove-key</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>KEY_TO_REMOVE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Remove a configuration key (and all its values).</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Config</COMMAND>
+        <COMMAND_PATH>conda.config</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Config Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--stdin</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Apply configuration information given in yaml format piped through stdin.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PACKAGE_SPEC</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Packages to install or update in the conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--clone</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENV</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Path to (or name of) existing local environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Read package versions from the given file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--dev</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use `sys.executable -m conda` in wrapper scripts</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--channel</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CHANNEL</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Additional channel to search for packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--use-local</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use locally built packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--override-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not search default or .condarc channels.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--repodata-fn</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REPODATA_FNS</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Specify name of repodata on remote server.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--strict-channel-priority</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Take packages from highest priority channel.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-channel-priority</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Package version takes precedence over channel priority.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not install, update, remove, or change dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--only-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only install dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-pin</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Ignore pinned file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-default-packages</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Ignore create_default_packages in the .condarc file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--copy</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Install all packages using copies instead of hard- or soft-linking.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--no-shortcuts</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Don't install start menu shortcuts</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--use-index-cache</ARGUMENT>
+        <ALIAS>-C</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use cache of channel index files, even if it has expired.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--insecure</ARGUMENT>
+        <ALIAS>-k</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow conda to perform "insecure" SSL connections and transfers.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--offline</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Offline mode. Don't connect to the Internet.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--yes</ARGUMENT>
+        <ALIAS>-y</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not ask for confirmation.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--download-only</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Solve environment, population caches, exit prior to linking.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Create</COMMAND>
+        <COMMAND_PATH>conda.create</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--show-channel-urls</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show channel urls.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--all</ARGUMENT>
+        <ALIAS>-a</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show all information.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--base</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Display base environment path.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--envs</ARGUMENT>
+        <ALIAS>-e</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List all known conda environments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--system</ARGUMENT>
+        <ALIAS>-s</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List environment variables.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--unsafe-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Display list of channels with tokens exposed.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>Info</COMMAND>
+        <COMMAND_PATH>conda.info</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SHELLS</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>One or more shells to be initialized.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--all</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Initialize all currently available shells.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--anaconda-prompt</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Add an 'Anaconda Prompt' icon to your desktop.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>setup type</COMMAND_GROUP>
+        <ARGUMENT>--reverse</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Undo past effects of conda init.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>init</COMMAND>
+        <COMMAND_PATH>conda.init</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PACKAGE_SPEC</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Packages to install or update in the conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--revision</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REVISION</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Revert to the specified REVISION.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Read package versions from the given file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--dev</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use `sys.executable -m conda` in wrapper scripts</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--channel</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CHANNEL</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Additional channel to search for packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--use-local</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use locally built packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--override-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not search default or .condarc channels.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--repodata-fn</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REPODATA_FNS</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Specify name of repodata on remote server.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--strict-channel-priority</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Take packages from highest priority channel.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-channel-priority</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Package version takes precedence over channel priority.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not install, update, remove, or change dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--only-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only install dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-pin</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Ignore pinned file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--force-reinstall</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Force reinstall of package.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-update-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not update or change already-installed dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--freeze-installed</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not update or change already-installed dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--update-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--satisfied-skip-solve</ARGUMENT>
+        <ALIAS>-S</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Exit early and do not run the solver if the requested specs are satisfied.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--all</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update all installed packages in the environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--update-all</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update all installed packages in the environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--update-specs</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update based on provided specifications.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--copy</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Install all packages using copies instead of hard- or soft-linking.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--no-shortcuts</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Don't install start menu shortcuts</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--mkdir</ARGUMENT>
+        <ALIAS>-m</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Create the environment directory if necessary.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--clobber</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow clobbering of overlapping file paths within</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--use-index-cache</ARGUMENT>
+        <ALIAS>-C</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use cache of channel index files, even if it has expired.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--insecure</ARGUMENT>
+        <ALIAS>-k</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow conda to perform "insecure" SSL connections and transfers.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--offline</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Offline mode. Don't connect to the Internet.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--yes</ARGUMENT>
+        <ALIAS>-y</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not ask for confirmation.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--download-only</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Solve environment, population caches, exit prior to linking.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>install</COMMAND>
+        <COMMAND_PATH>conda.install</COMMAND_PATH>
+        <TYPE>OPTION</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--show-channel-urls</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show channel urls.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REGEX</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>List only packages matching this regular expression.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--show-channel-urls</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show channel urls.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--canonical</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Output canonical names of packages only.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--full-name</ARGUMENT>
+        <ALIAS>-f</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only search for full names.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--explicit</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List explicitly all installed conda packaged with URL</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--md5</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Add MD5 hashsum when using --explicit</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--export</ARGUMENT>
+        <ALIAS>-e</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Output requirement string only.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--revisions</ARGUMENT>
+        <ALIAS>-r</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List the revision history and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--no-pip</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not include pip-only installed packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OUTPUT</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OUTPUT</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.list</COMMAND_PATH>
+        <TYPE>OUTPUT</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--which</ARGUMENT>
+        <ALIAS>-w</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Given some PATH print which conda package the file came from.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--reset</ARGUMENT>
+        <ALIAS>-r</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove all untracked files and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--untracked</ARGUMENT>
+        <ALIAS>-u</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Display all untracked files and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--pkg-name</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PKG_NAME</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Package name of the created package.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--pkg-version</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PKG_VERSION</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Package version of the created package.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--pkg-build</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PKG_BUILD</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Package build number of the created package.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>package</COMMAND>
+        <COMMAND_PATH>conda.package</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PACKAGE_NAME</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Package names to remove from the environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--dev</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use `sys.executable -m conda` in wrapper scripts.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--channel</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CHANNEL</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Additional channel to search for packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--use-local</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use locally built packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--override-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not search default or .condarc channels.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--repodata-fn</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REPODATA_FNS</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Specify name of repodata on remote server.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--all</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove all packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--features</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove features (instead of packages).</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--force</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Forces removal of a package without removing packages that depend on it.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--force-remove</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Forces removal of a package without removing packages that depend on it.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-pin</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Ignore pinned file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--use-index-cache</ARGUMENT>
+        <ALIAS>-C</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use cache of channel index files, even if it has expired.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--insecure</ARGUMENT>
+        <ALIAS>-k</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--offline</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Offline mode. Don't connect to the Internet.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--yes</ARGUMENT>
+        <ALIAS>-y</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not ask for confirmation.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>EXECUTABLE_CALL</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Executable name with additional arguments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--dev</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Sets `CONDA_EXE` to `python -m conda`.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--debug-wrapper-scripts</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Echo wrapper script debug info to stderr.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--cwd</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CWD</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Current working directory for command to run in.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--no-capture-output</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Don't capture stdout/stderr</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--live-stream</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Display the output in real time.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>run</COMMAND>
+        <COMMAND_PATH>conda.run</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show this help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--envs</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Search all of the current user's environments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--info</ARGUMENT>
+        <ALIAS>-i</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Provide detailed information about each package.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--subdir</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SUBDIR</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Search the given sub-directory.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--platform</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SUBDIR</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Platform.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--channel</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CHANNEL</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Additional channel to search for packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--use-local</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use locally built packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--override-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not search default or .condarc channels.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--repodata-fn</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REPODATA_FNS</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Specify name of repodata on remote server.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--use-index-cache</ARGUMENT>
+        <ALIAS>-C</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use cache of channel index files, even if it has expired.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--insecure</ARGUMENT>
+        <ALIAS>-k</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow conda to perform "insecure" SSL connections and transfers.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--offline</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Offline mode. Don't connect to the Internet.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>search</COMMAND>
+        <COMMAND_PATH>conda.search</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PACKAGE_SPEC</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Packages to install or update in the conda</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Read package versions from the given file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--channel</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CHANNEL</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Additional channel to search for packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--use-local</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use locally built packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--override-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not search default or .condarc channels.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Channel Customization</COMMAND_GROUP>
+        <ARGUMENT>--repodata-fn</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REPODATA_FNS</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Specify name of repodata on remote server.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--strict-channel-priority</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Take packages from highest priority channel.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-channel-priority</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Package version takes precedence over channel priority.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not install, update, remove, or change dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--only-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only install dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-pin</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Ignore pinned file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--force-reinstall</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Force reinstall of package.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--no-update-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not update or change already-installed dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--freeze-installed</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not update or change already-installed dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--update-deps</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update dependencies.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--satisfied-skip-solve</ARGUMENT>
+        <ALIAS>-S</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Exit early and do not run the solver if the requested specs are satisfied.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--all</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update all installed packages in the environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--update-all</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update all installed packages in the environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Solver Mode Modifiers</COMMAND_GROUP>
+        <ARGUMENT>--update-specs</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update based on provided specifications.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--copy</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Install all packages using copies instead of hard- or soft-linking.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--no-shortcuts</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Don't install start menu shortcuts</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Package Linking and Install-time Options</COMMAND_GROUP>
+        <ARGUMENT>--clobber</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow clobbering of overlapping file paths within</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--use-index-cache</ARGUMENT>
+        <ALIAS>-C</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use cache of channel index files, even if it has expired.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--insecure</ARGUMENT>
+        <ALIAS>-k</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow conda to perform "insecure" SSL connections and transfers.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--offline</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Offline mode. Don't connect to the Internet.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--yes</ARGUMENT>
+        <ALIAS>-y</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not ask for confirmation.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--download-only</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Solve environment, population caches, exit prior to linking.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--show-channel-urls</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show channel urls.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>env</COMMAND>
+        <COMMAND_PATH>conda.env</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>create</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Create an environment based on an environment file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>env</COMMAND>
+        <COMMAND_PATH>conda.env</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>export</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Export a given environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>env</COMMAND>
+        <COMMAND_PATH>conda.env</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>list</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List the Conda environments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>env</COMMAND>
+        <COMMAND_PATH>conda.env</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>remove</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove an environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>env</COMMAND>
+        <COMMAND_PATH>conda.env</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>update</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Update the current environment based on environment file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>env</COMMAND>
+        <COMMAND_PATH>conda.env</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>config</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Configure a conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REMOTE_DEFINITION</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Remote environment definition.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <ALIAS>-f</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Environment definition file (default: environment.yml)</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--force</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Force creation of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--no-default-packages</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Ignore create_default_packages in the .condarc file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--use-index-cache</ARGUMENT>
+        <ALIAS>-C</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Use cache of channel index files, even if it has expired.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--insecure</ARGUMENT>
+        <ALIAS>-k</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Allow conda to perform "insecure" SSL connections and transfers.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Networking Options</COMMAND_GROUP>
+        <ARGUMENT>--offline</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Offline mode. Don't connect to the Internet.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>create</COMMAND>
+        <COMMAND_PATH>conda.env.create</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--channel</ARGUMENT>
+        <ALIAS>-c</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>CHANNEL</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Additional channel to search for packages.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--override-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not search default or .condarc channels.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <ALIAS>-f</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Environment definition file (default: environment.yml)</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--no-builds</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove build specification from dependencies</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--ignore-channels</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not include channel names with package names.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--from-history</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Build environment spec from explicit specs in history</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>export</COMMAND>
+        <COMMAND_PATH>conda.env.export</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--dry-run</ARGUMENT>
+        <ALIAS>-d</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Only display what would have been done.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>remove</COMMAND>
+        <COMMAND_PATH>conda.env.remove</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--yes</ARGUMENT>
+        <ALIAS>-y</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not ask for confirmation.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>REMOTE_DEFINITION</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Remote environment definition.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--file</ARGUMENT>
+        <ALIAS>-f</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>FILE</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Environment definition file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--prune</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Remove installed packages not defined in definition file.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--experimental-solver</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>SOLVER</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>EXPERIMENTAL. Choose which solver backend to use.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>update</COMMAND>
+        <COMMAND_PATH>conda.env.update</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>config</COMMAND>
+        <COMMAND_PATH>conda.env.config</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>vars</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Interact with environment variables associated with Conda environments.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>config</COMMAND>
+        <COMMAND_PATH>conda.env.config</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>vars</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>list</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>List environment variables for a conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>vars</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>set</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Set environment variables for a conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>vars</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars</COMMAND_PATH>
+        <TYPE>COMMAND</TYPE>
+        <COMMAND_GROUP>Command</COMMAND_GROUP>
+        <ARGUMENT>unset</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Unset environment variables for a conda environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>vars</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.list</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.list</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--json</ARGUMENT>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Report all output as json.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--quiet</ARGUMENT>
+        <ALIAS>-q</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Do not display progress bar.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>list</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.list</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Output, Prompt, and Flow Control Options</COMMAND_GROUP>
+        <ARGUMENT>--verbose</ARGUMENT>
+        <ALIAS>-v</ALIAS>
+        <MULTIPLE_USE>TRUE</MULTIPLE_USE>
+        <TOOLTIP>Use once for INFO, twice for DEBUG, three times for TRACE.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>set</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.set</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENV_KEY_VALUE</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>set</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.set</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>set</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.set</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>set</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.set</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>unset</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.unset</COMMAND_PATH>
+        <TYPE>POSITIONAL</TYPE>
+        <COMMAND_GROUP>positional arguments</COMMAND_GROUP>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENV_KEY</PARAMETER>
+        <MULTIPLE_PARAMETER>TRUE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Environment variables to unset in the form &lt;KEY&gt;.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>unset</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.unset</COMMAND_PATH>
+        <TYPE>OPTIONAL</TYPE>
+        <COMMAND_GROUP>Optional arguments</COMMAND_GROUP>
+        <ARGUMENT>--help</ARGUMENT>
+        <ALIAS>-h</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <TOOLTIP>Show help message and exit.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>unset</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.unset</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--name</ARGUMENT>
+        <ALIAS>-n</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>ENVIRONMENT</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Name of environment.</TOOLTIP>
+    </item>
+    <item>
+        <COMMAND>unset</COMMAND>
+        <COMMAND_PATH>conda.env.config.vars.unset</COMMAND_PATH>
+        <TYPE>PARAMETER</TYPE>
+        <COMMAND_GROUP>Target Environment Specification</COMMAND_GROUP>
+        <ARGUMENT>--prefix</ARGUMENT>
+        <ALIAS>-p</ALIAS>
+        <MULTIPLE_USE>FALSE</MULTIPLE_USE>
+        <PARAMETER>PATH</PARAMETER>
+        <MULTIPLE_PARAMETER>FALSE</MULTIPLE_PARAMETER>
+        <TOOLTIP>Full path to environment location.</TOOLTIP>
+    </item>
+</root>

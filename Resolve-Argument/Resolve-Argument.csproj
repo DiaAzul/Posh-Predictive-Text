@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommandCompletions\**" />
+    <EmbeddedResource Remove="CommandCompletions\**" />
+    <None Remove="CommandCompletions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="CondaCompletes.xml" />
   </ItemGroup>
 
@@ -40,10 +46,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UIStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CommandCompletions\" />
   </ItemGroup>
 
 </Project>
