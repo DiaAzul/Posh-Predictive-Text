@@ -123,18 +123,18 @@ namespace ResolveArgument
                         WordToComplete + "a",
                         CompletionResultType.ParameterName, //Need to change this for ast.
                         "ToolTip");
-                    // WriteObject(response);
 
                     CompletionResult response2 = new(
                         WordToComplete + "b",
                         WordToComplete + "b",
                         CompletionResultType.ParameterName, //Need to change this for ast.
                         "ToolTip");
-                    // WriteObject(response2);
 
-                    List<CompletionResult> suggestions = new();
-                    suggestions.Add(response);
-                    suggestions.Add(response2);
+                    List<CompletionResult> suggestions = new()
+                    {
+                        response,
+                        response2
+                    };
                     WriteObject(suggestions);
 
                     break;

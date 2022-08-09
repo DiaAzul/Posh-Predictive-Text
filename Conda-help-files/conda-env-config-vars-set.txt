@@ -1,0 +1,22 @@
+usage: conda-env-script.py config vars set [-h] [-n ENVIRONMENT | -p PATH]
+                                           [vars ...]
+
+Set environment variables for a conda environment
+
+Options:
+
+positional arguments:
+  vars                  Environment variables to set in the form <KEY>=<VALUE>
+                        separated by spaces
+
+optional arguments:
+  -h, --help            Show this help message and exit.
+
+Target Environment Specification:
+  -n ENVIRONMENT, --name ENVIRONMENT
+                        Name of environment.
+  -p PATH, --prefix PATH
+                        Full path to environment location (i.e. prefix).
+
+example:
+    conda env config vars set MY_VAR=weee

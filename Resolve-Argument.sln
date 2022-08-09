@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resolve-Argument", "Resolve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resolve-Argument-Test", "Resolve-Argument-Test\Resolve-Argument-Test.csproj", "{83FA08F2-47F0-4703-BAD4-FE5866824FEE}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ResolveArgumentSetup", "ResolveArgumentSetup\ResolveArgumentSetup.vdproj", "{3B0BD220-E2C2-4C27-92E6-8E0C9B37B056}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,8 +21,6 @@ Global
 		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83FA08F2-47F0-4703-BAD4-FE5866824FEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B0BD220-E2C2-4C27-92E6-8E0C9B37B056}.Debug|Any CPU.ActiveCfg = Debug
-		{3B0BD220-E2C2-4C27-92E6-8E0C9B37B056}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

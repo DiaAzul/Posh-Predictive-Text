@@ -1,0 +1,195 @@
+usage: conda-env-script.py config [-h] {vars} ...
+
+Configure a conda environment
+
+Options:
+
+positional arguments:
+  {vars}
+#vars#Interact with environment variables associated with Conda
+#environments
+
+optional arguments:
+'-h, --help  Show this help message and exit.
+
+examples:
+#conda env config vars list
+#conda env config --append channels conda-forge
+usage: conda-env-script.py create [-h] [-f FILE] [-n ENVIRONMENT | -p PATH]
+#[-C] [-k] [--offline] [--force] [-d]
+#[--no-default-packages] [--json] [-v] [-q]
+#[--experimental-solver {classic,libmamba,libmamba-draft}]
+#[remote_definition]
+
+Create an environment based on an environment file
+
+Options:
+
+positional arguments:
+  remote_definition# remote environment definition / IPython notebook
+
+optional arguments:
+'-h, --help#Show this help message and exit.
+'-f FILE, --file FILE  environment definition file (default: environment.yml)
+'--force# force creation of environment (removing a previously
+#existing environment of the same name).
+'-d, --dry-run# Only display what would have been done.
+'--no-default-packages
+#Ignore create_default_packages in the .condarc file.
+'--experimental-solver {classic,libmamba,libmamba-draft}
+#EXPERIMENTAL. Choose which solver backend to use.
+
+Target Environment Specification:
+'-n ENVIRONMENT, --name ENVIRONMENT
+#Name of environment.
+'-p PATH, --prefix PATH
+#Full path to environment location (i.e. prefix).
+
+Networking Options:
+'-C, --use-index-cache
+#Use cache of channel index files, even if it has
+#expired.
+'-k, --insecure#Allow conda to perform "insecure" SSL connections and
+#transfers. Equivalent to setting 'ssl_verify' to
+#'false'.
+'--offline# Offline mode. Don't connect to the Internet.
+
+Output, Prompt, and Flow Control Options:
+'--json#Report all output as json. Suitable for using conda
+#programmatically.
+'-v, --verbose# Use once for info, twice for debug, three times for
+#trace.
+'-q, --quiet# Do not display progress bar.
+
+examples:
+#conda env create
+#conda env create -n name
+#conda env create vader/deathstar
+#conda env create -f=/path/to/environment.yml
+#conda env create -f=/path/to/requirements.txt -n deathstar
+#conda env create -f=/path/to/requirements.txt -p /home/user/software/deathstar
+usage: conda-env-script.py export [-h] [-c CHANNEL] [--override-channels]
+#[-n ENVIRONMENT | -p PATH] [-f FILE]
+#[--no-builds] [--ignore-channels] [--json]
+#[-v] [-q] [--from-history]
+
+Export a given environment
+
+Options:
+
+optional arguments:
+'-h, --help#Show this help message and exit.
+'-c CHANNEL, --channel CHANNEL
+#Additional channel to include in the export
+'--override-channels   Do not include .condarc channels
+'-f FILE, --file FILE
+'--no-builds# Remove build specification from dependencies
+'--ignore-channels# Do not include channel names with package names.
+'--from-history#Build environment spec from explicit specs in history
+
+Target Environment Specification:
+'-n ENVIRONMENT, --name ENVIRONMENT
+#Name of environment.
+'-p PATH, --prefix PATH
+#Full path to environment location (i.e. prefix).
+
+Output, Prompt, and Flow Control Options:
+'--json#Report all output as json. Suitable for using conda
+#programmatically.
+'-v, --verbose# Use once for info, twice for debug, three times for
+#trace.
+'-q, --quiet# Do not display progress bar.
+
+examples:
+#conda env export
+#conda env export --file SOME_FILE
+usage: conda-env-script.py list [-h] [--json] [-v] [-q]
+
+List the Conda environments
+
+Options:
+
+optional arguments:
+'-h, --help# Show this help message and exit.
+
+Output, Prompt, and Flow Control Options:
+'--json# Report all output as json. Suitable for using conda
+# programmatically.
+'-v, --verbose  Use once for info, twice for debug, three times for trace.
+'-q, --quiet#Do not display progress bar.
+
+examples:
+#conda env list
+#conda env list --json
+usage: conda-env-script.py remove [-h] [-n ENVIRONMENT | -p PATH]
+#[--experimental-solver {classic,libmamba,libmamba-draft}]
+#[-d] [--json] [-q] [-v] [-y]
+
+Remove an environmentRemoves a provided environment.  You must deactivate the existing
+environment before you can remove it.
+
+Options:
+
+optional arguments:
+'-h, --help#Show this help message and exit.
+'--experimental-solver {classic,libmamba,libmamba-draft}
+#EXPERIMENTAL. Choose which solver backend to use.
+
+Target Environment Specification:
+'-n ENVIRONMENT, --name ENVIRONMENT
+#Name of environment.
+'-p PATH, --prefix PATH
+#Full path to environment location (i.e. prefix).
+
+Output, Prompt, and Flow Control Options:
+'-d, --dry-run# Only display what would have been done.
+'--json#Report all output as json. Suitable for using conda
+#programmatically.
+'-q, --quiet# Do not display progress bar.
+'-v, --verbose# Can be used multiple times. Once for INFO, twice for
+#DEBUG, three times for TRACE.
+'-y, --yes# Do not ask for confirmation.
+
+Examples:
+
+#conda env remove --name FOO
+#conda env remove -n FOO
+usage: conda-env-script.py update [-h] [-n ENVIRONMENT | -p PATH] [-f FILE]
+#[--prune] [--json] [-v] [-q]
+#[--experimental-solver {classic,libmamba,libmamba-draft}]
+#[remote_definition]
+
+Update the current environment based on environment file
+
+Options:
+
+positional arguments:
+  remote_definition# remote environment definition / IPython notebook
+
+optional arguments:
+'-h, --help#Show this help message and exit.
+'-f FILE, --file FILE  environment definition (default: environment.yml)
+'--prune# remove installed packages not defined in
+#environment.yml
+'--experimental-solver {classic,libmamba,libmamba-draft}
+#EXPERIMENTAL. Choose which solver backend to use.
+
+Target Environment Specification:
+'-n ENVIRONMENT, --name ENVIRONMENT
+#Name of environment.
+'-p PATH, --prefix PATH
+#Full path to environment location (i.e. prefix).
+
+Output, Prompt, and Flow Control Options:
+'--json#Report all output as json. Suitable for using conda
+#programmatically.
+'-v, --verbose# Use once for info, twice for debug, three times for
+#trace.
+'-q, --quiet# Do not display progress bar.
+
+examples:
+#conda env update
+#conda env update -n=foo
+#conda env update -f=/path/to/environment.yml
+#conda env update --name=foo --file=environment.yml
+#conda env update vader/deathstar

@@ -1,0 +1,33 @@
+usage: conda-env-script.py remove [-h] [-n ENVIRONMENT | -p PATH]
+                                  [--experimental-solver {classic,libmamba,libmamba-draft}]
+                                  [-d] [--json] [-q] [-v] [-y]
+
+Remove an environmentRemoves a provided environment.  You must deactivate the existing
+environment before you can remove it.
+
+Options:
+
+optional arguments:
+  -h, --help            Show this help message and exit.
+  --experimental-solver {classic,libmamba,libmamba-draft}
+                        EXPERIMENTAL. Choose which solver backend to use.
+
+Target Environment Specification:
+  -n ENVIRONMENT, --name ENVIRONMENT
+                        Name of environment.
+  -p PATH, --prefix PATH
+                        Full path to environment location (i.e. prefix).
+
+Output, Prompt, and Flow Control Options:
+  -d, --dry-run         Only display what would have been done.
+  --json                Report all output as json. Suitable for using conda
+                        programmatically.
+  -q, --quiet           Do not display progress bar.
+  -v, --verbose         Can be used multiple times. Once for INFO, twice for
+                        DEBUG, three times for TRACE.
+  -y, --yes             Do not ask for confirmation.
+
+Examples:
+
+    conda env remove --name FOO
+    conda env remove -n FOO
