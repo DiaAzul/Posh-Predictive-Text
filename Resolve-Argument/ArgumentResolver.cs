@@ -76,6 +76,47 @@ namespace ResolveArgument
         }
 
         /// <summary>
+        /// Convert nullable <c>XElement</c> node in an XML tree to a <c>string</c>.
+        /// 
+        /// Null values are converted to an empty string.
+        /// </summary>
+        /// <param name="element">Node in XML tree.</param>
+        /// <returns>Contents of node as string.</returns>
+        internal static string AsString(XElement? element)
+        {
+            string elementAsString = "";
+            if (element != null)
+            {
+                elementAsString = (string)element;
+            }
+
+            return elementAsString;
+        }
+
+        /// <summary>
+        /// Convert nullable <c>XElement</c> node in an XML tree to a nullable <c>bool</c>.
+        /// 
+        /// <para>The method returns true if the content of the node matches the test pattern. The
+        /// default matching pattern is <c>TRUE</c>.</para>
+        /// 
+        /// <para>If the node is null then the method returns a null bool.</para>
+        /// </summary>
+        /// <param name="element">Node in XML tree.</param>
+        /// <param name="trueValue">Test pattern for true value. Default <c>TRUE</c>.</param>
+        /// <returns>True when the contents of the node match the test pattern. Null if the node is null.</returns>
+        internal static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
+        {
+            bool? elementAsNullableBool = null;
+            if (element != null)
+            {
+                elementAsNullableBool = (string)element == trueValue;
+            }
+
+            return elementAsNullableBool;
+
+        }
+
+        /// <summary>
         /// Test that a syntax tree is loaded.
         /// </summary>
         /// <param name="syntaxTreeName">Name of syntax tree to test.</param>
@@ -128,16 +169,16 @@ namespace ResolveArgument
                         commandQuery = from item in root.Elements("item")
                                        select new SyntaxItem
                                        {
-                                           command = (string)item.Element("COMMAND"),
-                                           commandPath = (string)item.Element("COMMAND_PATH"),
-                                           type = (string)item.Element("TYPE"),
-                                           commandGroup = (string)item.Element("COMMAND_GROUP"),
-                                           argument = (string)item.Element("ARGUMENT"),
-                                           alias = (string)item.Element("ALIAS"),
-                                           multipleUse = ((string)item.Element("MULTIPLE_USE")) == "TRUE",
-                                           parameter = (string)item.Element("PARAMETER"),
-                                           multipleParameters = ((string)item.Element("MULTIPLE_PARAMETER")) == "TRUE",
-                                           toolTip = (string)item.Element("TOOLTIP")
+                                           command = AsString(item.Element("COMMAND")),
+                                           commandPath = AsString(item.Element("COMMAND_PATH")),
+                                           type = AsString(item.Element("TYPE")),
+                                           commandGroup = AsString(item.Element("COMMAND_GROUP")),
+                                           argument = AsString(item.Element("ARGUMENT")),
+                                           alias = AsString(item.Element("ALIAS")),
+                                           multipleUse = AsNullableBool(item.Element("MULTIPLE_USE")),
+                                           parameter = AsString(item.Element("PARAMETER")),
+                                           multipleParameters = AsNullableBool(item.Element("MULTIPLE_PARAMETER")),
+                                           toolTip = AsString(item.Element("TOOLTIP"))
                                        };
                         LOGGER.Write($"Hi! The command query exists: {commandQuery != null}");
                     }
