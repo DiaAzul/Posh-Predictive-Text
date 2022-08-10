@@ -6,6 +6,8 @@ namespace ResolveArgument
     /// </summary>
     internal static class LOGGER
     {
+        // TODO Make logging an option with a definable output logfile
+        // -logfile
         private const string LOGFILE = @"C:\templogfiles\logfile.txt";
         internal static void Write(string text)
         {
