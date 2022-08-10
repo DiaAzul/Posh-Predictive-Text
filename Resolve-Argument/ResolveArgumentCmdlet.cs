@@ -10,7 +10,7 @@ namespace ResolveArgument
     using System.Text;
 
 /// <summary>
-/// The Resolve-Argument cmdlet provides auto-complete of command arguments in PowerShell.
+/// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
 /// </summary>
 [Cmdlet(
         VerbsDiagnostic.Resolve,
@@ -100,48 +100,37 @@ namespace ResolveArgument
                     WriteObject(result.ToString());
                     break;
                 case "PrintScript":
-                    var localised_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "git");
+                    var localised_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
                     result.Append(localised_script);
                     WriteObject(result.ToString());
                     break;
                 case "Resolve":
                     // CompletionResultType: https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.completionresulttype?view=powershellsdk-7.0.0
 
-                    LOGGER.Write("Resolving word: " + WordToComplete);
-                    LOGGER.Write("Resolving AST: " + CommandAst);
-                    var commands = new Commands();
-                    CommandAst?.Visit(commands);
-
-                    LOGGER.Write($"First Command: {commands.FirstCommand?.Value}");
-                    LOGGER.Write($"Last Command: {commands.LastCommand?.Value}");
-                    LOGGER.Write($"Prior Command: {commands.PriorCommand?.Value}");
-
-
-
-                    CompletionResult response = new(
-                        WordToComplete + "a",
-                        WordToComplete + "a",
-                        CompletionResultType.ParameterName, //Need to change this for ast.
-                        "ToolTip");
-
-                    CompletionResult response2 = new(
-                        WordToComplete + "b",
-                        WordToComplete + "b",
-                        CompletionResultType.ParameterName, //Need to change this for ast.
-                        "ToolTip");
-
-                    List<CompletionResult> suggestions = new()
+                    // The algorithm requires the command abstract syntrax tree from which tokens are extracted.
+                    if (CommandAst != null)
                     {
-                        response,
-                        response2
-                    };
-                    WriteObject(suggestions);
+                        var commandTokens = new CommandAstVisitor();
+                        CommandAst.Visit(commandTokens);
+
+                        string checkedWordToComplete = WordToComplete == null ? "" : WordToComplete;
+                        int checkedCursorPosition = CursorPosition == null ? CommandAst.ToString().Length : (int)CursorPosition;
+ 
+                        LOGGER.Write("Resolving word: " + WordToComplete);
+                        LOGGER.Write("Resolving AST: " + CommandAst);
+                        LOGGER.Write($"First Command: {commandTokens.FirstCommand?.Value}");
+                        LOGGER.Write($"Last Command: {commandTokens.LastCommand?.Value}");
+                        LOGGER.Write($"Prior Command: {commandTokens.PriorCommand?.Value}");
+
+                        var suggestions = ArgumentResolver.Suggestions(checkedWordToComplete, commandTokens, checkedCursorPosition);
+
+                        WriteObject(suggestions);
+                    }
 
                     break;
                 default:
-                    result.Append("Yo. I'm the default.");
+                    result.Append("Default we should print help text.");
                     WriteObject(result.ToString());
-
                     break;
             }
         }
