@@ -8,6 +8,8 @@ Commands supported by this cmdlet are:
 
 - git
 - conda
-- mamaba
+- mamba
 - pip
 - python
+- venv?
+
