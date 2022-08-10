@@ -7,6 +7,7 @@ namespace ResolveArgument
     using System.Management.Automation.Language;
     using System.Reflection;
     using System.IO;
+    using System;
 
     /// <summary>
     /// Record within the command syntax tree.
@@ -15,10 +16,9 @@ namespace ResolveArgument
     /// </summary>
     internal struct SyntaxItem
     {
-        internal string? command;
-        internal string? commandPath;
-        internal string? type;
-        internal string? commandGroup;
+        internal string command;
+        internal string commandPath;
+        internal string type;
         internal string? argument;
         internal string? alias;
         internal bool? multipleUse;
@@ -28,7 +28,7 @@ namespace ResolveArgument
 
         internal string AsString()
         {
-            return $"{command}, {commandPath}, {type}, {commandGroup}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameters}, {toolTip}";
+            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameters}, {toolTip}";
         }
     }
 
@@ -53,11 +53,9 @@ namespace ResolveArgument
 
                 if (resourceStream != null)
                 {
-                    using (StreamReader reader = new StreamReader(resourceStream))
-                    {
-                        var xmlDoc = reader.ReadToEnd();
-                        syntaxTree = XDocument.Parse(xmlDoc);
-                    }
+                    using StreamReader reader = new(resourceStream);
+                    var xmlDoc = reader.ReadToEnd();
+                    syntaxTree = XDocument.Parse(xmlDoc);
                 }
             }
             catch (FileNotFoundException)
@@ -85,6 +83,24 @@ namespace ResolveArgument
         internal static string AsString(XElement? element)
         {
             string elementAsString = "";
+            if (element != null)
+            {
+                elementAsString = (string)element;
+            }
+
+            return elementAsString;
+        }
+
+        /// <summary>
+        /// Convert nullable <c>XElement</c> node in an XML tree to a nullable <c>string</c>.
+        /// 
+        /// Null values are converted to an empty string.
+        /// </summary>
+        /// <param name="element">Node in XML tree.</param>
+        /// <returns>Contents of node as string.</returns>
+        internal static string? AsNullableString(XElement? element)
+        {
+            string? elementAsString = null;
             if (element != null)
             {
                 elementAsString = (string)element;
@@ -169,27 +185,26 @@ namespace ResolveArgument
                         commandQuery = from item in root.Elements("item")
                                        select new SyntaxItem
                                        {
-                                           command = AsString(item.Element("COMMAND")),
-                                           commandPath = AsString(item.Element("COMMAND_PATH")),
+                                           command = AsString(item.Element("CMD")),
+                                           commandPath = AsString(item.Element("PATH")),
                                            type = AsString(item.Element("TYPE")),
-                                           commandGroup = AsString(item.Element("COMMAND_GROUP")),
-                                           argument = AsString(item.Element("ARGUMENT")),
-                                           alias = AsString(item.Element("ALIAS")),
-                                           multipleUse = AsNullableBool(item.Element("MULTIPLE_USE")),
-                                           parameter = AsString(item.Element("PARAMETER")),
-                                           multipleParameters = AsNullableBool(item.Element("MULTIPLE_PARAMETER")),
-                                           toolTip = AsString(item.Element("TOOLTIP"))
+                                           argument = AsNullableString(item.Element("ARG")),
+                                           alias = AsNullableString(item.Element("AL")),
+                                           multipleUse = AsNullableBool(item.Element("MU")),
+                                           parameter = AsNullableString(item.Element("PRM")),
+                                           multipleParameters = AsNullableBool(item.Element("MP")),
+                                           toolTip = AsNullableString(item.Element("TT"))
                                        };
                         LOGGER.Write($"Hi! The command query exists: {commandQuery != null}");
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         LOGGER.Write(e.ToString());
                     }
                 }
                 LOGGER.Write($"Command query exists: {commandQuery != null}");
                 LOGGER.Write("Executing query.");
-                List<SyntaxItem> list = new List<SyntaxItem>();
+                List<SyntaxItem> list = new();
 
                 if (commandQuery != null)
                 {

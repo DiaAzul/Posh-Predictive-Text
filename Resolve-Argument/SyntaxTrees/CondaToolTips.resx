@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CONDA001" xml:space="preserve">
+    <value>Add one configuration value to the beginning of a list key.</value>
+  </data>
+  <data name="CONDA002" xml:space="preserve">
+    <value>Add one configuration value to the end of a list key.</value>
+  </data>
+  <data name="CONDA003" xml:space="preserve">
+    <value>Additional channel to search for packages.</value>
+  </data>
+  <data name="CONDA004" xml:space="preserve">
+    <value>Allow conda to perform "insecure" SSL connections and transfers.</value>
+  </data>
+  <data name="CONDA005" xml:space="preserve">
+    <value>Apply configuration information given in yaml format piped through stdin.</value>
+  </data>
+  <data name="CONDA006" xml:space="preserve">
+    <value>Compare packages between conda environments.</value>
+  </data>
+  <data name="CONDA007" xml:space="preserve">
+    <value>Configure a conda environment.</value>
+  </data>
+  <data name="CONDA008" xml:space="preserve">
+    <value>Create a new conda environment from a list of specified packages.</value>
+  </data>
+  <data name="CONDA009" xml:space="preserve">
+    <value>Create an environment based on an environment file.</value>
+  </data>
+  <data name="CONDA010" xml:space="preserve">
+    <value>Create the environment directory if necessary.</value>
+  </data>
+  <data name="CONDA011" xml:space="preserve">
+    <value>Describe given configuration parameters.</value>
+  </data>
+  <data name="CONDA012" xml:space="preserve">
+    <value>Display all identified configuration sources.</value>
+  </data>
+  <data name="CONDA013" xml:space="preserve">
+    <value>Display all untracked files and exit.</value>
+  </data>
+  <data name="CONDA014" xml:space="preserve">
+    <value>Display base environment path.</value>
+  </data>
+  <data name="CONDA015" xml:space="preserve">
+    <value>Display information about current conda install.</value>
+  </data>
+  <data name="CONDA016" xml:space="preserve">
+    <value>Display list of channels with tokens exposed.</value>
+  </data>
+  <data name="CONDA017" xml:space="preserve">
+    <value>Display the output in real time.</value>
+  </data>
+  <data name="CONDA018" xml:space="preserve">
+    <value>Displays a list of available conda commands and their help strings.</value>
+  </data>
+  <data name="CONDA019" xml:space="preserve">
+    <value>Do not ask for confirmation.</value>
+  </data>
+  <data name="CONDA020" xml:space="preserve">
+    <value>Do not display progress bar.</value>
+  </data>
+  <data name="CONDA021" xml:space="preserve">
+    <value>Do not include pip-only installed packages.</value>
+  </data>
+  <data name="CONDA022" xml:space="preserve">
+    <value>Do not install, update, remove, or change dependencies.</value>
+  </data>
+  <data name="CONDA023" xml:space="preserve">
+    <value>Do not search default or .condarc channels.</value>
+  </data>
+  <data name="CONDA024" xml:space="preserve">
+    <value>Do not update or change already-installed dependencies.</value>
+  </data>
+  <data name="CONDA025" xml:space="preserve">
+    <value>Echo wrapper script debug info to stderr.</value>
+  </data>
+  <data name="CONDA026" xml:space="preserve">
+    <value>Environment definition file.</value>
+  </data>
+  <data name="CONDA027" xml:space="preserve">
+    <value>Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;.</value>
+  </data>
+  <data name="CONDA028" xml:space="preserve">
+    <value>Environment variables to unset in the form &lt;KEY&gt;.</value>
+  </data>
+  <data name="CONDA029" xml:space="preserve">
+    <value>Executable name with additional arguments.</value>
+  </data>
+  <data name="CONDA030" xml:space="preserve">
+    <value>Exit early and do not run the solver if the requested specs are satisfied.</value>
+  </data>
+  <data name="CONDA031" xml:space="preserve">
+    <value>EXPERIMENTAL. Choose which solver backend to use.</value>
+  </data>
+  <data name="CONDA032" xml:space="preserve">
+    <value>EXPERIMENTAL. Initialize conda for shell interaction.</value>
+  </data>
+  <data name="CONDA033" xml:space="preserve">
+    <value>EXPERIMENTAL. Low-level conda package utility.</value>
+  </data>
+  <data name="CONDA034" xml:space="preserve">
+    <value>Export a given environment.</value>
+  </data>
+  <data name="CONDA035" xml:space="preserve">
+    <value>Force creation of environment.</value>
+  </data>
+  <data name="CONDA036" xml:space="preserve">
+    <value>Force reinstall of package.</value>
+  </data>
+  <data name="CONDA037" xml:space="preserve">
+    <value>Forces removal of a package without removing packages that depend on it.</value>
+  </data>
+  <data name="CONDA038" xml:space="preserve">
+    <value>Full path to environment location.</value>
+  </data>
+  <data name="CONDA039" xml:space="preserve">
+    <value>Get a configuration value.</value>
+  </data>
+  <data name="CONDA040" xml:space="preserve">
+    <value>Given some PATH print which conda package the file came from.</value>
+  </data>
+  <data name="CONDA041" xml:space="preserve">
+    <value>Ignore create_default_packages in the .condarc file.</value>
+  </data>
+  <data name="CONDA042" xml:space="preserve">
+    <value>Ignore pinned file.</value>
+  </data>
+  <data name="CONDA043" xml:space="preserve">
+    <value>Initialize all currently available shells.</value>
+  </data>
+  <data name="CONDA044" xml:space="preserve">
+    <value>Install all packages using copies instead of hard- or soft-linking.</value>
+  </data>
+  <data name="CONDA045" xml:space="preserve">
+    <value>Installs a list of packages into a specified conda environment.</value>
+  </data>
+  <data name="CONDA046" xml:space="preserve">
+    <value>Interact with environment variables associated with Conda environments.</value>
+  </data>
+  <data name="CONDA047" xml:space="preserve">
+    <value>List all known conda environments.</value>
+  </data>
+  <data name="CONDA048" xml:space="preserve">
+    <value>List environment variables for a conda environment.</value>
+  </data>
+  <data name="CONDA049" xml:space="preserve">
+    <value>List linked packages in a conda environment.</value>
+  </data>
+  <data name="CONDA050" xml:space="preserve">
+    <value>List only packages matching this regular expression.</value>
+  </data>
+  <data name="CONDA051" xml:space="preserve">
+    <value>List the Conda environments.</value>
+  </data>
+  <data name="CONDA052" xml:space="preserve">
+    <value>List the revision history and exit.</value>
+  </data>
+  <data name="CONDA053" xml:space="preserve">
+    <value>Manage environments.</value>
+  </data>
+  <data name="CONDA054" xml:space="preserve">
+    <value>Name of environment.</value>
+  </data>
+  <data name="CONDA055" xml:space="preserve">
+    <value>One or more shells to be initialized.</value>
+  </data>
+  <data name="CONDA056" xml:space="preserve">
+    <value>Only display what would have been done.</value>
+  </data>
+  <data name="CONDA057" xml:space="preserve">
+    <value>Only install dependencies.</value>
+  </data>
+  <data name="CONDA058" xml:space="preserve">
+    <value>Only search for full names.</value>
+  </data>
+  <data name="CONDA059" xml:space="preserve">
+    <value>Output canonical names of packages only.</value>
+  </data>
+  <data name="CONDA060" xml:space="preserve">
+    <value>Output requirement string only.</value>
+  </data>
+  <data name="CONDA061" xml:space="preserve">
+    <value>Package build number of the created package.</value>
+  </data>
+  <data name="CONDA062" xml:space="preserve">
+    <value>Package name of the created package.</value>
+  </data>
+  <data name="CONDA063" xml:space="preserve">
+    <value>Package names to remove from the environment.</value>
+  </data>
+  <data name="CONDA064" xml:space="preserve">
+    <value>Package version of the created package.</value>
+  </data>
+  <data name="CONDA065" xml:space="preserve">
+    <value>Package version takes precedence over channel priority.</value>
+  </data>
+  <data name="CONDA066" xml:space="preserve">
+    <value>Packages to install or update in the conda environment.</value>
+  </data>
+  <data name="CONDA067" xml:space="preserve">
+    <value>Path to (or name of) existing local environment.</value>
+  </data>
+  <data name="CONDA068" xml:space="preserve">
+    <value>Path to the environment file that is to be compared against.</value>
+  </data>
+  <data name="CONDA069" xml:space="preserve">
+    <value>Provide detailed information about each package.</value>
+  </data>
+  <data name="CONDA070" xml:space="preserve">
+    <value>Read package versions from the given file.</value>
+  </data>
+  <data name="CONDA071" xml:space="preserve">
+    <value>Remote environment definition.</value>
+  </data>
+  <data name="CONDA072" xml:space="preserve">
+    <value>Remove a configuration key (and all its values).</value>
+  </data>
+  <data name="CONDA073" xml:space="preserve">
+    <value>Remove a configuration value from a list key.</value>
+  </data>
+  <data name="CONDA074" xml:space="preserve">
+    <value>Remove a list of packages from a specified conda environment.</value>
+  </data>
+  <data name="CONDA075" xml:space="preserve">
+    <value>Remove all packages.</value>
+  </data>
+  <data name="CONDA076" xml:space="preserve">
+    <value>Remove all untracked files and exit.</value>
+  </data>
+  <data name="CONDA077" xml:space="preserve">
+    <value>Remove all writable package caches.</value>
+  </data>
+  <data name="CONDA078" xml:space="preserve">
+    <value>Remove an environment.</value>
+  </data>
+  <data name="CONDA079" xml:space="preserve">
+    <value>Remove cached package tarballs.</value>
+  </data>
+  <data name="CONDA080" xml:space="preserve">
+    <value>Remove features (instead of packages).</value>
+  </data>
+  <data name="CONDA081" xml:space="preserve">
+    <value>Remove index cache, lock files, unused cache packages, and tarballs.</value>
+  </data>
+  <data name="CONDA082" xml:space="preserve">
+    <value>Remove index cache.</value>
+  </data>
+  <data name="CONDA083" xml:space="preserve">
+    <value>Remove installed packages not defined in definition file.</value>
+  </data>
+  <data name="CONDA084" xml:space="preserve">
+    <value>Remove unused packages and caches.</value>
+  </data>
+  <data name="CONDA085" xml:space="preserve">
+    <value>Remove unused packages from writable package caches.</value>
+  </data>
+  <data name="CONDA086" xml:space="preserve">
+    <value>Report all output as json.</value>
+  </data>
+  <data name="CONDA087" xml:space="preserve">
+    <value>Revert to the specified REVISION.</value>
+  </data>
+  <data name="CONDA088" xml:space="preserve">
+    <value>Run an executable in a conda environment.</value>
+  </data>
+  <data name="CONDA089" xml:space="preserve">
+    <value>Search all of the current user's environments.</value>
+  </data>
+  <data name="CONDA090" xml:space="preserve">
+    <value>Search for packages and display associated information.</value>
+  </data>
+  <data name="CONDA091" xml:space="preserve">
+    <value>Search the given sub-directory.</value>
+  </data>
+  <data name="CONDA092" xml:space="preserve">
+    <value>Set environment variables for a conda environment.</value>
+  </data>
+  <data name="CONDA093" xml:space="preserve">
+    <value>Sets `CONDA_EXE` to `python -m conda`.</value>
+  </data>
+  <data name="CONDA094" xml:space="preserve">
+    <value>Show all information.</value>
+  </data>
+  <data name="CONDA095" xml:space="preserve">
+    <value>Show channel urls.</value>
+  </data>
+  <data name="CONDA096" xml:space="preserve">
+    <value>Show help message and exit.</value>
+  </data>
+  <data name="CONDA097" xml:space="preserve">
+    <value>Show the conda version number and exit.</value>
+  </data>
+  <data name="CONDA098" xml:space="preserve">
+    <value>Solve environment, population caches, exit prior to linking.</value>
+  </data>
+  <data name="CONDA099" xml:space="preserve">
+    <value>Specify name of repodata on remote server.</value>
+  </data>
+  <data name="CONDA100" xml:space="preserve">
+    <value>Take packages from highest priority channel.</value>
+  </data>
+  <data name="CONDA101" xml:space="preserve">
+    <value>Undo past effects of conda init.</value>
+  </data>
+  <data name="CONDA102" xml:space="preserve">
+    <value>Unset environment variables for a conda environment.</value>
+  </data>
+  <data name="CONDA103" xml:space="preserve">
+    <value>Update all installed packages in the environment.</value>
+  </data>
+  <data name="CONDA104" xml:space="preserve">
+    <value>Update based on provided specifications.</value>
+  </data>
+  <data name="CONDA105" xml:space="preserve">
+    <value>Update dependencies.</value>
+  </data>
+  <data name="CONDA106" xml:space="preserve">
+    <value>Update the current environment based on environment file.</value>
+  </data>
+  <data name="CONDA107" xml:space="preserve">
+    <value>Updates conda packages to the latest compatible version.</value>
+  </data>
+  <data name="CONDA108" xml:space="preserve">
+    <value>Use `sys.executable -m conda` in wrapper scripts.</value>
+  </data>
+  <data name="CONDA109" xml:space="preserve">
+    <value>Use cache of channel index files, even if it has expired.</value>
+  </data>
+  <data name="CONDA110" xml:space="preserve">
+    <value>Use locally built packages.</value>
+  </data>
+  <data name="CONDA111" xml:space="preserve">
+    <value>Use once for INFO, twice for DEBUG, three times for TRACE.</value>
+  </data>
+  <data name="CONDA112" xml:space="preserve">
+    <value>Validate all configuration sources.</value>
+  </data>
+  <data name="CONDA113" xml:space="preserve">
+    <value>Write the default configuration to a file.</value>
+  </data>
+  <data name="CONDA114" xml:space="preserve">
+    <value>Write to the given file.</value>
+  </data>
+  <data name="CONDA115" xml:space="preserve">
+    <value>Remove temporary files that could not be deleted earlier due to being in-use.</value>
+  </data>
+  <data name="CONDA116" xml:space="preserve">
+    <value>Display configuration values as calculated and compiled.</value>
+  </data>
+  <data name="CONDA117" xml:space="preserve">
+    <value>Do not include channel names with package names.</value>
+  </data>
+  <data name="CONDA118" xml:space="preserve">
+    <value>Add an 'Anaconda Prompt' icon to the desktop.</value>
+  </data>
+  <data name="CONDA119" xml:space="preserve">
+    <value>Offline mode. Do not connect to the Internet.</value>
+  </data>
+  <data name="CONDA120" xml:space="preserve">
+    <value>Modify configuration values in .condarc.</value>
+  </data>
+  <data name="CONDA121" xml:space="preserve">
+    <value>Write to the system .condarc file.</value>
+  </data>
+  <data name="CONDA122" xml:space="preserve">
+    <value>Write to the active conda environment .condarc file.</value>
+  </data>
+  <data name="CONDA123" xml:space="preserve">
+    <value>Set a boolean or string key.</value>
+  </data>
+  <data name="CONDA124" xml:space="preserve">
+    <value>Do not install start menu shortcuts.</value>
+  </data>
+  <data name="CONDA125" xml:space="preserve">
+    <value>Explicitly list all installed conda packages with URL.</value>
+  </data>
+  <data name="CONDA126" xml:space="preserve">
+    <value>Add MD5 hashsum when using --explicit.</value>
+  </data>
+  <data name="CONDA127" xml:space="preserve">
+    <value>Current working directory in which to run command.</value>
+  </data>
+  <data name="CONDA128" xml:space="preserve">
+    <value>Do not capture stdout/stderr.</value>
+  </data>
+  <data name="CONDA129" xml:space="preserve">
+    <value>Environment definition file (default: environment.yml).</value>
+  </data>
+  <data name="CONDA130" xml:space="preserve">
+    <value>Remove build specification from dependencies.</value>
+  </data>
+  <data name="CONDA131" xml:space="preserve">
+    <value>Build environment spec from explicit specs in history.</value>
+  </data>
+  <data name="CONDA132" xml:space="preserve">
+    <value>Allow clobbering overlapping file paths within packages.</value>
+  </data>
+</root>
