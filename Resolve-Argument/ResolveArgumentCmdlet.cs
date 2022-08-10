@@ -107,23 +107,27 @@ namespace ResolveArgument
                 case "Resolve":
                     // CompletionResultType: https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.completionresulttype?view=powershellsdk-7.0.0
 
-                    // The algorithm requires the command abstract syntrax tree from which tokens are extracted.
+                    // The algorithm uses the command abstract syntrax tree to tokenise the input text. 
+                    // If it is not available then return no values.
                     if (CommandAst != null)
                     {
+                        // Convert the CommandAst to a list of tokens which will be used to evaluate
+                        // which options are avaialble for the next parameter.
                         var commandTokens = new CommandAstVisitor();
                         CommandAst.Visit(commandTokens);
 
+                        // Sanitise other input parameters.
                         string checkedWordToComplete = WordToComplete == null ? "" : WordToComplete;
                         int checkedCursorPosition = CursorPosition == null ? CommandAst.ToString().Length : (int)CursorPosition;
  
                         LOGGER.Write("Resolving word: " + WordToComplete);
                         LOGGER.Write("Resolving AST: " + CommandAst);
-                        LOGGER.Write($"First Command: {commandTokens.FirstCommand?.Value}");
-                        LOGGER.Write($"Last Command: {commandTokens.LastCommand?.Value}");
-                        LOGGER.Write($"Prior Command: {commandTokens.PriorCommand?.Value}");
+                        LOGGER.Write($"Base Command: {commandTokens.BaseCommand?.text}");
+                        LOGGER.Write($"Last Command: {commandTokens.LastToken?.text}");
+                        LOGGER.Write($"Prior Command: {commandTokens.PriorToken?.text}");
 
+                        // Get suggested tab-completions.
                         var suggestions = ArgumentResolver.Suggestions(checkedWordToComplete, commandTokens, checkedCursorPosition);
-
                         WriteObject(suggestions);
                     }
 

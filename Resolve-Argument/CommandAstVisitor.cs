@@ -12,8 +12,8 @@ namespace ResolveArgument
     /// </summary>
     internal struct Token
     {
-        public string Value;
-        public Type Type;
+        internal string text;
+        internal Type type;
     }
 
     /// <summary>
@@ -33,55 +33,44 @@ namespace ResolveArgument
         /// <summary>
         /// Returns the first token in the command list.
         /// </summary>
-        internal Token? FirstCommand
+        internal Token? BaseCommand
         {
-            get
-            {
-                if (tokens.Count > 0)
-                {
-                    return this.tokens[0];
-                }
-                else
-                {
-                    return null;
-                 }
-            }
+            get { return this.Index(0);}
         }
 
         /// <summary>
         /// Returns the last token in the command list.
         /// </summary>
-        internal Token? LastCommand
+        internal Token? LastToken
         {
-            get
-            {
-                if (tokens.Count > 1)
-                {
-                    return this.tokens [this.tokens.Count - 1];
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            get { return this.Index(this.tokens.Count - 1); }
         }
 
         /// <summary>
         /// Returns the second to last token in the command list.
         /// </summary>
-        internal Token? PriorCommand
+        internal Token? PriorToken
         {
-            get
+            get { return this.Index(this.tokens.Count - 2); }
+        }
+
+        /// <summary>
+        /// Return the token at the index position in the list.
+        /// </summary>
+        /// <param name="index">Index position of required token.</param>
+        /// <returns>Token at the position in the list, null if index outside of scope of list.</returns>
+        internal Token? Index(int index)
+        {
+            Token? token;
+            try
             {
-                if (tokens.Count > 2)
-                {
-                    return this.tokens[this.tokens.Count - 2];
-                }
-                else
-                {
-                    return null;
-                }
+                token = this.tokens[index];
             }
+            catch (IndexOutOfRangeException)
+            {
+                token = null;
+            }
+            return token;
         }
 
         /// <summary>
@@ -95,11 +84,11 @@ namespace ResolveArgument
         {
             Token token = new()
             {
-                Value = ast.ToString(),
-                Type = typeof(string)
+                text = ast.ToString(),
+                type = typeof(string)
             };
             this.tokens.Add(token);
-            LOGGER.Write($"Default: {token.Value}, {token.Type}");
+            LOGGER.Write($"Default: {token.text}, {token.type}");
 
             return AstVisitAction.Continue;
         }
@@ -126,11 +115,11 @@ namespace ResolveArgument
         {
             Token token = new()
             {
-                Value = commandExpressionAst.ToString(),
-                Type = commandExpressionAst.GetType(),
+                text = commandExpressionAst.ToString(),
+                type = commandExpressionAst.GetType(),
             };
             this.tokens.Add(token);
-            LOGGER.Write($"Command expression: {token.Value}, {token.Type}");
+            LOGGER.Write($"Command expression: {token.text}, {token.type}");
 
             return AstVisitAction.Continue;
         }
@@ -145,11 +134,11 @@ namespace ResolveArgument
         {
             Token token = new()
             {
-                Value = commandParameterAst.ToString(),
-                Type = commandParameterAst.GetType(),
+                text = commandParameterAst.ToString(),
+                type = commandParameterAst.GetType(),
             };
             this.tokens.Add(token);
-            LOGGER.Write($"Command parameter: {token.Value}, {token.Type}");
+            LOGGER.Write($"Command parameter: {token.text}, {token.type}");
 
             return AstVisitAction.Continue;
         }
@@ -168,19 +157,19 @@ namespace ResolveArgument
         {
             Token token = new()
             {
-                Value = stringConstantExpressionAst.ToString(),
-                Type = stringConstantExpressionAst.StaticType
+                text = stringConstantExpressionAst.ToString(),
+                type = stringConstantExpressionAst.StaticType
             };
 
             // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
             // Reclassify them as CommandParameters.
-            if ((token.Value.Length > 2) & (token.Value[..2] == "--"))
+            if ((token.text.Length > 2) & (token.text[..2] == "--"))
             {
-                token.Type = typeof(CommandParameterAst);
+                token.type = typeof(CommandParameterAst);
             }
 
             this.tokens.Add(token);
-            LOGGER.Write($"String constant expression: {token.Value}, {token.Type}");
+            LOGGER.Write($"String constant expression: {token.text}, {token.type}");
 
             return AstVisitAction.Continue;
         }
