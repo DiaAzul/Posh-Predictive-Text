@@ -18,6 +18,11 @@
 
   <ItemGroup>
     <None Remove="CondaCompletes.xml" />
+    <None Remove="SyntaxTrees\CondaSyntaxTree.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SyntaxTrees\CondaSyntaxTree.xml" />
   </ItemGroup>
 
   <ItemGroup>
