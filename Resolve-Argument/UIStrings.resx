@@ -138,16 +138,7 @@ Resolve-Argument provides tab-completion for the following commands:
     <value>Get-Process</value>
   </data>
   <data name="REGISTER_COMMAND_SCRIPT" xml:space="preserve">
-    <value>Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
-    param(
-        [string]$wordToComplete, 
-        [System.Management.Automation.Language.CommandAst]$commandAst,
-        [int]$cursorPosition)
-
-    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
-    $suggestions
-}
-# Remove conda tab-expansion if installed.
+    <value># Remove conda tab-expansion if installed.
 if (Test-Path Function:\TabExpansion) {
     $testForConda = Get-Item Function:\TabExpansion
     if ($testForConda.Source -eq "conda") {
@@ -156,6 +147,17 @@ if (Test-Path Function:\TabExpansion) {
             Rename-Item Function:\CondaTabExpansionBackup Function:\TabExpansion
         }
     }
-}</value>
+}
+Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+    param(
+        [string]$wordToComplete, 
+        [System.Management.Automation.Language.CommandAst]$commandAst,
+        [int]$cursorPosition)
+
+    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+
+    $suggestions 
+}
+</value>
   </data>
 </root>

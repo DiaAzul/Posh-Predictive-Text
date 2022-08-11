@@ -105,19 +105,20 @@ namespace Resolve_Argument {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
-        ///    param(
-        ///        [string]$wordToComplete, 
-        ///        [System.Management.Automation.Language.CommandAst]$commandAst,
-        ///        [int]$cursorPosition)
-        ///
-        ///    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
-        ///    $suggestions
-        ///}
-        ///# Remove conda tab-expansion if installed.
+        ///   Looks up a localized string similar to # Remove conda tab-expansion if installed.
         ///if (Test-Path Function:\TabExpansion) {
         ///    $testForConda = Get-Item Function:\TabExpansion
-        ///   [rest of string was truncated]&quot;;.
+        ///    if ($testForConda.Source -eq &quot;conda&quot;) {
+        ///        Remove-Item Function:\TabExpansion
+        ///        if (Test-Path Function:\CondaTabExpansionBackup) {
+        ///            Rename-Item Function:\CondaTabExpansionBackup Function:\TabExpansion
+        ///        }
+        ///    }
+        ///}
+        ///Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+        ///    param(
+        ///        [string]$wordToComplete, 
+        ///  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string REGISTER_COMMAND_SCRIPT {
             get {
