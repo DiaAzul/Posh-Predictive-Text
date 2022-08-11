@@ -113,7 +113,11 @@ namespace Resolve_Argument {
         ///
         ///    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
         ///    $suggestions
-        ///}.
+        ///}
+        ///# Remove conda tab-expansion if installed.
+        ///if (Test-Path Function:\TabExpansion) {
+        ///    $testForConda = Get-Item Function:\TabExpansion
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         public static string REGISTER_COMMAND_SCRIPT {
             get {

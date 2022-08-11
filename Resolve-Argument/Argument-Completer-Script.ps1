@@ -42,3 +42,13 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
 
     $suggestions 
 }
+# Remove conda tab-expansion if installed.
+if (Test-Path Function:\TabExpansion) {
+    $testForConda = Get-Item Function:\TabExpansion
+    if ($testForConda.Source -eq "conda") {
+        Remove-Item Function:\TabExpansion
+        if (Test-Path Function:\CondaTabExpansionBackup) {
+            Rename-Item Function:\CondaTabExpansionBackup Function:\TabExpansion
+        }
+    }
+}
