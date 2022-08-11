@@ -171,10 +171,14 @@ namespace ResolveArgument
 
             // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
             // Reclassify them as CommandParameters.
-            if ((token.text.Length > 2) & (token.text[..2] == "--"))
+            try
+            {
+                if (token.text[..2] == "--")
             {
                 token.type = typeof(CommandParameterAst);
             }
+            }
+            catch (ArgumentOutOfRangeException) { }
 
             this.tokens.Add(token);
             LOGGER.Write($"String constant expression: {token.text}, {token.type}");
