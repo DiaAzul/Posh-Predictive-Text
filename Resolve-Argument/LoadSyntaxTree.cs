@@ -145,5 +145,22 @@ namespace ResolveArgument
 
         }
 
+        /// <summary>
+        /// Gets the display string for a tooltip reference.
+        /// </summary>
+        /// <param name="syntaxTreeName">Syntax tree from which tooltip required.</param>
+        /// <param name="toolTipRef">Tooltip reference used to identify display string.</param>
+        /// <returns>Tooltip display text.</returns>
+        internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
+        {
+            // TODO: This is a bodge, needs tidying up, error checking.
+            string? toolTip = null;
+            if (!(toolTipRef == null))
+            {
+                toolTip = Resolve_Argument.SyntaxTrees.CondaToolTips.ResourceManager.GetString(toolTipRef);
+            }
+            toolTip ??= "";
+            return toolTip;
+        }
     }
 }
