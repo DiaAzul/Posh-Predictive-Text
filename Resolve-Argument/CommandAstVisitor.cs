@@ -74,6 +74,14 @@ namespace ResolveArgument
         }
 
         /// <summary>
+        /// Returns a list of all tokens.
+        /// </summary>
+        internal List<Token> All
+        {
+            get { return this.tokens; }
+        }
+
+        /// <summary>
         /// Default action if the token has not been processed by a
         /// more specific token handler. Adds the token text with a
         /// generic text type.
