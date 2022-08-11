@@ -174,9 +174,9 @@ namespace ResolveArgument
             try
             {
                 if (token.text[..2] == "--")
-            {
-                token.type = typeof(CommandParameterAst);
-            }
+                {
+                    token.type = typeof(CommandParameterAst);
+                }
             }
             catch (ArgumentOutOfRangeException) { }
 

@@ -3,6 +3,7 @@ namespace ResolveArgument
 {
     using System.Linq;
     using System.Management.Automation;
+    using System.Text;
 
     /// <summary>
     /// Record within the command syntax tree.
@@ -118,32 +119,69 @@ namespace ResolveArgument
                     List<SyntaxItem> syntaxTree = syntaxTrees[syntaxTreeName];
                     LOGGER.Write($"The syntaxTree exists. Length: {syntaxTree.Count}");
 
+                    //var uniqueCommands = (from item in syntaxTree
+                    //                     group item.command by item.command into uniqueCommand
+                    //                     select uniqueCommand).Keys.ToList();
+                    var uniqueCommands = syntaxTree
+                        .Select(item => item.command)
+                        .Distinct()
+                        .ToList();
 
-                    // total_tokens = commandTokens.Length
-                    // commandTokensIndex = 0
-                    // Command_Path = ""
-                    // Get token[commandTokensIndex]
-                    // If Type = System.Management.Automation.ParameterAst -> 
-                    // Either another command or positional parameter.
+                    // Identify where we are in command chain.
+                    StringBuilder commandPath = new(capacity: 64);
+                    foreach (Token commandToken in commandTokens.All)
+                    {
+                        if (uniqueCommands.Contains(commandToken.text))
+                        {
+                            if (commandPath.Length > 0)
+                            {
+                                commandPath.Append(".");
+                            }
+                            commandPath.Append(commandToken.text);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
 
+                    LOGGER.Write($"Command path: {commandPath.ToString()}");
 
-                    // TODO Remove dummy test code.
-                    CompletionResult response = new(
-                        WordToComplete + "a",
-                        WordToComplete + "a",
-                        CompletionResultType.ParameterName, //Need to change this for ast.
-                        "ToolTip");
+                    // Note: Test argument not null to prevent nulls in filteredOptions linq query.
+                    var availableOptions = syntaxTree
+                        .Where(item => item.commandPath == commandPath.ToString() & item.argument != null)
+                        .ToList();
 
-                    CompletionResult response2 = new(
-                        WordToComplete + "b",
-                        WordToComplete + "b",
-                        CompletionResultType.ParameterName, //Need to change this for ast.
-                        "ToolTip");
+                    foreach (var option in availableOptions)
+                    {
+                        LOGGER.Write($"Options -> {option.argument}");
+                    }
 
-                    suggestions.Add(response);
-                    suggestions.Add(response2);
+#pragma warning disable CS8602 
+                    // Dereference of a possibly null reference
+                    // Guarded with item.argument != null in availableOptions Linq query.
+                    var filteredOptions = availableOptions
+                        .Where(item => item.argument.StartsWith(WordToComplete))
+                        .ToList();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-                    LOGGER.Write($"Providing suggestions...{WordToComplete}a, b.");
+                    foreach (var item in filteredOptions)
+                    {
+                        CompletionResult suggestion = new(
+                            item.argument,
+                            item.argument,
+                            CompletionResultType.ParameterName,
+                            SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)
+                            );
+
+                        suggestions.Add(suggestion);
+                    };
+
+                    LOGGER.Write($"Providing {suggestions.Count} suggestions.");
+                    foreach (var suggestion in suggestions)
+                    {
+                        LOGGER.Write($"I suggest -> {suggestion.CompletionText}");
+                    }
                 }
             }
 
