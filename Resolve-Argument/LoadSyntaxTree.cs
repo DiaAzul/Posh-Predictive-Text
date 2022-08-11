@@ -1,4 +1,7 @@
-﻿
+﻿// TODO Implement configuration file to centralise constant for commands (e.g. resource locations).
+// TODO Support aliasing commands and resource files.
+// TODO Remove hard coded references to conda resources.
+
 namespace ResolveArgument
 {
     using System.Reflection;

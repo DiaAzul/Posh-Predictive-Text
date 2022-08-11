@@ -1,4 +1,9 @@
 ﻿
+// TODO Support return of aliases.
+// TODO Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
+// TODO Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
+// TODO Implement missing conda commands not included within the documentation (conda activate/deactivate). 
+
 namespace ResolveArgument
 {
     using System.Linq;
