@@ -134,6 +134,21 @@ Resolve-Argument provides tab-completion for the following commands:
     Python
 </value>
   </data>
+  <data name="LOGFILE_CREATED_HEADER" xml:space="preserve">
+    <value>Resolve-Argument logile created.</value>
+  </data>
+  <data name="LOGGER_NOT_VALID_LEVEL" xml:space="preserve">
+    <value>The log level parameter must be INFO, WARN, ERROR. Use Get-Error for more detail.</value>
+  </data>
+  <data name="LOGGER_NOT_VALID_PATH" xml:space="preserve">
+    <value>The path for the log file is not valid. Use Get-Error for more detail.</value>
+  </data>
+  <data name="LOGGER_NO_DIRECTORY" xml:space="preserve">
+    <value>The Directory for the log file does not exist.</value>
+  </data>
+  <data name="LOGGER_UNABLE_TO_CREATE_LOGFILE" xml:space="preserve">
+    <value>Unable to create log file. Use Get-Error for more detail.</value>
+  </data>
   <data name="POSH_INIT_SCRIPT" xml:space="preserve">
     <value>Get-Process</value>
   </data>

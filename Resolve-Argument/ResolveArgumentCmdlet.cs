@@ -8,10 +8,11 @@ namespace ResolveArgument
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
+    using System.Xml.Linq;
 
-/// <summary>
-/// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
-/// </summary>
+    /// <summary>
+    /// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
+    /// </summary>
 [Cmdlet(
         VerbsDiagnostic.Resolve,
         "Argument",
@@ -39,6 +40,24 @@ namespace ResolveArgument
             HelpMessage = "Initialise tab-expansion of arguments")]
         [Alias("Init", "i")]
         public SwitchParameter Initialise { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file to which messages will be written.
+        /// </summary>
+        [Parameter(
+            ParameterSetName = "Initialise",
+            HelpMessage = "Enable loging to log file.")]
+        public string? LogFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the flag indicating Init command generates and invokes
+        /// a PowerShell script to add the cmdlet as an Argument Resolver in PowerShell.
+        /// </summary>
+        [ValidateSet("INFO", "WARN", "ERROR", IgnoreCase = true)]
+        [Parameter(
+            ParameterSetName = "Initialise",
+            HelpMessage = "Level of information to log (INFO, WARN, ERROR). Default: ERROR.")]
+        public string? LogLevel { get; set; }
 
         /// <summary>
         /// Gets or sets a flag to print the PowerShell script used to initialise tab-exapansion
@@ -78,11 +97,11 @@ namespace ResolveArgument
         public int? CursorPosition { get; set; }
 
         /// <summary>
-        /// Process record when all options are defined.
-        /// - Validate input
-        /// - Process record
-        /// - Output object.
-        /// TODO Complete documentation for ProcessRecord.
+        /// Main entry point for the cmdlet.
+        /// 
+        /// Resolves input parameters and initiates further action.
+        /// 
+        /// Returns response to calling application.
         /// </summary>
         protected override void ProcessRecord()
         {
@@ -95,15 +114,40 @@ namespace ResolveArgument
                     result.Append(Resolve_Argument.UIStrings.LIST_OF_COMMANDS);
                     WriteObject(result.ToString());
                     break;
+
                 case "Initialise":
-                    result.Append(Resolve_Argument.UIStrings.POSH_INIT_SCRIPT);
+                    // Initialise logging to file if requested.
+                    try
+                    {
+                        LOGGER.Initialise(LogFile, LogLevel);
+                    }
+                    // For tab-completions exceptions are silently suppressed and errors
+                    // reported to a log file to facilitate debugging. However, prior to
+                    // successful creation of the log file exceptions are captured and
+                    // rethrown as a LoggerException which is then output on the cmdlet
+                    // error stream.
+                    catch (LoggerException ex)
+                    {
+                        WriteError(new ErrorRecord(
+                        ex,
+                        "Resolve-Argument-Logger-Error",
+                        ErrorCategory.InvalidArgument,
+                        LogFile));
+                    }
+                    
+                    // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
+                    var init_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
+                    result.Append(init_script);
                     WriteObject(result.ToString());
+
                     break;
+
                 case "PrintScript":
-                    var localised_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
-                    result.Append(localised_script);
+                    var print_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
+                    result.Append(print_script);
                     WriteObject(result.ToString());
                     break;
+
                 case "Resolve":
                     // CompletionResultType: https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.completionresulttype?view=powershellsdk-7.0.0
 
@@ -115,24 +159,26 @@ namespace ResolveArgument
                         // which options are avaialble for the next parameter.
                         var commandTokens = new CommandAstVisitor();
                         CommandAst.Visit(commandTokens);
-
-                        // Sanitise other input parameters.
-                        string checkedWordToComplete = WordToComplete == null ? "" : WordToComplete;
-                        int checkedCursorPosition = CursorPosition == null ? CommandAst.ToString().Length : (int)CursorPosition;
- 
-                        LOGGER.Write("Resolving word: " + WordToComplete);
+#if DEBUG
+                        LOGGER.Write("Resolving word: " + WordToComplete??"");
                         LOGGER.Write("Resolving AST: " + CommandAst);
                         LOGGER.Write($"Base Command: {commandTokens.BaseCommand?.text}");
                         LOGGER.Write($"Last Command: {commandTokens.LastToken?.text}");
                         LOGGER.Write($"Prior Command: {commandTokens.PriorToken?.text}");
+#endif
+                        // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
+                        var suggestions = ArgumentResolver.Suggestions(
+                            WordToComplete??"",
+                            commandTokens,
+                            CursorPosition??CommandAst.ToString().Length
+                        );
 
-                        // Get suggested tab-completions.
-                        var suggestions = ArgumentResolver.Suggestions(checkedWordToComplete, commandTokens, checkedCursorPosition);
                         WriteObject(suggestions);
                     }
-
                     break;
+
                 default:
+                    // TODO: All cases where we don't have a parameter set.
                     result.Append("Default we should print help text.");
                     WriteObject(result.ToString());
                     break;

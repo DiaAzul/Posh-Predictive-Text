@@ -96,6 +96,51 @@ namespace Resolve_Argument {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resolve-Argument logile created..
+        /// </summary>
+        public static string LOGFILE_CREATED_HEADER {
+            get {
+                return ResourceManager.GetString("LOGFILE_CREATED_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Directory for the log file does not exist..
+        /// </summary>
+        public static string LOGGER_NO_DIRECTORY {
+            get {
+                return ResourceManager.GetString("LOGGER_NO_DIRECTORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The log level parameter must be INFO, WARN, ERROR. Use Get-Error for more detail..
+        /// </summary>
+        public static string LOGGER_NOT_VALID_LEVEL {
+            get {
+                return ResourceManager.GetString("LOGGER_NOT_VALID_LEVEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The path for the log file is not valid. Use Get-Error for more detail..
+        /// </summary>
+        public static string LOGGER_NOT_VALID_PATH {
+            get {
+                return ResourceManager.GetString("LOGGER_NOT_VALID_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log file. Use Get-Error for more detail..
+        /// </summary>
+        public static string LOGGER_UNABLE_TO_CREATE_LOGFILE {
+            get {
+                return ResourceManager.GetString("LOGGER_UNABLE_TO_CREATE_LOGFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get-Process.
         /// </summary>
         public static string POSH_INIT_SCRIPT {
