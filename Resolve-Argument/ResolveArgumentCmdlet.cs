@@ -169,6 +169,20 @@ namespace ResolveArgument
                             CursorPosition??CommandAst.ToString().Length
                         );
 
+                        // Repackage results for Tab-Completions.
+                        List<CompletionResult> cmdletSuggestions = new();
+                        foreach (var suggestion in suggestions)
+                            {
+                                CompletionResult cmdletSuggestion = new(
+                                    suggestion.CompletionText,
+                                    suggestion.CompletionText,
+                                    suggestion.Type,
+                                    suggestion.ToolTip
+                                    );
+
+                                cmdletSuggestions.Add(cmdletSuggestion);
+                            };
+
                         WriteObject(suggestions);
                     }
                     break;

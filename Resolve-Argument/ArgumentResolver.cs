@@ -34,6 +34,27 @@ namespace ResolveArgument
     }
 
     /// <summary>
+    /// Suggested response.
+    /// 
+    /// This implements a data structure returned by the completion class and used by the calling
+    /// class to generate specific data structures for the calling application.
+    /// </summary>
+    internal readonly struct Suggestion
+    {
+        internal Suggestion(string completionText, CompletionResultType type, string toolTip)
+        {
+            CompletionText = completionText;
+            Type = type;
+            ToolTip = toolTip;
+        }
+        internal string CompletionText { get; init; }
+        internal CompletionResultType Type { get; init; }
+        internal string ToolTip { get; init; }
+
+        public override string ToString() => $"{CompletionText}";
+    }
+
+    /// <summary>
     /// Process tokenised input string and return suggested tab-completions.
     /// </summary>
     internal class ArgumentResolver
@@ -106,9 +127,9 @@ namespace ResolveArgument
         /// a parameter or values. Where tab-completion for values are required then method identifies
         /// and calls an appropriate handler.
         /// </remarks>
-        internal static List<CompletionResult> Suggestions(string WordToComplete, CommandAstVisitor commandTokens, int CursorPosition)
+        internal static List<Suggestion> Suggestions(string WordToComplete, CommandAstVisitor commandTokens, int CursorPosition)
         {
-            List<CompletionResult> suggestions = new();
+            List<Suggestion> suggestions = new();
 
             if (commandTokens.BaseCommand != null)
             {
@@ -140,7 +161,7 @@ namespace ResolveArgument
                         {
                             if (commandPath.Length > 0)
                             {
-                                commandPath.Append(".");
+                                commandPath.Append('.');
                             }
                             commandPath.Append(commandToken.text);
                         }
@@ -150,7 +171,7 @@ namespace ResolveArgument
                         }
                     }
 
-                    LOGGER.Write($"Command path: {commandPath.ToString()}");
+                    LOGGER.Write($"Command path: {commandPath}");
 
                     // Note: Test argument not null to prevent nulls in filteredOptions linq query.
                     var availableOptions = syntaxTree
@@ -170,19 +191,16 @@ namespace ResolveArgument
                         .ToList();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-                    // TODO Completion results is too specific. Need to return a generic object so that
-                    // the host can be a argumentCompleter or a PSSubsystemPluginModel.
                     foreach (var item in filteredOptions)
                     {
-                        CompletionResult suggestion = new(
-                            item.argument,
-                            item.argument,
+                        Suggestion suggestion = new(
+                            item.argument??"",
                             CompletionResultType.ParameterName,
                             SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)
-                            );
+                        );
 
                         suggestions.Add(suggestion);
-                    };
+                    }
 
                     LOGGER.Write($"Providing {suggestions.Count} suggestions.");
                     foreach (var suggestion in suggestions)
