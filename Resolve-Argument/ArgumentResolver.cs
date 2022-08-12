@@ -170,6 +170,8 @@ namespace ResolveArgument
                         .ToList();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 
+                    // TODO Completion results is too specific. Need to return a generic object so that
+                    // the host can be a argumentCompleter or a PSSubsystemPluginModel.
                     foreach (var item in filteredOptions)
                     {
                         CompletionResult suggestion = new(
