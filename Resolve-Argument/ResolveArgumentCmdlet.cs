@@ -1,8 +1,4 @@
-﻿// <copyright file="ResolveArgumentCmdlet.cs" company="Tanzo Creative Ltd">
-// Copyright (c) Tanzo Creative Ltd. All rights reserved.
-// Licensed under the Apache 2.0 license. See LICENSE.txt file in the project root for full license information.
-// </copyright>
-
+﻿
 namespace ResolveArgument
 {
     using System.Management.Automation;
@@ -178,7 +174,7 @@ namespace ResolveArgument
                     break;
 
                 default:
-                    // TODO: All cases where we don't have a parameter set.
+                    // TODO: [USERINTERFACE] All cases where we don't have a parameter set.
                     result.Append("Default we should print help text.");
                     WriteObject(result.ToString());
                     break;

@@ -1,6 +1,6 @@
-﻿// TODO Implement configuration file to centralise constant for commands (e.g. resource locations).
-// TODO Support aliasing commands and resource files.
-// TODO Remove hard coded references to conda resources.
+﻿// TODO [SYNTAXTREES] Implement configuration file to centralise constant for commands (e.g. resource locations).
+// TODO [SYNTAXTREES] Support aliasing commands and resource files.
+// TODO [SYNTAXTREES] Remove hard coded references to conda resources.
 
 namespace ResolveArgument
 {
@@ -22,7 +22,7 @@ namespace ResolveArgument
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                // TODO: This needs to vary according to the syntax tree to be loaded.
+                // TODO: [SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
                 var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTrees.CondaSyntaxTree.xml");
 
                 if (resourceStream != null)
@@ -156,7 +156,7 @@ namespace ResolveArgument
         /// <returns>Tooltip display text.</returns>
         internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
         {
-            // TODO: This is a bodge, needs tidying up, error checking.
+            // TODO: [SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
             string? toolTip = null;
             if (!(toolTipRef == null))
             {

@@ -1,8 +1,8 @@
 ﻿
-// TODO Support return of aliases.
-// TODO Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
-// TODO Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
-// TODO Implement missing conda commands not included within the documentation (conda activate/deactivate). 
+// TODO [RESOLVER] Support return of aliases.
+// TODO [RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
+// TODO [RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
+// TODO [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate). 
 
 namespace ResolveArgument
 {
@@ -89,7 +89,7 @@ namespace ResolveArgument
         /// <returns>Syntax tree name.</returns>
         internal static string SyntaxTreeName(Token baseCommandToken)
         {
-            // TODO: Manage aliases for the syntax tree (e.g. mamba -> conda).
+            // TODO: [SYNTAXTREES] Manage aliases for the syntax tree (e.g. mamba -> conda).
             return baseCommandToken.text;
         }
         /// <summary>
