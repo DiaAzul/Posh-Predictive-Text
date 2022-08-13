@@ -123,7 +123,7 @@ namespace ResolveArgument
         /// <returns>Contents of node as string.</returns>
         internal static string AsString(XElement? element)
         {
-            return  element?.ToString() ?? "";
+            return  element?.Value.ToString() ?? "";
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace ResolveArgument
         /// <returns>Contents of node as string.</returns>
         internal static string? AsNullableString(XElement? element)
         {
-            return element?.ToString();
+            return element?.Value.ToString();
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace ResolveArgument
         /// <returns>True when the contents of the node match the test pattern. Null if the node is null.</returns>
         internal static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
         {
-            return element is not null ? (element?.ToString() ?? "") == trueValue : null;
+            return element is not null ? (element?.Value.ToString() ?? "") == trueValue : null;
         }
 
         /// <summary>
