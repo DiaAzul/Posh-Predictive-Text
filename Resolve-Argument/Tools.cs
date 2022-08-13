@@ -55,7 +55,7 @@ namespace ResolveArgument
         /// <exception cref="LoggerException">Exception thrown to output messages on the cmdlet Error stream.</exception>
         internal static void Initialise(string? requesteLogFile, string? requestedLogLevel)
         {
-            if (requesteLogFile != null)
+            if (requesteLogFile is not null)
             {
                 try
                 {
@@ -94,7 +94,7 @@ namespace ResolveArgument
                     throw new LoggerException(Resolve_Argument.UIStrings.LOGGER_NOT_VALID_PATH, ex);
                 }
 
-                if (requestedLogLevel != null)
+                if (requestedLogLevel is not null)
                 {
                     object? enumeratedLogLevel = null;
                     try
@@ -122,7 +122,7 @@ namespace ResolveArgument
 
         internal static void Write(string text, LOGLEVEL level = LOGLEVEL.INFO)
         {
-            if (logFile != null & (int)level >= (int)logLevel)
+            if (logFile is not null && (int)level >= (int)logLevel)
             {
                 string timestamp = DateTime.Now.ToString("s");
                 string outputText = $"[{timestamp}] {text}";
