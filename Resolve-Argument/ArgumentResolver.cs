@@ -2,7 +2,7 @@
 // TODO [RESOLVER] Support return of aliases.
 // TODO [RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
 // TODO [RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
-// TODO [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate). 
+// TODO [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate, env options). 
 
 namespace ResolveArgument
 {
@@ -128,13 +128,13 @@ namespace ResolveArgument
         /// and calls an appropriate handler.
         /// 
         /// The state model for determining suggestions uses the following algorithm:
-        /// 1. Identify what command, or partial command has already been entered (commands may be multi-word).
-        /// 2. Identify if we have exited command entry (a parameter has been entered) skip to 4.
-        /// 3. Identify suggestions for sub-commands.
-        /// 4. Identify suggestions for parameter values if command parameter is active. If mandatory value skip to 7.
-        /// 5. Identify suggestions for positional parameters using a handler if appropriate
-        /// 6. Identify suggestions for command parameters.
-        /// 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
+        /// [X] 1. Identify what command, or partial command has already been entered (commands may be multi-word).
+        /// [X] 2. Identify if we have exited command entry (a parameter has been entered) skip to 4.
+        /// [X] 3. Identify suggestions for sub-commands.
+        /// [ ] 4. Identify suggestions for parameter values if command parameter is active. If mandatory value skip to 7.
+        /// [ ] 5. Identify suggestions for positional parameters using a handler if appropriate
+        /// [ ] 6. Identify suggestions for command parameters.
+        /// [ ] 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
         /// </remarks>
         internal static List<Suggestion> Suggestions(string WordToComplete, CommandAstVisitor commandTokens, int CursorPosition)
         {
@@ -254,7 +254,7 @@ namespace ResolveArgument
                         Suggestion suggestion = new(
                             item.argument??"",
                             CompletionResultType.ParameterName,
-                            SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)
+                            SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)??"Tooltip was null."
                         );
 
                         suggestions.Add(suggestion);

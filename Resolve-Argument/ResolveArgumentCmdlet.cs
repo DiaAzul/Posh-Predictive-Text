@@ -187,7 +187,7 @@ namespace ResolveArgument
                                 default:
                                     WriteError(new ErrorRecord(
                                         ex,
-                                        "Process-record-error",
+                                        "Error-processing-record",
                                         ErrorCategory.InvalidOperation,
                                         commandTokens));
                                     break;
