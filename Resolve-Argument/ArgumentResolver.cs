@@ -164,9 +164,6 @@ namespace ResolveArgument
                         .Distinct()
                         .ToList();
 
-                    string one = String.Join(", ", uniqueCommands);
-                    LOGGER.Write(one);
-
                     StringBuilder commandPath = new(capacity: 64);
                     int tokensInCommand = 0;
                     foreach (Token commandToken in commandTokens.All)
