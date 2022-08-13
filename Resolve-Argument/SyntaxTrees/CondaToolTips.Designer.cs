@@ -61,1190 +61,1226 @@ namespace Resolve_Argument.SyntaxTrees {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add one configuration value to the beginning of a list key..
+        ///   Looks up a localized string similar to Activate a conda environment..
         /// </summary>
-        public static string CONDA001 {
+        public static string TT0001 {
             get {
-                return ResourceManager.GetString("CONDA001", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add one configuration value to the end of a list key..
-        /// </summary>
-        public static string CONDA002 {
-            get {
-                return ResourceManager.GetString("CONDA002", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Additional channel to search for packages..
-        /// </summary>
-        public static string CONDA003 {
-            get {
-                return ResourceManager.GetString("CONDA003", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow conda to perform &quot;insecure&quot; SSL connections and transfers..
-        /// </summary>
-        public static string CONDA004 {
-            get {
-                return ResourceManager.GetString("CONDA004", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply configuration information given in yaml format piped through stdin..
-        /// </summary>
-        public static string CONDA005 {
-            get {
-                return ResourceManager.GetString("CONDA005", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Compare packages between conda environments..
-        /// </summary>
-        public static string CONDA006 {
-            get {
-                return ResourceManager.GetString("CONDA006", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Configure a conda environment..
-        /// </summary>
-        public static string CONDA007 {
-            get {
-                return ResourceManager.GetString("CONDA007", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new conda environment from a list of specified packages..
-        /// </summary>
-        public static string CONDA008 {
-            get {
-                return ResourceManager.GetString("CONDA008", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create an environment based on an environment file..
-        /// </summary>
-        public static string CONDA009 {
-            get {
-                return ResourceManager.GetString("CONDA009", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create the environment directory if necessary..
-        /// </summary>
-        public static string CONDA010 {
-            get {
-                return ResourceManager.GetString("CONDA010", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Describe given configuration parameters..
-        /// </summary>
-        public static string CONDA011 {
-            get {
-                return ResourceManager.GetString("CONDA011", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display all identified configuration sources..
-        /// </summary>
-        public static string CONDA012 {
-            get {
-                return ResourceManager.GetString("CONDA012", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display all untracked files and exit..
-        /// </summary>
-        public static string CONDA013 {
-            get {
-                return ResourceManager.GetString("CONDA013", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display base environment path..
-        /// </summary>
-        public static string CONDA014 {
-            get {
-                return ResourceManager.GetString("CONDA014", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display information about current conda install..
-        /// </summary>
-        public static string CONDA015 {
-            get {
-                return ResourceManager.GetString("CONDA015", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display list of channels with tokens exposed..
-        /// </summary>
-        public static string CONDA016 {
-            get {
-                return ResourceManager.GetString("CONDA016", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display the output in real time..
-        /// </summary>
-        public static string CONDA017 {
-            get {
-                return ResourceManager.GetString("CONDA017", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Displays a list of available conda commands and their help strings..
-        /// </summary>
-        public static string CONDA018 {
-            get {
-                return ResourceManager.GetString("CONDA018", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not ask for confirmation..
-        /// </summary>
-        public static string CONDA019 {
-            get {
-                return ResourceManager.GetString("CONDA019", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not display progress bar..
-        /// </summary>
-        public static string CONDA020 {
-            get {
-                return ResourceManager.GetString("CONDA020", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not include pip-only installed packages..
-        /// </summary>
-        public static string CONDA021 {
-            get {
-                return ResourceManager.GetString("CONDA021", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not install, update, remove, or change dependencies..
-        /// </summary>
-        public static string CONDA022 {
-            get {
-                return ResourceManager.GetString("CONDA022", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not search default or .condarc channels..
-        /// </summary>
-        public static string CONDA023 {
-            get {
-                return ResourceManager.GetString("CONDA023", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not update or change already-installed dependencies..
-        /// </summary>
-        public static string CONDA024 {
-            get {
-                return ResourceManager.GetString("CONDA024", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Echo wrapper script debug info to stderr..
-        /// </summary>
-        public static string CONDA025 {
-            get {
-                return ResourceManager.GetString("CONDA025", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Environment definition file..
-        /// </summary>
-        public static string CONDA026 {
-            get {
-                return ResourceManager.GetString("CONDA026", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;..
-        /// </summary>
-        public static string CONDA027 {
-            get {
-                return ResourceManager.GetString("CONDA027", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Environment variables to unset in the form &lt;KEY&gt;..
-        /// </summary>
-        public static string CONDA028 {
-            get {
-                return ResourceManager.GetString("CONDA028", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Executable name with additional arguments..
-        /// </summary>
-        public static string CONDA029 {
-            get {
-                return ResourceManager.GetString("CONDA029", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exit early and do not run the solver if the requested specs are satisfied..
-        /// </summary>
-        public static string CONDA030 {
-            get {
-                return ResourceManager.GetString("CONDA030", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL. Choose which solver backend to use..
-        /// </summary>
-        public static string CONDA031 {
-            get {
-                return ResourceManager.GetString("CONDA031", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL. Initialize conda for shell interaction..
-        /// </summary>
-        public static string CONDA032 {
-            get {
-                return ResourceManager.GetString("CONDA032", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL. Low-level conda package utility..
-        /// </summary>
-        public static string CONDA033 {
-            get {
-                return ResourceManager.GetString("CONDA033", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Export a given environment..
-        /// </summary>
-        public static string CONDA034 {
-            get {
-                return ResourceManager.GetString("CONDA034", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Force creation of environment..
-        /// </summary>
-        public static string CONDA035 {
-            get {
-                return ResourceManager.GetString("CONDA035", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Force reinstall of package..
-        /// </summary>
-        public static string CONDA036 {
-            get {
-                return ResourceManager.GetString("CONDA036", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Forces removal of a package without removing packages that depend on it..
-        /// </summary>
-        public static string CONDA037 {
-            get {
-                return ResourceManager.GetString("CONDA037", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Full path to environment location..
-        /// </summary>
-        public static string CONDA038 {
-            get {
-                return ResourceManager.GetString("CONDA038", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Get a configuration value..
-        /// </summary>
-        public static string CONDA039 {
-            get {
-                return ResourceManager.GetString("CONDA039", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Given some PATH print which conda package the file came from..
-        /// </summary>
-        public static string CONDA040 {
-            get {
-                return ResourceManager.GetString("CONDA040", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ignore create_default_packages in the .condarc file..
-        /// </summary>
-        public static string CONDA041 {
-            get {
-                return ResourceManager.GetString("CONDA041", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ignore pinned file..
-        /// </summary>
-        public static string CONDA042 {
-            get {
-                return ResourceManager.GetString("CONDA042", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Initialize all currently available shells..
-        /// </summary>
-        public static string CONDA043 {
-            get {
-                return ResourceManager.GetString("CONDA043", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Install all packages using copies instead of hard- or soft-linking..
-        /// </summary>
-        public static string CONDA044 {
-            get {
-                return ResourceManager.GetString("CONDA044", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Installs a list of packages into a specified conda environment..
-        /// </summary>
-        public static string CONDA045 {
-            get {
-                return ResourceManager.GetString("CONDA045", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Interact with environment variables associated with Conda environments..
-        /// </summary>
-        public static string CONDA046 {
-            get {
-                return ResourceManager.GetString("CONDA046", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List all known conda environments..
-        /// </summary>
-        public static string CONDA047 {
-            get {
-                return ResourceManager.GetString("CONDA047", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List environment variables for a conda environment..
-        /// </summary>
-        public static string CONDA048 {
-            get {
-                return ResourceManager.GetString("CONDA048", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List linked packages in a conda environment..
-        /// </summary>
-        public static string CONDA049 {
-            get {
-                return ResourceManager.GetString("CONDA049", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List only packages matching this regular expression..
-        /// </summary>
-        public static string CONDA050 {
-            get {
-                return ResourceManager.GetString("CONDA050", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List the Conda environments..
-        /// </summary>
-        public static string CONDA051 {
-            get {
-                return ResourceManager.GetString("CONDA051", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List the revision history and exit..
-        /// </summary>
-        public static string CONDA052 {
-            get {
-                return ResourceManager.GetString("CONDA052", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Manage environments..
-        /// </summary>
-        public static string CONDA053 {
-            get {
-                return ResourceManager.GetString("CONDA053", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name of environment..
-        /// </summary>
-        public static string CONDA054 {
-            get {
-                return ResourceManager.GetString("CONDA054", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to One or more shells to be initialized..
-        /// </summary>
-        public static string CONDA055 {
-            get {
-                return ResourceManager.GetString("CONDA055", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only display what would have been done..
-        /// </summary>
-        public static string CONDA056 {
-            get {
-                return ResourceManager.GetString("CONDA056", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only install dependencies..
-        /// </summary>
-        public static string CONDA057 {
-            get {
-                return ResourceManager.GetString("CONDA057", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only search for full names..
-        /// </summary>
-        public static string CONDA058 {
-            get {
-                return ResourceManager.GetString("CONDA058", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Output canonical names of packages only..
-        /// </summary>
-        public static string CONDA059 {
-            get {
-                return ResourceManager.GetString("CONDA059", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Output requirement string only..
-        /// </summary>
-        public static string CONDA060 {
-            get {
-                return ResourceManager.GetString("CONDA060", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package build number of the created package..
-        /// </summary>
-        public static string CONDA061 {
-            get {
-                return ResourceManager.GetString("CONDA061", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package name of the created package..
-        /// </summary>
-        public static string CONDA062 {
-            get {
-                return ResourceManager.GetString("CONDA062", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package names to remove from the environment..
-        /// </summary>
-        public static string CONDA063 {
-            get {
-                return ResourceManager.GetString("CONDA063", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package version of the created package..
-        /// </summary>
-        public static string CONDA064 {
-            get {
-                return ResourceManager.GetString("CONDA064", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package version takes precedence over channel priority..
-        /// </summary>
-        public static string CONDA065 {
-            get {
-                return ResourceManager.GetString("CONDA065", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Packages to install or update in the conda environment..
-        /// </summary>
-        public static string CONDA066 {
-            get {
-                return ResourceManager.GetString("CONDA066", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Path to (or name of) existing local environment..
-        /// </summary>
-        public static string CONDA067 {
-            get {
-                return ResourceManager.GetString("CONDA067", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Path to the environment file that is to be compared against..
-        /// </summary>
-        public static string CONDA068 {
-            get {
-                return ResourceManager.GetString("CONDA068", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provide detailed information about each package..
-        /// </summary>
-        public static string CONDA069 {
-            get {
-                return ResourceManager.GetString("CONDA069", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Read package versions from the given file..
-        /// </summary>
-        public static string CONDA070 {
-            get {
-                return ResourceManager.GetString("CONDA070", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remote environment definition..
-        /// </summary>
-        public static string CONDA071 {
-            get {
-                return ResourceManager.GetString("CONDA071", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove a configuration key (and all its values)..
-        /// </summary>
-        public static string CONDA072 {
-            get {
-                return ResourceManager.GetString("CONDA072", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove a configuration value from a list key..
-        /// </summary>
-        public static string CONDA073 {
-            get {
-                return ResourceManager.GetString("CONDA073", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove a list of packages from a specified conda environment..
-        /// </summary>
-        public static string CONDA074 {
-            get {
-                return ResourceManager.GetString("CONDA074", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove all packages..
-        /// </summary>
-        public static string CONDA075 {
-            get {
-                return ResourceManager.GetString("CONDA075", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove all untracked files and exit..
-        /// </summary>
-        public static string CONDA076 {
-            get {
-                return ResourceManager.GetString("CONDA076", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove all writable package caches..
-        /// </summary>
-        public static string CONDA077 {
-            get {
-                return ResourceManager.GetString("CONDA077", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove an environment..
-        /// </summary>
-        public static string CONDA078 {
-            get {
-                return ResourceManager.GetString("CONDA078", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove cached package tarballs..
-        /// </summary>
-        public static string CONDA079 {
-            get {
-                return ResourceManager.GetString("CONDA079", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove features (instead of packages)..
-        /// </summary>
-        public static string CONDA080 {
-            get {
-                return ResourceManager.GetString("CONDA080", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove index cache, lock files, unused cache packages, and tarballs..
-        /// </summary>
-        public static string CONDA081 {
-            get {
-                return ResourceManager.GetString("CONDA081", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove index cache..
-        /// </summary>
-        public static string CONDA082 {
-            get {
-                return ResourceManager.GetString("CONDA082", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove installed packages not defined in definition file..
-        /// </summary>
-        public static string CONDA083 {
-            get {
-                return ResourceManager.GetString("CONDA083", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove unused packages and caches..
-        /// </summary>
-        public static string CONDA084 {
-            get {
-                return ResourceManager.GetString("CONDA084", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove unused packages from writable package caches..
-        /// </summary>
-        public static string CONDA085 {
-            get {
-                return ResourceManager.GetString("CONDA085", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Report all output as json..
-        /// </summary>
-        public static string CONDA086 {
-            get {
-                return ResourceManager.GetString("CONDA086", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revert to the specified REVISION..
-        /// </summary>
-        public static string CONDA087 {
-            get {
-                return ResourceManager.GetString("CONDA087", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Run an executable in a conda environment..
-        /// </summary>
-        public static string CONDA088 {
-            get {
-                return ResourceManager.GetString("CONDA088", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search all of the current user&apos;s environments..
-        /// </summary>
-        public static string CONDA089 {
-            get {
-                return ResourceManager.GetString("CONDA089", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search for packages and display associated information..
-        /// </summary>
-        public static string CONDA090 {
-            get {
-                return ResourceManager.GetString("CONDA090", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search the given sub-directory..
-        /// </summary>
-        public static string CONDA091 {
-            get {
-                return ResourceManager.GetString("CONDA091", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set environment variables for a conda environment..
-        /// </summary>
-        public static string CONDA092 {
-            get {
-                return ResourceManager.GetString("CONDA092", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sets `CONDA_EXE` to `python -m conda`..
-        /// </summary>
-        public static string CONDA093 {
-            get {
-                return ResourceManager.GetString("CONDA093", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show all information..
-        /// </summary>
-        public static string CONDA094 {
-            get {
-                return ResourceManager.GetString("CONDA094", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show channel urls..
-        /// </summary>
-        public static string CONDA095 {
-            get {
-                return ResourceManager.GetString("CONDA095", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show help message and exit..
-        /// </summary>
-        public static string CONDA096 {
-            get {
-                return ResourceManager.GetString("CONDA096", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show the conda version number and exit..
-        /// </summary>
-        public static string CONDA097 {
-            get {
-                return ResourceManager.GetString("CONDA097", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Solve environment, population caches, exit prior to linking..
-        /// </summary>
-        public static string CONDA098 {
-            get {
-                return ResourceManager.GetString("CONDA098", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Specify name of repodata on remote server..
-        /// </summary>
-        public static string CONDA099 {
-            get {
-                return ResourceManager.GetString("CONDA099", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Take packages from highest priority channel..
-        /// </summary>
-        public static string CONDA100 {
-            get {
-                return ResourceManager.GetString("CONDA100", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Undo past effects of conda init..
-        /// </summary>
-        public static string CONDA101 {
-            get {
-                return ResourceManager.GetString("CONDA101", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unset environment variables for a conda environment..
-        /// </summary>
-        public static string CONDA102 {
-            get {
-                return ResourceManager.GetString("CONDA102", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update all installed packages in the environment..
-        /// </summary>
-        public static string CONDA103 {
-            get {
-                return ResourceManager.GetString("CONDA103", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update based on provided specifications..
-        /// </summary>
-        public static string CONDA104 {
-            get {
-                return ResourceManager.GetString("CONDA104", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update dependencies..
-        /// </summary>
-        public static string CONDA105 {
-            get {
-                return ResourceManager.GetString("CONDA105", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update the current environment based on environment file..
-        /// </summary>
-        public static string CONDA106 {
-            get {
-                return ResourceManager.GetString("CONDA106", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Updates conda packages to the latest compatible version..
-        /// </summary>
-        public static string CONDA107 {
-            get {
-                return ResourceManager.GetString("CONDA107", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use `sys.executable -m conda` in wrapper scripts..
-        /// </summary>
-        public static string CONDA108 {
-            get {
-                return ResourceManager.GetString("CONDA108", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use cache of channel index files, even if it has expired..
-        /// </summary>
-        public static string CONDA109 {
-            get {
-                return ResourceManager.GetString("CONDA109", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use locally built packages..
-        /// </summary>
-        public static string CONDA110 {
-            get {
-                return ResourceManager.GetString("CONDA110", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use once for INFO, twice for DEBUG, three times for TRACE..
-        /// </summary>
-        public static string CONDA111 {
-            get {
-                return ResourceManager.GetString("CONDA111", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Validate all configuration sources..
-        /// </summary>
-        public static string CONDA112 {
-            get {
-                return ResourceManager.GetString("CONDA112", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Write the default configuration to a file..
-        /// </summary>
-        public static string CONDA113 {
-            get {
-                return ResourceManager.GetString("CONDA113", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Write to the given file..
-        /// </summary>
-        public static string CONDA114 {
-            get {
-                return ResourceManager.GetString("CONDA114", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove temporary files that could not be deleted earlier due to being in-use..
-        /// </summary>
-        public static string CONDA115 {
-            get {
-                return ResourceManager.GetString("CONDA115", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display configuration values as calculated and compiled..
-        /// </summary>
-        public static string CONDA116 {
-            get {
-                return ResourceManager.GetString("CONDA116", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not include channel names with package names..
-        /// </summary>
-        public static string CONDA117 {
-            get {
-                return ResourceManager.GetString("CONDA117", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add an &apos;Anaconda Prompt&apos; icon to the desktop..
-        /// </summary>
-        public static string CONDA118 {
-            get {
-                return ResourceManager.GetString("CONDA118", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Offline mode. Do not connect to the Internet..
-        /// </summary>
-        public static string CONDA119 {
-            get {
-                return ResourceManager.GetString("CONDA119", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Modify configuration values in .condarc..
-        /// </summary>
-        public static string CONDA120 {
-            get {
-                return ResourceManager.GetString("CONDA120", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Write to the system .condarc file..
-        /// </summary>
-        public static string CONDA121 {
-            get {
-                return ResourceManager.GetString("CONDA121", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Write to the active conda environment .condarc file..
-        /// </summary>
-        public static string CONDA122 {
-            get {
-                return ResourceManager.GetString("CONDA122", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set a boolean or string key..
-        /// </summary>
-        public static string CONDA123 {
-            get {
-                return ResourceManager.GetString("CONDA123", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not install start menu shortcuts..
-        /// </summary>
-        public static string CONDA124 {
-            get {
-                return ResourceManager.GetString("CONDA124", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Explicitly list all installed conda packages with URL..
-        /// </summary>
-        public static string CONDA125 {
-            get {
-                return ResourceManager.GetString("CONDA125", resourceCulture);
+                return ResourceManager.GetString("TT0001", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Add MD5 hashsum when using --explicit..
         /// </summary>
-        public static string CONDA126 {
+        public static string TT0002 {
             get {
-                return ResourceManager.GetString("CONDA126", resourceCulture);
+                return ResourceManager.GetString("TT0002", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current working directory in which to run command..
+        ///   Looks up a localized string similar to Add an &apos;Anaconda Prompt&apos; icon to the desktop..
         /// </summary>
-        public static string CONDA127 {
+        public static string TT0003 {
             get {
-                return ResourceManager.GetString("CONDA127", resourceCulture);
+                return ResourceManager.GetString("TT0003", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not capture stdout/stderr..
+        ///   Looks up a localized string similar to Add one configuration value to the beginning of a list key..
         /// </summary>
-        public static string CONDA128 {
+        public static string TT0004 {
             get {
-                return ResourceManager.GetString("CONDA128", resourceCulture);
+                return ResourceManager.GetString("TT0004", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Environment definition file (default: environment.yml)..
+        ///   Looks up a localized string similar to Add one configuration value to the end of a list key..
         /// </summary>
-        public static string CONDA129 {
+        public static string TT0005 {
             get {
-                return ResourceManager.GetString("CONDA129", resourceCulture);
+                return ResourceManager.GetString("TT0005", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove build specification from dependencies..
+        ///   Looks up a localized string similar to Additional channel to search for packages..
         /// </summary>
-        public static string CONDA130 {
+        public static string TT0006 {
             get {
-                return ResourceManager.GetString("CONDA130", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Build environment spec from explicit specs in history..
-        /// </summary>
-        public static string CONDA131 {
-            get {
-                return ResourceManager.GetString("CONDA131", resourceCulture);
+                return ResourceManager.GetString("TT0006", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Allow clobbering overlapping file paths within packages..
         /// </summary>
-        public static string CONDA132 {
+        public static string TT0007 {
             get {
-                return ResourceManager.GetString("CONDA132", resourceCulture);
+                return ResourceManager.GetString("TT0007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow conda to perform &quot;insecure&quot; SSL connections and transfers..
+        /// </summary>
+        public static string TT0008 {
+            get {
+                return ResourceManager.GetString("TT0008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply configuration information given in yaml format piped through stdin..
+        /// </summary>
+        public static string TT0009 {
+            get {
+                return ResourceManager.GetString("TT0009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build environment spec from explicit specs in history..
+        /// </summary>
+        public static string TT0010 {
+            get {
+                return ResourceManager.GetString("TT0010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compare packages between conda environments..
+        /// </summary>
+        public static string TT0011 {
+            get {
+                return ResourceManager.GetString("TT0011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure a conda environment..
+        /// </summary>
+        public static string TT0012 {
+            get {
+                return ResourceManager.GetString("TT0012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a new conda environment from a list of specified packages..
+        /// </summary>
+        public static string TT0013 {
+            get {
+                return ResourceManager.GetString("TT0013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create an environment based on an environment file..
+        /// </summary>
+        public static string TT0014 {
+            get {
+                return ResourceManager.GetString("TT0014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create the environment directory if necessary..
+        /// </summary>
+        public static string TT0015 {
+            get {
+                return ResourceManager.GetString("TT0015", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current working directory in which to run command..
+        /// </summary>
+        public static string TT0016 {
+            get {
+                return ResourceManager.GetString("TT0016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivate a conda environment..
+        /// </summary>
+        public static string TT0017 {
+            get {
+                return ResourceManager.GetString("TT0017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Describe given configuration parameters..
+        /// </summary>
+        public static string TT0018 {
+            get {
+                return ResourceManager.GetString("TT0018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display all identified configuration sources..
+        /// </summary>
+        public static string TT0019 {
+            get {
+                return ResourceManager.GetString("TT0019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display all untracked files and exit..
+        /// </summary>
+        public static string TT0020 {
+            get {
+                return ResourceManager.GetString("TT0020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display base environment path..
+        /// </summary>
+        public static string TT0021 {
+            get {
+                return ResourceManager.GetString("TT0021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display configuration values as calculated and compiled..
+        /// </summary>
+        public static string TT0022 {
+            get {
+                return ResourceManager.GetString("TT0022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display information about current conda install..
+        /// </summary>
+        public static string TT0023 {
+            get {
+                return ResourceManager.GetString("TT0023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display list of channels with tokens exposed..
+        /// </summary>
+        public static string TT0024 {
+            get {
+                return ResourceManager.GetString("TT0024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the output in real time..
+        /// </summary>
+        public static string TT0025 {
+            get {
+                return ResourceManager.GetString("TT0025", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displays a list of available conda commands and their help strings..
+        /// </summary>
+        public static string TT0026 {
+            get {
+                return ResourceManager.GetString("TT0026", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not ask for confirmation..
+        /// </summary>
+        public static string TT0027 {
+            get {
+                return ResourceManager.GetString("TT0027", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not capture stdout/stderr..
+        /// </summary>
+        public static string TT0028 {
+            get {
+                return ResourceManager.GetString("TT0028", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not display progress bar..
+        /// </summary>
+        public static string TT0029 {
+            get {
+                return ResourceManager.GetString("TT0029", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not include channel names with package names..
+        /// </summary>
+        public static string TT0030 {
+            get {
+                return ResourceManager.GetString("TT0030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not include pip-only installed packages..
+        /// </summary>
+        public static string TT0031 {
+            get {
+                return ResourceManager.GetString("TT0031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not install start menu shortcuts..
+        /// </summary>
+        public static string TT0032 {
+            get {
+                return ResourceManager.GetString("TT0032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not install, update, remove, or change dependencies..
+        /// </summary>
+        public static string TT0033 {
+            get {
+                return ResourceManager.GetString("TT0033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not search default or .condarc channels..
+        /// </summary>
+        public static string TT0034 {
+            get {
+                return ResourceManager.GetString("TT0034", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not stack the environment..
+        /// </summary>
+        public static string TT0035 {
+            get {
+                return ResourceManager.GetString("TT0035", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not update or change already-installed dependencies..
+        /// </summary>
+        public static string TT0036 {
+            get {
+                return ResourceManager.GetString("TT0036", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPERIMENTAL. Choose which solver backend to use..
+        /// </summary>
+        public static string TT0037 {
+            get {
+                return ResourceManager.GetString("TT0037", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPERIMENTAL. Initialize conda for shell interaction..
+        /// </summary>
+        public static string TT0038 {
+            get {
+                return ResourceManager.GetString("TT0038", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPERIMENTAL. Low-level conda package utility..
+        /// </summary>
+        public static string TT0039 {
+            get {
+                return ResourceManager.GetString("TT0039", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Echo wrapper script debug info to stderr..
+        /// </summary>
+        public static string TT0040 {
+            get {
+                return ResourceManager.GetString("TT0040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment definition file (default: environment.yml)..
+        /// </summary>
+        public static string TT0041 {
+            get {
+                return ResourceManager.GetString("TT0041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment definition file..
+        /// </summary>
+        public static string TT0042 {
+            get {
+                return ResourceManager.GetString("TT0042", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;..
+        /// </summary>
+        public static string TT0043 {
+            get {
+                return ResourceManager.GetString("TT0043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment variables to unset in the form &lt;KEY&gt;..
+        /// </summary>
+        public static string TT0044 {
+            get {
+                return ResourceManager.GetString("TT0044", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Executable name with additional arguments..
+        /// </summary>
+        public static string TT0045 {
+            get {
+                return ResourceManager.GetString("TT0045", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit early and do not run the solver if the requested specs are satisfied..
+        /// </summary>
+        public static string TT0046 {
+            get {
+                return ResourceManager.GetString("TT0046", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explicitly list all installed conda packages with URL..
+        /// </summary>
+        public static string TT0047 {
+            get {
+                return ResourceManager.GetString("TT0047", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export a given environment..
+        /// </summary>
+        public static string TT0048 {
+            get {
+                return ResourceManager.GetString("TT0048", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force creation of environment..
+        /// </summary>
+        public static string TT0049 {
+            get {
+                return ResourceManager.GetString("TT0049", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force reinstall of package..
+        /// </summary>
+        public static string TT0050 {
+            get {
+                return ResourceManager.GetString("TT0050", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forces removal of a package without removing packages that depend on it..
+        /// </summary>
+        public static string TT0051 {
+            get {
+                return ResourceManager.GetString("TT0051", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full path to environment location..
+        /// </summary>
+        public static string TT0052 {
+            get {
+                return ResourceManager.GetString("TT0052", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a configuration value..
+        /// </summary>
+        public static string TT0053 {
+            get {
+                return ResourceManager.GetString("TT0053", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given some PATH print which conda package the file came from..
+        /// </summary>
+        public static string TT0054 {
+            get {
+                return ResourceManager.GetString("TT0054", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore create_default_packages in the .condarc file..
+        /// </summary>
+        public static string TT0055 {
+            get {
+                return ResourceManager.GetString("TT0055", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore pinned file..
+        /// </summary>
+        public static string TT0056 {
+            get {
+                return ResourceManager.GetString("TT0056", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initialize all currently available shells..
+        /// </summary>
+        public static string TT0057 {
+            get {
+                return ResourceManager.GetString("TT0057", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install all packages using copies instead of hard- or soft-linking..
+        /// </summary>
+        public static string TT0058 {
+            get {
+                return ResourceManager.GetString("TT0058", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installs a list of packages into a specified conda environment..
+        /// </summary>
+        public static string TT0059 {
+            get {
+                return ResourceManager.GetString("TT0059", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interact with environment variables associated with Conda environments..
+        /// </summary>
+        public static string TT0060 {
+            get {
+                return ResourceManager.GetString("TT0060", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List all known conda environments..
+        /// </summary>
+        public static string TT0061 {
+            get {
+                return ResourceManager.GetString("TT0061", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List environment variables for a conda environment..
+        /// </summary>
+        public static string TT0062 {
+            get {
+                return ResourceManager.GetString("TT0062", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List linked packages in a conda environment..
+        /// </summary>
+        public static string TT0063 {
+            get {
+                return ResourceManager.GetString("TT0063", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List only packages matching this regular expression..
+        /// </summary>
+        public static string TT0064 {
+            get {
+                return ResourceManager.GetString("TT0064", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List the Conda environments..
+        /// </summary>
+        public static string TT0065 {
+            get {
+                return ResourceManager.GetString("TT0065", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List the revision history and exit..
+        /// </summary>
+        public static string TT0066 {
+            get {
+                return ResourceManager.GetString("TT0066", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage environments..
+        /// </summary>
+        public static string TT0067 {
+            get {
+                return ResourceManager.GetString("TT0067", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify configuration values in .condarc..
+        /// </summary>
+        public static string TT0068 {
+            get {
+                return ResourceManager.GetString("TT0068", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of environment..
+        /// </summary>
+        public static string TT0069 {
+            get {
+                return ResourceManager.GetString("TT0069", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offline mode. Do not connect to the Internet..
+        /// </summary>
+        public static string TT0070 {
+            get {
+                return ResourceManager.GetString("TT0070", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One or more shells to be initialized..
+        /// </summary>
+        public static string TT0071 {
+            get {
+                return ResourceManager.GetString("TT0071", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only display what would have been done..
+        /// </summary>
+        public static string TT0072 {
+            get {
+                return ResourceManager.GetString("TT0072", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only install dependencies..
+        /// </summary>
+        public static string TT0073 {
+            get {
+                return ResourceManager.GetString("TT0073", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only search for full names..
+        /// </summary>
+        public static string TT0074 {
+            get {
+                return ResourceManager.GetString("TT0074", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output canonical names of packages only..
+        /// </summary>
+        public static string TT0075 {
+            get {
+                return ResourceManager.GetString("TT0075", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output requirement string only..
+        /// </summary>
+        public static string TT0076 {
+            get {
+                return ResourceManager.GetString("TT0076", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package build number of the created package..
+        /// </summary>
+        public static string TT0077 {
+            get {
+                return ResourceManager.GetString("TT0077", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package name of the created package..
+        /// </summary>
+        public static string TT0078 {
+            get {
+                return ResourceManager.GetString("TT0078", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package names to remove from the environment..
+        /// </summary>
+        public static string TT0079 {
+            get {
+                return ResourceManager.GetString("TT0079", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package version of the created package..
+        /// </summary>
+        public static string TT0080 {
+            get {
+                return ResourceManager.GetString("TT0080", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package version takes precedence over channel priority..
+        /// </summary>
+        public static string TT0081 {
+            get {
+                return ResourceManager.GetString("TT0081", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Packages to install or update in the conda environment..
+        /// </summary>
+        public static string TT0082 {
+            get {
+                return ResourceManager.GetString("TT0082", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to (or name of) existing local environment..
+        /// </summary>
+        public static string TT0083 {
+            get {
+                return ResourceManager.GetString("TT0083", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to the environment file that is to be compared against..
+        /// </summary>
+        public static string TT0084 {
+            get {
+                return ResourceManager.GetString("TT0084", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide detailed information about each package..
+        /// </summary>
+        public static string TT0085 {
+            get {
+                return ResourceManager.GetString("TT0085", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read package versions from the given file..
+        /// </summary>
+        public static string TT0086 {
+            get {
+                return ResourceManager.GetString("TT0086", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote environment definition..
+        /// </summary>
+        public static string TT0087 {
+            get {
+                return ResourceManager.GetString("TT0087", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove a configuration key (and all its values)..
+        /// </summary>
+        public static string TT0088 {
+            get {
+                return ResourceManager.GetString("TT0088", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove a configuration value from a list key..
+        /// </summary>
+        public static string TT0089 {
+            get {
+                return ResourceManager.GetString("TT0089", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove a list of packages from a specified conda environment..
+        /// </summary>
+        public static string TT0090 {
+            get {
+                return ResourceManager.GetString("TT0090", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all packages..
+        /// </summary>
+        public static string TT0091 {
+            get {
+                return ResourceManager.GetString("TT0091", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all untracked files and exit..
+        /// </summary>
+        public static string TT0092 {
+            get {
+                return ResourceManager.GetString("TT0092", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all writable package caches..
+        /// </summary>
+        public static string TT0093 {
+            get {
+                return ResourceManager.GetString("TT0093", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove an environment..
+        /// </summary>
+        public static string TT0094 {
+            get {
+                return ResourceManager.GetString("TT0094", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove build specification from dependencies..
+        /// </summary>
+        public static string TT0095 {
+            get {
+                return ResourceManager.GetString("TT0095", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove cached package tarballs..
+        /// </summary>
+        public static string TT0096 {
+            get {
+                return ResourceManager.GetString("TT0096", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove features (instead of packages)..
+        /// </summary>
+        public static string TT0097 {
+            get {
+                return ResourceManager.GetString("TT0097", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove index cache, lock files, unused cache packages, and tarballs..
+        /// </summary>
+        public static string TT0098 {
+            get {
+                return ResourceManager.GetString("TT0098", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove index cache..
+        /// </summary>
+        public static string TT0099 {
+            get {
+                return ResourceManager.GetString("TT0099", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove installed packages not defined in definition file..
+        /// </summary>
+        public static string TT0100 {
+            get {
+                return ResourceManager.GetString("TT0100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove temporary files that could not be deleted earlier due to being in-use..
+        /// </summary>
+        public static string TT0101 {
+            get {
+                return ResourceManager.GetString("TT0101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove unused packages and caches..
+        /// </summary>
+        public static string TT0102 {
+            get {
+                return ResourceManager.GetString("TT0102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove unused packages from writable package caches..
+        /// </summary>
+        public static string TT0103 {
+            get {
+                return ResourceManager.GetString("TT0103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report all output as json..
+        /// </summary>
+        public static string TT0104 {
+            get {
+                return ResourceManager.GetString("TT0104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert to the specified REVISION..
+        /// </summary>
+        public static string TT0105 {
+            get {
+                return ResourceManager.GetString("TT0105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run an executable in a conda environment..
+        /// </summary>
+        public static string TT0106 {
+            get {
+                return ResourceManager.GetString("TT0106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search all of the current user&apos;s environments..
+        /// </summary>
+        public static string TT0107 {
+            get {
+                return ResourceManager.GetString("TT0107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search for packages and display associated information..
+        /// </summary>
+        public static string TT0108 {
+            get {
+                return ResourceManager.GetString("TT0108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search the given sub-directory..
+        /// </summary>
+        public static string TT0109 {
+            get {
+                return ResourceManager.GetString("TT0109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set a boolean or string key..
+        /// </summary>
+        public static string TT0110 {
+            get {
+                return ResourceManager.GetString("TT0110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set environment variables for a conda environment..
+        /// </summary>
+        public static string TT0111 {
+            get {
+                return ResourceManager.GetString("TT0111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sets `CONDA_EXE` to `python -m conda`..
+        /// </summary>
+        public static string TT0112 {
+            get {
+                return ResourceManager.GetString("TT0112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show all information..
+        /// </summary>
+        public static string TT0113 {
+            get {
+                return ResourceManager.GetString("TT0113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show channel urls..
+        /// </summary>
+        public static string TT0114 {
+            get {
+                return ResourceManager.GetString("TT0114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show help message and exit..
+        /// </summary>
+        public static string TT0115 {
+            get {
+                return ResourceManager.GetString("TT0115", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the conda version number and exit..
+        /// </summary>
+        public static string TT0116 {
+            get {
+                return ResourceManager.GetString("TT0116", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solve environment, population caches, exit prior to linking..
+        /// </summary>
+        public static string TT0117 {
+            get {
+                return ResourceManager.GetString("TT0117", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify name of repodata on remote server..
+        /// </summary>
+        public static string TT0118 {
+            get {
+                return ResourceManager.GetString("TT0118", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack the environment on previous active environment..
+        /// </summary>
+        public static string TT0119 {
+            get {
+                return ResourceManager.GetString("TT0119", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take packages from highest priority channel..
+        /// </summary>
+        public static string TT0120 {
+            get {
+                return ResourceManager.GetString("TT0120", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo past effects of conda init..
+        /// </summary>
+        public static string TT0121 {
+            get {
+                return ResourceManager.GetString("TT0121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unset environment variables for a conda environment..
+        /// </summary>
+        public static string TT0122 {
+            get {
+                return ResourceManager.GetString("TT0122", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update all installed packages in the environment..
+        /// </summary>
+        public static string TT0123 {
+            get {
+                return ResourceManager.GetString("TT0123", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update based on provided specifications..
+        /// </summary>
+        public static string TT0124 {
+            get {
+                return ResourceManager.GetString("TT0124", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update dependencies..
+        /// </summary>
+        public static string TT0125 {
+            get {
+                return ResourceManager.GetString("TT0125", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update the current environment based on environment file..
+        /// </summary>
+        public static string TT0126 {
+            get {
+                return ResourceManager.GetString("TT0126", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updates conda packages to the latest compatible version..
+        /// </summary>
+        public static string TT0127 {
+            get {
+                return ResourceManager.GetString("TT0127", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use `sys.executable -m conda` in wrapper scripts..
+        /// </summary>
+        public static string TT0128 {
+            get {
+                return ResourceManager.GetString("TT0128", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use cache of channel index files, even if it has expired..
+        /// </summary>
+        public static string TT0129 {
+            get {
+                return ResourceManager.GetString("TT0129", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use locally built packages..
+        /// </summary>
+        public static string TT0130 {
+            get {
+                return ResourceManager.GetString("TT0130", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use once for INFO, twice for DEBUG, three times for TRACE..
+        /// </summary>
+        public static string TT0131 {
+            get {
+                return ResourceManager.GetString("TT0131", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate all configuration sources..
+        /// </summary>
+        public static string TT0132 {
+            get {
+                return ResourceManager.GetString("TT0132", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write the default configuration to a file..
+        /// </summary>
+        public static string TT0133 {
+            get {
+                return ResourceManager.GetString("TT0133", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write to the active conda environment .condarc file..
+        /// </summary>
+        public static string TT0134 {
+            get {
+                return ResourceManager.GetString("TT0134", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write to the given file..
+        /// </summary>
+        public static string TT0135 {
+            get {
+                return ResourceManager.GetString("TT0135", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write to the system .condarc file..
+        /// </summary>
+        public static string TT0136 {
+            get {
+                return ResourceManager.GetString("TT0136", resourceCulture);
             }
         }
     }

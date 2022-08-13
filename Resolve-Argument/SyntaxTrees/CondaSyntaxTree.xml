@@ -3,2915 +3,2983 @@
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
+        <ARG>activate</ARG>
+        <MU>F</MU>
         <TYP>CMD</TYP>
+        <TT>TT0001</TT>
+    </item>
+    <item>
+        <CMD>conda</CMD>
+        <PATH>conda</PATH>
         <ARG>clean</ARG>
         <MU>F</MU>
-        <TT>CONDA084</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0102</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>compare</ARG>
         <MU>F</MU>
-        <TT>CONDA006</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0011</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>config</ARG>
         <MU>F</MU>
-        <TT>CONDA120</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0068</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>create</ARG>
         <MU>F</MU>
-        <TT>CONDA008</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0013</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
+        <ARG>deactivate</ARG>
+        <MU>F</MU>
         <TYP>CMD</TYP>
+        <TT>TT0017</TT>
+    </item>
+    <item>
+        <CMD>conda</CMD>
+        <PATH>conda</PATH>
         <ARG>env</ARG>
         <MU>F</MU>
-        <TT>CONDA053</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0067</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>help</ARG>
         <MU>F</MU>
-        <TT>CONDA018</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0026</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>info</ARG>
         <MU>F</MU>
-        <TT>CONDA015</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0023</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>init</ARG>
         <MU>F</MU>
-        <TT>CONDA032</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0038</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>install</ARG>
         <MU>F</MU>
-        <TT>CONDA045</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0059</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>list</ARG>
         <MU>F</MU>
-        <TT>CONDA049</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0063</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>package</ARG>
         <MU>F</MU>
-        <TT>CONDA033</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0039</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>remove</ARG>
         <AL>uninstall</AL>
         <MU>F</MU>
-        <TT>CONDA074</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0090</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>run</ARG>
         <MU>F</MU>
-        <TT>CONDA088</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0106</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>search</ARG>
         <MU>F</MU>
-        <TT>CONDA090</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0108</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>CMD</TYP>
         <ARG>update</ARG>
         <AL>Upgrade</AL>
         <MU>F</MU>
-        <TT>CONDA107</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0127</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>conda</CMD>
         <PATH>conda</PATH>
-        <TYP>OPT</TYP>
         <ARG>--version</ARG>
         <AL>-V</AL>
         <MU>F</MU>
-        <TT>CONDA097</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0116</TT>
     </item>
     <item>
-        <CMD>clean</CMD>
-        <PATH>conda.clean</PATH>
+        <CMD>activate</CMD>
+        <PATH>conda.activate</PATH>
+        <MU>F</MU>
+        <PRM>ENVIRONMENT</PRM>
+        <MP>F</MP>
+        <TYP>POS</TYP>
+        <TT>TT0069</TT>
+    </item>
+    <item>
+        <CMD>activate</CMD>
+        <PATH>conda.activate</PATH>
+        <ARG>--stack</ARG>
+        <MU>F</MU>
         <TYP>OPT</TYP>
+        <TT>TT0119</TT>
+    </item>
+    <item>
+        <CMD>activate</CMD>
+        <PATH>conda.activate</PATH>
+        <ARG>--no-stck</ARG>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0035</TT>
+    </item>
+    <item>
+        <CMD>activate</CMD>
+        <PATH>conda.activate</PATH>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
+        <ARG>--help</ARG>
+        <AL>-h</AL>
+        <MU>F</MU>
         <TYP>OPT</TYP>
+        <TT>TT0115</TT>
+    </item>
+    <item>
+        <CMD>clean</CMD>
+        <PATH>conda.clean</PATH>
         <ARG>--all</ARG>
         <AL>-a</AL>
         <MU>F</MU>
-        <TT>CONDA081</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0098</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--index-cache</ARG>
         <AL>-i</AL>
         <MU>F</MU>
-        <TT>CONDA082</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0099</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--packages</ARG>
         <AL>-p</AL>
         <MU>F</MU>
-        <TT>CONDA085</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0103</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--tarballs</ARG>
         <AL>-t</AL>
         <MU>F</MU>
-        <TT>CONDA079</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0096</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--force-pkgs-dirs</ARG>
         <AL>-f</AL>
         <MU>F</MU>
-        <TT>CONDA077</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0093</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>PRM</TYP>
         <ARG>--tempfiles</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>TEMPFILES</PRM>
         <MP>T</MP>
-        <TT>CONDA115</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0101</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>clean</CMD>
         <PATH>conda.clean</PATH>
-        <TYP>OPT</TYP>
         <ARG>--yes</ARG>
         <AL>-y</AL>
         <MU>F</MU>
-        <TT>CONDA019</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0027</TT>
     </item>
     <item>
-        <CMD>Compare</CMD>
+        <CMD>compare</CMD>
         <PATH>conda.compare</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA068</TT>
+        <TYP>POS</TYP>
+        <TT>TT0084</TT>
     </item>
     <item>
-        <CMD>Compare</CMD>
+        <CMD>compare</CMD>
         <PATH>conda.compare</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
-        <CMD>Compare</CMD>
+        <CMD>compare</CMD>
         <PATH>conda.compare</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
-        <CMD>Compare</CMD>
+        <CMD>compare</CMD>
         <PATH>conda.compare</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
-        <CMD>Compare</CMD>
+        <CMD>compare</CMD>
         <PATH>conda.compare</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
-        <CMD>Compare</CMD>
+        <CMD>compare</CMD>
         <PATH>conda.compare</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--system</ARG>
         <MU>F</MU>
-        <TT>CONDA121</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0136</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--env</ARG>
         <MU>F</MU>
-        <TT>CONDA122</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0134</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--file</ARG>
         <MU>F</MU>
         <PRM> FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA114</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0135</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--show</ARG>
         <MU>F</MU>
         <PRM>SHOW</PRM>
         <MP>T</MP>
-        <TT>CONDA116</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0022</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--show-sources</ARG>
         <MU>F</MU>
-        <TT>CONDA012</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0019</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--validate</ARG>
         <MU>F</MU>
-        <TT>CONDA112</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0132</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--describe</ARG>
         <MU>F</MU>
         <PRM>DESCRIBE</PRM>
         <MP>T</MP>
-        <TT>CONDA011</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0018</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--write-default</ARG>
         <MU>F</MU>
-        <TT>CONDA113</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0133</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--get</ARG>
         <MU>F</MU>
         <PRM>KEY</PRM>
         <MP>T</MP>
-        <TT>CONDA039</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0053</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--append</ARG>
         <MU>F</MU>
         <PRM>LIST_KEY_VALUE</PRM>
         <MP>F</MP>
-        <TT>CONDA002</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0005</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--add</ARG>
         <MU>F</MU>
         <PRM>LIST_KEY_VALUE</PRM>
         <MP>F</MP>
-        <TT>CONDA001</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0004</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prepend</ARG>
         <MU>F</MU>
         <PRM>LIST_KEY_VALUE</PRM>
         <MP>F</MP>
-        <TT>CONDA001</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0004</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--set</ARG>
         <MU>F</MU>
         <PRM>KEY_VALUE</PRM>
         <MP>F</MP>
-        <TT>CONDA123</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0110</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--remove</ARG>
         <MU>F</MU>
         <PRM>LIST_KEY_VALUE</PRM>
         <MP>F</MP>
-        <TT>CONDA073</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0089</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>PRM</TYP>
         <ARG>--remove-key</ARG>
         <MU>F</MU>
         <PRM>KEY_TO_REMOVE</PRM>
         <MP>F</MP>
-        <TT>CONDA072</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0088</TT>
     </item>
     <item>
-        <CMD>Config</CMD>
+        <CMD>config</CMD>
         <PATH>conda.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--stdin</ARG>
         <MU>F</MU>
-        <TT>CONDA005</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0009</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>PACKAGE_SPEC</PRM>
         <MP>T</MP>
-        <TT>CONDA066</TT>
+        <TYP>POS</TYP>
+        <TT>TT0082</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--clone</ARG>
         <MU>F</MU>
         <PRM>ENV</PRM>
         <MP>F</MP>
-        <TT>CONDA067</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0083</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--file</ARG>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA070</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0086</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dev</ARG>
         <MU>F</MU>
-        <TT>CONDA108</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0128</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--channel</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>CHANNEL</PRM>
         <MP>T</MP>
-        <TT>CONDA003</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0006</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-local</ARG>
         <MU>F</MU>
-        <TT>CONDA110</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0130</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--override-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA023</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0034</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--repodata-fn</ARG>
         <MU>F</MU>
         <PRM>REPODATA_FNS</PRM>
         <MP>F</MP>
-        <TT>CONDA099</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0118</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--strict-channel-priority</ARG>
         <MU>F</MU>
-        <TT>CONDA100</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0120</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-channel-priority</ARG>
         <MU>F</MU>
-        <TT>CONDA065</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0081</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA022</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0033</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--only-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA057</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0073</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-pin</ARG>
         <MU>F</MU>
-        <TT>CONDA042</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0056</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-default-packages</ARG>
         <MU>F</MU>
-        <TT>CONDA041</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0055</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--copy</ARG>
         <MU>F</MU>
-        <TT>CONDA044</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0058</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-shortcuts</ARG>
         <MU>F</MU>
-        <TT>CONDA124</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0032</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-index-cache</ARG>
         <AL>-C</AL>
         <MU>F</MU>
-        <TT>CONDA109</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0129</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--insecure</ARG>
         <AL>-k</AL>
         <MU>F</MU>
-        <TT>CONDA004</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0008</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--offline</ARG>
         <MU>F</MU>
-        <TT>CONDA119</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0070</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--yes</ARG>
         <AL>-y</AL>
         <MU>F</MU>
-        <TT>CONDA019</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0027</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--download-only</ARG>
         <MU>F</MU>
-        <TT>CONDA098</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0117</TT>
     </item>
     <item>
-        <CMD>Create</CMD>
+        <CMD>create</CMD>
         <PATH>conda.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--show-channel-urls</ARG>
         <MU>F</MU>
-        <TT>CONDA095</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0114</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>deactivate</CMD>
+        <PATH>conda.deactivate</PATH>
+        <MU>F</MU>
+        <PRM>ENVIRONMENT</PRM>
+        <MP>F</MP>
+        <TYP>POS</TYP>
+        <TT>TT0069</TT>
+    </item>
+    <item>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--all</ARG>
         <AL>-a</AL>
         <MU>F</MU>
-        <TT>CONDA094</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0113</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--base</ARG>
         <MU>F</MU>
-        <TT>CONDA014</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0021</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--envs</ARG>
         <AL>-e</AL>
         <MU>F</MU>
-        <TT>CONDA047</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0061</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--system</ARG>
         <AL>-s</AL>
         <MU>F</MU>
-        <TT>CONDA048</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0062</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--unsafe-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA016</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0024</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
-        <CMD>Info</CMD>
+        <CMD>info</CMD>
         <PATH>conda.info</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>SHELLS</PRM>
         <MP>T</MP>
-        <TT>CONDA055</TT>
+        <TYP>POS</TYP>
+        <TT>TT0071</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--all</ARG>
         <MU>F</MU>
-        <TT>CONDA043</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0057</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--anaconda-prompt</ARG>
         <MU>F</MU>
-        <TT>CONDA118</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0003</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--reverse</ARG>
         <MU>F</MU>
-        <TT>CONDA101</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0121</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>init</CMD>
         <PATH>conda.init</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>PACKAGE_SPEC</PRM>
         <MP>T</MP>
-        <TT>CONDA066</TT>
+        <TYP>POS</TYP>
+        <TT>TT0082</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--revision</ARG>
         <MU>F</MU>
         <PRM>REVISION</PRM>
         <MP>F</MP>
-        <TT>CONDA087</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0105</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--file</ARG>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA070</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0086</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dev</ARG>
         <MU>F</MU>
-        <TT>CONDA108</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0128</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--channel</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>CHANNEL</PRM>
         <MP>T</MP>
-        <TT>CONDA003</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0006</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-local</ARG>
         <MU>F</MU>
-        <TT>CONDA110</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0130</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--override-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA023</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0034</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--repodata-fn</ARG>
         <MU>F</MU>
         <PRM>REPODATA_FNS</PRM>
         <MP>F</MP>
-        <TT>CONDA099</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0118</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--strict-channel-priority</ARG>
         <MU>F</MU>
-        <TT>CONDA100</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0120</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-channel-priority</ARG>
         <MU>F</MU>
-        <TT>CONDA065</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0081</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA022</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0033</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--only-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA057</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0073</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-pin</ARG>
         <MU>F</MU>
-        <TT>CONDA042</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0056</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>PRM</TYP>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--force-reinstall</ARG>
         <MU>F</MU>
-        <TT>CONDA036</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0050</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-update-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA024</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0036</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--freeze-installed</ARG>
         <MU>F</MU>
-        <TT>CONDA024</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0036</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--update-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA105</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0125</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--satisfied-skip-solve</ARG>
         <AL>-S</AL>
         <MU>F</MU>
-        <TT>CONDA030</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0046</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--all</ARG>
         <MU>F</MU>
-        <TT>CONDA103</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0123</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--update-all</ARG>
         <MU>F</MU>
-        <TT>CONDA103</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0123</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--update-specs</ARG>
         <MU>F</MU>
-        <TT>CONDA104</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0124</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--copy</ARG>
         <MU>F</MU>
-        <TT>CONDA044</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0058</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-shortcuts</ARG>
         <MU>F</MU>
-        <TT>CONDA124</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0032</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--mkdir</ARG>
         <AL>-m</AL>
         <MU>F</MU>
-        <TT>CONDA010</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0015</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--clobber</ARG>
         <MU>F</MU>
-        <TT>CONDA132</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0007</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-index-cache</ARG>
         <AL>-C</AL>
         <MU>F</MU>
-        <TT>CONDA109</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0129</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--insecure</ARG>
         <AL>-k</AL>
         <MU>F</MU>
-        <TT>CONDA004</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0008</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--offline</ARG>
         <MU>F</MU>
-        <TT>CONDA119</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0070</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>F</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--yes</ARG>
         <AL>-y</AL>
         <MU>F</MU>
-        <TT>CONDA019</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0027</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--download-only</ARG>
         <MU>F</MU>
-        <TT>CONDA098</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0117</TT>
     </item>
     <item>
         <CMD>install</CMD>
         <PATH>conda.install</PATH>
-        <TYP>OPT</TYP>
         <ARG>--show-channel-urls</ARG>
         <MU>F</MU>
-        <TT>CONDA095</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0114</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>REGEX</PRM>
         <MP>F</MP>
-        <TT>CONDA050</TT>
+        <TYP>POS</TYP>
+        <TT>TT0064</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--show-channel-urls</ARG>
         <MU>F</MU>
-        <TT>CONDA095</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0114</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--canonical</ARG>
         <AL>-c</AL>
         <MU>F</MU>
-        <TT>CONDA059</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0075</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--full-name</ARG>
         <AL>-f</AL>
         <MU>F</MU>
-        <TT>CONDA058</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0074</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--explicit</ARG>
         <MU>F</MU>
-        <TT>CONDA125</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0047</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--md5</ARG>
         <MU>F</MU>
-        <TT>CONDA126</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0002</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--export</ARG>
         <AL>-e</AL>
         <MU>F</MU>
-        <TT>CONDA060</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0076</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--revisions</ARG>
         <AL>-r</AL>
         <MU>F</MU>
-        <TT>CONDA052</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0066</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-pip</ARG>
         <MU>F</MU>
-        <TT>CONDA021</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0031</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>PRM</TYP>
         <ARG>--which</ARG>
         <AL>-w</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA040</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0054</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>OPT</TYP>
         <ARG>--reset</ARG>
         <AL>-r</AL>
         <MU>F</MU>
-        <TT>CONDA076</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0092</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>OPT</TYP>
         <ARG>--untracked</ARG>
         <AL>-u</AL>
         <MU>F</MU>
-        <TT>CONDA013</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0020</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>PRM</TYP>
         <ARG>--pkg-name</ARG>
         <MU>F</MU>
         <PRM>PKG_NAME</PRM>
         <MP>F</MP>
-        <TT>CONDA062</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0078</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>PRM</TYP>
         <ARG>--pkg-version</ARG>
         <MU>F</MU>
         <PRM>PKG_VERSION</PRM>
         <MP>F</MP>
-        <TT>CONDA064</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0080</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>PRM</TYP>
         <ARG>--pkg-build</ARG>
         <MU>F</MU>
         <PRM>PKG_BUILD</PRM>
         <MP>F</MP>
-        <TT>CONDA061</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0077</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>package</CMD>
         <PATH>conda.package</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>PACKAGE_NAME</PRM>
         <MP>T</MP>
-        <TT>CONDA063</TT>
+        <TYP>POS</TYP>
+        <TT>TT0079</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dev</ARG>
         <MU>F</MU>
-        <TT>CONDA108</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0128</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--channel</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>CHANNEL</PRM>
         <MP>T</MP>
-        <TT>CONDA003</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0006</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-local</ARG>
         <MU>F</MU>
-        <TT>CONDA110</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0130</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--override-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA023</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0034</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--repodata-fn</ARG>
         <MU>F</MU>
         <PRM>REPODATA_FNS</PRM>
         <MP>F</MP>
-        <TT>CONDA099</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0118</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--all</ARG>
         <MU>F</MU>
-        <TT>CONDA075</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0091</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--features</ARG>
         <MU>F</MU>
-        <TT>CONDA080</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0097</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--force</ARG>
         <MU>F</MU>
-        <TT>CONDA037</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0051</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--force-remove</ARG>
         <MU>F</MU>
-        <TT>CONDA037</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0051</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-pin</ARG>
         <MU>F</MU>
-        <TT>CONDA042</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0056</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-index-cache</ARG>
         <AL>-C</AL>
         <MU>F</MU>
-        <TT>CONDA109</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0129</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--insecure</ARG>
         <AL>-k</AL>
         <MU>F</MU>
-        <TT>CONDA004</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0008</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--offline</ARG>
         <MU>F</MU>
-        <TT>CONDA038</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--yes</ARG>
         <AL>-y</AL>
         <MU>F</MU>
-        <TT>CONDA019</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0027</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>EXECUTABLE_CALL</PRM>
         <MP>F</MP>
-        <TT>CONDA029</TT>
+        <TYP>POS</TYP>
+        <TT>TT0045</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dev</ARG>
         <MU>F</MU>
-        <TT>CONDA093</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0112</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>OPT</TYP>
         <ARG>--debug-wrapper-scripts</ARG>
         <MU>F</MU>
-        <TT>CONDA025</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0040</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>PRM</TYP>
         <ARG>--cwd</ARG>
         <MU>F</MU>
         <PRM>CWD</PRM>
         <MP>F</MP>
-        <TT>CONDA127</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0016</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-capture-output</ARG>
         <MU>F</MU>
-        <TT>CONDA128</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0028</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>OPT</TYP>
         <ARG>--live-stream</ARG>
         <MU>F</MU>
-        <TT>CONDA017</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0025</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>run</CMD>
         <PATH>conda.run</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--envs</ARG>
         <MU>F</MU>
-        <TT>CONDA089</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0107</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--info</ARG>
         <AL>-i</AL>
         <MU>F</MU>
-        <TT>CONDA069</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0085</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>PRM</TYP>
         <ARG>--subdir</ARG>
         <MU>F</MU>
         <PRM>SUBDIR</PRM>
         <MP>F</MP>
-        <TT>CONDA091</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0109</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>PRM</TYP>
         <ARG>--platform</ARG>
         <MU>F</MU>
         <PRM>SUBDIR</PRM>
         <MP>F</MP>
-        <TT>CONDA091</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0109</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>PRM</TYP>
         <ARG>--channel</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>CHANNEL</PRM>
         <MP>T</MP>
-        <TT>CONDA003</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0006</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-local</ARG>
         <MU>F</MU>
-        <TT>CONDA110</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0130</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--override-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA023</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0034</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>PRM</TYP>
         <ARG>--repodata-fn</ARG>
         <MU>F</MU>
         <PRM>REPODATA_FNS</PRM>
         <MP>F</MP>
-        <TT>CONDA099</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0118</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-index-cache</ARG>
         <AL>-C</AL>
         <MU>F</MU>
-        <TT>CONDA109</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0129</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--insecure</ARG>
         <AL>-k</AL>
         <MU>F</MU>
-        <TT>CONDA004</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0008</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--offline</ARG>
         <MU>F</MU>
-        <TT>CONDA119</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0070</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>search</CMD>
         <PATH>conda.search</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>PACKAGE_SPEC</PRM>
         <MP>T</MP>
-        <TT>CONDA066</TT>
+        <TYP>POS</TYP>
+        <TT>TT0082</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--file</ARG>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA070</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0086</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--channel</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>CHANNEL</PRM>
         <MP>T</MP>
-        <TT>CONDA003</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0006</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-local</ARG>
         <MU>F</MU>
-        <TT>CONDA110</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0130</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--override-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA023</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0034</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--repodata-fn</ARG>
         <MU>F</MU>
         <PRM>REPODATA_FNS</PRM>
         <MP>F</MP>
-        <TT>CONDA099</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0118</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--strict-channel-priority</ARG>
         <MU>F</MU>
-        <TT>CONDA100</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0120</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-channel-priority</ARG>
         <MU>F</MU>
-        <TT>CONDA065</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0081</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA022</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0033</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--only-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA057</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0073</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-pin</ARG>
         <MU>F</MU>
-        <TT>CONDA042</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0056</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--force-reinstall</ARG>
         <MU>F</MU>
-        <TT>CONDA036</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0050</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-update-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA024</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0036</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--freeze-installed</ARG>
         <MU>F</MU>
-        <TT>CONDA024</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0036</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--update-deps</ARG>
         <MU>F</MU>
-        <TT>CONDA105</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0125</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--satisfied-skip-solve</ARG>
         <AL>-S</AL>
         <MU>F</MU>
-        <TT>CONDA030</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0046</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--all</ARG>
         <MU>F</MU>
-        <TT>CONDA103</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0123</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--update-all</ARG>
         <MU>F</MU>
-        <TT>CONDA103</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0123</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--update-specs</ARG>
         <MU>F</MU>
-        <TT>CONDA104</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0124</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--copy</ARG>
         <MU>F</MU>
-        <TT>CONDA044</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0058</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-shortcuts</ARG>
         <MU>F</MU>
-        <TT>CONDA124</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0032</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--clobber</ARG>
         <MU>F</MU>
-        <TT>CONDA132</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0007</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-index-cache</ARG>
         <AL>-C</AL>
         <MU>F</MU>
-        <TT>CONDA109</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0129</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--insecure</ARG>
         <AL>-k</AL>
         <MU>F</MU>
-        <TT>CONDA004</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0008</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--offline</ARG>
         <MU>F</MU>
-        <TT>CONDA119</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0070</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--yes</ARG>
         <AL>-y</AL>
         <MU>F</MU>
-        <TT>CONDA019</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0027</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--download-only</ARG>
         <MU>F</MU>
-        <TT>CONDA098</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0117</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--show-channel-urls</ARG>
         <MU>F</MU>
-        <TT>CONDA095</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0114</TT>
     </item>
     <item>
         <CMD>env</CMD>
         <PATH>conda.env</PATH>
-        <TYP>CMD</TYP>
         <ARG>create</ARG>
         <MU>F</MU>
-        <TT>CONDA009</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0014</TT>
     </item>
     <item>
         <CMD>env</CMD>
         <PATH>conda.env</PATH>
-        <TYP>CMD</TYP>
         <ARG>export</ARG>
         <MU>F</MU>
-        <TT>CONDA034</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0048</TT>
     </item>
     <item>
         <CMD>env</CMD>
         <PATH>conda.env</PATH>
-        <TYP>CMD</TYP>
         <ARG>list</ARG>
         <MU>F</MU>
-        <TT>CONDA051</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0065</TT>
     </item>
     <item>
         <CMD>env</CMD>
         <PATH>conda.env</PATH>
-        <TYP>CMD</TYP>
         <ARG>remove</ARG>
         <MU>F</MU>
-        <TT>CONDA078</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0094</TT>
     </item>
     <item>
         <CMD>env</CMD>
         <PATH>conda.env</PATH>
-        <TYP>CMD</TYP>
         <ARG>update</ARG>
         <MU>F</MU>
-        <TT>CONDA106</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0126</TT>
     </item>
     <item>
         <CMD>env</CMD>
         <PATH>conda.env</PATH>
-        <TYP>CMD</TYP>
         <ARG>config</ARG>
         <MU>F</MU>
-        <TT>CONDA007</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0012</TT>
     </item>
     <item>
         <CMD>create</CMD>
-        <PATH>conda.env.create</PATH>
-        <TYP>POS</TYP>
-        <MU>F</MU>
-        <PRM>REMOTE_DEFINITION</PRM>
-        <MP>F</MP>
-        <TT>CONDA071</TT>
-    </item>
-    <item>
-        <CMD>create</CMD>
-        <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
+        <PATH>conda.env</PATH>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>PRM</TYP>
+        <MU>F</MU>
+        <PRM>REMOTE_DEFINITION</PRM>
+        <MP>F</MP>
+        <TYP>POS</TYP>
+        <TT>TT0087</TT>
+    </item>
+    <item>
+        <CMD>create</CMD>
+        <PATH>conda.env.create</PATH>
+        <ARG>--help</ARG>
+        <AL>-h</AL>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
+    </item>
+    <item>
+        <CMD>create</CMD>
+        <PATH>conda.env.create</PATH>
         <ARG>--file</ARG>
         <AL>-f</AL>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA129</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0041</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--force</ARG>
         <MU>F</MU>
-        <TT>CONDA035</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0049</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-default-packages</ARG>
         <MU>F</MU>
-        <TT>CONDA041</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0055</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--use-index-cache</ARG>
         <AL>-C</AL>
         <MU>F</MU>
-        <TT>CONDA109</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0129</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--insecure</ARG>
         <AL>-k</AL>
         <MU>F</MU>
-        <TT>CONDA004</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0008</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--offline</ARG>
         <MU>F</MU>
-        <TT>CONDA119</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0070</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>create</CMD>
         <PATH>conda.env.create</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>PRM</TYP>
         <ARG>--channel</ARG>
         <AL>-c</AL>
         <MU>F</MU>
         <PRM>CHANNEL</PRM>
         <MP>T</MP>
-        <TT>CONDA003</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0006</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
         <ARG>--override-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA023</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0034</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>PRM</TYP>
         <ARG>--file</ARG>
         <AL>-f</AL>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA129</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0041</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
         <ARG>--no-builds</ARG>
         <MU>F</MU>
-        <TT>CONDA130</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0095</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
         <ARG>--ignore-channels</ARG>
         <MU>F</MU>
-        <TT>CONDA117</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0030</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
         <ARG>--from-history</ARG>
         <MU>F</MU>
-        <TT>CONDA131</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0010</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>export</CMD>
         <PATH>conda.env.export</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
-    </item>
-    <item>
-        <CMD>export</CMD>
-        <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--json</ARG>
-        <MU>F</MU>
-        <TT>CONDA086</TT>
-    </item>
-    <item>
-        <CMD>export</CMD>
-        <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--quiet</ARG>
-        <AL>-q</AL>
-        <MU>F</MU>
-        <TT>CONDA020</TT>
-    </item>
-    <item>
-        <CMD>export</CMD>
-        <PATH>conda.env.export</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--verbose</ARG>
-        <AL>-v</AL>
-        <MU>T</MU>
-        <TT>CONDA111</TT>
-    </item>
-    <item>
-        <CMD>list</CMD>
-        <PATH>conda.env.list</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--help</ARG>
-        <AL>-h</AL>
-        <MU>F</MU>
-        <TT>CONDA096</TT>
-    </item>
-    <item>
-        <CMD>list</CMD>
-        <PATH>conda.env.list</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--json</ARG>
-        <MU>F</MU>
-        <TT>CONDA086</TT>
-    </item>
-    <item>
-        <CMD>list</CMD>
-        <PATH>conda.env.list</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--quiet</ARG>
-        <AL>-q</AL>
-        <MU>F</MU>
-        <TT>CONDA020</TT>
-    </item>
-    <item>
-        <CMD>list</CMD>
-        <PATH>conda.env.list</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--verbose</ARG>
-        <AL>-v</AL>
-        <MU>T</MU>
-        <TT>CONDA111</TT>
-    </item>
-    <item>
-        <CMD>remove</CMD>
-        <PATH>conda.env.remove</PATH>
-        <TYP>OPT</TYP>
-        <ARG>--help</ARG>
-        <AL>-h</AL>
-        <MU>F</MU>
-        <TT>CONDA096</TT>
-    </item>
-    <item>
-        <CMD>remove</CMD>
-        <PATH>conda.env.remove</PATH>
         <TYP>PRM</TYP>
+        <TT>TT0052</TT>
+    </item>
+    <item>
+        <CMD>export</CMD>
+        <PATH>conda.env.export</PATH>
+        <ARG>--json</ARG>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
+    </item>
+    <item>
+        <CMD>export</CMD>
+        <PATH>conda.env.export</PATH>
+        <ARG>--quiet</ARG>
+        <AL>-q</AL>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
+    </item>
+    <item>
+        <CMD>export</CMD>
+        <PATH>conda.env.export</PATH>
+        <ARG>--verbose</ARG>
+        <AL>-v</AL>
+        <MU>T</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
+    </item>
+    <item>
+        <CMD>list</CMD>
+        <PATH>conda.env.list</PATH>
+        <ARG>--help</ARG>
+        <AL>-h</AL>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
+    </item>
+    <item>
+        <CMD>list</CMD>
+        <PATH>conda.env.list</PATH>
+        <ARG>--json</ARG>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
+    </item>
+    <item>
+        <CMD>list</CMD>
+        <PATH>conda.env.list</PATH>
+        <ARG>--quiet</ARG>
+        <AL>-q</AL>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
+    </item>
+    <item>
+        <CMD>list</CMD>
+        <PATH>conda.env.list</PATH>
+        <ARG>--verbose</ARG>
+        <AL>-v</AL>
+        <MU>T</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
+    </item>
+    <item>
+        <CMD>remove</CMD>
+        <PATH>conda.env.remove</PATH>
+        <ARG>--help</ARG>
+        <AL>-h</AL>
+        <MU>F</MU>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
+    </item>
+    <item>
+        <CMD>remove</CMD>
+        <PATH>conda.env.remove</PATH>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--dry-run</ARG>
         <AL>-d</AL>
         <MU>F</MU>
-        <TT>CONDA056</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0072</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>remove</CMD>
         <PATH>conda.env.remove</PATH>
-        <TYP>OPT</TYP>
         <ARG>--yes</ARG>
         <AL>-y</AL>
         <MU>F</MU>
-        <TT>CONDA019</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0027</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>REMOTE_DEFINITION</PRM>
         <MP>F</MP>
-        <TT>CONDA071</TT>
+        <TYP>POS</TYP>
+        <TT>TT0087</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--file</ARG>
         <AL>-f</AL>
         <MU>F</MU>
         <PRM>FILE</PRM>
         <MP>F</MP>
-        <TT>CONDA026</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0042</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--prune</ARG>
         <MU>F</MU>
-        <TT>CONDA083</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0100</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--experimental-solver</ARG>
         <MU>F</MU>
         <PRM>SOLVER</PRM>
         <MP>F</MP>
-        <TT>CONDA031</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0037</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>update</CMD>
         <PATH>conda.env.update</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>config</CMD>
         <PATH>conda.env.config</PATH>
-        <TYP>CMD</TYP>
         <ARG>vars</ARG>
         <MU>F</MU>
-        <TT>CONDA046</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0060</TT>
     </item>
     <item>
         <CMD>config</CMD>
         <PATH>conda.env.config</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>vars</CMD>
         <PATH>conda.env.config.vars</PATH>
-        <TYP>CMD</TYP>
         <ARG>list</ARG>
         <MU>F</MU>
-        <TT>CONDA048</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0062</TT>
     </item>
     <item>
         <CMD>vars</CMD>
         <PATH>conda.env.config.vars</PATH>
-        <TYP>CMD</TYP>
         <ARG>set</ARG>
         <MU>F</MU>
-        <TT>CONDA092</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0111</TT>
     </item>
     <item>
         <CMD>vars</CMD>
         <PATH>conda.env.config.vars</PATH>
-        <TYP>CMD</TYP>
         <ARG>unset</ARG>
         <MU>F</MU>
-        <TT>CONDA102</TT>
+        <TYP>CMD</TYP>
+        <TT>TT0122</TT>
     </item>
     <item>
         <CMD>vars</CMD>
         <PATH>conda.env.config.vars</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.env.config.vars.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.env.config.vars.list</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.env.config.vars.list</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.env.config.vars.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--json</ARG>
         <MU>F</MU>
-        <TT>CONDA086</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0104</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.env.config.vars.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--quiet</ARG>
         <AL>-q</AL>
         <MU>F</MU>
-        <TT>CONDA020</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0029</TT>
     </item>
     <item>
         <CMD>list</CMD>
         <PATH>conda.env.config.vars.list</PATH>
-        <TYP>OPT</TYP>
         <ARG>--verbose</ARG>
         <AL>-v</AL>
         <MU>T</MU>
-        <TT>CONDA111</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0131</TT>
     </item>
     <item>
         <CMD>set</CMD>
         <PATH>conda.env.config.vars.set</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>ENV_KEY_VALUE</PRM>
         <MP>T</MP>
-        <TT>CONDA027</TT>
+        <TYP>POS</TYP>
+        <TT>TT0043</TT>
     </item>
     <item>
         <CMD>set</CMD>
         <PATH>conda.env.config.vars.set</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>set</CMD>
         <PATH>conda.env.config.vars.set</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>set</CMD>
         <PATH>conda.env.config.vars.set</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
     <item>
         <CMD>unset</CMD>
         <PATH>conda.env.config.vars.unset</PATH>
-        <TYP>POS</TYP>
         <MU>F</MU>
         <PRM>ENV_KEY</PRM>
         <MP>T</MP>
-        <TT>CONDA028</TT>
+        <TYP>POS</TYP>
+        <TT>TT0044</TT>
     </item>
     <item>
         <CMD>unset</CMD>
         <PATH>conda.env.config.vars.unset</PATH>
-        <TYP>OPT</TYP>
         <ARG>--help</ARG>
         <AL>-h</AL>
         <MU>F</MU>
-        <TT>CONDA096</TT>
+        <TYP>OPT</TYP>
+        <TT>TT0115</TT>
     </item>
     <item>
         <CMD>unset</CMD>
         <PATH>conda.env.config.vars.unset</PATH>
-        <TYP>PRM</TYP>
         <ARG>--name</ARG>
         <AL>-n</AL>
         <MU>F</MU>
         <PRM>ENVIRONMENT</PRM>
         <MP>F</MP>
-        <TT>CONDA054</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0069</TT>
     </item>
     <item>
         <CMD>unset</CMD>
         <PATH>conda.env.config.vars.unset</PATH>
-        <TYP>PRM</TYP>
         <ARG>--prefix</ARG>
         <AL>-p</AL>
         <MU>F</MU>
         <PRM>PATH</PRM>
         <MP>F</MP>
-        <TT>CONDA038</TT>
+        <TYP>PRM</TYP>
+        <TT>TT0052</TT>
     </item>
 </root>

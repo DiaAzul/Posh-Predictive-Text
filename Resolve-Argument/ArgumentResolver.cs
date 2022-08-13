@@ -1,8 +1,9 @@
 ﻿
-// TODO [RESOLVER] Support return of aliases.
-// TODO [RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
-// TODO [RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
-// TODO [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate, env options). 
+// TODO [ ] [RESOLVER] Support return of aliases.
+// TODO [ ] [RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
+// TODO [ ] [RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
+// BUG  [ ] [RESOLVER] Giving first letter of subcommand is filtering out All subcommand in options list.
+// TODO [x] [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate, env options). 
 
 namespace ResolveArgument
 {
@@ -10,7 +11,7 @@ namespace ResolveArgument
     using System.Management.Automation;
     using System.Text;
 
-    // TODO Move syntaxItem to LoadSyntaxTree.cs
+    // [ ] TODO Move syntaxItem to LoadSyntaxTree.cs
     /// <summary>
     /// Record within the command syntax tree.
     /// 
@@ -246,7 +247,7 @@ namespace ResolveArgument
 #endif
 
                     var filteredOptions = availableOptions
-                        .Where(item => item.argument is not null && (item.argument).StartsWith(WordToComplete))
+                        .Where(item => item.argument is not null && item.argument.StartsWith(WordToComplete))
                         .ToList();
 
                     foreach (var item in filteredOptions)

@@ -161,11 +161,11 @@ namespace ResolveArgument
         /// <returns>Tooltip display text.</returns>
         internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
         {
-            // TODO: [SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
+            // TODO [SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
             string? toolTip = null;
             if (toolTipRef is not null)
             {
-                // TODO: Try..Catch around tooltip resource manager.
+                // [ ] TODO [SYNTAXTREES] Try..Catch around tooltip resource manager.
                 toolTip = Resolve_Argument.SyntaxTrees.CondaToolTips.ResourceManager.GetString(toolTipRef);
             }
             toolTip ??= "";

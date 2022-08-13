@@ -117,400 +117,412 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CONDA001" xml:space="preserve">
-    <value>Add one configuration value to the beginning of a list key.</value>
+  <data name="TT0001" xml:space="preserve">
+    <value>Activate a conda environment.</value>
   </data>
-  <data name="CONDA002" xml:space="preserve">
-    <value>Add one configuration value to the end of a list key.</value>
-  </data>
-  <data name="CONDA003" xml:space="preserve">
-    <value>Additional channel to search for packages.</value>
-  </data>
-  <data name="CONDA004" xml:space="preserve">
-    <value>Allow conda to perform "insecure" SSL connections and transfers.</value>
-  </data>
-  <data name="CONDA005" xml:space="preserve">
-    <value>Apply configuration information given in yaml format piped through stdin.</value>
-  </data>
-  <data name="CONDA006" xml:space="preserve">
-    <value>Compare packages between conda environments.</value>
-  </data>
-  <data name="CONDA007" xml:space="preserve">
-    <value>Configure a conda environment.</value>
-  </data>
-  <data name="CONDA008" xml:space="preserve">
-    <value>Create a new conda environment from a list of specified packages.</value>
-  </data>
-  <data name="CONDA009" xml:space="preserve">
-    <value>Create an environment based on an environment file.</value>
-  </data>
-  <data name="CONDA010" xml:space="preserve">
-    <value>Create the environment directory if necessary.</value>
-  </data>
-  <data name="CONDA011" xml:space="preserve">
-    <value>Describe given configuration parameters.</value>
-  </data>
-  <data name="CONDA012" xml:space="preserve">
-    <value>Display all identified configuration sources.</value>
-  </data>
-  <data name="CONDA013" xml:space="preserve">
-    <value>Display all untracked files and exit.</value>
-  </data>
-  <data name="CONDA014" xml:space="preserve">
-    <value>Display base environment path.</value>
-  </data>
-  <data name="CONDA015" xml:space="preserve">
-    <value>Display information about current conda install.</value>
-  </data>
-  <data name="CONDA016" xml:space="preserve">
-    <value>Display list of channels with tokens exposed.</value>
-  </data>
-  <data name="CONDA017" xml:space="preserve">
-    <value>Display the output in real time.</value>
-  </data>
-  <data name="CONDA018" xml:space="preserve">
-    <value>Displays a list of available conda commands and their help strings.</value>
-  </data>
-  <data name="CONDA019" xml:space="preserve">
-    <value>Do not ask for confirmation.</value>
-  </data>
-  <data name="CONDA020" xml:space="preserve">
-    <value>Do not display progress bar.</value>
-  </data>
-  <data name="CONDA021" xml:space="preserve">
-    <value>Do not include pip-only installed packages.</value>
-  </data>
-  <data name="CONDA022" xml:space="preserve">
-    <value>Do not install, update, remove, or change dependencies.</value>
-  </data>
-  <data name="CONDA023" xml:space="preserve">
-    <value>Do not search default or .condarc channels.</value>
-  </data>
-  <data name="CONDA024" xml:space="preserve">
-    <value>Do not update or change already-installed dependencies.</value>
-  </data>
-  <data name="CONDA025" xml:space="preserve">
-    <value>Echo wrapper script debug info to stderr.</value>
-  </data>
-  <data name="CONDA026" xml:space="preserve">
-    <value>Environment definition file.</value>
-  </data>
-  <data name="CONDA027" xml:space="preserve">
-    <value>Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;.</value>
-  </data>
-  <data name="CONDA028" xml:space="preserve">
-    <value>Environment variables to unset in the form &lt;KEY&gt;.</value>
-  </data>
-  <data name="CONDA029" xml:space="preserve">
-    <value>Executable name with additional arguments.</value>
-  </data>
-  <data name="CONDA030" xml:space="preserve">
-    <value>Exit early and do not run the solver if the requested specs are satisfied.</value>
-  </data>
-  <data name="CONDA031" xml:space="preserve">
-    <value>EXPERIMENTAL. Choose which solver backend to use.</value>
-  </data>
-  <data name="CONDA032" xml:space="preserve">
-    <value>EXPERIMENTAL. Initialize conda for shell interaction.</value>
-  </data>
-  <data name="CONDA033" xml:space="preserve">
-    <value>EXPERIMENTAL. Low-level conda package utility.</value>
-  </data>
-  <data name="CONDA034" xml:space="preserve">
-    <value>Export a given environment.</value>
-  </data>
-  <data name="CONDA035" xml:space="preserve">
-    <value>Force creation of environment.</value>
-  </data>
-  <data name="CONDA036" xml:space="preserve">
-    <value>Force reinstall of package.</value>
-  </data>
-  <data name="CONDA037" xml:space="preserve">
-    <value>Forces removal of a package without removing packages that depend on it.</value>
-  </data>
-  <data name="CONDA038" xml:space="preserve">
-    <value>Full path to environment location.</value>
-  </data>
-  <data name="CONDA039" xml:space="preserve">
-    <value>Get a configuration value.</value>
-  </data>
-  <data name="CONDA040" xml:space="preserve">
-    <value>Given some PATH print which conda package the file came from.</value>
-  </data>
-  <data name="CONDA041" xml:space="preserve">
-    <value>Ignore create_default_packages in the .condarc file.</value>
-  </data>
-  <data name="CONDA042" xml:space="preserve">
-    <value>Ignore pinned file.</value>
-  </data>
-  <data name="CONDA043" xml:space="preserve">
-    <value>Initialize all currently available shells.</value>
-  </data>
-  <data name="CONDA044" xml:space="preserve">
-    <value>Install all packages using copies instead of hard- or soft-linking.</value>
-  </data>
-  <data name="CONDA045" xml:space="preserve">
-    <value>Installs a list of packages into a specified conda environment.</value>
-  </data>
-  <data name="CONDA046" xml:space="preserve">
-    <value>Interact with environment variables associated with Conda environments.</value>
-  </data>
-  <data name="CONDA047" xml:space="preserve">
-    <value>List all known conda environments.</value>
-  </data>
-  <data name="CONDA048" xml:space="preserve">
-    <value>List environment variables for a conda environment.</value>
-  </data>
-  <data name="CONDA049" xml:space="preserve">
-    <value>List linked packages in a conda environment.</value>
-  </data>
-  <data name="CONDA050" xml:space="preserve">
-    <value>List only packages matching this regular expression.</value>
-  </data>
-  <data name="CONDA051" xml:space="preserve">
-    <value>List the Conda environments.</value>
-  </data>
-  <data name="CONDA052" xml:space="preserve">
-    <value>List the revision history and exit.</value>
-  </data>
-  <data name="CONDA053" xml:space="preserve">
-    <value>Manage environments.</value>
-  </data>
-  <data name="CONDA054" xml:space="preserve">
-    <value>Name of environment.</value>
-  </data>
-  <data name="CONDA055" xml:space="preserve">
-    <value>One or more shells to be initialized.</value>
-  </data>
-  <data name="CONDA056" xml:space="preserve">
-    <value>Only display what would have been done.</value>
-  </data>
-  <data name="CONDA057" xml:space="preserve">
-    <value>Only install dependencies.</value>
-  </data>
-  <data name="CONDA058" xml:space="preserve">
-    <value>Only search for full names.</value>
-  </data>
-  <data name="CONDA059" xml:space="preserve">
-    <value>Output canonical names of packages only.</value>
-  </data>
-  <data name="CONDA060" xml:space="preserve">
-    <value>Output requirement string only.</value>
-  </data>
-  <data name="CONDA061" xml:space="preserve">
-    <value>Package build number of the created package.</value>
-  </data>
-  <data name="CONDA062" xml:space="preserve">
-    <value>Package name of the created package.</value>
-  </data>
-  <data name="CONDA063" xml:space="preserve">
-    <value>Package names to remove from the environment.</value>
-  </data>
-  <data name="CONDA064" xml:space="preserve">
-    <value>Package version of the created package.</value>
-  </data>
-  <data name="CONDA065" xml:space="preserve">
-    <value>Package version takes precedence over channel priority.</value>
-  </data>
-  <data name="CONDA066" xml:space="preserve">
-    <value>Packages to install or update in the conda environment.</value>
-  </data>
-  <data name="CONDA067" xml:space="preserve">
-    <value>Path to (or name of) existing local environment.</value>
-  </data>
-  <data name="CONDA068" xml:space="preserve">
-    <value>Path to the environment file that is to be compared against.</value>
-  </data>
-  <data name="CONDA069" xml:space="preserve">
-    <value>Provide detailed information about each package.</value>
-  </data>
-  <data name="CONDA070" xml:space="preserve">
-    <value>Read package versions from the given file.</value>
-  </data>
-  <data name="CONDA071" xml:space="preserve">
-    <value>Remote environment definition.</value>
-  </data>
-  <data name="CONDA072" xml:space="preserve">
-    <value>Remove a configuration key (and all its values).</value>
-  </data>
-  <data name="CONDA073" xml:space="preserve">
-    <value>Remove a configuration value from a list key.</value>
-  </data>
-  <data name="CONDA074" xml:space="preserve">
-    <value>Remove a list of packages from a specified conda environment.</value>
-  </data>
-  <data name="CONDA075" xml:space="preserve">
-    <value>Remove all packages.</value>
-  </data>
-  <data name="CONDA076" xml:space="preserve">
-    <value>Remove all untracked files and exit.</value>
-  </data>
-  <data name="CONDA077" xml:space="preserve">
-    <value>Remove all writable package caches.</value>
-  </data>
-  <data name="CONDA078" xml:space="preserve">
-    <value>Remove an environment.</value>
-  </data>
-  <data name="CONDA079" xml:space="preserve">
-    <value>Remove cached package tarballs.</value>
-  </data>
-  <data name="CONDA080" xml:space="preserve">
-    <value>Remove features (instead of packages).</value>
-  </data>
-  <data name="CONDA081" xml:space="preserve">
-    <value>Remove index cache, lock files, unused cache packages, and tarballs.</value>
-  </data>
-  <data name="CONDA082" xml:space="preserve">
-    <value>Remove index cache.</value>
-  </data>
-  <data name="CONDA083" xml:space="preserve">
-    <value>Remove installed packages not defined in definition file.</value>
-  </data>
-  <data name="CONDA084" xml:space="preserve">
-    <value>Remove unused packages and caches.</value>
-  </data>
-  <data name="CONDA085" xml:space="preserve">
-    <value>Remove unused packages from writable package caches.</value>
-  </data>
-  <data name="CONDA086" xml:space="preserve">
-    <value>Report all output as json.</value>
-  </data>
-  <data name="CONDA087" xml:space="preserve">
-    <value>Revert to the specified REVISION.</value>
-  </data>
-  <data name="CONDA088" xml:space="preserve">
-    <value>Run an executable in a conda environment.</value>
-  </data>
-  <data name="CONDA089" xml:space="preserve">
-    <value>Search all of the current user's environments.</value>
-  </data>
-  <data name="CONDA090" xml:space="preserve">
-    <value>Search for packages and display associated information.</value>
-  </data>
-  <data name="CONDA091" xml:space="preserve">
-    <value>Search the given sub-directory.</value>
-  </data>
-  <data name="CONDA092" xml:space="preserve">
-    <value>Set environment variables for a conda environment.</value>
-  </data>
-  <data name="CONDA093" xml:space="preserve">
-    <value>Sets `CONDA_EXE` to `python -m conda`.</value>
-  </data>
-  <data name="CONDA094" xml:space="preserve">
-    <value>Show all information.</value>
-  </data>
-  <data name="CONDA095" xml:space="preserve">
-    <value>Show channel urls.</value>
-  </data>
-  <data name="CONDA096" xml:space="preserve">
-    <value>Show help message and exit.</value>
-  </data>
-  <data name="CONDA097" xml:space="preserve">
-    <value>Show the conda version number and exit.</value>
-  </data>
-  <data name="CONDA098" xml:space="preserve">
-    <value>Solve environment, population caches, exit prior to linking.</value>
-  </data>
-  <data name="CONDA099" xml:space="preserve">
-    <value>Specify name of repodata on remote server.</value>
-  </data>
-  <data name="CONDA100" xml:space="preserve">
-    <value>Take packages from highest priority channel.</value>
-  </data>
-  <data name="CONDA101" xml:space="preserve">
-    <value>Undo past effects of conda init.</value>
-  </data>
-  <data name="CONDA102" xml:space="preserve">
-    <value>Unset environment variables for a conda environment.</value>
-  </data>
-  <data name="CONDA103" xml:space="preserve">
-    <value>Update all installed packages in the environment.</value>
-  </data>
-  <data name="CONDA104" xml:space="preserve">
-    <value>Update based on provided specifications.</value>
-  </data>
-  <data name="CONDA105" xml:space="preserve">
-    <value>Update dependencies.</value>
-  </data>
-  <data name="CONDA106" xml:space="preserve">
-    <value>Update the current environment based on environment file.</value>
-  </data>
-  <data name="CONDA107" xml:space="preserve">
-    <value>Updates conda packages to the latest compatible version.</value>
-  </data>
-  <data name="CONDA108" xml:space="preserve">
-    <value>Use `sys.executable -m conda` in wrapper scripts.</value>
-  </data>
-  <data name="CONDA109" xml:space="preserve">
-    <value>Use cache of channel index files, even if it has expired.</value>
-  </data>
-  <data name="CONDA110" xml:space="preserve">
-    <value>Use locally built packages.</value>
-  </data>
-  <data name="CONDA111" xml:space="preserve">
-    <value>Use once for INFO, twice for DEBUG, three times for TRACE.</value>
-  </data>
-  <data name="CONDA112" xml:space="preserve">
-    <value>Validate all configuration sources.</value>
-  </data>
-  <data name="CONDA113" xml:space="preserve">
-    <value>Write the default configuration to a file.</value>
-  </data>
-  <data name="CONDA114" xml:space="preserve">
-    <value>Write to the given file.</value>
-  </data>
-  <data name="CONDA115" xml:space="preserve">
-    <value>Remove temporary files that could not be deleted earlier due to being in-use.</value>
-  </data>
-  <data name="CONDA116" xml:space="preserve">
-    <value>Display configuration values as calculated and compiled.</value>
-  </data>
-  <data name="CONDA117" xml:space="preserve">
-    <value>Do not include channel names with package names.</value>
-  </data>
-  <data name="CONDA118" xml:space="preserve">
-    <value>Add an 'Anaconda Prompt' icon to the desktop.</value>
-  </data>
-  <data name="CONDA119" xml:space="preserve">
-    <value>Offline mode. Do not connect to the Internet.</value>
-  </data>
-  <data name="CONDA120" xml:space="preserve">
-    <value>Modify configuration values in .condarc.</value>
-  </data>
-  <data name="CONDA121" xml:space="preserve">
-    <value>Write to the system .condarc file.</value>
-  </data>
-  <data name="CONDA122" xml:space="preserve">
-    <value>Write to the active conda environment .condarc file.</value>
-  </data>
-  <data name="CONDA123" xml:space="preserve">
-    <value>Set a boolean or string key.</value>
-  </data>
-  <data name="CONDA124" xml:space="preserve">
-    <value>Do not install start menu shortcuts.</value>
-  </data>
-  <data name="CONDA125" xml:space="preserve">
-    <value>Explicitly list all installed conda packages with URL.</value>
-  </data>
-  <data name="CONDA126" xml:space="preserve">
+  <data name="TT0002" xml:space="preserve">
     <value>Add MD5 hashsum when using --explicit.</value>
   </data>
-  <data name="CONDA127" xml:space="preserve">
-    <value>Current working directory in which to run command.</value>
+  <data name="TT0003" xml:space="preserve">
+    <value>Add an 'Anaconda Prompt' icon to the desktop.</value>
   </data>
-  <data name="CONDA128" xml:space="preserve">
-    <value>Do not capture stdout/stderr.</value>
+  <data name="TT0004" xml:space="preserve">
+    <value>Add one configuration value to the beginning of a list key.</value>
   </data>
-  <data name="CONDA129" xml:space="preserve">
-    <value>Environment definition file (default: environment.yml).</value>
+  <data name="TT0005" xml:space="preserve">
+    <value>Add one configuration value to the end of a list key.</value>
   </data>
-  <data name="CONDA130" xml:space="preserve">
-    <value>Remove build specification from dependencies.</value>
+  <data name="TT0006" xml:space="preserve">
+    <value>Additional channel to search for packages.</value>
   </data>
-  <data name="CONDA131" xml:space="preserve">
+  <data name="TT0007" xml:space="preserve">
+    <value>Allow clobbering overlapping file paths within packages.</value>
+  </data>
+  <data name="TT0008" xml:space="preserve">
+    <value>Allow conda to perform "insecure" SSL connections and transfers.</value>
+  </data>
+  <data name="TT0009" xml:space="preserve">
+    <value>Apply configuration information given in yaml format piped through stdin.</value>
+  </data>
+  <data name="TT0010" xml:space="preserve">
     <value>Build environment spec from explicit specs in history.</value>
   </data>
-  <data name="CONDA132" xml:space="preserve">
-    <value>Allow clobbering overlapping file paths within packages.</value>
+  <data name="TT0011" xml:space="preserve">
+    <value>Compare packages between conda environments.</value>
+  </data>
+  <data name="TT0012" xml:space="preserve">
+    <value>Configure a conda environment.</value>
+  </data>
+  <data name="TT0013" xml:space="preserve">
+    <value>Create a new conda environment from a list of specified packages.</value>
+  </data>
+  <data name="TT0014" xml:space="preserve">
+    <value>Create an environment based on an environment file.</value>
+  </data>
+  <data name="TT0015" xml:space="preserve">
+    <value>Create the environment directory if necessary.</value>
+  </data>
+  <data name="TT0016" xml:space="preserve">
+    <value>Current working directory in which to run command.</value>
+  </data>
+  <data name="TT0017" xml:space="preserve">
+    <value>Deactivate a conda environment.</value>
+  </data>
+  <data name="TT0018" xml:space="preserve">
+    <value>Describe given configuration parameters.</value>
+  </data>
+  <data name="TT0019" xml:space="preserve">
+    <value>Display all identified configuration sources.</value>
+  </data>
+  <data name="TT0020" xml:space="preserve">
+    <value>Display all untracked files and exit.</value>
+  </data>
+  <data name="TT0021" xml:space="preserve">
+    <value>Display base environment path.</value>
+  </data>
+  <data name="TT0022" xml:space="preserve">
+    <value>Display configuration values as calculated and compiled.</value>
+  </data>
+  <data name="TT0023" xml:space="preserve">
+    <value>Display information about current conda install.</value>
+  </data>
+  <data name="TT0024" xml:space="preserve">
+    <value>Display list of channels with tokens exposed.</value>
+  </data>
+  <data name="TT0025" xml:space="preserve">
+    <value>Display the output in real time.</value>
+  </data>
+  <data name="TT0026" xml:space="preserve">
+    <value>Displays a list of available conda commands and their help strings.</value>
+  </data>
+  <data name="TT0027" xml:space="preserve">
+    <value>Do not ask for confirmation.</value>
+  </data>
+  <data name="TT0028" xml:space="preserve">
+    <value>Do not capture stdout/stderr.</value>
+  </data>
+  <data name="TT0029" xml:space="preserve">
+    <value>Do not display progress bar.</value>
+  </data>
+  <data name="TT0030" xml:space="preserve">
+    <value>Do not include channel names with package names.</value>
+  </data>
+  <data name="TT0031" xml:space="preserve">
+    <value>Do not include pip-only installed packages.</value>
+  </data>
+  <data name="TT0032" xml:space="preserve">
+    <value>Do not install start menu shortcuts.</value>
+  </data>
+  <data name="TT0033" xml:space="preserve">
+    <value>Do not install, update, remove, or change dependencies.</value>
+  </data>
+  <data name="TT0034" xml:space="preserve">
+    <value>Do not search default or .condarc channels.</value>
+  </data>
+  <data name="TT0035" xml:space="preserve">
+    <value>Do not stack the environment.</value>
+  </data>
+  <data name="TT0036" xml:space="preserve">
+    <value>Do not update or change already-installed dependencies.</value>
+  </data>
+  <data name="TT0037" xml:space="preserve">
+    <value>EXPERIMENTAL. Choose which solver backend to use.</value>
+  </data>
+  <data name="TT0038" xml:space="preserve">
+    <value>EXPERIMENTAL. Initialize conda for shell interaction.</value>
+  </data>
+  <data name="TT0039" xml:space="preserve">
+    <value>EXPERIMENTAL. Low-level conda package utility.</value>
+  </data>
+  <data name="TT0040" xml:space="preserve">
+    <value>Echo wrapper script debug info to stderr.</value>
+  </data>
+  <data name="TT0041" xml:space="preserve">
+    <value>Environment definition file (default: environment.yml).</value>
+  </data>
+  <data name="TT0042" xml:space="preserve">
+    <value>Environment definition file.</value>
+  </data>
+  <data name="TT0043" xml:space="preserve">
+    <value>Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;.</value>
+  </data>
+  <data name="TT0044" xml:space="preserve">
+    <value>Environment variables to unset in the form &lt;KEY&gt;.</value>
+  </data>
+  <data name="TT0045" xml:space="preserve">
+    <value>Executable name with additional arguments.</value>
+  </data>
+  <data name="TT0046" xml:space="preserve">
+    <value>Exit early and do not run the solver if the requested specs are satisfied.</value>
+  </data>
+  <data name="TT0047" xml:space="preserve">
+    <value>Explicitly list all installed conda packages with URL.</value>
+  </data>
+  <data name="TT0048" xml:space="preserve">
+    <value>Export a given environment.</value>
+  </data>
+  <data name="TT0049" xml:space="preserve">
+    <value>Force creation of environment.</value>
+  </data>
+  <data name="TT0050" xml:space="preserve">
+    <value>Force reinstall of package.</value>
+  </data>
+  <data name="TT0051" xml:space="preserve">
+    <value>Forces removal of a package without removing packages that depend on it.</value>
+  </data>
+  <data name="TT0052" xml:space="preserve">
+    <value>Full path to environment location.</value>
+  </data>
+  <data name="TT0053" xml:space="preserve">
+    <value>Get a configuration value.</value>
+  </data>
+  <data name="TT0054" xml:space="preserve">
+    <value>Given some PATH print which conda package the file came from.</value>
+  </data>
+  <data name="TT0055" xml:space="preserve">
+    <value>Ignore create_default_packages in the .condarc file.</value>
+  </data>
+  <data name="TT0056" xml:space="preserve">
+    <value>Ignore pinned file.</value>
+  </data>
+  <data name="TT0057" xml:space="preserve">
+    <value>Initialize all currently available shells.</value>
+  </data>
+  <data name="TT0058" xml:space="preserve">
+    <value>Install all packages using copies instead of hard- or soft-linking.</value>
+  </data>
+  <data name="TT0059" xml:space="preserve">
+    <value>Installs a list of packages into a specified conda environment.</value>
+  </data>
+  <data name="TT0060" xml:space="preserve">
+    <value>Interact with environment variables associated with Conda environments.</value>
+  </data>
+  <data name="TT0061" xml:space="preserve">
+    <value>List all known conda environments.</value>
+  </data>
+  <data name="TT0062" xml:space="preserve">
+    <value>List environment variables for a conda environment.</value>
+  </data>
+  <data name="TT0063" xml:space="preserve">
+    <value>List linked packages in a conda environment.</value>
+  </data>
+  <data name="TT0064" xml:space="preserve">
+    <value>List only packages matching this regular expression.</value>
+  </data>
+  <data name="TT0065" xml:space="preserve">
+    <value>List the Conda environments.</value>
+  </data>
+  <data name="TT0066" xml:space="preserve">
+    <value>List the revision history and exit.</value>
+  </data>
+  <data name="TT0067" xml:space="preserve">
+    <value>Manage environments.</value>
+  </data>
+  <data name="TT0068" xml:space="preserve">
+    <value>Modify configuration values in .condarc.</value>
+  </data>
+  <data name="TT0069" xml:space="preserve">
+    <value>Name of environment.</value>
+  </data>
+  <data name="TT0070" xml:space="preserve">
+    <value>Offline mode. Do not connect to the Internet.</value>
+  </data>
+  <data name="TT0071" xml:space="preserve">
+    <value>One or more shells to be initialized.</value>
+  </data>
+  <data name="TT0072" xml:space="preserve">
+    <value>Only display what would have been done.</value>
+  </data>
+  <data name="TT0073" xml:space="preserve">
+    <value>Only install dependencies.</value>
+  </data>
+  <data name="TT0074" xml:space="preserve">
+    <value>Only search for full names.</value>
+  </data>
+  <data name="TT0075" xml:space="preserve">
+    <value>Output canonical names of packages only.</value>
+  </data>
+  <data name="TT0076" xml:space="preserve">
+    <value>Output requirement string only.</value>
+  </data>
+  <data name="TT0077" xml:space="preserve">
+    <value>Package build number of the created package.</value>
+  </data>
+  <data name="TT0078" xml:space="preserve">
+    <value>Package name of the created package.</value>
+  </data>
+  <data name="TT0079" xml:space="preserve">
+    <value>Package names to remove from the environment.</value>
+  </data>
+  <data name="TT0080" xml:space="preserve">
+    <value>Package version of the created package.</value>
+  </data>
+  <data name="TT0081" xml:space="preserve">
+    <value>Package version takes precedence over channel priority.</value>
+  </data>
+  <data name="TT0082" xml:space="preserve">
+    <value>Packages to install or update in the conda environment.</value>
+  </data>
+  <data name="TT0083" xml:space="preserve">
+    <value>Path to (or name of) existing local environment.</value>
+  </data>
+  <data name="TT0084" xml:space="preserve">
+    <value>Path to the environment file that is to be compared against.</value>
+  </data>
+  <data name="TT0085" xml:space="preserve">
+    <value>Provide detailed information about each package.</value>
+  </data>
+  <data name="TT0086" xml:space="preserve">
+    <value>Read package versions from the given file.</value>
+  </data>
+  <data name="TT0087" xml:space="preserve">
+    <value>Remote environment definition.</value>
+  </data>
+  <data name="TT0088" xml:space="preserve">
+    <value>Remove a configuration key (and all its values).</value>
+  </data>
+  <data name="TT0089" xml:space="preserve">
+    <value>Remove a configuration value from a list key.</value>
+  </data>
+  <data name="TT0090" xml:space="preserve">
+    <value>Remove a list of packages from a specified conda environment.</value>
+  </data>
+  <data name="TT0091" xml:space="preserve">
+    <value>Remove all packages.</value>
+  </data>
+  <data name="TT0092" xml:space="preserve">
+    <value>Remove all untracked files and exit.</value>
+  </data>
+  <data name="TT0093" xml:space="preserve">
+    <value>Remove all writable package caches.</value>
+  </data>
+  <data name="TT0094" xml:space="preserve">
+    <value>Remove an environment.</value>
+  </data>
+  <data name="TT0095" xml:space="preserve">
+    <value>Remove build specification from dependencies.</value>
+  </data>
+  <data name="TT0096" xml:space="preserve">
+    <value>Remove cached package tarballs.</value>
+  </data>
+  <data name="TT0097" xml:space="preserve">
+    <value>Remove features (instead of packages).</value>
+  </data>
+  <data name="TT0098" xml:space="preserve">
+    <value>Remove index cache, lock files, unused cache packages, and tarballs.</value>
+  </data>
+  <data name="TT0099" xml:space="preserve">
+    <value>Remove index cache.</value>
+  </data>
+  <data name="TT0100" xml:space="preserve">
+    <value>Remove installed packages not defined in definition file.</value>
+  </data>
+  <data name="TT0101" xml:space="preserve">
+    <value>Remove temporary files that could not be deleted earlier due to being in-use.</value>
+  </data>
+  <data name="TT0102" xml:space="preserve">
+    <value>Remove unused packages and caches.</value>
+  </data>
+  <data name="TT0103" xml:space="preserve">
+    <value>Remove unused packages from writable package caches.</value>
+  </data>
+  <data name="TT0104" xml:space="preserve">
+    <value>Report all output as json.</value>
+  </data>
+  <data name="TT0105" xml:space="preserve">
+    <value>Revert to the specified REVISION.</value>
+  </data>
+  <data name="TT0106" xml:space="preserve">
+    <value>Run an executable in a conda environment.</value>
+  </data>
+  <data name="TT0107" xml:space="preserve">
+    <value>Search all of the current user's environments.</value>
+  </data>
+  <data name="TT0108" xml:space="preserve">
+    <value>Search for packages and display associated information.</value>
+  </data>
+  <data name="TT0109" xml:space="preserve">
+    <value>Search the given sub-directory.</value>
+  </data>
+  <data name="TT0110" xml:space="preserve">
+    <value>Set a boolean or string key.</value>
+  </data>
+  <data name="TT0111" xml:space="preserve">
+    <value>Set environment variables for a conda environment.</value>
+  </data>
+  <data name="TT0112" xml:space="preserve">
+    <value>Sets `CONDA_EXE` to `python -m conda`.</value>
+  </data>
+  <data name="TT0113" xml:space="preserve">
+    <value>Show all information.</value>
+  </data>
+  <data name="TT0114" xml:space="preserve">
+    <value>Show channel urls.</value>
+  </data>
+  <data name="TT0115" xml:space="preserve">
+    <value>Show help message and exit.</value>
+  </data>
+  <data name="TT0116" xml:space="preserve">
+    <value>Show the conda version number and exit.</value>
+  </data>
+  <data name="TT0117" xml:space="preserve">
+    <value>Solve environment, population caches, exit prior to linking.</value>
+  </data>
+  <data name="TT0118" xml:space="preserve">
+    <value>Specify name of repodata on remote server.</value>
+  </data>
+  <data name="TT0119" xml:space="preserve">
+    <value>Stack the environment on previous active environment.</value>
+  </data>
+  <data name="TT0120" xml:space="preserve">
+    <value>Take packages from highest priority channel.</value>
+  </data>
+  <data name="TT0121" xml:space="preserve">
+    <value>Undo past effects of conda init.</value>
+  </data>
+  <data name="TT0122" xml:space="preserve">
+    <value>Unset environment variables for a conda environment.</value>
+  </data>
+  <data name="TT0123" xml:space="preserve">
+    <value>Update all installed packages in the environment.</value>
+  </data>
+  <data name="TT0124" xml:space="preserve">
+    <value>Update based on provided specifications.</value>
+  </data>
+  <data name="TT0125" xml:space="preserve">
+    <value>Update dependencies.</value>
+  </data>
+  <data name="TT0126" xml:space="preserve">
+    <value>Update the current environment based on environment file.</value>
+  </data>
+  <data name="TT0127" xml:space="preserve">
+    <value>Updates conda packages to the latest compatible version.</value>
+  </data>
+  <data name="TT0128" xml:space="preserve">
+    <value>Use `sys.executable -m conda` in wrapper scripts.</value>
+  </data>
+  <data name="TT0129" xml:space="preserve">
+    <value>Use cache of channel index files, even if it has expired.</value>
+  </data>
+  <data name="TT0130" xml:space="preserve">
+    <value>Use locally built packages.</value>
+  </data>
+  <data name="TT0131" xml:space="preserve">
+    <value>Use once for INFO, twice for DEBUG, three times for TRACE.</value>
+  </data>
+  <data name="TT0132" xml:space="preserve">
+    <value>Validate all configuration sources.</value>
+  </data>
+  <data name="TT0133" xml:space="preserve">
+    <value>Write the default configuration to a file.</value>
+  </data>
+  <data name="TT0134" xml:space="preserve">
+    <value>Write to the active conda environment .condarc file.</value>
+  </data>
+  <data name="TT0135" xml:space="preserve">
+    <value>Write to the given file.</value>
+  </data>
+  <data name="TT0136" xml:space="preserve">
+    <value>Write to the system .condarc file.</value>
   </data>
 </root>
