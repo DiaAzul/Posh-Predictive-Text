@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="SyntaxTrees\CondaToolTips.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CondaToolTips.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="UIStrings.resx">

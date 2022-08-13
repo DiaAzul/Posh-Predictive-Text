@@ -4,7 +4,6 @@ namespace ResolveArgument
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
-    using System.Xml.Linq;
 
     /// <summary>
     /// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
@@ -199,10 +198,10 @@ namespace ResolveArgument
                         foreach (var suggestion in suggestions)
                             {
                                 CompletionResult cmdletSuggestion = new(
-                                    suggestion.CompletionText,
-                                    suggestion.CompletionText,
-                                    suggestion.Type,
-                                    suggestion.ToolTip
+                                    completionText: suggestion.CompletionText,
+                                    listItemText: suggestion.ListText,
+                                    resultType: suggestion.Type,
+                                    toolTip: suggestion.ToolTip
                                     );
 
                                 cmdletSuggestions.Add(cmdletSuggestion);

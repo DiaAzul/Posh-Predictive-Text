@@ -22,7 +22,7 @@ namespace Resolve_Argument.SyntaxTrees {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CondaToolTips {
+    public class CondaToolTips {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Resolve_Argument.SyntaxTrees {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resolve_Argument.SyntaxTrees.CondaToolTips", typeof(CondaToolTips).Assembly);
@@ -51,7 +51,7 @@ namespace Resolve_Argument.SyntaxTrees {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Add one configuration value to the beginning of a list key..
         /// </summary>
-        internal static string CONDA001 {
+        public static string CONDA001 {
             get {
                 return ResourceManager.GetString("CONDA001", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Add one configuration value to the end of a list key..
         /// </summary>
-        internal static string CONDA002 {
+        public static string CONDA002 {
             get {
                 return ResourceManager.GetString("CONDA002", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Additional channel to search for packages..
         /// </summary>
-        internal static string CONDA003 {
+        public static string CONDA003 {
             get {
                 return ResourceManager.GetString("CONDA003", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Allow conda to perform &quot;insecure&quot; SSL connections and transfers..
         /// </summary>
-        internal static string CONDA004 {
+        public static string CONDA004 {
             get {
                 return ResourceManager.GetString("CONDA004", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Apply configuration information given in yaml format piped through stdin..
         /// </summary>
-        internal static string CONDA005 {
+        public static string CONDA005 {
             get {
                 return ResourceManager.GetString("CONDA005", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Compare packages between conda environments..
         /// </summary>
-        internal static string CONDA006 {
+        public static string CONDA006 {
             get {
                 return ResourceManager.GetString("CONDA006", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Configure a conda environment..
         /// </summary>
-        internal static string CONDA007 {
+        public static string CONDA007 {
             get {
                 return ResourceManager.GetString("CONDA007", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Create a new conda environment from a list of specified packages..
         /// </summary>
-        internal static string CONDA008 {
+        public static string CONDA008 {
             get {
                 return ResourceManager.GetString("CONDA008", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Create an environment based on an environment file..
         /// </summary>
-        internal static string CONDA009 {
+        public static string CONDA009 {
             get {
                 return ResourceManager.GetString("CONDA009", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Create the environment directory if necessary..
         /// </summary>
-        internal static string CONDA010 {
+        public static string CONDA010 {
             get {
                 return ResourceManager.GetString("CONDA010", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Describe given configuration parameters..
         /// </summary>
-        internal static string CONDA011 {
+        public static string CONDA011 {
             get {
                 return ResourceManager.GetString("CONDA011", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display all identified configuration sources..
         /// </summary>
-        internal static string CONDA012 {
+        public static string CONDA012 {
             get {
                 return ResourceManager.GetString("CONDA012", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display all untracked files and exit..
         /// </summary>
-        internal static string CONDA013 {
+        public static string CONDA013 {
             get {
                 return ResourceManager.GetString("CONDA013", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display base environment path..
         /// </summary>
-        internal static string CONDA014 {
+        public static string CONDA014 {
             get {
                 return ResourceManager.GetString("CONDA014", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display information about current conda install..
         /// </summary>
-        internal static string CONDA015 {
+        public static string CONDA015 {
             get {
                 return ResourceManager.GetString("CONDA015", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display list of channels with tokens exposed..
         /// </summary>
-        internal static string CONDA016 {
+        public static string CONDA016 {
             get {
                 return ResourceManager.GetString("CONDA016", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display the output in real time..
         /// </summary>
-        internal static string CONDA017 {
+        public static string CONDA017 {
             get {
                 return ResourceManager.GetString("CONDA017", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Displays a list of available conda commands and their help strings..
         /// </summary>
-        internal static string CONDA018 {
+        public static string CONDA018 {
             get {
                 return ResourceManager.GetString("CONDA018", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not ask for confirmation..
         /// </summary>
-        internal static string CONDA019 {
+        public static string CONDA019 {
             get {
                 return ResourceManager.GetString("CONDA019", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not display progress bar..
         /// </summary>
-        internal static string CONDA020 {
+        public static string CONDA020 {
             get {
                 return ResourceManager.GetString("CONDA020", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not include pip-only installed packages..
         /// </summary>
-        internal static string CONDA021 {
+        public static string CONDA021 {
             get {
                 return ResourceManager.GetString("CONDA021", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not install, update, remove, or change dependencies..
         /// </summary>
-        internal static string CONDA022 {
+        public static string CONDA022 {
             get {
                 return ResourceManager.GetString("CONDA022", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not search default or .condarc channels..
         /// </summary>
-        internal static string CONDA023 {
+        public static string CONDA023 {
             get {
                 return ResourceManager.GetString("CONDA023", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not update or change already-installed dependencies..
         /// </summary>
-        internal static string CONDA024 {
+        public static string CONDA024 {
             get {
                 return ResourceManager.GetString("CONDA024", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Echo wrapper script debug info to stderr..
         /// </summary>
-        internal static string CONDA025 {
+        public static string CONDA025 {
             get {
                 return ResourceManager.GetString("CONDA025", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Environment definition file..
         /// </summary>
-        internal static string CONDA026 {
+        public static string CONDA026 {
             get {
                 return ResourceManager.GetString("CONDA026", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Environment variables to set in the form &lt;KEY&gt;=&lt;VALUE&gt;..
         /// </summary>
-        internal static string CONDA027 {
+        public static string CONDA027 {
             get {
                 return ResourceManager.GetString("CONDA027", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Environment variables to unset in the form &lt;KEY&gt;..
         /// </summary>
-        internal static string CONDA028 {
+        public static string CONDA028 {
             get {
                 return ResourceManager.GetString("CONDA028", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Executable name with additional arguments..
         /// </summary>
-        internal static string CONDA029 {
+        public static string CONDA029 {
             get {
                 return ResourceManager.GetString("CONDA029", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Exit early and do not run the solver if the requested specs are satisfied..
         /// </summary>
-        internal static string CONDA030 {
+        public static string CONDA030 {
             get {
                 return ResourceManager.GetString("CONDA030", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to EXPERIMENTAL. Choose which solver backend to use..
         /// </summary>
-        internal static string CONDA031 {
+        public static string CONDA031 {
             get {
                 return ResourceManager.GetString("CONDA031", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to EXPERIMENTAL. Initialize conda for shell interaction..
         /// </summary>
-        internal static string CONDA032 {
+        public static string CONDA032 {
             get {
                 return ResourceManager.GetString("CONDA032", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to EXPERIMENTAL. Low-level conda package utility..
         /// </summary>
-        internal static string CONDA033 {
+        public static string CONDA033 {
             get {
                 return ResourceManager.GetString("CONDA033", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Export a given environment..
         /// </summary>
-        internal static string CONDA034 {
+        public static string CONDA034 {
             get {
                 return ResourceManager.GetString("CONDA034", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Force creation of environment..
         /// </summary>
-        internal static string CONDA035 {
+        public static string CONDA035 {
             get {
                 return ResourceManager.GetString("CONDA035", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Force reinstall of package..
         /// </summary>
-        internal static string CONDA036 {
+        public static string CONDA036 {
             get {
                 return ResourceManager.GetString("CONDA036", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Forces removal of a package without removing packages that depend on it..
         /// </summary>
-        internal static string CONDA037 {
+        public static string CONDA037 {
             get {
                 return ResourceManager.GetString("CONDA037", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Full path to environment location..
         /// </summary>
-        internal static string CONDA038 {
+        public static string CONDA038 {
             get {
                 return ResourceManager.GetString("CONDA038", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Get a configuration value..
         /// </summary>
-        internal static string CONDA039 {
+        public static string CONDA039 {
             get {
                 return ResourceManager.GetString("CONDA039", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Given some PATH print which conda package the file came from..
         /// </summary>
-        internal static string CONDA040 {
+        public static string CONDA040 {
             get {
                 return ResourceManager.GetString("CONDA040", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Ignore create_default_packages in the .condarc file..
         /// </summary>
-        internal static string CONDA041 {
+        public static string CONDA041 {
             get {
                 return ResourceManager.GetString("CONDA041", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Ignore pinned file..
         /// </summary>
-        internal static string CONDA042 {
+        public static string CONDA042 {
             get {
                 return ResourceManager.GetString("CONDA042", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Initialize all currently available shells..
         /// </summary>
-        internal static string CONDA043 {
+        public static string CONDA043 {
             get {
                 return ResourceManager.GetString("CONDA043", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Install all packages using copies instead of hard- or soft-linking..
         /// </summary>
-        internal static string CONDA044 {
+        public static string CONDA044 {
             get {
                 return ResourceManager.GetString("CONDA044", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Installs a list of packages into a specified conda environment..
         /// </summary>
-        internal static string CONDA045 {
+        public static string CONDA045 {
             get {
                 return ResourceManager.GetString("CONDA045", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Interact with environment variables associated with Conda environments..
         /// </summary>
-        internal static string CONDA046 {
+        public static string CONDA046 {
             get {
                 return ResourceManager.GetString("CONDA046", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to List all known conda environments..
         /// </summary>
-        internal static string CONDA047 {
+        public static string CONDA047 {
             get {
                 return ResourceManager.GetString("CONDA047", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to List environment variables for a conda environment..
         /// </summary>
-        internal static string CONDA048 {
+        public static string CONDA048 {
             get {
                 return ResourceManager.GetString("CONDA048", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to List linked packages in a conda environment..
         /// </summary>
-        internal static string CONDA049 {
+        public static string CONDA049 {
             get {
                 return ResourceManager.GetString("CONDA049", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to List only packages matching this regular expression..
         /// </summary>
-        internal static string CONDA050 {
+        public static string CONDA050 {
             get {
                 return ResourceManager.GetString("CONDA050", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to List the Conda environments..
         /// </summary>
-        internal static string CONDA051 {
+        public static string CONDA051 {
             get {
                 return ResourceManager.GetString("CONDA051", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to List the revision history and exit..
         /// </summary>
-        internal static string CONDA052 {
+        public static string CONDA052 {
             get {
                 return ResourceManager.GetString("CONDA052", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Manage environments..
         /// </summary>
-        internal static string CONDA053 {
+        public static string CONDA053 {
             get {
                 return ResourceManager.GetString("CONDA053", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Name of environment..
         /// </summary>
-        internal static string CONDA054 {
+        public static string CONDA054 {
             get {
                 return ResourceManager.GetString("CONDA054", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to One or more shells to be initialized..
         /// </summary>
-        internal static string CONDA055 {
+        public static string CONDA055 {
             get {
                 return ResourceManager.GetString("CONDA055", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Only display what would have been done..
         /// </summary>
-        internal static string CONDA056 {
+        public static string CONDA056 {
             get {
                 return ResourceManager.GetString("CONDA056", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Only install dependencies..
         /// </summary>
-        internal static string CONDA057 {
+        public static string CONDA057 {
             get {
                 return ResourceManager.GetString("CONDA057", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Only search for full names..
         /// </summary>
-        internal static string CONDA058 {
+        public static string CONDA058 {
             get {
                 return ResourceManager.GetString("CONDA058", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Output canonical names of packages only..
         /// </summary>
-        internal static string CONDA059 {
+        public static string CONDA059 {
             get {
                 return ResourceManager.GetString("CONDA059", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Output requirement string only..
         /// </summary>
-        internal static string CONDA060 {
+        public static string CONDA060 {
             get {
                 return ResourceManager.GetString("CONDA060", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Package build number of the created package..
         /// </summary>
-        internal static string CONDA061 {
+        public static string CONDA061 {
             get {
                 return ResourceManager.GetString("CONDA061", resourceCulture);
             }
@@ -612,7 +612,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Package name of the created package..
         /// </summary>
-        internal static string CONDA062 {
+        public static string CONDA062 {
             get {
                 return ResourceManager.GetString("CONDA062", resourceCulture);
             }
@@ -621,7 +621,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Package names to remove from the environment..
         /// </summary>
-        internal static string CONDA063 {
+        public static string CONDA063 {
             get {
                 return ResourceManager.GetString("CONDA063", resourceCulture);
             }
@@ -630,7 +630,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Package version of the created package..
         /// </summary>
-        internal static string CONDA064 {
+        public static string CONDA064 {
             get {
                 return ResourceManager.GetString("CONDA064", resourceCulture);
             }
@@ -639,7 +639,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Package version takes precedence over channel priority..
         /// </summary>
-        internal static string CONDA065 {
+        public static string CONDA065 {
             get {
                 return ResourceManager.GetString("CONDA065", resourceCulture);
             }
@@ -648,7 +648,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Packages to install or update in the conda environment..
         /// </summary>
-        internal static string CONDA066 {
+        public static string CONDA066 {
             get {
                 return ResourceManager.GetString("CONDA066", resourceCulture);
             }
@@ -657,7 +657,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Path to (or name of) existing local environment..
         /// </summary>
-        internal static string CONDA067 {
+        public static string CONDA067 {
             get {
                 return ResourceManager.GetString("CONDA067", resourceCulture);
             }
@@ -666,7 +666,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Path to the environment file that is to be compared against..
         /// </summary>
-        internal static string CONDA068 {
+        public static string CONDA068 {
             get {
                 return ResourceManager.GetString("CONDA068", resourceCulture);
             }
@@ -675,7 +675,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Provide detailed information about each package..
         /// </summary>
-        internal static string CONDA069 {
+        public static string CONDA069 {
             get {
                 return ResourceManager.GetString("CONDA069", resourceCulture);
             }
@@ -684,7 +684,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Read package versions from the given file..
         /// </summary>
-        internal static string CONDA070 {
+        public static string CONDA070 {
             get {
                 return ResourceManager.GetString("CONDA070", resourceCulture);
             }
@@ -693,7 +693,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remote environment definition..
         /// </summary>
-        internal static string CONDA071 {
+        public static string CONDA071 {
             get {
                 return ResourceManager.GetString("CONDA071", resourceCulture);
             }
@@ -702,7 +702,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove a configuration key (and all its values)..
         /// </summary>
-        internal static string CONDA072 {
+        public static string CONDA072 {
             get {
                 return ResourceManager.GetString("CONDA072", resourceCulture);
             }
@@ -711,7 +711,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove a configuration value from a list key..
         /// </summary>
-        internal static string CONDA073 {
+        public static string CONDA073 {
             get {
                 return ResourceManager.GetString("CONDA073", resourceCulture);
             }
@@ -720,7 +720,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove a list of packages from a specified conda environment..
         /// </summary>
-        internal static string CONDA074 {
+        public static string CONDA074 {
             get {
                 return ResourceManager.GetString("CONDA074", resourceCulture);
             }
@@ -729,7 +729,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove all packages..
         /// </summary>
-        internal static string CONDA075 {
+        public static string CONDA075 {
             get {
                 return ResourceManager.GetString("CONDA075", resourceCulture);
             }
@@ -738,7 +738,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove all untracked files and exit..
         /// </summary>
-        internal static string CONDA076 {
+        public static string CONDA076 {
             get {
                 return ResourceManager.GetString("CONDA076", resourceCulture);
             }
@@ -747,7 +747,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove all writable package caches..
         /// </summary>
-        internal static string CONDA077 {
+        public static string CONDA077 {
             get {
                 return ResourceManager.GetString("CONDA077", resourceCulture);
             }
@@ -756,7 +756,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove an environment..
         /// </summary>
-        internal static string CONDA078 {
+        public static string CONDA078 {
             get {
                 return ResourceManager.GetString("CONDA078", resourceCulture);
             }
@@ -765,7 +765,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove cached package tarballs..
         /// </summary>
-        internal static string CONDA079 {
+        public static string CONDA079 {
             get {
                 return ResourceManager.GetString("CONDA079", resourceCulture);
             }
@@ -774,7 +774,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove features (instead of packages)..
         /// </summary>
-        internal static string CONDA080 {
+        public static string CONDA080 {
             get {
                 return ResourceManager.GetString("CONDA080", resourceCulture);
             }
@@ -783,7 +783,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove index cache, lock files, unused cache packages, and tarballs..
         /// </summary>
-        internal static string CONDA081 {
+        public static string CONDA081 {
             get {
                 return ResourceManager.GetString("CONDA081", resourceCulture);
             }
@@ -792,7 +792,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove index cache..
         /// </summary>
-        internal static string CONDA082 {
+        public static string CONDA082 {
             get {
                 return ResourceManager.GetString("CONDA082", resourceCulture);
             }
@@ -801,7 +801,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove installed packages not defined in definition file..
         /// </summary>
-        internal static string CONDA083 {
+        public static string CONDA083 {
             get {
                 return ResourceManager.GetString("CONDA083", resourceCulture);
             }
@@ -810,7 +810,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove unused packages and caches..
         /// </summary>
-        internal static string CONDA084 {
+        public static string CONDA084 {
             get {
                 return ResourceManager.GetString("CONDA084", resourceCulture);
             }
@@ -819,7 +819,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove unused packages from writable package caches..
         /// </summary>
-        internal static string CONDA085 {
+        public static string CONDA085 {
             get {
                 return ResourceManager.GetString("CONDA085", resourceCulture);
             }
@@ -828,7 +828,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Report all output as json..
         /// </summary>
-        internal static string CONDA086 {
+        public static string CONDA086 {
             get {
                 return ResourceManager.GetString("CONDA086", resourceCulture);
             }
@@ -837,7 +837,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Revert to the specified REVISION..
         /// </summary>
-        internal static string CONDA087 {
+        public static string CONDA087 {
             get {
                 return ResourceManager.GetString("CONDA087", resourceCulture);
             }
@@ -846,7 +846,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Run an executable in a conda environment..
         /// </summary>
-        internal static string CONDA088 {
+        public static string CONDA088 {
             get {
                 return ResourceManager.GetString("CONDA088", resourceCulture);
             }
@@ -855,7 +855,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Search all of the current user&apos;s environments..
         /// </summary>
-        internal static string CONDA089 {
+        public static string CONDA089 {
             get {
                 return ResourceManager.GetString("CONDA089", resourceCulture);
             }
@@ -864,7 +864,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Search for packages and display associated information..
         /// </summary>
-        internal static string CONDA090 {
+        public static string CONDA090 {
             get {
                 return ResourceManager.GetString("CONDA090", resourceCulture);
             }
@@ -873,7 +873,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Search the given sub-directory..
         /// </summary>
-        internal static string CONDA091 {
+        public static string CONDA091 {
             get {
                 return ResourceManager.GetString("CONDA091", resourceCulture);
             }
@@ -882,7 +882,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Set environment variables for a conda environment..
         /// </summary>
-        internal static string CONDA092 {
+        public static string CONDA092 {
             get {
                 return ResourceManager.GetString("CONDA092", resourceCulture);
             }
@@ -891,7 +891,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Sets `CONDA_EXE` to `python -m conda`..
         /// </summary>
-        internal static string CONDA093 {
+        public static string CONDA093 {
             get {
                 return ResourceManager.GetString("CONDA093", resourceCulture);
             }
@@ -900,7 +900,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Show all information..
         /// </summary>
-        internal static string CONDA094 {
+        public static string CONDA094 {
             get {
                 return ResourceManager.GetString("CONDA094", resourceCulture);
             }
@@ -909,7 +909,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Show channel urls..
         /// </summary>
-        internal static string CONDA095 {
+        public static string CONDA095 {
             get {
                 return ResourceManager.GetString("CONDA095", resourceCulture);
             }
@@ -918,7 +918,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Show help message and exit..
         /// </summary>
-        internal static string CONDA096 {
+        public static string CONDA096 {
             get {
                 return ResourceManager.GetString("CONDA096", resourceCulture);
             }
@@ -927,7 +927,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Show the conda version number and exit..
         /// </summary>
-        internal static string CONDA097 {
+        public static string CONDA097 {
             get {
                 return ResourceManager.GetString("CONDA097", resourceCulture);
             }
@@ -936,7 +936,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Solve environment, population caches, exit prior to linking..
         /// </summary>
-        internal static string CONDA098 {
+        public static string CONDA098 {
             get {
                 return ResourceManager.GetString("CONDA098", resourceCulture);
             }
@@ -945,7 +945,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Specify name of repodata on remote server..
         /// </summary>
-        internal static string CONDA099 {
+        public static string CONDA099 {
             get {
                 return ResourceManager.GetString("CONDA099", resourceCulture);
             }
@@ -954,7 +954,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Take packages from highest priority channel..
         /// </summary>
-        internal static string CONDA100 {
+        public static string CONDA100 {
             get {
                 return ResourceManager.GetString("CONDA100", resourceCulture);
             }
@@ -963,7 +963,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Undo past effects of conda init..
         /// </summary>
-        internal static string CONDA101 {
+        public static string CONDA101 {
             get {
                 return ResourceManager.GetString("CONDA101", resourceCulture);
             }
@@ -972,7 +972,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Unset environment variables for a conda environment..
         /// </summary>
-        internal static string CONDA102 {
+        public static string CONDA102 {
             get {
                 return ResourceManager.GetString("CONDA102", resourceCulture);
             }
@@ -981,7 +981,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Update all installed packages in the environment..
         /// </summary>
-        internal static string CONDA103 {
+        public static string CONDA103 {
             get {
                 return ResourceManager.GetString("CONDA103", resourceCulture);
             }
@@ -990,7 +990,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Update based on provided specifications..
         /// </summary>
-        internal static string CONDA104 {
+        public static string CONDA104 {
             get {
                 return ResourceManager.GetString("CONDA104", resourceCulture);
             }
@@ -999,7 +999,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Update dependencies..
         /// </summary>
-        internal static string CONDA105 {
+        public static string CONDA105 {
             get {
                 return ResourceManager.GetString("CONDA105", resourceCulture);
             }
@@ -1008,7 +1008,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Update the current environment based on environment file..
         /// </summary>
-        internal static string CONDA106 {
+        public static string CONDA106 {
             get {
                 return ResourceManager.GetString("CONDA106", resourceCulture);
             }
@@ -1017,7 +1017,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Updates conda packages to the latest compatible version..
         /// </summary>
-        internal static string CONDA107 {
+        public static string CONDA107 {
             get {
                 return ResourceManager.GetString("CONDA107", resourceCulture);
             }
@@ -1026,7 +1026,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Use `sys.executable -m conda` in wrapper scripts..
         /// </summary>
-        internal static string CONDA108 {
+        public static string CONDA108 {
             get {
                 return ResourceManager.GetString("CONDA108", resourceCulture);
             }
@@ -1035,7 +1035,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Use cache of channel index files, even if it has expired..
         /// </summary>
-        internal static string CONDA109 {
+        public static string CONDA109 {
             get {
                 return ResourceManager.GetString("CONDA109", resourceCulture);
             }
@@ -1044,7 +1044,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Use locally built packages..
         /// </summary>
-        internal static string CONDA110 {
+        public static string CONDA110 {
             get {
                 return ResourceManager.GetString("CONDA110", resourceCulture);
             }
@@ -1053,7 +1053,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Use once for INFO, twice for DEBUG, three times for TRACE..
         /// </summary>
-        internal static string CONDA111 {
+        public static string CONDA111 {
             get {
                 return ResourceManager.GetString("CONDA111", resourceCulture);
             }
@@ -1062,7 +1062,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Validate all configuration sources..
         /// </summary>
-        internal static string CONDA112 {
+        public static string CONDA112 {
             get {
                 return ResourceManager.GetString("CONDA112", resourceCulture);
             }
@@ -1071,7 +1071,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Write the default configuration to a file..
         /// </summary>
-        internal static string CONDA113 {
+        public static string CONDA113 {
             get {
                 return ResourceManager.GetString("CONDA113", resourceCulture);
             }
@@ -1080,7 +1080,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Write to the given file..
         /// </summary>
-        internal static string CONDA114 {
+        public static string CONDA114 {
             get {
                 return ResourceManager.GetString("CONDA114", resourceCulture);
             }
@@ -1089,7 +1089,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove temporary files that could not be deleted earlier due to being in-use..
         /// </summary>
-        internal static string CONDA115 {
+        public static string CONDA115 {
             get {
                 return ResourceManager.GetString("CONDA115", resourceCulture);
             }
@@ -1098,7 +1098,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Display configuration values as calculated and compiled..
         /// </summary>
-        internal static string CONDA116 {
+        public static string CONDA116 {
             get {
                 return ResourceManager.GetString("CONDA116", resourceCulture);
             }
@@ -1107,7 +1107,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not include channel names with package names..
         /// </summary>
-        internal static string CONDA117 {
+        public static string CONDA117 {
             get {
                 return ResourceManager.GetString("CONDA117", resourceCulture);
             }
@@ -1116,7 +1116,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Add an &apos;Anaconda Prompt&apos; icon to the desktop..
         /// </summary>
-        internal static string CONDA118 {
+        public static string CONDA118 {
             get {
                 return ResourceManager.GetString("CONDA118", resourceCulture);
             }
@@ -1125,7 +1125,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Offline mode. Do not connect to the Internet..
         /// </summary>
-        internal static string CONDA119 {
+        public static string CONDA119 {
             get {
                 return ResourceManager.GetString("CONDA119", resourceCulture);
             }
@@ -1134,7 +1134,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Modify configuration values in .condarc..
         /// </summary>
-        internal static string CONDA120 {
+        public static string CONDA120 {
             get {
                 return ResourceManager.GetString("CONDA120", resourceCulture);
             }
@@ -1143,7 +1143,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Write to the system .condarc file..
         /// </summary>
-        internal static string CONDA121 {
+        public static string CONDA121 {
             get {
                 return ResourceManager.GetString("CONDA121", resourceCulture);
             }
@@ -1152,7 +1152,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Write to the active conda environment .condarc file..
         /// </summary>
-        internal static string CONDA122 {
+        public static string CONDA122 {
             get {
                 return ResourceManager.GetString("CONDA122", resourceCulture);
             }
@@ -1161,7 +1161,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Set a boolean or string key..
         /// </summary>
-        internal static string CONDA123 {
+        public static string CONDA123 {
             get {
                 return ResourceManager.GetString("CONDA123", resourceCulture);
             }
@@ -1170,7 +1170,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not install start menu shortcuts..
         /// </summary>
-        internal static string CONDA124 {
+        public static string CONDA124 {
             get {
                 return ResourceManager.GetString("CONDA124", resourceCulture);
             }
@@ -1179,7 +1179,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Explicitly list all installed conda packages with URL..
         /// </summary>
-        internal static string CONDA125 {
+        public static string CONDA125 {
             get {
                 return ResourceManager.GetString("CONDA125", resourceCulture);
             }
@@ -1188,7 +1188,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Add MD5 hashsum when using --explicit..
         /// </summary>
-        internal static string CONDA126 {
+        public static string CONDA126 {
             get {
                 return ResourceManager.GetString("CONDA126", resourceCulture);
             }
@@ -1197,7 +1197,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Current working directory in which to run command..
         /// </summary>
-        internal static string CONDA127 {
+        public static string CONDA127 {
             get {
                 return ResourceManager.GetString("CONDA127", resourceCulture);
             }
@@ -1206,7 +1206,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Do not capture stdout/stderr..
         /// </summary>
-        internal static string CONDA128 {
+        public static string CONDA128 {
             get {
                 return ResourceManager.GetString("CONDA128", resourceCulture);
             }
@@ -1215,7 +1215,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Environment definition file (default: environment.yml)..
         /// </summary>
-        internal static string CONDA129 {
+        public static string CONDA129 {
             get {
                 return ResourceManager.GetString("CONDA129", resourceCulture);
             }
@@ -1224,7 +1224,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Remove build specification from dependencies..
         /// </summary>
-        internal static string CONDA130 {
+        public static string CONDA130 {
             get {
                 return ResourceManager.GetString("CONDA130", resourceCulture);
             }
@@ -1233,7 +1233,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Build environment spec from explicit specs in history..
         /// </summary>
-        internal static string CONDA131 {
+        public static string CONDA131 {
             get {
                 return ResourceManager.GetString("CONDA131", resourceCulture);
             }
@@ -1242,7 +1242,7 @@ namespace Resolve_Argument.SyntaxTrees {
         /// <summary>
         ///   Looks up a localized string similar to Allow clobbering overlapping file paths within packages..
         /// </summary>
-        internal static string CONDA132 {
+        public static string CONDA132 {
             get {
                 return ResourceManager.GetString("CONDA132", resourceCulture);
             }

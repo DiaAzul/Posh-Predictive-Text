@@ -41,13 +41,15 @@ namespace ResolveArgument
     /// </summary>
     internal readonly struct Suggestion
     {
-        internal Suggestion(string completionText, CompletionResultType type, string toolTip)
+        internal Suggestion(string completionText, string listText, CompletionResultType type, string toolTip)
         {
             CompletionText = completionText;
+            ListText = listText;
             Type = type;
             ToolTip = toolTip;
         }
         internal string CompletionText { get; init; }
+        internal string ListText { get; init; }
         internal CompletionResultType Type { get; init; }
         internal string ToolTip { get; init; }
 
@@ -249,6 +251,7 @@ namespace ResolveArgument
                     foreach (var item in filteredOptions)
                     {
                         Suggestion suggestion = new(
+                            item.argument??"",
                             item.argument??"",
                             CompletionResultType.ParameterName,
                             SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)??"Tooltip was null."
