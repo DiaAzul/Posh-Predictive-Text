@@ -96,8 +96,9 @@ namespace ResolveArgument
                 type = typeof(string)
             };
             this.tokens.Add(token);
+#if DEBUG
             LOGGER.Write($"Default: {token.text}, {token.type}");
-
+#endif
             return AstVisitAction.Continue;
         }
 
@@ -127,8 +128,9 @@ namespace ResolveArgument
                 type = commandExpressionAst.GetType(),
             };
             this.tokens.Add(token);
+#if DEBUG
             LOGGER.Write($"Command expression: {token.text}, {token.type}");
-
+#endif
             return AstVisitAction.Continue;
         }
 
@@ -146,8 +148,9 @@ namespace ResolveArgument
                 type = commandParameterAst.GetType(),
             };
             this.tokens.Add(token);
+#if DEBUG
             LOGGER.Write($"Command parameter: {token.text}, {token.type}");
-
+#endif
             return AstVisitAction.Continue;
         }
 
@@ -181,8 +184,9 @@ namespace ResolveArgument
             catch (ArgumentOutOfRangeException) { }
 
             this.tokens.Add(token);
+#if DEBUG
             LOGGER.Write($"String constant expression: {token.text}, {token.type}");
-
+#endif
             return AstVisitAction.Continue;
         }
     }

@@ -4,7 +4,7 @@ namespace ResolveArgument
     using System.Reflection;
 
     internal class Tools
-    {    
+    {
         internal static void WriteResourcesToLog()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -22,19 +22,13 @@ namespace ResolveArgument
     /// </summary>
     internal class LoggerException : Exception
     {
-        internal LoggerException()
-        {
-        }
+        internal LoggerException() { }
 
         internal LoggerException(string message)
-            : base(message)
-        {
-        }
+            : base(message) { }
 
         internal LoggerException(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
+            : base(message, inner) { }
     }
 
     /// <summary>
