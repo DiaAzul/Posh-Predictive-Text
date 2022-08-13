@@ -163,11 +163,24 @@ namespace ResolveArgument
                         LOGGER.Write($"Prior Command: {commandTokens.PriorToken?.text}");
 #endif
                         // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
-                        var suggestions = ArgumentResolver.Suggestions(
-                            WordToComplete??"",
-                            commandTokens,
-                            CursorPosition??CommandAst.ToString().Length
-                        );
+                        List<Suggestion> suggestions = new();
+                        try
+                        {
+                            suggestions = ArgumentResolver.Suggestions(
+                                WordToComplete??"",
+                                commandTokens,
+                                CursorPosition??CommandAst.ToString().Length
+                            );
+                        }
+                        // A syntax tree exception is raised when the syntax tree resources cannot be loaded.
+                        catch (SyntaxTreeException ex)
+                        {
+                            WriteError(new ErrorRecord(
+                                ex,
+                                "Error-loading-syntax-tree",
+                                ErrorCategory.ObjectNotFound,
+                                commandTokens));
+                        }
 
                         // Repackage results for Tab-Completions.
                         List<CompletionResult> cmdletSuggestions = new();
