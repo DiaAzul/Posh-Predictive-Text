@@ -153,15 +153,20 @@ namespace ResolveArgument
                 {
                     List<SyntaxItem> syntaxTree = syntaxTrees[syntaxTreeName];
 #if DEBUG
-                    LOGGER.Write($"The syntaxTree exists. Length: {syntaxTree.Count}");
+                    LOGGER.Write($"The syntaxTree exists. There are {syntaxTree.Count} entries in the tree.");
 #endif
 
+                    // Extract unique commands from the syntax tree and then
+                    // evaluate what command and sub-commands have been entred
+                    // so far.
                     var uniqueCommands = syntaxTree
                         .Select(item => item.command)
                         .Distinct()
                         .ToList();
 
-                    // Identify where we are in command chain.
+                    string one = String.Join(", ", uniqueCommands);
+                    LOGGER.Write(one);
+
                     StringBuilder commandPath = new(capacity: 64);
                     int tokensInCommand = 0;
                     foreach (Token commandToken in commandTokens.All)
@@ -180,20 +185,27 @@ namespace ResolveArgument
                             break;
                         }
                     }
+
+                    // If we have more tokens than tokens in the command then the command is complete.
+                    // If true then we do not need to propose any further sub-commands.
+                    bool commandComplete = commandTokens.All.Count > tokensInCommand;
 # if DEBUG
-                    LOGGER.Write($"Command path: {commandPath}, tokens in command: {tokensInCommand}.");
+                    LOGGER.Write($"The command is: {commandPath}. There are {tokensInCommand} tokens in the command.");
+                    if (commandComplete) LOGGER.Write("The command is complete.");
 # endif
-                    // Get options relevant to the command so far.
+                    // Get options relevant to the command excluding sub-commands if command is already complete.
                     var availableOptions = syntaxTree
-                        .Where(item => item.commandPath == commandPath.ToString())
+                        .Where(syntaxItem =>
+                                !(syntaxItem.type.Equals("CMD") && commandComplete)
+                                && (syntaxItem.commandPath == commandPath.ToString()))
                         .ToList();
 #if DEBUG
+                    LOGGER.Write("This command has the following options:");
                     foreach (var option in availableOptions)
                     {
-                        LOGGER.Write($"Options -> {option.argument}");
+                        LOGGER.Write($"::Option -> {option.argument} ({option.type})");
                     }
 #endif
-
 # if DEBUG
                     // Output count of option types.
                     var optionCounts = from option in availableOptions
@@ -205,7 +217,7 @@ namespace ResolveArgument
                                        };
 
                     StringBuilder countsString = new(capacity: 64);
-                    countsString.Append("Token types: ");
+                    countsString.Append("Total tokens by type:");
                     foreach (var option in optionCounts)
                     {
                         countsString.Append($"{option.Type} ({option.Count}) ");
@@ -228,7 +240,7 @@ namespace ResolveArgument
 #if DEBUG
                     if (lastCommandParameterIndex is not null)
                     {
-                        LOGGER.Write($"Last command parameter at index {lastCommandParameterIndex}"
+                        LOGGER.Write($"Last command parameter is at index {lastCommandParameterIndex}"
                             + $" is {commandTokens.All[lastCommandParameterIndex ?? 0].text}");
                     }
 #endif
@@ -247,15 +259,15 @@ namespace ResolveArgument
 
                         suggestions.Add(suggestion);
                     }
-
-                    LOGGER.Write($"Providing {suggestions.Count} suggestions.");
+#if DEBUG
+                    LOGGER.Write($"The algorithm is providing {suggestions.Count} suggestions.");
                     foreach (var suggestion in suggestions)
                     {
-                        LOGGER.Write($"I suggest -> {suggestion.CompletionText}");
+                        LOGGER.Write($"::Suggestion -> {suggestion.CompletionText}");
                     }
+#endif
                 }
             }
-
             return suggestions;
         }
 
