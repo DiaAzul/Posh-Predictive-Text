@@ -66,7 +66,7 @@ namespace ResolveArgument
             {
                 token = this.tokens[index];
             }
-            catch (IndexOutOfRangeException)
+            catch(ArgumentOutOfRangeException)
             {
                 token = null;
             }
