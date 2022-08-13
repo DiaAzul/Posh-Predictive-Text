@@ -10,6 +10,7 @@ namespace ResolveArgument
     using System.Management.Automation;
     using System.Text;
 
+    // TODO Move syntaxItem to LoadSyntaxTree.cs
     /// <summary>
     /// Record within the command syntax tree.
     /// 
