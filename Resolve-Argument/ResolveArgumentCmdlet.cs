@@ -208,7 +208,7 @@ namespace ResolveArgument
                                 cmdletSuggestions.Add(cmdletSuggestion);
                             };
 
-                        WriteObject(suggestions);
+                        WriteObject(cmdletSuggestions);
                     }
                     break;
 
