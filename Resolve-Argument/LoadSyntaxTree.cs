@@ -9,6 +9,20 @@ namespace ResolveArgument
     internal class SyntaxTree
     {
         /// <summary>
+        /// An exception raised if the syntax tree cannot be loaded.
+        /// </summary>
+        internal class SyntaxTreeException : Exception
+        {
+            internal SyntaxTreeException() { }
+
+            internal SyntaxTreeException(string message)
+                : base(message) { }
+
+            internal SyntaxTreeException(string message, Exception inner)
+                : base(message, inner) { }
+        }
+
+        /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
         /// 
         /// The method reads the XML file embeded within the application, parses it
@@ -32,17 +46,26 @@ namespace ResolveArgument
                     xSyntaxTree = XDocument.Parse(xmlDoc);
                 }
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                LOGGER.Write("File not found.");
+#if DEBUG
+                LOGGER.Write($"File not found for {syntaxTreeName}.", LOGGER.LOGLEVEL.ERROR);
+#endif
+                throw new SyntaxTreeException($"File not found for {syntaxTreeName}.", ex);
             }
-            catch (BadImageFormatException)
+            catch (BadImageFormatException ex)
             {
-                LOGGER.Write("File wrong format.");
+#if DEBUG
+                LOGGER.Write($"File wrong format for {syntaxTreeName}.", LOGGER.LOGLEVEL.ERROR);
+#endif
+                throw new SyntaxTreeException($"File wrong format for {syntaxTreeName}.", ex);
             }
-            catch (FileLoadException)
+            catch (FileLoadException ex)
             {
-                LOGGER.Write("File was found, could not load.");
+#if DEBUG
+                LOGGER.Write($"File was found, could not load {syntaxTreeName}.", LOGGER.LOGLEVEL.ERROR);
+                throw new SyntaxTreeException($"File was found, could not load {syntaxTreeName}.", ex);
+#endif
             }
 
             // Parse the XML document into a List.
