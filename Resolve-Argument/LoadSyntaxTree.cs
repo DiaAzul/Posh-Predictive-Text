@@ -25,7 +25,7 @@ namespace ResolveArgument
                 // TODO: [SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
                 var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTrees.CondaSyntaxTree.xml");
 
-                if (resourceStream != null)
+                if (resourceStream is not null)
                 {
                     using StreamReader reader = new(resourceStream);
                     var xmlDoc = reader.ReadToEnd();
@@ -50,7 +50,7 @@ namespace ResolveArgument
             IEnumerable<SyntaxItem>? syntaxTreeQuery = null;
             XElement? root = xSyntaxTree?.Root;
 
-            if (root != null)
+            if (root is not null)
             {
                 try
                 {
@@ -59,7 +59,7 @@ namespace ResolveArgument
                                       {
                                           command = AsString(item.Element("CMD")),
                                           commandPath = AsString(item.Element("PATH")),
-                                          type = AsString(item.Element("TYPE")),
+                                          type = AsString(item.Element("TYP")),
                                           argument = AsNullableString(item.Element("ARG")),
                                           alias = AsNullableString(item.Element("AL")),
                                           multipleUse = AsNullableBool(item.Element("MU")),
@@ -74,7 +74,7 @@ namespace ResolveArgument
                 }
             }
 
-            if (syntaxTreeQuery != null)
+            if (syntaxTreeQuery is not null)
             {
                 try
                 {
@@ -99,7 +99,7 @@ namespace ResolveArgument
         internal static string AsString(XElement? element)
         {
             string elementAsString = "";
-            if (element != null)
+            if (element is not null)
             {
                 elementAsString = (string)element;
             }
@@ -117,7 +117,7 @@ namespace ResolveArgument
         internal static string? AsNullableString(XElement? element)
         {
             string? elementAsString = null;
-            if (element != null)
+            if (element is not null)
             {
                 elementAsString = (string)element;
             }
@@ -139,7 +139,7 @@ namespace ResolveArgument
         internal static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
         {
             bool? elementAsNullableBool = null;
-            if (element != null)
+            if (element is not null)
             {
                 elementAsNullableBool = (string)element == trueValue;
             }
@@ -158,7 +158,7 @@ namespace ResolveArgument
         {
             // TODO: [SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
             string? toolTip = null;
-            if (!(toolTipRef == null))
+            if (toolTipRef is not null)
             {
                 toolTip = Resolve_Argument.SyntaxTrees.CondaToolTips.ResourceManager.GetString(toolTipRef);
             }
