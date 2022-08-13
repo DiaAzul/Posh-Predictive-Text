@@ -6,21 +6,23 @@ namespace ResolveArgument
 {
     using System.Reflection;
     using System.Xml.Linq;
+
+    /// <summary>
+    /// An exception raised if the syntax tree cannot be loaded.
+    /// </summary>
+    internal class SyntaxTreeException : Exception
+    {
+        internal SyntaxTreeException() { }
+
+        internal SyntaxTreeException(string message)
+            : base(message) { }
+
+        internal SyntaxTreeException(string message, Exception inner)
+            : base(message, inner) { }
+    }
     internal class SyntaxTree
     {
-        /// <summary>
-        /// An exception raised if the syntax tree cannot be loaded.
-        /// </summary>
-        internal class SyntaxTreeException : Exception
-        {
-            internal SyntaxTreeException() { }
 
-            internal SyntaxTreeException(string message)
-                : base(message) { }
-
-            internal SyntaxTreeException(string message, Exception inner)
-                : base(message, inner) { }
-        }
 
         /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
@@ -121,31 +123,18 @@ namespace ResolveArgument
         /// <returns>Contents of node as string.</returns>
         internal static string AsString(XElement? element)
         {
-            string elementAsString = "";
-            if (element is not null)
-            {
-                elementAsString = (string)element;
-            }
-
-            return elementAsString;
+            return  element?.ToString() ?? "";
         }
 
         /// <summary>
         /// Convert nullable <c>XElement</c> node in an XML tree to a nullable <c>string</c>.
         /// 
-        /// Null values are converted to an empty string.
         /// </summary>
         /// <param name="element">Node in XML tree.</param>
         /// <returns>Contents of node as string.</returns>
         internal static string? AsNullableString(XElement? element)
         {
-            string? elementAsString = null;
-            if (element is not null)
-            {
-                elementAsString = (string)element;
-            }
-
-            return elementAsString;
+            return element?.ToString();
         }
 
         /// <summary>
@@ -161,14 +150,7 @@ namespace ResolveArgument
         /// <returns>True when the contents of the node match the test pattern. Null if the node is null.</returns>
         internal static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
         {
-            bool? elementAsNullableBool = null;
-            if (element is not null)
-            {
-                elementAsNullableBool = (string)element == trueValue;
-            }
-
-            return elementAsNullableBool;
-
+            return element is not null ? (element?.ToString() ?? "") == trueValue : null;
         }
 
         /// <summary>
