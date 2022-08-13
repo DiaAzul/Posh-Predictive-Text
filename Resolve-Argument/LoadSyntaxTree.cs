@@ -165,6 +165,7 @@ namespace ResolveArgument
             string? toolTip = null;
             if (toolTipRef is not null)
             {
+                // TODO: Try..Catch around tooltip resource manager.
                 toolTip = Resolve_Argument.SyntaxTrees.CondaToolTips.ResourceManager.GetString(toolTipRef);
             }
             toolTip ??= "";
