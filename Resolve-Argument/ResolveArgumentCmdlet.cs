@@ -158,9 +158,9 @@ namespace ResolveArgument
 #if DEBUG
                         LOGGER.Write("Resolving word: " + WordToComplete??"");
                         LOGGER.Write("Resolving AST: " + CommandAst);
-                        LOGGER.Write($"Base Command: {commandTokens.BaseCommand?.text}");
-                        LOGGER.Write($"Last Command: {commandTokens.LastToken?.text}");
-                        LOGGER.Write($"Prior Command: {commandTokens.PriorToken?.text}");
+                        LOGGER.Write($"Base Command: {commandTokens.BaseCommand?.text ?? "Caught null"}");
+                        LOGGER.Write($"Last Command: {commandTokens.LastToken?.text ?? "Caught null"}");
+                        LOGGER.Write($"Prior Command: {commandTokens.PriorToken?.text ?? "Does not exist."}");
 #endif
                         // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
                         List<Suggestion> suggestions = new();
@@ -173,13 +173,25 @@ namespace ResolveArgument
                             );
                         }
                         // A syntax tree exception is raised when the syntax tree resources cannot be loaded.
-                        catch (SyntaxTreeException ex)
+                        catch (Exception ex)
                         {
-                            WriteError(new ErrorRecord(
-                                ex,
-                                "Error-loading-syntax-tree",
-                                ErrorCategory.ObjectNotFound,
-                                commandTokens));
+                            switch (ex)
+                            {
+                                case SyntaxTreeException:
+                                    WriteError(new ErrorRecord(
+                                        ex,
+                                        "Error-loading-syntax-tree",
+                                        ErrorCategory.ObjectNotFound,
+                                        commandTokens));
+                                    break;
+                                default:
+                                    WriteError(new ErrorRecord(
+                                        ex,
+                                        "Process-record-error",
+                                        ErrorCategory.InvalidOperation,
+                                        commandTokens));
+                                    break;
+                            }
                         }
 
                         // Repackage results for Tab-Completions.
