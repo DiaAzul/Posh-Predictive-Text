@@ -149,7 +149,7 @@ namespace ResolveArgument
 
                     // The algorithm uses the command abstract syntrax tree to tokenise the input text. 
                     // If it is not available then return no values.
-                    if (CommandAst != null)
+                    if (CommandAst is not null)
                     {
                         // Convert the CommandAst to a list of tokens which will be used to evaluate
                         // which options are avaialble for the next parameter.
