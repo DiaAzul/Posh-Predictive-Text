@@ -14,7 +14,7 @@ namespace ResolveArgument
         DefaultParameterSetName = "Resolve")]
     [OutputType(typeof(string))]
     [OutputType(typeof(CompletionResult))]
-    public class ResolveArgumentCmdlet : PSCmdlet
+    public class ResolverCmdlet : PSCmdlet
     {
         /// <summary>
         /// Gets or sets the switch indicating List, ListCommand or L flag
@@ -144,8 +144,6 @@ namespace ResolveArgument
                     break;
 
                 case "Resolve":
-                    // CompletionResultType: https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.completionresulttype?view=powershellsdk-7.0.0
-
                     // The algorithm uses the command abstract syntrax tree to tokenise the input text. 
                     // If it is not available then return no values.
                     if (CommandAst is not null)
@@ -165,10 +163,10 @@ namespace ResolveArgument
                         List<Suggestion> suggestions = new();
                         try
                         {
-                            suggestions = ArgumentResolver.Suggestions(
-                                WordToComplete??"",
-                                commandTokens,
-                                CursorPosition??CommandAst.ToString().Length
+                            suggestions = Resolver.Suggestions(
+                                wordToComplete: WordToComplete ?? "",
+                                commandTokens: commandTokens,
+                                cursorPosition: CursorPosition ?? CommandAst.ToString().Length
                             );
                         }
                         // A syntax tree exception is raised when the syntax tree resources cannot be loaded.

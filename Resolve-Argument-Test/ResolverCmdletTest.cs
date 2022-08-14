@@ -24,7 +24,7 @@ namespace ResolveArgument.Tests
             var sessionState = InitialSessionState.CreateDefault();
 
             // Add cmdlet to the shell instance.
-            SessionStateCmdletEntry cmdletToTest = new("resolve-argument", typeof(ResolveArgumentCmdlet), null);
+            SessionStateCmdletEntry cmdletToTest = new("resolve-argument", typeof(ResolveArgument.ResolverCmdlet), null);
             sessionState.Commands.Add(cmdletToTest);
 
             // Create an instance of the shell.

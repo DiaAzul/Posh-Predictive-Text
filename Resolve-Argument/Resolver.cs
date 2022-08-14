@@ -11,30 +11,6 @@ namespace ResolveArgument
     using System.Management.Automation;
     using System.Text;
 
-    // [ ] TODO Move syntaxItem to LoadSyntaxTree.cs
-    /// <summary>
-    /// Record within the command syntax tree.
-    /// 
-    /// Used to enumerate query results on the XML syntax tree.
-    /// </summary>
-    internal struct SyntaxItem
-    {
-        internal string command;
-        internal string commandPath;
-        internal string type;
-        internal string? argument;
-        internal string? alias;
-        internal bool? multipleUse;
-        internal string? parameter;
-        internal bool? multipleParameters;
-        internal string? toolTip;
-
-        internal string AsString()
-        {
-            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameters}, {toolTip}";
-        }
-    }
-
     /// <summary>
     /// Suggested response.
     /// 
@@ -61,7 +37,7 @@ namespace ResolveArgument
     /// <summary>
     /// Process tokenised input string and return suggested tab-completions.
     /// </summary>
-    internal class ArgumentResolver
+    internal class Resolver
     {
         /// <summary>
         /// Each command has a syntax tree which sets out the possible combination of tokens
@@ -117,12 +93,13 @@ namespace ResolveArgument
             // TODO: [SYNTAXTREES] Manage aliases for the syntax tree (e.g. mamba -> conda).
             return baseCommandToken.text;
         }
+
         /// <summary>
         /// Processes the command line tokens and suggests completions for the wordToComplete.
         /// </summary>
-        /// <param name="WordToComplete">Word for which suggested comlpetions required.</param>
+        /// <param name="wordToComplete">Word for which suggested comlpetions required.</param>
         /// <param name="commandTokens">Tokenised text on the command line.</param>
-        /// <param name="CursorPosition">Position of the cursor on the command line.</param>
+        /// <param name="cursorPosition">Position of the cursor on the command line.</param>
         /// <returns>Suggested list of completions for the word to complete.</returns>
         /// <remarks>
         /// The method loads the syntax tree for the command if it not already loaded. It then
@@ -140,7 +117,7 @@ namespace ResolveArgument
         /// [ ] 6. Identify suggestions for command parameters.
         /// [ ] 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
         /// </remarks>
-        internal static List<Suggestion> Suggestions(string WordToComplete, CommandAstVisitor commandTokens, int CursorPosition)
+        internal static List<Suggestion> Suggestions(string wordToComplete, CommandAstVisitor commandTokens, int cursorPosition)
         {
             List<Suggestion> suggestions = new();
 
@@ -247,16 +224,16 @@ namespace ResolveArgument
 #endif
 
                     var filteredOptions = availableOptions
-                        .Where(item => item.argument is not null && item.argument.StartsWith(WordToComplete))
+                        .Where(item => item.argument is not null && item.argument.StartsWith(wordToComplete))
                         .ToList();
 
-                    foreach (var item in filteredOptions)
+                    foreach (var syntaxItem in filteredOptions)
                     {
                         Suggestion suggestion = new(
-                            item.argument??"",
-                            item.argument??"",
-                            CompletionResultType.ParameterName,
-                            SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)??"Tooltip was null."
+                            syntaxItem.argument??"",
+                            syntaxItem.argument??"",
+                            syntaxItem.ResultType,
+                            SyntaxTree.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
                         );
 
                         suggestions.Add(suggestion);
