@@ -166,7 +166,7 @@ namespace ResolveArgument
 
                     // If we have more tokens than tokens in the command then the command is complete.
                     // If true then we do not need to propose any further sub-commands.
-                    bool commandComplete = commandTokens.All.Count > tokensInCommand;
+                    bool commandComplete = commandTokens.All.Count > tokensInCommand + 1;
 # if DEBUG
                     LOGGER.Write($"The command is: {commandPath}. There are {tokensInCommand} tokens in the command.");
                     if (commandComplete) LOGGER.Write("The command is complete.");
