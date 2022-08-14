@@ -2,38 +2,14 @@
 // TODO [ ] [RESOLVER] Support return of aliases.
 // TODO [ ] [RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
 // TODO [ ] [RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
-// BUG  [ ] [RESOLVER] Giving first letter of subcommand is filtering out All subcommand in options list.
-// TODO [x] [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate, env options). 
+// BUG  [X] [RESOLVER] Giving first letter of subcommand is filtering out All subcommand in options list.
+// TODO [X] [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate, env options). 
 
 namespace ResolveArgument
 {
     using System.Linq;
     using System.Management.Automation;
     using System.Text;
-
-    // [ ] TODO Move syntaxItem to LoadSyntaxTree.cs
-    /// <summary>
-    /// Record within the command syntax tree.
-    /// 
-    /// Used to enumerate query results on the XML syntax tree.
-    /// </summary>
-    internal struct SyntaxItem
-    {
-        internal string command;
-        internal string commandPath;
-        internal string type;
-        internal string? argument;
-        internal string? alias;
-        internal bool? multipleUse;
-        internal string? parameter;
-        internal bool? multipleParameters;
-        internal string? toolTip;
-
-        internal string AsString()
-        {
-            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameters}, {toolTip}";
-        }
-    }
 
     /// <summary>
     /// Suggested response.
@@ -61,7 +37,7 @@ namespace ResolveArgument
     /// <summary>
     /// Process tokenised input string and return suggested tab-completions.
     /// </summary>
-    internal class ArgumentResolver
+    internal class Resolver
     {
         /// <summary>
         /// Each command has a syntax tree which sets out the possible combination of tokens
@@ -117,19 +93,20 @@ namespace ResolveArgument
             // TODO: [SYNTAXTREES] Manage aliases for the syntax tree (e.g. mamba -> conda).
             return baseCommandToken.text;
         }
+
         /// <summary>
         /// Processes the command line tokens and suggests completions for the wordToComplete.
         /// </summary>
-        /// <param name="WordToComplete">Word for which suggested comlpetions required.</param>
+        /// <param name="wordToComplete">Word for which suggested comlpetions required.</param>
         /// <param name="commandTokens">Tokenised text on the command line.</param>
-        /// <param name="CursorPosition">Position of the cursor on the command line.</param>
+        /// <param name="cursorPosition">Position of the cursor on the command line.</param>
         /// <returns>Suggested list of completions for the word to complete.</returns>
         /// <remarks>
-        /// The method loads the syntax tree for the command if it not already loaded. It then
-        /// identifies whether a mulit-word command has been entered, for example <c>conda create</c>.
-        /// It then identifies possible tokens for that command and identifies whether we are entering
-        /// a parameter or values. Where tab-completion for values are required then method identifies
-        /// and calls an appropriate handler.
+        /// The method loads the syntax tree for the command if it not already loaded.
+        /// It then identifies whether a mulit-word command has been entered, for example
+        /// <c>conda create</c>. It then identifies possible tokens for that command and
+        /// identifies whether we are entering a parameter or values. Where tab-completion
+        /// for values are required then method identifies and calls an appropriate handler.
         /// 
         /// The state model for determining suggestions uses the following algorithm:
         /// [X] 1. Identify what command, or partial command has already been entered (commands may be multi-word).
@@ -140,7 +117,10 @@ namespace ResolveArgument
         /// [ ] 6. Identify suggestions for command parameters.
         /// [ ] 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
         /// </remarks>
-        internal static List<Suggestion> Suggestions(string WordToComplete, CommandAstVisitor commandTokens, int CursorPosition)
+        internal static List<Suggestion> Suggestions(
+            string wordToComplete,
+            CommandAstVisitor commandTokens,
+            int cursorPosition)
         {
             List<Suggestion> suggestions = new();
 
@@ -155,11 +135,14 @@ namespace ResolveArgument
                 // If successfully loaded then continue to process suggestions.
                 if (SyntaxTreeExists(syntaxTreeName))
                 {
+                    // TODO [ ][SYNTAXTREES] Do we want to work in static class with name, or pull ref into resolver?
                     List<SyntaxItem> syntaxTree = syntaxTrees[syntaxTreeName];
 #if DEBUG
-                    LOGGER.Write($"The syntaxTree exists. There are {syntaxTree.Count} entries in the tree.");
+                    LOGGER.Write($"The syntaxTree exists."
+                        + "There are {syntaxTree.Count} entries in the tree.");
 #endif
 
+                    // [ ] TODO [SYNTAXTREE] Move search for unique commands to method in syntax tree class.
                     // Extract unique commands from the syntax tree and then
                     // evaluate what command and sub-commands have been entred
                     // so far.
@@ -170,7 +153,7 @@ namespace ResolveArgument
 
                     StringBuilder commandPath = new(capacity: 64);
                     int tokensInCommand = 0;
-                    foreach (Token commandToken in commandTokens.All)
+                    foreach (var (position, commandToken) in commandTokens.All)
                     {
                         if (uniqueCommands.Contains(commandToken.text))
                         {
@@ -187,27 +170,53 @@ namespace ResolveArgument
                         }
                     }
 
-                    // If we have more tokens than tokens in the command then the command is complete.
+                    // Filter the syntaxTree against the entered command to
+                    // reduce the size of the tree for later processing.
+                    List<SyntaxItem> filteredSyntaxTree = syntaxTree
+                        .Where(syntaxItem => 
+                                    syntaxItem.commandPath == commandPath.ToString())
+                        .ToList();
+
+                    // Identify Command Parameters that have already been entered.
+                    var enteredCommandParameters = commandTokens.CommandParameters;
+
+#if DEBUG
+                    foreach (var(position, Token) in enteredCommandParameters)
+                    {
+                        LOGGER.Write($"Entered parameter {Token.text} @ {position}");
+                    }
+#endif
+
+                    // If we have more tokens than tokens in the command then the command
+                    // is complete. If the tokens on the command line (including the final
+                    // partial token to complete) exceeds the count of command tokens plus
+                    // any other completed non command token then the command is complete.
                     // If true then we do not need to propose any further sub-commands.
-                    bool commandComplete = commandTokens.All.Count > tokensInCommand;
+                    bool commandComplete = commandTokens.All.Count > tokensInCommand + 1;
 # if DEBUG
-                    LOGGER.Write($"The command is: {commandPath}. There are {tokensInCommand} tokens in the command.");
+                    LOGGER.Write($"The command is: {commandPath}."
+                        +" There are {tokensInCommand} tokens in the command.");
                     if (commandComplete) LOGGER.Write("The command is complete.");
 # endif
-                    // Get options relevant to the command excluding sub-commands if command is already complete.
-                    var availableOptions = syntaxTree
+                    // Get relevant commands, parameters and options that can complete
+                    // the FINAL token.
+                    // - Exclude subcommands if they cannot be added.
+                    // - Exclude syntaxItems with no argument entry.
+                    // - Filter list against the characters entered in the final token.
+                    List<SyntaxItem> availableOptions = filteredSyntaxTree
                         .Where(syntaxItem =>
                                 !(syntaxItem.type.Equals("CMD") && commandComplete)
-                                && (syntaxItem.commandPath == commandPath.ToString()))
+                                && syntaxItem.argument is not null
+                                && syntaxItem.argument.StartsWith(wordToComplete))
                         .ToList();
 #if DEBUG
+                    // Following lists all potential options from the syntax tree
+                    // for the final token.
                     LOGGER.Write("This command has the following options:");
                     foreach (var option in availableOptions)
                     {
                         LOGGER.Write($"::Option -> {option.argument} ({option.type})");
                     }
-#endif
-# if DEBUG
                     // Output count of option types.
                     var optionCounts = from option in availableOptions
                                        group option by option.type into typeGroup
@@ -226,12 +235,14 @@ namespace ResolveArgument
                     countsString.Append('.');
                     LOGGER.Write(countsString.ToString());
 # endif
-
-                    // Iterate backwards through tokens to find the index of the last command parameter
-                    int ? lastCommandParameterIndex = null;
+                    // Do we have an active command parameter?
+                    // Iterate backwards through tokens to find the index of the last
+                    // command parameter
+                    int? lastCommandParameterIndex = null;
                     for (int index = commandTokens.All.Count - 1; index >= 0; index--)
                     {
-                        if (commandTokens.All[index].type == typeof(System.Management.Automation.Language.CommandParameterAst))
+                        if (commandTokens.All[index].type == typeof(
+                            System.Management.Automation.Language.CommandParameterAst))
                         {
                             lastCommandParameterIndex = index;
                             break;
@@ -241,22 +252,20 @@ namespace ResolveArgument
 #if DEBUG
                     if (lastCommandParameterIndex is not null)
                     {
-                        LOGGER.Write($"Last command parameter is at index {lastCommandParameterIndex}"
+                        LOGGER.Write(
+                            $"Last command parameter is at index {lastCommandParameterIndex}"
                             + $" is {commandTokens.All[lastCommandParameterIndex ?? 0].text}");
                     }
 #endif
+                    var filteredOptions = availableOptions;
 
-                    var filteredOptions = availableOptions
-                        .Where(item => item.argument is not null && item.argument.StartsWith(WordToComplete))
-                        .ToList();
-
-                    foreach (var item in filteredOptions)
+                    foreach (var syntaxItem in filteredOptions)
                     {
                         Suggestion suggestion = new(
-                            item.argument??"",
-                            item.argument??"",
-                            CompletionResultType.ParameterName,
-                            SyntaxTree.Tooltip(syntaxTreeName, item.toolTip)??"Tooltip was null."
+                            syntaxItem.argument??"",
+                            syntaxItem.argument??"",
+                            syntaxItem.ResultType,
+                            SyntaxTree.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
                         );
 
                         suggestions.Add(suggestion);

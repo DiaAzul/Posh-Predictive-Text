@@ -6,6 +6,7 @@ namespace ResolveArgument
 {
     using System.Reflection;
     using System.Xml.Linq;
+    using System.Management.Automation;
 
     /// <summary>
     /// An exception raised if the syntax tree cannot be loaded.
@@ -20,10 +21,53 @@ namespace ResolveArgument
         internal SyntaxTreeException(string message, Exception inner)
             : base(message, inner) { }
     }
+
+
+    // [X] TODO Move syntaxItem to LoadSyntaxTree.cs
+    /// <summary>
+    /// Record within the command syntax tree.
+    /// 
+    /// Used to enumerate query results on the XML syntax tree.
+    /// </summary>
+    internal struct SyntaxItem
+    {
+        internal string command;
+        internal string commandPath;
+        internal string type;
+        internal string? argument;
+        internal string? alias;
+        internal bool? multipleUse;
+        internal string? parameter;
+        internal bool? multipleParameters;
+        internal string? toolTip;
+
+        internal string AsString()
+        {
+            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameters}, {toolTip}";
+        }
+
+        /// <summary>
+        /// Property return the result type for the Syntax item.
+        /// </summary>
+        internal CompletionResultType ResultType
+        {
+            get
+            {
+                return type switch
+                {
+                    "CMD" => CompletionResultType.Command,
+                    "OPT" => CompletionResultType.ParameterName,
+                    "PRM" => CompletionResultType.ParameterName,
+                    "POS" => CompletionResultType.ParameterValue,
+                    _ => CompletionResultType.ParameterValue,
+                };
+            }
+        }
+    }
+
+    // [ ] [SYNTAXTREE] Add documentation to SyntaxTreeClass.
     internal class SyntaxTree
     {
-
-
         /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
         /// 

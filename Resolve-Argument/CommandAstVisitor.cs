@@ -2,6 +2,7 @@
 namespace ResolveArgument
 {
     using System.Management.Automation.Language;
+    using System.Text;
 
     /// <summary>
     /// Token representing each distinct item entered by the 
@@ -14,6 +15,11 @@ namespace ResolveArgument
     {
         internal string text;
         internal Type type;
+
+        internal bool IsCommandParameter
+        {
+            get { return type == typeof(CommandParameterAst); }
+        }
     }
 
     /// <summary>
@@ -23,12 +29,20 @@ namespace ResolveArgument
     /// </summary>
     internal class CommandAstVisitor : AstVisitor
     {
-        private readonly List<Token> tokens;
+        private readonly Dictionary<int, Token> tokens;
+        // Incremented each time a new token is created.
+        // Indicates position of token on the command line.
+        private int commandLinePosition = 0;
 
         internal CommandAstVisitor()
         {
-            this.tokens = new List<Token>();
+            this.tokens = new Dictionary<int, Token>();
         }
+
+        // Returns the position of the token and updates the position count.
+        private int TokenPosition
+            { get { return commandLinePosition++; } }
+
 
         /// <summary>
         /// Returns the first token in the command list.
@@ -76,9 +90,24 @@ namespace ResolveArgument
         /// <summary>
         /// Returns a list of all tokens.
         /// </summary>
-        internal List<Token> All
+        internal Dictionary<int, Token> All
         {
             get { return this.tokens; }
+        }
+
+
+        /// <summary>
+        /// Returns a dictionary containing command parameters and their
+        /// location on the command line. If there are no command parameters
+        /// returns an empty dictionary.
+        /// </summary>
+        internal Dictionary<int, Token> CommandParameters
+        {
+            get
+            {
+                return (Dictionary<int, Token>)(this.tokens.Where(item => item.Value.IsCommandParameter)
+                    ?? new Dictionary<int, Token>());
+            }
         }
 
         /// <summary>
@@ -95,7 +124,7 @@ namespace ResolveArgument
                 text = ast.ToString(),
                 type = typeof(string)
             };
-            this.tokens.Add(token);
+            this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
             LOGGER.Write($"Default: {token.text}, {token.type}");
 #endif
@@ -127,7 +156,7 @@ namespace ResolveArgument
                 text = commandExpressionAst.ToString(),
                 type = commandExpressionAst.GetType(),
             };
-            this.tokens.Add(token);
+            this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
             LOGGER.Write($"Command expression: {token.text}, {token.type}");
 #endif
@@ -147,7 +176,7 @@ namespace ResolveArgument
                 text = commandParameterAst.ToString(),
                 type = commandParameterAst.GetType(),
             };
-            this.tokens.Add(token);
+            this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
             LOGGER.Write($"Command parameter: {token.text}, {token.type}");
 #endif
@@ -183,7 +212,7 @@ namespace ResolveArgument
             }
             catch (ArgumentOutOfRangeException) { }
 
-            this.tokens.Add(token);
+            this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
             LOGGER.Write($"String constant expression: {token.text}, {token.type}");
 #endif
