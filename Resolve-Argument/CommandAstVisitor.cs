@@ -171,6 +171,11 @@ namespace ResolveArgument
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
         {
+            // TODO: [ ][GIT] Resolve git parameters with integer values appended e.g. -U5
+            // Regex "^-([a-zA-z])([0-9]+)*$" First capture group is argument, second is value.
+            // Beware, this is Git specific and may cause problems with other commands which do not require splitting.
+            // Perhaps we need to record first command visited so that we can change visitor behaviour as we
+            // process tokens (check token zero).
             Token token = new()
             {
                 text = commandParameterAst.ToString(),
