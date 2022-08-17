@@ -176,6 +176,8 @@ namespace ResolveArgument
             // Beware, this is Git specific and may cause problems with other commands which do not require splitting.
             // Perhaps we need to record first command visited so that we can change visitor behaviour as we
             // process tokens (check token zero).
+            // NOTE: git-am with -S option, the GPG key must be directly appended to the option (no space). GPG Key-ids are
+            // 16 hex character (long) or 8 hex character (short). "^-S[0-9a-fA-F]{8|16}$".
             Token token = new()
             {
                 text = commandParameterAst.ToString(),
