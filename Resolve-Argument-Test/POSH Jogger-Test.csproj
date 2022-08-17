@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Resolve-Argument\Resolve-Argument.csproj">
+    <ProjectReference Include="..\Resolve-Argument\POSH Jogger.csproj">
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

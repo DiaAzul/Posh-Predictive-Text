@@ -1,6 +1,7 @@
 ﻿
 namespace ResolveArgument
 {
+    using Resolve_Argument;
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
@@ -8,7 +9,7 @@ namespace ResolveArgument
     /// <summary>
     /// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
     /// </summary>
-[Cmdlet(
+    [Cmdlet(
         VerbsDiagnostic.Resolve,
         "Argument",
         DefaultParameterSetName = "Resolve")]

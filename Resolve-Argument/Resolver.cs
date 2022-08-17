@@ -5,8 +5,9 @@
 // BUG  [X] [RESOLVER] Giving first letter of subcommand is filtering out All subcommand in options list.
 // TODO [X] [CONDA] Implement missing conda commands not included within the documentation (conda activate/deactivate, env options). 
 
-namespace ResolveArgument
+namespace Resolve_Argument
 {
+    using ResolveArgument;
     using System.Linq;
     using System.Management.Automation;
     using System.Text;
@@ -173,7 +174,7 @@ namespace ResolveArgument
                     // Filter the syntaxTree against the entered command to
                     // reduce the size of the tree for later processing.
                     List<SyntaxItem> filteredSyntaxTree = syntaxTree
-                        .Where(syntaxItem => 
+                        .Where(syntaxItem =>
                                     syntaxItem.commandPath == commandPath.ToString())
                         .ToList();
 
@@ -181,7 +182,7 @@ namespace ResolveArgument
                     var enteredCommandParameters = commandTokens.CommandParameters;
 
 #if DEBUG
-                    foreach (var(position, Token) in enteredCommandParameters)
+                    foreach (var (position, Token) in enteredCommandParameters)
                     {
                         LOGGER.Write($"Entered parameter {Token.text} @ {position}");
                     }
