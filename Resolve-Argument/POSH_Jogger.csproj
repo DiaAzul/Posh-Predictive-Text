@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Resolve_Argument</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CommandCompletions\**" />
+    <EmbeddedResource Remove="CommandCompletions\**" />
+    <None Remove="CommandCompletions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CondaCompletes.xml" />
+    <None Remove="SyntaxTrees\CondaSyntaxTree.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SyntaxTrees\CondaSyntaxTree.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management.Automation" Version="7.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="SyntaxTrees\CondaToolTips.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CondaToolTips.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UIStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UIStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="SyntaxTrees\CondaToolTips.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CondaToolTips.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UIStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UIStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
