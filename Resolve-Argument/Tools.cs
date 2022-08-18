@@ -1,6 +1,8 @@
 ﻿
 namespace ResolveArgument
 {
+    using System.Collections.ObjectModel;
+    using System.Management.Automation;
     using System.Reflection;
 
     internal class Tools
@@ -134,6 +136,34 @@ namespace ResolveArgument
                     using StreamWriter sw = File.AppendText(logFile);
                     sw.WriteLine(outputText);
                 }
+            }
+        }
+    }
+
+    internal static class CommandShell
+    {
+        static PowerShell? shell = null;
+        internal static void TestGitVersion()
+        {
+            LOGGER.Write("Testing Git Version. Creating Shell.");
+            shell ??= PowerShell.Create();
+            LOGGER.Write("Shell created.");
+            try
+            {
+                LOGGER.Write("Executing: conda env list");
+                shell.AddCommand("conda");
+                shell.AddArgument("env");
+                shell.AddArgument("list");
+                var results = shell.Invoke();
+
+                foreach(var result in results)
+                {
+                    LOGGER.Write(result.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                LOGGER.Write(ex.ToString());
             }
         }
     }
