@@ -143,28 +143,27 @@ namespace ResolveArgument
     internal static class CommandShell
     {
         static PowerShell? shell = null;
-        internal static void TestGitVersion()
+        internal static List<string> QueryPowerShell(string command, List<string> arguments)
         {
-            LOGGER.Write("Testing Git Version. Creating Shell.");
+            List<string> results = new();
             shell ??= PowerShell.Create();
-            LOGGER.Write("Shell created.");
             try
             {
                 LOGGER.Write("Executing: conda env list");
-                shell.AddCommand("conda");
-                shell.AddArgument("env");
-                shell.AddArgument("list");
-                var results = shell.Invoke();
+                shell.AddCommand(command);
+                foreach (var argument in arguments) shell.AddArgument(argument);
+                    var psResults = shell.Invoke();
 
-                foreach(var result in results)
+                foreach(var result in psResults)
                 {
-                    LOGGER.Write(result.ToString());
+                    results.Add(result.ToString());
                 }
             }
             catch (Exception ex)
             {
                 LOGGER.Write(ex.ToString());
             }
+            return results;
         }
     }
 }
