@@ -105,8 +105,9 @@ namespace ResolveArgument
         {
             get
             {
-                return (Dictionary<int, Token>)(this.tokens.Where(item => item.Value.IsCommandParameter)
-                    ?? new Dictionary<int, Token>());
+                return this.tokens?.Where(item => item.Value.IsCommandParameter)
+                            .ToDictionary(item => item.Key, item => item.Value)
+                            ?? new Dictionary<int, Token>();
             }
         }
 
