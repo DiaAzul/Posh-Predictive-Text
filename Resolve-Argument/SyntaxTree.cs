@@ -29,14 +29,14 @@ namespace ResolveArgument
     /// 
     /// Used to enumerate query results on the XML syntax tree.
     /// </summary>
-    internal struct SyntaxItem
+    internal record SyntaxItem
     {
-        internal string command;
-        internal string commandPath;
-        internal string type;
+        internal string command = default!;
+        internal string commandPath = default!;
+        internal string type = default!;
         internal string? argument;
         internal string? alias;
-        internal bool? multipleUse;
+        internal bool multipleUse = default!;
         internal string? parameter;
         internal bool? multipleParameters;
         internal string? toolTip;
@@ -76,9 +76,9 @@ namespace ResolveArgument
         /// <param name="syntaxTreeName">Name of syntax tree to load.</param>
         internal static List<SyntaxItem> Load(string syntaxTreeName)
         {
-            // Load XML File from assembly into XDocument.
-            XDocument? xSyntaxTree = null;
+            XDocument? syntaxTreeInputFile = null;
 
+            // Load XML File from assembly into XDocument.
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
@@ -89,7 +89,7 @@ namespace ResolveArgument
                 {
                     using StreamReader reader = new(resourceStream);
                     var xmlDoc = reader.ReadToEnd();
-                    xSyntaxTree = XDocument.Parse(xmlDoc);
+                    syntaxTreeInputFile = XDocument.Parse(xmlDoc);
                 }
             }
             catch (FileNotFoundException ex)
@@ -107,43 +107,35 @@ namespace ResolveArgument
 
             // Parse the XML document into a List.
             List<SyntaxItem> syntaxTree = new();
-            IEnumerable<SyntaxItem>? syntaxTreeQuery = null;
-            XElement? root = xSyntaxTree?.Root;
+            XElement? root = syntaxTreeInputFile?.Root;
 
-            if (root is not null)
+            try
             {
-                try
+                if (root is not null)
                 {
-                    syntaxTreeQuery = from item in root.Elements("item")
-                                      select new SyntaxItem
-                                      {
-                                          command = AsString(item.Element("CMD")),
-                                          commandPath = AsString(item.Element("PATH")),
-                                          type = AsString(item.Element("TYP")),
-                                          argument = AsNullableString(item.Element("ARG")),
-                                          alias = AsNullableString(item.Element("AL")),
-                                          multipleUse = AsNullableBool(item.Element("MU")),
-                                          parameter = AsNullableString(item.Element("PRM")),
-                                          multipleParameters = AsNullableBool(item.Element("MP")),
-                                          toolTip = AsNullableString(item.Element("TT"))
-                                      };
-                }
-                catch (Exception e)
-                {
-                    LOGGER.Write(e.ToString());
+                    var syntaxTreeQuery = from item in root.Elements("item")
+                                          select new SyntaxItem
+                                          {
+                                              command = AsString(item.Element("CMD")),
+                                              commandPath = AsString(item.Element("PATH")),
+                                              type = AsString(item.Element("TYP")),
+                                              argument = AsNullableString(item.Element("ARG")),
+                                              alias = AsNullableString(item.Element("AL")),
+                                              multipleUse = AsBool(item.Element("MU")),
+                                              parameter = AsNullableString(item.Element("PRM")),
+                                              multipleParameters = AsNullableBool(item.Element("MP")),
+                                              toolTip = AsNullableString(item.Element("TT"))
+                                          };
+                    if (syntaxTreeQuery is not null)
+                    {
+
+                        syntaxTree = syntaxTreeQuery.ToList();
+                    }
                 }
             }
-
-            if (syntaxTreeQuery is not null)
+            catch (Exception ex)
             {
-                try
-                {
-                    syntaxTree = syntaxTreeQuery.ToList();
-                }
-                catch (Exception e)
-                {
-                    LOGGER.Write(e.ToString());
-                }
+                throw new SyntaxTreeException($"Unable to oarse {syntaxTreeName}.", ex);
             }
 
             return syntaxTree;
@@ -170,6 +162,22 @@ namespace ResolveArgument
         internal static string? AsNullableString(XElement? element)
         {
             return element?.Value.ToString();
+        }
+
+        /// <summary>
+        /// Convert nullable <c>XElement</c> node in an XML tree to a <c>bool</c>.
+        /// 
+        /// <para>The method returns true if the content of the node matches the test pattern. The
+        /// default matching pattern is <c>TRUE</c>.</para>
+        /// 
+        /// <para>If the node is null then the method return the <c>false </c> value.</para>
+        /// </summary>
+        /// <param name="element">Node in XML tree.</param>
+        /// <param name="trueValue">Test pattern for true value. Default <c>TRUE</c>.</param>
+        /// <returns>True when the contents of the node match the test pattern. <c>false</c> if the node is null.</returns>
+        internal static bool AsBool(XElement? element, string trueValue = "TRUE")
+        {
+            return element is not null && (element?.Value.ToString() ?? "") == trueValue;
         }
 
         /// <summary>
