@@ -133,7 +133,7 @@ namespace Resolve_Argument
                     bool commandComplete = commandTokens.All.Count > tokensInCommand + 1;
 # if DEBUG
                     LOGGER.Write($"The command is: {commandPath}."
-                        +" There are {tokensInCommand} tokens in the command.");
+                        + $" There are {tokensInCommand} tokens in the command.");
                     if (commandComplete) LOGGER.Write("The command is complete.");
 # endif
                     // Get relevant commands, parameters and options that can complete
