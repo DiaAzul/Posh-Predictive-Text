@@ -1,6 +1,6 @@
-﻿// TODO [SYNTAXTREES] Implement configuration file to centralise constant for commands (e.g. resource locations).
-// TODO [SYNTAXTREES] Support aliasing commands and resource files.
-// TODO [SYNTAXTREES] Remove hard coded references to conda resources.
+﻿// TODO [ ][SYNTAXTREES] Implement configuration file to centralise constant for commands (e.g. resource locations).
+// TODO [ ][SYNTAXTREES] Support aliasing commands and resource files.
+// TODO [ ][SYNTAXTREES] Remove hard coded references to conda resources.
 
 namespace Resolve_Argument
 {
@@ -142,7 +142,7 @@ namespace Resolve_Argument
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                // TODO: [ ][SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
+                // TODO [ ][SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
                 var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTreeSpecs.CondaSyntaxTree.xml");
 
                 if (resourceStream is null) throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.");
@@ -281,11 +281,11 @@ namespace Resolve_Argument
         /// <returns>Tooltip display text.</returns>
         internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
         {
-            // TODO [SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
+            // TODO [ ][SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
             string? toolTip = null;
             if (toolTipRef is not null)
             {
-                // [ ] TODO [SYNTAXTREES] Try..Catch around tooltip resource manager.
+                // TODO [ ][SYNTAXTREES] Try..Catch around tooltip resource manager.
                 toolTip = Resolve_Argument.SyntaxTreeSpecs.CondaToolTips.ResourceManager.GetString(toolTipRef);
             }
             toolTip ??= "";

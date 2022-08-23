@@ -217,7 +217,7 @@ namespace ResolveArgument
                     break;
 
                 default:
-                    // TODO: [USERINTERFACE] All cases where we don't have a parameter set.
+                    // TODO [ ][USERINTERFACE] All cases where we don't have a parameter set.
                     result.Append("Default we should print help text.");
                     WriteObject(result.ToString());
                     break;
