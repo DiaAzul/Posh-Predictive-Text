@@ -73,22 +73,21 @@ namespace Resolve_Argument
                 var baseCommand = (Token)commandTokens.BaseCommand;
                 string syntaxTreeName = baseCommand.text;
 
-                // If the syntax tree does not exist then try and load it.
+                // Test syntax tree exists, if not try and load it, if can't load then skip suggestions.
                 if (!SyntaxTrees.Exists(syntaxTreeName)) SyntaxTrees.Load(syntaxTreeName);
-                // If successfully loaded then continue to process suggestions.
                 if (SyntaxTrees.Exists(syntaxTreeName))
                 {
-                    
 #if DEBUG
                     LOGGER.Write("The syntaxTree exists."
                         + $"There are {SyntaxTrees.Count(syntaxTreeName)} entries in the tree.");
 #endif
-
                     // Extract unique commands from the syntax tree and then
                     // evaluate what command and sub-commands have been entred
                     // so far.
                     var uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
 
+                    // Scan the command line and build the command path identifying
+                    // where we should be in the syntax tree.
                     StringBuilder commandPath = new(capacity: 64);
                     int tokensInCommand = 0;
                     foreach (var (position, commandToken) in commandTokens.All)
@@ -147,6 +146,8 @@ namespace Resolve_Argument
                                 && syntaxItem.argument is not null
                                 && syntaxItem.argument.StartsWith(wordToComplete))
                         .ToList();
+
+
 #if DEBUG
                     // Following lists all potential options from the syntax tree
                     // for the final token.
@@ -186,7 +187,6 @@ namespace Resolve_Argument
                             break;
                         }
                     }
-
 #if DEBUG
                     if (lastCommandParameterIndex is not null)
                     {
