@@ -132,8 +132,8 @@ namespace ResolveArgument
                     }
 
                     // [ ][CONDAHELPER] Remove test code in cmdlet.
-                    var list = Resolve_Argument.Helpers.CondaHelpers.GetEnvironments2();
-                    var outString = string.Join(',', list);
+                    var list = Resolve_Argument.Helpers.CondaHelpers.GetEnvironments();
+                    var outString = string.Join(", ", list);
                     LOGGER.Write($"Conda environments: {outString}");
 
                     // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.

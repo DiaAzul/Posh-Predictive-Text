@@ -2,53 +2,37 @@
 
 namespace Resolve_Argument.Helpers
 {
-    using ResolveArgument;
     using System;
 
     /// <summary>
-    /// Helper classes to provide additional completion suggestion for conda commands.
+    /// Conda helpers to provide parameter values completions.
     /// </summary>
     internal static class CondaHelpers
     {
+        // Constants defined within conda application.
+        const string CONDA_ROOT = "_CONDA_ROOT";
+        const string ROOT_ENV_NAME = "base";
+
         /// <summary>
-        /// Get a list of conda environments available on this computer.
+        /// Get a list of conda environments.
         /// </summary>
         /// <returns>List of conda environments.</returns>
         internal static List<string> GetEnvironments()
         {
-            List<string> environments = new();
-            var psOutput = CommandShell.QueryPowerShell("conda", new List<string>() { "env", "list" });
-            foreach (var line in psOutput)
+            List<string> condaEnvironments = new()
             {
-                if (line.Length >  0 && line[0] != '#')
-                {
-                    var env = line.Split(' ');
-                    if (env.Length >1)
-                    {
-                        environments.Add(env[0]);
-                    }
-                }
-            }
-            return environments;
-        }
+                ROOT_ENV_NAME
+            };
 
-        internal static List<string> GetEnvironments2()
-        {
             // Get the path to the conda root.
-            string? conda_root = Environment.GetEnvironmentVariable("_CONDA_ROOT", EnvironmentVariableTarget.Process);
-
-            List<string> envs = new();
+            string? conda_root = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
             if (conda_root is not null)
             {
-                // Get child directories
-                // TODO: [ ][CONDAHELPER] Exract environment names from the directory.
-                string[] dirs = Directory.GetDirectories(conda_root + @"\envs\", "*", SearchOption.TopDirectoryOnly);
-                envs = dirs.Select(x => x.Trim()).ToList();
+                condaEnvironments.AddRange(
+                    Directory.GetDirectories(conda_root + @"\envs\")
+                    .Select(d => new DirectoryInfo(d).Name));
             }
-         
-            return envs;
+            return condaEnvironments;
         }
-
-        
     }
 }
