@@ -94,24 +94,15 @@ namespace ResolveArgument
             }
             catch (FileNotFoundException ex)
             {
-#if DEBUG
-                LOGGER.Write($"File not found for {syntaxTreeName}.", LOGGER.LOGLEVEL.ERROR);
-#endif
                 throw new SyntaxTreeException($"File not found for {syntaxTreeName}.", ex);
             }
             catch (BadImageFormatException ex)
             {
-#if DEBUG
-                LOGGER.Write($"File wrong format for {syntaxTreeName}.", LOGGER.LOGLEVEL.ERROR);
-#endif
                 throw new SyntaxTreeException($"File wrong format for {syntaxTreeName}.", ex);
             }
             catch (FileLoadException ex)
             {
-#if DEBUG
-                LOGGER.Write($"File was found, could not load {syntaxTreeName}.", LOGGER.LOGLEVEL.ERROR);
                 throw new SyntaxTreeException($"File was found, could not load {syntaxTreeName}.", ex);
-#endif
             }
 
             // Parse the XML document into a List.
