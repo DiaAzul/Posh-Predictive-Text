@@ -139,8 +139,8 @@ namespace Resolve_Argument
                     // TODO [ ][SYNTAXTREES] Do we want to work in static class with name, or pull ref into resolver?
                     List<SyntaxItem> syntaxTree = syntaxTrees[syntaxTreeName];
 #if DEBUG
-                    LOGGER.Write($"The syntaxTree exists."
-                        + "There are {syntaxTree.Count} entries in the tree.");
+                    LOGGER.Write("The syntaxTree exists."
+                        + $"There are {syntaxTree.Count} entries in the tree.");
 #endif
 
                     // [ ] TODO [SYNTAXTREE] Move search for unique commands to method in syntax tree class.
