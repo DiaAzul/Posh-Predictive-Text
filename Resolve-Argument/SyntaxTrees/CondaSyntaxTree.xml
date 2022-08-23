@@ -176,7 +176,7 @@
     <item>
         <CMD>activate</CMD>
         <PATH>conda.activate</PATH>
-        <ARG>--no-stck</ARG>
+        <ARG>--no-stack</ARG>
         <MU>F</MU>
         <TYP>OPT</TYP>
         <TT>TT0035</TT>
