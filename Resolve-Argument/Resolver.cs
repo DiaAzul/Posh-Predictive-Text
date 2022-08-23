@@ -41,61 +41,6 @@ namespace Resolve_Argument
     internal class Resolver
     {
         /// <summary>
-        /// Each command has a syntax tree which sets out the possible combination of tokens
-        /// on the command line. The trees are strored as XML resource files embeded within
-        /// the application. These are loaded, parsed and converted to a list of Syntax items
-        /// when a command requires tab-completions.
-        /// </summary>
-        private static readonly Dictionary<string, List<SyntaxItem>> syntaxTrees = new();
-
-
-        /// <summary>
-        /// Loads the syntax tree for a named command into the dictionary of syntax trees.
-        /// 
-        /// The method reads the XML file embeded within the application, parses it
-        /// </summary>
-        /// <param name="syntaxTreeName">Name of syntax tree to load.</param>
-        internal static void LoadSyntaxTree(string syntaxTreeName)
-        {
-            // Load syntax tree
-            var syntaxTree = SyntaxTree.Load(syntaxTreeName);
-
-            // If the syntax tree loaded than add to the dictionary.
-            if (syntaxTree.Any())
-            {
-                syntaxTrees[syntaxTreeName] = syntaxTree;
-            }
-            else
-            {
-                syntaxTrees.Remove(syntaxTreeName);
-            }
-        }
-
-        /// <summary>
-        /// Test that a syntax tree is loaded.
-        /// </summary>
-        /// <param name="syntaxTreeName">Name of syntax tree to test.</param>
-        /// <returns>True if syntax tree is loaded.</returns>  
-        internal static bool SyntaxTreeExists(string syntaxTreeName)
-        {
-            return syntaxTrees.ContainsKey(syntaxTreeName);
-        }
-
-        /// <summary>
-        /// Gets the syntax tree name from the base command token.
-        /// 
-        /// This method should text that the command is valid and resolve
-        /// any aliases to the correct tree.
-        /// </summary>
-        /// <param name="baseCommandToken"></param>
-        /// <returns>Syntax tree name.</returns>
-        internal static string SyntaxTreeName(Token baseCommandToken)
-        {
-            // TODO: [SYNTAXTREES] Manage aliases for the syntax tree (e.g. mamba -> conda).
-            return baseCommandToken.text;
-        }
-
-        /// <summary>
         /// Processes the command line tokens and suggests completions for the wordToComplete.
         /// </summary>
         /// <param name="wordToComplete">Word for which suggested comlpetions required.</param>
@@ -131,26 +76,20 @@ namespace Resolve_Argument
                 string syntaxTreeName = baseCommand.text;
 
                 // If the syntax tree does not exist then try and load it.
-                if (!SyntaxTreeExists(syntaxTreeName)) LoadSyntaxTree(syntaxTreeName);
-
+                if (!SyntaxTrees.Exists(syntaxTreeName)) SyntaxTrees.Load(syntaxTreeName);
                 // If successfully loaded then continue to process suggestions.
-                if (SyntaxTreeExists(syntaxTreeName))
+                if (SyntaxTrees.Exists(syntaxTreeName))
                 {
-                    // TODO [ ][SYNTAXTREES] Do we want to work in static class with name, or pull ref into resolver?
-                    List<SyntaxItem> syntaxTree = syntaxTrees[syntaxTreeName];
+                    
 #if DEBUG
                     LOGGER.Write("The syntaxTree exists."
-                        + $"There are {syntaxTree.Count} entries in the tree.");
+                        + $"There are {SyntaxTrees.Count(syntaxTreeName)} entries in the tree.");
 #endif
 
-                    // [ ] TODO [SYNTAXTREE] Move search for unique commands to method in syntax tree class.
                     // Extract unique commands from the syntax tree and then
                     // evaluate what command and sub-commands have been entred
                     // so far.
-                    var uniqueCommands = syntaxTree
-                        .Select(item => item.command)
-                        .Distinct()
-                        .ToList();
+                    var uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
 
                     StringBuilder commandPath = new(capacity: 64);
                     int tokensInCommand = 0;
@@ -173,7 +112,7 @@ namespace Resolve_Argument
 
                     // Filter the syntaxTree against the entered command to
                     // reduce the size of the tree for later processing.
-                    List<SyntaxItem> filteredSyntaxTree = syntaxTree
+                    List<SyntaxItem> filteredSyntaxTree = SyntaxTrees.Get(syntaxTreeName)
                         .Where(syntaxItem =>
                                     syntaxItem.commandPath == commandPath.ToString())
                         .ToList();
@@ -266,7 +205,7 @@ namespace Resolve_Argument
                             syntaxItem.argument??"",
                             syntaxItem.argument??"",
                             syntaxItem.ResultType,
-                            SyntaxTree.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
+                            SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
                         );
 
                         suggestions.Add(suggestion);

@@ -178,6 +178,7 @@ namespace ResolveArgument
                         // A syntax tree exception is raised when the syntax tree resources cannot be loaded.
                         catch (Exception ex)
                         {
+                            LOGGER.Write(ex.ToString());
                             switch (ex)
                             {
                                 case SyntaxTreeException:

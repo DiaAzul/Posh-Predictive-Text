@@ -2,11 +2,13 @@
 // TODO [SYNTAXTREES] Support aliasing commands and resource files.
 // TODO [SYNTAXTREES] Remove hard coded references to conda resources.
 
-namespace ResolveArgument
+namespace Resolve_Argument
 {
     using System.Reflection;
     using System.Xml.Linq;
     using System.Management.Automation;
+    using ResolveArgument;
+    using System.Xml;
 
     /// <summary>
     /// An exception raised if the syntax tree cannot be loaded.
@@ -22,8 +24,6 @@ namespace ResolveArgument
             : base(message, inner) { }
     }
 
-
-    // [X] TODO Move syntaxItem to LoadSyntaxTree.cs
     /// <summary>
     /// Record within the command syntax tree.
     /// 
@@ -66,15 +66,75 @@ namespace ResolveArgument
     }
 
     // [ ] [SYNTAXTREE] Add documentation to SyntaxTreeClass.
-    internal class SyntaxTree
+    internal static class SyntaxTrees
     {
+        /// <summary>
+        /// Each command has a syntax tree which sets out the possible combination of tokens
+        /// on the command line. The trees are strored as XML resource files embeded within
+        /// the application. These are loaded, parsed and converted to a list of Syntax items
+        /// when a command requires tab-completions.
+        /// </summary>
+        private static readonly Dictionary<string, List<SyntaxItem>> syntaxTrees = new();
+
+        /// <summary>
+        /// Test that a syntax tree is loaded.
+        /// </summary>
+        /// <param name="syntaxTreeName">Name of syntax tree to test.</param>
+        /// <returns>True if syntax tree is loaded.</returns>  
+        internal static bool Exists(string syntaxTreeName)
+        {
+            LOGGER.Write("Testing whether tree exists.");
+            LOGGER.Write(syntaxTrees.ContainsKey(syntaxTreeName).ToString());
+            return syntaxTrees.ContainsKey(syntaxTreeName);
+        }
+
+        internal static int Count(string syntaxTreeName)
+        {
+            return syntaxTrees[syntaxTreeName].Count;
+        }
+
+        internal static List<SyntaxItem> Get(string syntaxTreeName)
+        {
+            List<SyntaxItem> result = new();
+            try
+            {
+                result = syntaxTrees[syntaxTreeName];
+
+            }
+            catch (KeyNotFoundException)
+            {
+                LOGGER.Write($"Syntax Tree {syntaxTreeName} not found when getting list of tokens.");
+            }
+
+            return result;
+        }
+
+        internal static List<string> UniqueCommands(string syntaxTreeName)
+        {
+            List<string> uniqueCommands = new();
+
+            if (Exists(syntaxTreeName))
+            {
+                uniqueCommands = syntaxTrees[syntaxTreeName]
+                    .Select(item => item.command)
+                    .Distinct()
+                    .ToList();
+            }
+            else
+            {
+                LOGGER.Write($"Syntax Tree {syntaxTreeName} not found when getting unique commands.");
+            }
+
+            return uniqueCommands;
+        }
+
         /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
         /// 
         /// The method reads the XML file embeded within the application, parses it
         /// </summary>
         /// <param name="syntaxTreeName">Name of syntax tree to load.</param>
-        internal static List<SyntaxItem> Load(string syntaxTreeName)
+        internal static void Load(string syntaxTreeName)
         {
             XDocument? syntaxTreeInputFile = null;
 
@@ -82,15 +142,15 @@ namespace ResolveArgument
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                // TODO: [SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
-                var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTrees.CondaSyntaxTree.xml");
+                // TODO: [ ][SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
+                var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTreeSpecs.CondaSyntaxTree.xml");
 
-                if (resourceStream is not null)
-                {
-                    using StreamReader reader = new(resourceStream);
-                    var xmlDoc = reader.ReadToEnd();
-                    syntaxTreeInputFile = XDocument.Parse(xmlDoc);
-                }
+                if (resourceStream is null) throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.");
+
+                using StreamReader reader = new(resourceStream);
+                var xmlDoc = reader.ReadToEnd();
+                syntaxTreeInputFile = XDocument.Parse(xmlDoc);
+
             }
             catch (FileNotFoundException ex)
             {
@@ -98,11 +158,15 @@ namespace ResolveArgument
             }
             catch (BadImageFormatException ex)
             {
-                throw new SyntaxTreeException($"File wrong format for {syntaxTreeName}.", ex);
+                throw new SyntaxTreeException($"Not a valid assembly for {syntaxTreeName}.", ex);
             }
             catch (FileLoadException ex)
             {
                 throw new SyntaxTreeException($"File was found, could not load {syntaxTreeName}.", ex);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.", ex);
             }
 
             // Parse the XML document into a List.
@@ -135,10 +199,23 @@ namespace ResolveArgument
             }
             catch (Exception ex)
             {
-                throw new SyntaxTreeException($"Unable to oarse {syntaxTreeName}.", ex);
+                throw new SyntaxTreeException($"Unable to parse {syntaxTreeName}.", ex);
             }
-
-            return syntaxTree;
+            // If the syntax tree loaded successfully, add to the dictionary.
+            if (syntaxTree.Any())
+            {
+                syntaxTrees[syntaxTreeName] = syntaxTree;
+#if DEBUG
+                LOGGER.Write($"Syntax tree {syntaxTreeName} saved.");
+#endif
+            }
+            else
+            {
+                syntaxTrees.Remove(syntaxTreeName);
+#if DEBUG
+                LOGGER.Write($"Syntax tree {syntaxTreeName} not saved.");
+#endif
+            }
         }
 
         /// <summary>
@@ -209,7 +286,7 @@ namespace ResolveArgument
             if (toolTipRef is not null)
             {
                 // [ ] TODO [SYNTAXTREES] Try..Catch around tooltip resource manager.
-                toolTip = Resolve_Argument.SyntaxTrees.CondaToolTips.ResourceManager.GetString(toolTipRef);
+                toolTip = Resolve_Argument.SyntaxTreeSpecs.CondaToolTips.ResourceManager.GetString(toolTipRef);
             }
             toolTip ??= "";
             return toolTip;

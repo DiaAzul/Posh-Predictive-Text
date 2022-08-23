@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Resolve_Argument.SyntaxTrees {
+namespace Resolve_Argument.SyntaxTreeSpecs {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Resolve_Argument.SyntaxTrees {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resolve_Argument.SyntaxTrees.CondaToolTips", typeof(CondaToolTips).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resolve_Argument.SyntaxTreeSpecs.CondaToolTips", typeof(CondaToolTips).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

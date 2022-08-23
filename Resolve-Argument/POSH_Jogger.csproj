@@ -18,11 +18,11 @@
 
   <ItemGroup>
     <None Remove="CondaCompletes.xml" />
-    <None Remove="SyntaxTrees\CondaSyntaxTree.xml" />
+    <None Remove="SyntaxTreeSpecs\CondaSyntaxTree.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="SyntaxTrees\CondaSyntaxTree.xml" />
+    <EmbeddedResource Include="SyntaxTreeSpecs\CondaSyntaxTree.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="SyntaxTrees\CondaToolTips.Designer.cs">
+    <Compile Update="SyntaxTreeSpecs\CondaToolTips.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CondaToolTips.resx</DependentUpon>
@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="SyntaxTrees\CondaToolTips.resx">
+    <EmbeddedResource Update="SyntaxTreeSpecs\CondaToolTips.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CondaToolTips.Designer.cs</LastGenOutput>
     </EmbeddedResource>
