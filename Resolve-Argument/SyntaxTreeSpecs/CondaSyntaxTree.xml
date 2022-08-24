@@ -412,7 +412,7 @@
         <PATH>conda.config</PATH>
         <ARG>--file</ARG>
         <MU>F</MU>
-        <PRM> FILE</PRM>
+        <PRM>FILE</PRM>
         <MP>F</MP>
         <TYP>PRM</TYP>
         <TT>TT0135</TT>
