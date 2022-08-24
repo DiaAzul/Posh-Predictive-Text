@@ -175,10 +175,14 @@ namespace ResolveArgument
                                 cursorPosition: CursorPosition ?? CommandAst.ToString().Length
                             );
                         }
-                        // A syntax tree exception is raised when the syntax tree resources cannot be loaded.
+                        // Process any errors raised. Raise an error if DEBUG build,
+                        // for RELEASE builds swallow excpetions (better to do nothing than
+                        // interrupt entry at the prompt when the user can do nothing to fix
+                        // the problem).
                         catch (Exception ex)
                         {
-                            LOGGER.Write(ex.ToString());
+                            LOGGER.Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
+#if DEBUG
                             switch (ex)
                             {
                                 case SyntaxTreeException:
@@ -196,6 +200,7 @@ namespace ResolveArgument
                                         commandTokens));
                                     break;
                             }
+#endif
                         }
 
                         // Repackage results for Tab-Completions.
