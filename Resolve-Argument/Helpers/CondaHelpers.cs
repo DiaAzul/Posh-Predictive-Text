@@ -111,7 +111,6 @@ namespace ResolveArgument
         [ParameterValue("REVISION")]
         [ParameterValue("SHELLS")]
         [ParameterValue("SHOW")]
-        [ParameterValue("SOLVER")]
         [ParameterValue("SUBDIR")]
         [ParameterValue("TEMPFILES")]
         internal static List<string> NullReturn()
@@ -132,6 +131,7 @@ namespace ResolveArgument
             };
 
             // Get the path to the conda root.
+            // TODO [ ][CONDAHELPER] Find how conda locates environments created with --prefix.
             string? conda_root = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
             if (conda_root is not null)
             {
@@ -140,6 +140,17 @@ namespace ResolveArgument
                     .Select(d => new DirectoryInfo(d).Name));
             }
             return condaEnvironments;
+        }
+
+        /// <summary>
+        /// Return a list of experimental solvers.
+        /// </summary>
+        /// <returns>List of suggested solvers.</returns>
+        [ParameterValue("SOLVER")]
+        internal static List<string> ExperimentalSolvers()
+        {
+            List<string> solvers = new() { "classic", "libmamba", "libmamba-draft" };
+            return solvers;
         }
     }
 }

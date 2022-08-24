@@ -142,7 +142,7 @@ namespace ResolveArgument
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                // TODO [ ][SYNTAXTREES] This needs to vary according to the syntax tree to be loaded.
+                // TODO [ ][SYNTAXTREES] Change syntax tree xml source according to the syntax tree name.
                 var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTreeSpecs.CondaSyntaxTree.xml");
 
                 if (resourceStream is null) throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.");
