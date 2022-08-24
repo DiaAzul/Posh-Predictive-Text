@@ -71,6 +71,43 @@ namespace ResolveArgument
         }
 
         /// <summary>
+        /// Return an empty list of suggestions for ParameterValues
+        /// that are not implemented.
+        /// </summary>
+        /// <returns>Empty list of suggestions.</returns>
+        [ParameterValue("CHANNEL")]
+        [ParameterValue("CWD")]
+        [ParameterValue("DESCRIBE")]
+        [ParameterValue("ENV")]
+        [ParameterValue("ENV_KEY")]
+        [ParameterValue("ENV_KEY_VALUE")]
+        [ParameterValue("EXECUTABLE_CALL")]
+        [ParameterValue("FILE")]
+        [ParameterValue("KEY")]
+        [ParameterValue("KEY_TO_REMOVE")]
+        [ParameterValue("KEY_VALUE")]
+        [ParameterValue("LIST_KEY_VALUE")]
+        [ParameterValue("PACKAGE_NAME")]
+        [ParameterValue("PACKAGE_SPEC")]
+        [ParameterValue("PATH")]
+        [ParameterValue("PKG_BUILD")]
+        [ParameterValue("PKG_NAME")]
+        [ParameterValue("PKG_VERSION")]
+        [ParameterValue("REGEX")]
+        [ParameterValue("REMOTE_DEFINITION")]
+        [ParameterValue("REPODATA_FNS")]
+        [ParameterValue("REVISION")]
+        [ParameterValue("SHELLS")]
+        [ParameterValue("SHOW")]
+        [ParameterValue("SOLVER")]
+        [ParameterValue("SUBDIR")]
+        [ParameterValue("TEMPFILES")]
+        internal static List<string> NullReturn()
+        {
+            return new List<string>();
+        }
+
+        /// <summary>
         /// Get a list of conda environments.
         /// </summary>
         /// <returns>List of conda environments.</returns>
