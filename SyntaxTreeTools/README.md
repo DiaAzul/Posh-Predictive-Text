@@ -48,3 +48,14 @@ KNIME is an open-source low-code data science platform and can be downloaded fro
 - Creates a table of tooltip texts for the tooltip resource file and replaces the tooltip text with references in the XML file.
 - Writes the XML syntax tree to a file.
 - Creates a table of ParameterValue attributes to precede methods in the helper.cs file. Note: The code uses the ParameterValue attribute and reflection to identify the correct method to generate parameter value suggestions.
+
+As an example, the following code shows the location of ParameterValueAttribute before the method which generates the parameter value suggestions.:
+
+```c#
+[ParameterValue("SOLVER")]
+internal static List<string> ExperimentalSolvers()
+{
+    List<string> solvers = new() { "classic", "libmamba", "libmamba-draft" };
+    return solvers;
+}
+```
