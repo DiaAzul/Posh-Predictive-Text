@@ -34,7 +34,7 @@ namespace ResolveArgument
         internal string command = default!;
         internal string commandPath = default!;
         internal string type = default!;
-        internal string? argument;
+        internal string argument = default!;
         internal string? alias;
         internal bool multipleUse = default!;
         internal string? parameter;
