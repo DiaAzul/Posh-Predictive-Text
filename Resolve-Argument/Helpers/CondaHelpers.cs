@@ -3,6 +3,7 @@
 namespace ResolveArgument
 {
     using System;
+    using System.Net.NetworkInformation;
     using System.Reflection;
 
 
@@ -44,27 +45,38 @@ namespace ResolveArgument
         /// empty suggestions list is returned.</remarks>
         internal static List<string> GetParamaterValues(string parameterName)
         {
-            // TODO [ ][CONDAHELPER] Review get parameter value code to improve robustness and generality.
-            // This code needs scrubbing to reduce the risk of errors. 
-            // Need to guarantee that we have selected the one and only method - what happens if we define
-            // more than one method with the same attribute? What happens if we want to apply more than
-            // one attribute to the same method? How can we make this more general and apply across all
-            // helpers so that we do not need to re-implement this code per helper.
             List<string> results = new();
 
             var methods = typeof(CondaHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
                 .Where(method =>
                 method.GetCustomAttributes(typeof(ParameterValueAttribute), false).FirstOrDefault() != null
-                && method.GetCustomAttributes<ParameterValueAttribute>()?.First()?.name == parameterName);
+                && method.GetCustomAttributes<ParameterValueAttribute>()
+                .ToList()
+                .Contains(new ParameterValueAttribute(parameterName)));
 
-            if (methods.Count() > 0)
+            switch (methods.Count())
             {
-                var method = methods.First();
-                var methodResult = method.Invoke(null, null);
-                if (methodResult != null)
-                {
-                    results = (List<string>)methodResult;
-                }
+                case 1:
+                    {
+                        try
+                        {
+                            var methodResult = methods.First().Invoke(null, null);
+                            if (methodResult != null)
+                            {
+                                results = (List<string>)methodResult;
+                            }
+                        }
+                        catch (Exception ex) 
+                        {
+                            throw new SyntaxTreeException($"Exception when invoking {parameterName} helper.", ex);
+                        }
+                        break;
+                    }
+                case > 1:
+                    {
+                        throw new SyntaxTreeException($"Multiple methods defined for {parameterName}.");
+                    }
+                default: { break; }
             }
 
             return results;
