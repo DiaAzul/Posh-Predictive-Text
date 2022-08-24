@@ -132,6 +132,8 @@ namespace ResolveArgument
 
             // Get the path to the conda root.
             // TODO [ ][CONDAHELPER] Find how conda locates environments created with --prefix.
+            // There is a list of environments in ~\.conda\environments.txt
+            // First row is base, subsequent lines we need to pull the final folder name (may not be envs).
             string? conda_root = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
             if (conda_root is not null)
             {
