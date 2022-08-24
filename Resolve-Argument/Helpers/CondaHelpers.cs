@@ -1,27 +1,29 @@
 ﻿
 
-namespace Resolve_Argument.Helpers
+namespace ResolveArgument
 {
     using System;
+    using System.Reflection;
+
 
     /// <summary>
     /// Attribute declaring the Parameter value that the method provides
     /// suggestions for.
     /// </summary>
     [System.AttributeUsage(System.AttributeTargets.Method, AllowMultiple = true)]
-    public class ParameterValueAttribute : System.Attribute
-        {
-            private string name;
+    public class ParameterValueAttribute : Attribute
+    {
+        internal string name { get; private set; }
 
-            /// <summary>
-            /// Save the name of the parameter.
-            /// </summary>
-            /// <param name="name">Name of the Parameter Value</param>
-            public ParameterValueAttribute(string name)
-            {
-                this.name = name;
-            }
+        /// <summary>
+        /// Save the name of the parameter.
+        /// </summary>
+        /// <param name="name">Name of the Parameter Value</param>
+        public ParameterValueAttribute(string name)
+        {
+            this.name = name;
         }
+    }
 
     /// <summary>
     /// Conda helpers to provide parameter values completions.
@@ -32,47 +34,39 @@ namespace Resolve_Argument.Helpers
         const string CONDA_ROOT = "_CONDA_ROOT";
         const string ROOT_ENV_NAME = "base";
 
-
+        /// <summary>
+        /// Returns suggested parameter values for a given named parameter.
+        /// </summary>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <returns>Suggested parameter values.</returns>
+        /// <remarks>This method uses internal reflection to look up the
+        /// appropriate method to be called. If the method is not found an
+        /// empty suggestions list is returned.</remarks>
         internal static List<string> GetParamaterValues(string parameterName)
         {
-            List<string> results;
+            // TODO [ ][CONDAHELPER] Review get parameter value code to improve robustness and generality.
+            // This code needs scrubbing to reduce the risk of errors. 
+            // Need to guarantee that we have selected the one and only method - what happens if we define
+            // more than one method with the same attribute? What happens if we want to apply more than
+            // one attribute to the same method? How can we make this more general and apply across all
+            // helpers so that we do not need to re-implement this code per helper.
+            List<string> results = new();
 
-            // *************** Following to study concerning reflextion and calling helpers *****
-            // Returns all currenlty loaded assemblies
-            // returns all types defined in this assemblies
-            // only yields classes
-            // returns all methods defined in those classes
-            // returns only methods that have the InvokeAttribute
-            // We need to filter down to Paramter Value with a particular name parameterName.
-            var methods = AppDomain.CurrentDomain.GetAssemblies() 
-                .SelectMany(x => x.GetTypes()) 
-                .Where(x => x.IsClass)
-                .SelectMany(x => x.GetMethods()) 
-                .Where(x => x.GetCustomAttributes(typeof(ParameterValueAttribute), false).FirstOrDefault() != null);
-            
+            var methods = typeof(CondaHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+                .Where(method =>
+                method.GetCustomAttributes(typeof(ParameterValueAttribute), false).FirstOrDefault() != null
+                && method.GetCustomAttributes<ParameterValueAttribute>()?.First()?.name == parameterName);
 
-            foreach (var method in methods) // iterate through all found methods
+            if (methods.Count() > 0)
             {
-                // Instantiate the class (note, all methods are static, so shouldn't need to instatiate a class.
-                var obj = Activator.CreateInstance(method.DeclaringType); 
-                method.Invoke(obj, null); // invoke the method
+                var method = methods.First();
+                var methodResult = method.Invoke(null, null);
+                if (methodResult != null)
+                {
+                    results = (List<string>)methodResult;
+                }
             }
 
-            // ************ End Study Section ****************************************************
-
-
-            switch (parameterName)
-            {
-                case "ENVIRONMENT":
-                    {
-                        results = GetEnvironments(); break;
-                    }
-                default:
-                    {
-                        results = new List<string>();
-                        break;
-                    }
-            }
             return results;
         }
 
