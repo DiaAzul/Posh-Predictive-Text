@@ -3,7 +3,7 @@
 // TODO [ ][RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
 // TODO [ ][RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
 
-namespace Resolve_Argument
+namespace ResolveArgument
 {
     using ResolveArgument;
     using System.Linq;

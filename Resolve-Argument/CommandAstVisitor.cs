@@ -2,7 +2,6 @@
 namespace ResolveArgument
 {
     using System.Management.Automation.Language;
-    using System.Text;
 
     /// <summary>
     /// Token representing each distinct item entered by the 

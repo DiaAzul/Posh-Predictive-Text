@@ -2,7 +2,7 @@
 // TODO [ ][SYNTAXTREES] Support aliasing commands and resource files.
 // TODO [ ][SYNTAXTREES] Remove hard coded references to conda resources.
 
-namespace Resolve_Argument
+namespace ResolveArgument
 {
     using System.Reflection;
     using System.Xml.Linq;
