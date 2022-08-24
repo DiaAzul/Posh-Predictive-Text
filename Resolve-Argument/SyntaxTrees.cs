@@ -7,8 +7,6 @@ namespace ResolveArgument
     using System.Reflection;
     using System.Xml.Linq;
     using System.Management.Automation;
-    using ResolveArgument;
-    using System.Xml;
 
     /// <summary>
     /// An exception raised if the syntax tree cannot be loaded.

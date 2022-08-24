@@ -3,7 +3,7 @@
 namespace ResolveArgument
 {
     using System;
-    using System.Net.NetworkInformation;
+    using System.Diagnostics;
     using System.Reflection;
 
 
@@ -34,6 +34,8 @@ namespace ResolveArgument
         // Constants defined within conda application.
         const string CONDA_ROOT = "_CONDA_ROOT";
         const string ROOT_ENV_NAME = "base";
+        const string CONDA_SETTINGS_FOLDER = ".conda";
+        const string CONDA_ENVIRONMENTS_FILE = "environments.txt";
 
         /// <summary>
         /// Returns suggested parameter values for a given named parameter.
@@ -129,17 +131,29 @@ namespace ResolveArgument
             {
                 ROOT_ENV_NAME
             };
+            string condaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process) ?? "";
 
-            // Get the path to the conda root.
-            // TODO [ ][CONDAHELPER] Find how conda locates environments created with --prefix.
-            // There is a list of environments in ~\.conda\environments.txt
-            // First row is base, subsequent lines we need to pull the final folder name (may not be envs).
-            string? conda_root = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
-            if (conda_root is not null)
+            // The environments are listed in ~\.conda\environments.txt
+            string home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string environmentsFile = Path.Combine(home, CONDA_SETTINGS_FOLDER, CONDA_ENVIRONMENTS_FILE);
+            List<string> environments = File.ReadAllLines(environmentsFile).ToList();
+
+            foreach(var environment in environments)
             {
-                condaEnvironments.AddRange(
-                    Directory.GetDirectories(conda_root + @"\envs\")
-                    .Select(d => new DirectoryInfo(d).Name));
+                // Skip base environment, it's already added when the list was created.
+                if (environment != condaRoot)
+                {
+                    // If we are in root add the environment name, otherwise we need the full --prefix path.
+                    if (environment.StartsWith(condaRoot))
+                    {
+                        condaEnvironments.Add(Path.GetFileName(environment));
+                    }
+                    else
+                    {
+                        condaEnvironments.Add(environment);
+                    }
+                }
+
             }
             return condaEnvironments;
         }
