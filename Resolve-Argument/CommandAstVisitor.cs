@@ -111,7 +111,10 @@ namespace ResolveArgument
             {
                 token = this.tokens[index];
             }
-            catch (ArgumentOutOfRangeException)
+            catch (Exception ex) when (
+            ex is ArgumentOutOfRangeException
+            || ex is IndexOutOfRangeException
+            || ex is KeyNotFoundException)
             {
                 token = null;
             }

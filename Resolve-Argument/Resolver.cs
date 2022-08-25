@@ -2,14 +2,11 @@
 // TODO [ ][RESOLVER] Support return of aliases.
 // TODO [ ][RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
 // TODO [ ][RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
-// BUG [ ][RESOLVER] Error thrown when base command (conda) and tab-complete empty next option.
 
 namespace ResolveArgument
 {
-    using ResolveArgument;
     using System.Linq;
     using System.Management.Automation;
-    using System.Text;
 
     /// <summary>
     /// Suggested response.
@@ -68,6 +65,8 @@ namespace ResolveArgument
             int cursorPosition)
         {
             List<Suggestion> suggestions = new();
+
+            LOGGER.Write("Entering resolver.");
 
             if (enteredTokens.BaseCommand is not null)
             {
