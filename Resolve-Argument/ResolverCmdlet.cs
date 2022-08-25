@@ -132,7 +132,7 @@ namespace ResolveArgument
                     }
 
                     // [ ][CONDAHELPER] Remove test code in cmdlet.
-                    var list = CondaHelpers.GetParamaterValues("ENVIRONMENT");
+                    var list = CondaHelpers.GetParamaterValues("ENVIRONMENT", "");
                     var outString = string.Join(", ", list);
                     LOGGER.Write($"Conda environments: {outString}");
 

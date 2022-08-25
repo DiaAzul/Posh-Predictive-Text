@@ -55,8 +55,8 @@ namespace ResolveArgument
         /// TODO [X] 2. Identify if we have exited command entry (a parameter has been entered) skip to 4.
         /// TODO [X] 3. Identify suggestions for sub-commands.
         /// TODO [X] 4. Identify suggestions for parameter values if command parameter is active. If mandatory value skip to 7.
-        /// TODO [ ] 5. Identify suggestions for positional parameters using a handler if appropriate
-        /// TODO [ ] 6. Identify suggestions for command parameters.
+        /// TODO [X] 5. Identify suggestions for positional parameters using a handler if appropriate
+        /// TODO [X] 6. Identify suggestions for command parameters.
         /// TODO [ ] 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
         /// </remarks>
         internal static List<Suggestion> Suggestions(
@@ -103,9 +103,8 @@ namespace ResolveArgument
                     int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
                     int expectedCommandTokens = tokensInPath + (subCommands.Count > 0 ? 1 : 0);
                     bool commandComplete = countOfEnteredTokens > expectedCommandTokens;
-
-                    // Are we entering data for a parameter (POSITIONAL, PARAMETER)?
-                    // Get last command token
+                    
+                    // Proess PARAMETER value tokens
                     bool listOnlyParameterValues = false;
                     Dictionary<int, Token> enteredCommandParameters = enteredTokens.CommandParameters;
                     if (enteredCommandParameters.Count > 0)
@@ -127,27 +126,20 @@ namespace ResolveArgument
 
                             if (enteredValues == 0 | multipleParameterValues)
                             {
-                                List<string> parameterValueOptions = CondaHelpers
-                                            .GetParamaterValues(syntaxItem?.parameter ?? "");
+                                List<Suggestion> parameterValueOptions = CondaHelpers
+                                                                            .GetParamaterValues(
+                                                                                syntaxItem?.parameter ?? "",
+                                                                                wordToComplete);
 
-                                foreach (var item in parameterValueOptions)
-                                {
-                                    Suggestion suggestion = new(
-                                        item,
-                                        item,
-                                        CompletionResultType.ParameterValue,
-                                        ""
-                                    );
-
-                                    suggestions.Add(suggestion);
-                                }
+                                suggestions.AddRange(parameterValueOptions);
                                 // Don't provide any other suggestions if we must enter a parameter value.
                                 listOnlyParameterValues = (enteredValues == 0);
                             }
                         }
                     }
                     LOGGER.Write($"List only parameters {listOnlyParameterValues}. command complete {commandComplete}");
-                    // Positional parameters
+                    
+                    // Process POSITIONAL parameter values.
                     if (!listOnlyParameterValues && commandComplete)
                     {
                         LOGGER.Write("Listing positional parameters.");
@@ -158,23 +150,12 @@ namespace ResolveArgument
                         {
                             SyntaxItem positionalSyntaxItem = positionalValue.First();
                             LOGGER.Write(positionalSyntaxItem.parameter ?? "");
-                            List<string> postionalValueOptions = CondaHelpers
-                                                 .GetParamaterValues(positionalSyntaxItem.parameter ?? "");
+                            List<Suggestion> positionalValueSuggestions = CondaHelpers
+                                                                             .GetParamaterValues(
+                                                                                positionalSyntaxItem.parameter ?? "",
+                                                                                wordToComplete);
 
-                            var filteredSuggestions = postionalValueOptions
-                                                                .Where(item => item.StartsWith(wordToComplete));
-
-                            foreach (var suggestedText in filteredSuggestions)
-                            {
-                                Suggestion suggestion = new(
-                                    suggestedText,
-                                    suggestedText,
-                                    CompletionResultType.ParameterValue,
-                                    suggestedText
-                                );
-
-                                suggestions.Add(suggestion);
-                            }
+                            suggestions.AddRange(positionalValueSuggestions);
                         }
                     }
 

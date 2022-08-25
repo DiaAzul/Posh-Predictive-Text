@@ -3,7 +3,8 @@
 namespace ResolveArgument
 {
     using System;
-    using System.Diagnostics;
+    using System.Collections.Generic;
+    using System.Management.Automation;
     using System.Reflection;
 
 
@@ -14,7 +15,7 @@ namespace ResolveArgument
     [System.AttributeUsage(System.AttributeTargets.Method, AllowMultiple = true)]
     public class ParameterValueAttribute : Attribute
     {
-        internal string name { get; private set; }
+        internal string Name { get; private set; }
 
         /// <summary>
         /// Save the name of the parameter.
@@ -22,7 +23,7 @@ namespace ResolveArgument
         /// <param name="name">Name of the Parameter Value</param>
         public ParameterValueAttribute(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
     }
 
@@ -41,13 +42,14 @@ namespace ResolveArgument
         /// Returns suggested parameter values for a given named parameter.
         /// </summary>
         /// <param name="parameterName">Name of the parameter.</param>
+        /// <param name="wordToComplete">Word to complete</param>
         /// <returns>Suggested parameter values.</returns>
         /// <remarks>This method uses internal reflection to look up the
         /// appropriate method to be called. If the method is not found an
         /// empty suggestions list is returned.</remarks>
-        internal static List<string> GetParamaterValues(string parameterName)
+        internal static List<Suggestion> GetParamaterValues(string parameterName, string wordToComplete)
         {
-            List<string> results = new();
+            List<Suggestion> results = new();
 
             var methods = typeof(CondaHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
                 .Where(method =>
@@ -62,10 +64,12 @@ namespace ResolveArgument
                     {
                         try
                         {
-                            var methodResult = methods.First().Invoke(null, null);
+                            object[] Parameters = new object[1];
+                            Parameters[0] = wordToComplete;
+                            var methodResult = methods.First().Invoke(null, Parameters);
                             if (methodResult != null)
                             {
-                                results = (List<string>)methodResult;
+                                results = (List<Suggestion>)methodResult;
                             }
                         }
                         catch (Exception ex) 
@@ -115,9 +119,9 @@ namespace ResolveArgument
         [ParameterValue("SHOW")]
         [ParameterValue("SUBDIR")]
         [ParameterValue("TEMPFILES")]
-        internal static List<string> NullReturn()
+        internal static List<Suggestion> NullReturn(string wordToComplete)
         {
-            return new List<string>();
+            return new List<Suggestion>();
         }
 
         /// <summary>
@@ -125,12 +129,8 @@ namespace ResolveArgument
         /// </summary>
         /// <returns>List of conda environments.</returns>
         [ParameterValue("ENVIRONMENT")]
-        internal static List<string> GetEnvironments()
+        internal static List<Suggestion> GetEnvironments(string wordToComplete)
         {
-            List<string> condaEnvironments = new()
-            {
-                ROOT_ENV_NAME
-            };
             string condaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process) ?? "";
 
             // The environments are listed in ~\.conda\environments.txt
@@ -138,24 +138,38 @@ namespace ResolveArgument
             string environmentsFile = Path.Combine(home, CONDA_SETTINGS_FOLDER, CONDA_ENVIRONMENTS_FILE);
             List<string> environments = File.ReadAllLines(environmentsFile).ToList();
 
-            foreach(var environment in environments)
+            List<Suggestion> environmentSuggestions = new();
+            foreach (var envPath in environments)
             {
+                string envName;
                 // Skip base environment, it's already added when the list was created.
-                if (environment != condaRoot)
+                if (envPath == condaRoot)
+                {
+                    envName = ROOT_ENV_NAME;
+                }
+                else
                 {
                     // If we are in root add the environment name, otherwise we need the full --prefix path.
-                    if (environment.StartsWith(condaRoot))
+                    if (envPath.StartsWith(condaRoot))
                     {
-                        condaEnvironments.Add(Path.GetFileName(environment));
+                        envName = Path.GetFileName(envPath);
                     }
                     else
                     {
-                        condaEnvironments.Add(environment);
+                        envName = envPath;
                     }
                 }
-
+                if (envName.Contains(wordToComplete))
+                {
+                    Suggestion suggestion = new(
+                        envName,
+                        envName,
+                        CompletionResultType.ParameterValue,
+                        envPath);
+                    environmentSuggestions.Add(suggestion);
+                }
             }
-            return condaEnvironments;
+            return environmentSuggestions;
         }
 
         /// <summary>
