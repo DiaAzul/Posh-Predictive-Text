@@ -2,6 +2,7 @@
 namespace ResolveArgument
 {
     using System.Management.Automation.Language;
+    using System.Text;
 
     /// <summary>
     /// Token representing each distinct item entered by the 
@@ -68,25 +69,6 @@ namespace ResolveArgument
         }
 
         /// <summary>
-        /// Return the token at the index position in the list.
-        /// </summary>
-        /// <param name="index">Index position of required token.</param>
-        /// <returns>Token at the position in the list, null if index outside of scope of list.</returns>
-        internal Token? Index(int index)
-        {
-            Token? token;
-            try
-            {
-                token = this.tokens[index];
-            }
-            catch(ArgumentOutOfRangeException)
-            {
-                token = null;
-            }
-            return token;
-        }
-
-        /// <summary>
         /// Returns a list of all tokens.
         /// </summary>
         internal Dictionary<int, Token> All
@@ -94,6 +76,13 @@ namespace ResolveArgument
             get { return this.tokens; }
         }
 
+        /// <summary>
+        /// Returns the count of tokens on the command line.
+        /// </summary>
+        internal int Count
+        {
+            get { return this.tokens.Count;  }
+        }
 
         /// <summary>
         /// Returns a dictionary containing command parameters and their
@@ -108,6 +97,51 @@ namespace ResolveArgument
                             .ToDictionary(item => item.Key, item => item.Value)
                             ?? new Dictionary<int, Token>();
             }
+        }
+
+        /// <summary>
+        /// Return the token at the index position in the list.
+        /// </summary>
+        /// <param name="index">Index position of required token.</param>
+        /// <returns>Token at the position in the list, null if index outside of scope of list.</returns>
+        internal Token? Index(int index)
+        {
+            Token? token;
+            try
+            {
+                token = this.tokens[index];
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                token = null;
+            }
+            return token;
+        }
+
+        internal (string, int) CommandPath(List<string> uniqueCommands)
+        {
+
+            StringBuilder commandPath = new(capacity: 64);
+            int tokensInCommand = 0;
+            foreach (var (position, commandToken) in this.tokens)
+            {
+                if (uniqueCommands.Contains(commandToken.text))
+                {
+                    if (commandPath.Length > 0)
+                    {
+                        commandPath.Append('.');
+                    }
+                    commandPath.Append(commandToken.text);
+                    tokensInCommand++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return (commandPath.ToString() ?? "", tokensInCommand);
+
         }
 
         /// <summary>

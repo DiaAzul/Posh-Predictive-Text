@@ -152,18 +152,19 @@ namespace ResolveArgument
                 case "Resolve":
                     // The algorithm uses the command abstract syntrax tree to tokenise the input text. 
                     // If it is not available then return no values.
+                    LOGGER.Write("Processing...");
                     if (CommandAst is not null)
                     {
                         // Convert the CommandAst to a list of tokens which will be used to evaluate
                         // which options are avaialble for the next parameter.
-                        var commandTokens = new CommandAstVisitor();
-                        CommandAst.Visit(commandTokens);
+                        var enteredTokens = new CommandAstVisitor();
+                        CommandAst.Visit(enteredTokens);
 #if DEBUG
                         LOGGER.Write("Resolving word: " + WordToComplete??"");
                         LOGGER.Write("Resolving AST: " + CommandAst);
-                        LOGGER.Write($"Base Command: {commandTokens.BaseCommand?.text ?? "Caught null"}");
-                        LOGGER.Write($"Last Command: {commandTokens.LastToken?.text ?? "Caught null"}");
-                        LOGGER.Write($"Prior Command: {commandTokens.PriorToken?.text ?? "Does not exist."}");
+                        LOGGER.Write($"Base Command: {enteredTokens.BaseCommand?.text ?? "Caught null"}");
+                        LOGGER.Write($"Last Command: {enteredTokens.LastToken?.text ?? "Caught null"}");
+                        LOGGER.Write($"Prior Command: {enteredTokens.PriorToken?.text ?? "Does not exist."}");
 #endif
                         // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
                         List<Suggestion> suggestions = new();
@@ -171,7 +172,7 @@ namespace ResolveArgument
                         {
                             suggestions = Resolver.Suggestions(
                                 wordToComplete: WordToComplete ?? "",
-                                commandTokens: commandTokens,
+                                enteredTokens: enteredTokens,
                                 cursorPosition: CursorPosition ?? CommandAst.ToString().Length
                             );
                         }
@@ -190,14 +191,14 @@ namespace ResolveArgument
                                         ex,
                                         "Error-loading-syntax-tree",
                                         ErrorCategory.ObjectNotFound,
-                                        commandTokens));
+                                        enteredTokens));
                                     break;
                                 default:
                                     WriteError(new ErrorRecord(
                                         ex,
                                         "Error-processing-record",
                                         ErrorCategory.InvalidOperation,
-                                        commandTokens));
+                                        enteredTokens));
                                     break;
                             }
 #endif

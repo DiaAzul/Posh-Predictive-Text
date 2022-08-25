@@ -14,8 +14,13 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
         [System.Management.Automation.Language.CommandAst]$commandAst,
         [int]$cursorPosition)
 
-    $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
-
+    try {
+        $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+    }
+    catch {
+        Write-Host "Error."
+    }
+    
     $suggestions 
 }
 

@@ -2,6 +2,7 @@
 // TODO [ ][RESOLVER] Support return of aliases.
 // TODO [ ][RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
 // TODO [ ][RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
+// BUG [ ][RESOLVER] Error thrown when base command (conda) and tab-complete empty next option.
 
 namespace ResolveArgument
 {
@@ -42,7 +43,7 @@ namespace ResolveArgument
         /// Processes the command line tokens and suggests completions for the wordToComplete.
         /// </summary>
         /// <param name="wordToComplete">Word for which suggested comlpetions required.</param>
-        /// <param name="commandTokens">Tokenised text on the command line.</param>
+        /// <param name="enteredTokens">Tokenised text on the command line.</param>
         /// <param name="cursorPosition">Position of the cursor on the command line.</param>
         /// <returns>Suggested list of completions for the word to complete.</returns>
         /// <remarks>
@@ -56,21 +57,21 @@ namespace ResolveArgument
         /// TODO [X] 1. Identify what command, or partial command has already been entered (commands may be multi-word).
         /// TODO [X] 2. Identify if we have exited command entry (a parameter has been entered) skip to 4.
         /// TODO [X] 3. Identify suggestions for sub-commands.
-        /// TODO [ ] 4. Identify suggestions for parameter values if command parameter is active. If mandatory value skip to 7.
+        /// TODO [X] 4. Identify suggestions for parameter values if command parameter is active. If mandatory value skip to 7.
         /// TODO [ ] 5. Identify suggestions for positional parameters using a handler if appropriate
         /// TODO [ ] 6. Identify suggestions for command parameters.
         /// TODO [ ] 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
         /// </remarks>
         internal static List<Suggestion> Suggestions(
             string wordToComplete,
-            CommandAstVisitor commandTokens,
+            CommandAstVisitor enteredTokens,
             int cursorPosition)
         {
             List<Suggestion> suggestions = new();
 
-            if (commandTokens.BaseCommand is not null)
+            if (enteredTokens.BaseCommand is not null)
             {
-                var baseCommand = (Token)commandTokens.BaseCommand;
+                var baseCommand = (Token)enteredTokens.BaseCommand;
                 string syntaxTreeName = baseCommand.text;
 
                 // Test syntax tree exists, if not try and load it, if can't load then skip suggestions.
@@ -81,133 +82,127 @@ namespace ResolveArgument
                     LOGGER.Write("The syntaxTree exists."
                         + $"There are {SyntaxTrees.Count(syntaxTreeName)} entries in the tree.");
 #endif
-                    // Extract unique commands from the syntax tree and then
-                    // evaluate what command and sub-commands have been entred
-                    // so far.
-                    var uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
+                    // Pre-process inputs:
+                    // Get a list of unique commands from the syntax tree.
+                    // Get the command path from the entered tokens.
+                    // Identify any parameter arguments.
+                    List<string> uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
+                    var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
+                    LOGGER.Write($"Tokens in command {tokensInPath}. Entered Tokens {enteredTokens.Count}");
 
-                    // Scan the command line and build the command path identifying
-                    // where we should be in the syntax tree.
-                    StringBuilder commandPath = new(capacity: 64);
-                    int tokensInCommand = 0;
-                    foreach (var (position, commandToken) in commandTokens.All)
-                    {
-                        if (uniqueCommands.Contains(commandToken.text))
-                        {
-                            if (commandPath.Length > 0)
-                            {
-                                commandPath.Append('.');
-                            }
-                            commandPath.Append(commandToken.text);
-                            tokensInCommand++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-
-                    // Filter the syntaxTree against the entered command to
-                    // reduce the size of the tree for later processing.
+                    // Filter the syntax tree extracting only those items that match the command path.
                     List<SyntaxItem> filteredSyntaxTree = SyntaxTrees.Get(syntaxTreeName)
                         .Where(syntaxItem =>
-                                    syntaxItem.commandPath == commandPath.ToString())
+                                    syntaxItem.commandPath == commandPath)
                         .ToList();
 
-                    // Identify Command Parameters that have already been entered.
-                    var enteredCommandParameters = commandTokens.CommandParameters;
+                    // Identify if the command is complete. If the command is complete we do not
+                    // need to suggest sub-commands, and can suggest positional parameters.
+                    List<SyntaxItem> subCommands = filteredSyntaxTree
+                                                    .Where(syntaxItem => syntaxItem.type == "CMD")
+                                                    .ToList();
+                    int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
+                    int expectedCommandTokens = tokensInPath + (subCommands.Count > 0 ? 1 : 0);
+                    bool commandComplete = countOfEnteredTokens > expectedCommandTokens;
 
-#if DEBUG
-                    foreach (var (position, Token) in enteredCommandParameters)
+                    // Are we entering data for a parameter (POSITIONAL, PARAMETER)?
+                    // Get last command token
+                    bool listOnlyParameterValues = false;
+                    Dictionary<int, Token> enteredCommandParameters = enteredTokens.CommandParameters;
+                    if (enteredCommandParameters.Count > 0)
                     {
-                        LOGGER.Write($"Entered parameter {Token.text} @ {position}");
-                    }
-#endif
+                        LOGGER.Write("Listing parameter values.");
+                        // Calculate how many parameter values entered for the last parameter.
+                        // Note: If we started entering a command parameter this will be identified as the last command.
+                        int lastCommandPosition = enteredCommandParameters.Keys.Max();
+                        int enteredValues = enteredTokens.Count - lastCommandPosition;
+                        // Can we enter more than one value?
+                        string lastParameter = enteredCommandParameters[lastCommandPosition].text;
+                        var parameterSyntaxItems = filteredSyntaxTree
+                                        .Where(syntaxItem => syntaxItem.parameter == lastParameter);
 
-                    // If we have more tokens than tokens in the command then the command
-                    // is complete. If the tokens on the command line (including the final
-                    // partial token to complete) exceeds the count of command tokens plus
-                    // any other completed non command token then the command is complete.
-                    // If true then we do not need to propose any further sub-commands.
-                    bool commandComplete = commandTokens.All.Count > tokensInCommand + 1;
-# if DEBUG
-                    LOGGER.Write($"The command is: {commandPath}."
-                        + $" There are {tokensInCommand} tokens in the command.");
-                    if (commandComplete) LOGGER.Write("The command is complete.");
-# endif
-                    // Get relevant commands, parameters and options that can complete
-                    // the FINAL token.
-                    // - Exclude subcommands if they cannot be added.
-                    // - Exclude syntaxItems with no argument entry.
-                    // - Filter list against the characters entered in the final token.
-                    List<SyntaxItem> availableOptions = filteredSyntaxTree
-                        .Where(syntaxItem =>
-                                !(syntaxItem.type.Equals("CMD") && commandComplete)
-                                && syntaxItem.argument is not null
-                                && syntaxItem.argument.StartsWith(wordToComplete))
-                        .ToList();
-
-
-#if DEBUG
-                    // Following lists all potential options from the syntax tree
-                    // for the final token.
-                    LOGGER.Write("This command has the following options:");
-                    foreach (var option in availableOptions)
-                    {
-                        LOGGER.Write($"::Option -> {option.argument} ({option.type})");
-                    }
-                    // Output count of option types.
-                    var optionCounts = from option in availableOptions
-                                       group option by option.type into typeGroup
-                                       select new
-                                       {
-                                           Type = typeGroup.Key,
-                                           Count = typeGroup.Count()
-                                       };
-
-                    StringBuilder countsString = new(capacity: 64);
-                    countsString.Append("Total tokens by type:");
-                    foreach (var option in optionCounts)
-                    {
-                        countsString.Append($"{option.Type} ({option.Count}) ");
-                    }
-                    countsString.Append('.');
-                    LOGGER.Write(countsString.ToString());
-# endif
-                    // Do we have an active command parameter?
-                    // Iterate backwards through tokens to find the index of the last
-                    // command parameter
-                    int? lastCommandParameterIndex = null;
-                    for (int index = commandTokens.All.Count - 1; index >= 0; index--)
-                    {
-                        if (commandTokens.All[index].type == typeof(
-                            System.Management.Automation.Language.CommandParameterAst))
+                        if (parameterSyntaxItems is not null)
                         {
-                            lastCommandParameterIndex = index;
-                            break;
+                            var syntaxItem = parameterSyntaxItems.FirstOrDefault();
+                            bool multipleParameterValues = syntaxItem?.multipleParameterValues ?? false;
+
+                            if (enteredValues == 0 | multipleParameterValues)
+                            {
+                                List<string> parameterValueOptions = CondaHelpers
+                                            .GetParamaterValues(syntaxItem?.parameter ?? "");
+
+                                foreach (var item in parameterValueOptions)
+                                {
+                                    Suggestion suggestion = new(
+                                        item,
+                                        item,
+                                        CompletionResultType.ParameterValue,
+                                        ""
+                                    );
+
+                                    suggestions.Add(suggestion);
+                                }
+                                // Don't provide any other suggestions if we must enter a parameter value.
+                                listOnlyParameterValues = (enteredValues == 0);
+                            }
                         }
                     }
-#if DEBUG
-                    if (lastCommandParameterIndex is not null)
+                    LOGGER.Write($"List only parameters {listOnlyParameterValues}. command complete {commandComplete}");
+                    // Positional parameters
+                    if (!listOnlyParameterValues && commandComplete)
                     {
-                        LOGGER.Write(
-                            $"Last command parameter is at index {lastCommandParameterIndex}"
-                            + $" is {commandTokens.All[lastCommandParameterIndex ?? 0].text}");
-                    }
-#endif
-                    var filteredOptions = availableOptions;
+                        LOGGER.Write("Listing positional parameters.");
+                        var positionalValue = filteredSyntaxTree
+                                                .Where(syntaxItem => syntaxItem.type == "POS")
+                                                .ToList();
+                        if (positionalValue.Count > 0)
+                        {
+                            SyntaxItem positionalSyntaxItem = positionalValue.First();
+                            LOGGER.Write(positionalSyntaxItem.parameter ?? "");
+                            List<string> postionalValueOptions = CondaHelpers
+                                                 .GetParamaterValues(positionalSyntaxItem.parameter ?? "");
 
-                    foreach (var syntaxItem in filteredOptions)
+                            var filteredSuggestions = postionalValueOptions
+                                                                .Where(item => item.StartsWith(wordToComplete));
+
+                            foreach (var suggestedText in filteredSuggestions)
+                            {
+                                Suggestion suggestion = new(
+                                    suggestedText,
+                                    suggestedText,
+                                    CompletionResultType.ParameterValue,
+                                    suggestedText
+                                );
+
+                                suggestions.Add(suggestion);
+                            }
+                        }
+                    }
+
+                    // Optional and Parameter keys.
+                    if (!listOnlyParameterValues)
                     {
-                        Suggestion suggestion = new(
-                            syntaxItem.argument??"",
-                            syntaxItem.argument??"",
-                            syntaxItem.ResultType,
-                            SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
-                        );
+                        List<SyntaxItem> availableOptions = filteredSyntaxTree
+                            .Where(syntaxItem =>
+                                    !(syntaxItem.type.Equals("CMD") && commandComplete)
+                                    && syntaxItem.argument is not null
+                                    && syntaxItem.argument.StartsWith(wordToComplete))
+                            .ToList();
 
-                        suggestions.Add(suggestion);
+                        var filteredOptions = availableOptions;
+                        foreach (var syntaxItem in filteredOptions)
+                        {
+                            Suggestion suggestion = new(
+                                syntaxItem.argument??"",
+                                syntaxItem.argument??"",
+                                syntaxItem.ResultType,
+                                SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
+                            );
+                            suggestions.Add(suggestion);
+                        }
                     }
+
+   
 #if DEBUG
                     LOGGER.Write($"The algorithm is providing {suggestions.Count} suggestions.");
                     foreach (var suggestion in suggestions)

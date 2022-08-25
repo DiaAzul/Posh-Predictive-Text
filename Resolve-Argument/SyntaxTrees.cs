@@ -32,16 +32,16 @@ namespace ResolveArgument
         internal string command = default!;
         internal string commandPath = default!;
         internal string type = default!;
-        internal string argument = default!;
+        internal string? argument;
         internal string? alias;
         internal bool multipleUse = default!;
         internal string? parameter;
-        internal bool? multipleParameters;
+        internal bool? multipleParameterValues;
         internal string? toolTip;
 
         internal string AsString()
         {
-            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameters}, {toolTip}";
+            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameterValues}, {toolTip}";
         }
 
         /// <summary>
@@ -81,8 +81,6 @@ namespace ResolveArgument
         /// <returns>True if syntax tree is loaded.</returns>  
         internal static bool Exists(string syntaxTreeName)
         {
-            LOGGER.Write("Testing whether tree exists.");
-            LOGGER.Write(syntaxTrees.ContainsKey(syntaxTreeName).ToString());
             return syntaxTrees.ContainsKey(syntaxTreeName);
         }
 
@@ -185,7 +183,7 @@ namespace ResolveArgument
                                               alias = AsNullableString(item.Element("AL")),
                                               multipleUse = AsBool(item.Element("MU")),
                                               parameter = AsNullableString(item.Element("PRM")),
-                                              multipleParameters = AsNullableBool(item.Element("MP")),
+                                              multipleParameterValues = AsNullableBool(item.Element("MP")),
                                               toolTip = AsNullableString(item.Element("TT"))
                                           };
                     if (syntaxTreeQuery is not null)
