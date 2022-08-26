@@ -107,7 +107,7 @@ namespace ResolveArgument
                 int lastCommandPosition = enteredCommandParameters.Keys.Max();
                 int enteredValues = enteredTokens.Count - lastCommandPosition;
                 // Can we enter more than one value?
-                string lastParameter = enteredCommandParameters[lastCommandPosition].text;
+                string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
                 var parameterSyntaxItems = filteredSyntaxTree
                                 .Where(syntaxItem => syntaxItem.parameter == lastParameter);
 

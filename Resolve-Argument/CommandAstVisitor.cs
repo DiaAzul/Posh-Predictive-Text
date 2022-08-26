@@ -11,14 +11,14 @@ namespace ResolveArgument
     /// syntax tree node type and used to identify parameters
     /// from other inputs.
     /// </summary>
-    internal struct Token
+    internal record Token
     {
-        internal string text;
-        internal Type type;
+        internal string Value { get; init; } = default!;
+        internal Type Type { get; init; } = typeof(StringConstantExpressionAst);
 
         internal bool IsCommandParameter
         {
-            get { return type == typeof(CommandParameterAst); }
+            get { return Type == typeof(CommandParameterAst); }
         }
     }
 
@@ -49,7 +49,7 @@ namespace ResolveArgument
         /// </summary>
         internal string? BaseCommand
         {
-            get { return this.Index(0)?.text.ToLower(); }
+            get { return this.Index(0)?.Value.ToLower(); }
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace ResolveArgument
             int tokensInCommand = 0;
             foreach (var (position, commandToken) in this.tokens)
             {
-                string tokenText = commandToken.text.ToLower();
+                string tokenText = commandToken.Value.ToLower();
                 if (uniqueCommands.Contains(tokenText))
                 {
                     if (commandPath.Length > 0)
@@ -159,12 +159,12 @@ namespace ResolveArgument
         {
             Token token = new()
             {
-                text = ast.ToString(),
-                type = typeof(string)
+                Value = ast.ToString(),
+                Type = typeof(string)
             };
             this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
-            LOGGER.Write($"Default: {token.text}, {token.type}");
+            LOGGER.Write($"Default: {token.Value}, {token.Type}");
 #endif
             return AstVisitAction.Continue;
         }
@@ -191,12 +191,12 @@ namespace ResolveArgument
         {
             Token token = new()
             {
-                text = commandExpressionAst.ToString(),
-                type = commandExpressionAst.GetType(),
+                Value = commandExpressionAst.ToString(),
+                Type = commandExpressionAst.GetType(),
             };
             this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
-            LOGGER.Write($"Command expression: {token.text}, {token.type}");
+            LOGGER.Write($"Command expression: {token.Value}, {token.Type}");
 #endif
             return AstVisitAction.Continue;
         }
@@ -218,12 +218,12 @@ namespace ResolveArgument
             // 16 hex character (long) or 8 hex character (short). "^-S[0-9a-fA-F]{8|16}$".
             Token token = new()
             {
-                text = commandParameterAst.ToString(),
-                type = commandParameterAst.GetType(),
+                Value = commandParameterAst.ToString(),
+                Type = commandParameterAst.GetType(),
             };
             this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
-            LOGGER.Write($"Command parameter: {token.text}, {token.type}");
+            LOGGER.Write($"Command parameter: {token.Value}, {token.Type}");
 #endif
             return AstVisitAction.Continue;
         }
@@ -240,26 +240,29 @@ namespace ResolveArgument
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitStringConstantExpression(StringConstantExpressionAst stringConstantExpressionAst)
         {
+            string Value = stringConstantExpressionAst.ToString();
+            Type type = stringConstantExpressionAst.StaticType;
+            try
+            {
+                if (Value[..2] == "--")
+                {
+                    type = typeof(CommandParameterAst);
+                }
+            }
+            catch (ArgumentOutOfRangeException) { }
             Token token = new()
             {
-                text = stringConstantExpressionAst.ToString(),
-                type = stringConstantExpressionAst.StaticType
+                Value = Value,
+                Type = type
             };
 
             // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
             // Reclassify them as CommandParameters.
-            try
-            {
-                if (token.text[..2] == "--")
-                {
-                    token.type = typeof(CommandParameterAst);
-                }
-            }
-            catch (ArgumentOutOfRangeException) { }
+
 
             this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
-            LOGGER.Write($"String constant expression: {token.text}, {token.type}");
+            LOGGER.Write($"String constant expression: {token.Value}, {token.Type}");
 #endif
             return AstVisitAction.Continue;
         }
