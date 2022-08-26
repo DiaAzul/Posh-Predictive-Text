@@ -1,7 +1,4 @@
-﻿
-// TODO [ ][RESOLVER] Support return of aliases.
-// TODO [ ][RESOLVER] Consider whether the completion has already been enetered and is, therefore, not appropriate as a suggestion.
-// TODO [ ][RESOLVER] Provide guidance on parameter values and suggest alternatives (e.g. conda environments).
+﻿// TODO [ ][RESOLVER] Support return of aliases.
 
 namespace ResolveArgument
 {
