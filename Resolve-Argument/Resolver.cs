@@ -8,24 +8,15 @@ namespace ResolveArgument
     /// <summary>
     /// Suggested response.
     /// 
-    /// This implements a data structure returned by the completion class and used by the calling
+    /// Data structure returned by the completion class and used by the calling
     /// class to generate specific data structures for the calling application.
     /// </summary>
-    internal readonly struct Suggestion
+    internal record Suggestion
     {
-        internal Suggestion(string completionText, string listText, CompletionResultType type, string toolTip)
-        {
-            CompletionText = completionText;
-            ListText = listText;
-            Type = type;
-            ToolTip = toolTip;
-        }
-        internal string CompletionText { get; init; }
-        internal string ListText { get; init; }
+        internal string CompletionText { get; init; } = default!;
+        internal string ListText { get; init; } = default!;
         internal CompletionResultType Type { get; init; }
-        internal string ToolTip { get; init; }
-
-        public override string ToString() => $"{CompletionText}";
+        internal string ToolTip { get; init; } = default!;
     }
 
     /// <summary>
@@ -175,12 +166,13 @@ namespace ResolveArgument
 
                 foreach (var syntaxItem in filteredOptions)
                 {
-                    Suggestion suggestion = new(
-                        syntaxItem.argument??"",
-                        syntaxItem.argument??"",
-                        syntaxItem.ResultType,
-                        SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
-                    );
+                    Suggestion suggestion = new()
+                    {
+                        CompletionText = syntaxItem.argument??"",
+                        ListText = syntaxItem.argument??"",
+                        Type = syntaxItem.ResultType,
+                        ToolTip = SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
+                    };
                     suggestions.Add(suggestion);
                 }
             }

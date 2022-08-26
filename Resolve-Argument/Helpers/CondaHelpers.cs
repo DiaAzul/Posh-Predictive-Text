@@ -161,11 +161,14 @@ namespace ResolveArgument
                 }
                 if (envName.Contains(wordToComplete))
                 {
-                    Suggestion suggestion = new(
-                        envName,
-                        envName,
-                        CompletionResultType.ParameterValue,
-                        envPath);
+                    Suggestion suggestion = new()
+                    {
+                        CompletionText =  envName,
+                        ListText = envName,
+                        Type = CompletionResultType.ParameterValue,
+                        ToolTip = envPath
+                    };
+
                     environmentSuggestions.Add(suggestion);
                 }
             }

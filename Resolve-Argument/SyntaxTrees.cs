@@ -29,20 +29,15 @@ namespace ResolveArgument
     /// </summary>
     internal record SyntaxItem
     {
-        internal string command = default!;
-        internal string commandPath = default!;
-        internal string type = default!;
-        internal string? argument;
-        internal string? alias;
-        internal bool multipleUse = default!;
-        internal string? parameter;
-        internal bool? multipleParameterValues;
-        internal string? toolTip;
-
-        internal string AsString()
-        {
-            return $"{command}, {commandPath}, {type}, {argument}, {alias}, {multipleUse}, {parameter}, {multipleParameterValues}, {toolTip}";
-        }
+        internal string command { get; init; } = default!;
+        internal string commandPath { get; init; } = default!;
+        internal string type { get; init; } = default!;
+        internal string? argument { get; init; }
+        internal string? alias { get; init; }
+        internal bool multipleUse { get; init; } = default!;
+        internal string? parameter { get; init; }
+        internal bool? multipleParameterValues { get; init; }
+        internal string? toolTip { get; init; }
 
         /// <summary>
         /// Property return the result type for the Syntax item.
@@ -62,6 +57,7 @@ namespace ResolveArgument
             }
         }
     }
+
 
     // [ ] [SYNTAXTREE] Add documentation to SyntaxTreeClass.
     internal static class SyntaxTrees
