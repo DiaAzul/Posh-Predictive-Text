@@ -1,6 +1,4 @@
-﻿// TODO [X][SYNTAXTREES] Implement configuration file to centralise constant for commands (e.g. resource locations).
-// TODO [ ][SYNTAXTREES] Support aliasing commands and resource files.
-// TODO [-][SYNTAXTREES] Remove hard coded references to conda resources (still to do tooltip).
+﻿// TODO [ ][SYNTAXTREES] Support aliasing commands and resource files.
 
 namespace ResolveArgument
 {
@@ -30,15 +28,15 @@ namespace ResolveArgument
     /// </summary>
     internal record SyntaxItem
     {
-        internal string command { get; init; } = default!;
-        internal string commandPath { get; init; } = default!;
-        internal string type { get; init; } = default!;
-        internal string? argument { get; init; }
-        internal string? alias { get; init; }
-        internal bool multipleUse { get; init; } = default!;
-        internal string? parameter { get; init; }
-        internal bool? multipleParameterValues { get; init; }
-        internal string? toolTip { get; init; }
+        internal string Command { get; init; } = default!;
+        internal string CommandPath { get; init; } = default!;
+        internal string Type { get; init; } = default!;
+        internal string? Argument { get; init; }
+        internal string? Alias { get; init; }
+        internal bool MultipleUse { get; init; } = default!;
+        internal string? Parameter { get; init; }
+        internal bool? MultipleParameterValues { get; init; }
+        internal string? ToolTip { get; init; }
 
         /// <summary>
         /// Property return the result type for the Syntax item.
@@ -47,7 +45,7 @@ namespace ResolveArgument
         {
             get
             {
-                return type switch
+                return Type switch
                 {
                     "CMD" => CompletionResultType.Command,
                     "OPT" => CompletionResultType.ParameterName,
@@ -109,7 +107,7 @@ namespace ResolveArgument
             if (Exists(syntaxTreeName))
             {
                 uniqueCommands = syntaxTrees[syntaxTreeName]
-                    .Select(item => item.command)
+                    .Select(item => item.Command)
                     .Distinct()
                     .ToList();
             }
@@ -129,14 +127,12 @@ namespace ResolveArgument
         /// <param name="syntaxTreeName">Name of syntax tree to load.</param>
         internal static void Load(string syntaxTreeName)
         {
-            // TODO [ ][SYNTAXTREES] Need to abort early if no syntaxTree available.
             XDocument? syntaxTreeInputFile = null;
 
             // Load XML File from assembly into XDocument.
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                // TODO [X][SYNTAXTREES] Change syntax tree xml source according to the syntax tree name.
                 var resourcePath = SyntaxTreesConfig.Definition(syntaxTreeName);
                 if (resourcePath is null)
                     throw new SyntaxTreeException($"Definition file not found for {syntaxTreeName}.");
@@ -177,15 +173,15 @@ namespace ResolveArgument
                     var syntaxTreeQuery = from item in root.Elements("item")
                                           select new SyntaxItem
                                           {
-                                              command = AsString(item.Element("CMD")),
-                                              commandPath = AsString(item.Element("PATH")),
-                                              type = AsString(item.Element("TYP")),
-                                              argument = AsNullableString(item.Element("ARG")),
-                                              alias = AsNullableString(item.Element("AL")),
-                                              multipleUse = AsBool(item.Element("MU")),
-                                              parameter = AsNullableString(item.Element("PRM")),
-                                              multipleParameterValues = AsNullableBool(item.Element("MP")),
-                                              toolTip = AsNullableString(item.Element("TT"))
+                                              Command = AsString(item.Element("CMD")),
+                                              CommandPath = AsString(item.Element("PATH")),
+                                              Type = AsString(item.Element("TYP")),
+                                              Argument = AsNullableString(item.Element("ARG")),
+                                              Alias = AsNullableString(item.Element("AL")),
+                                              MultipleUse = AsBool(item.Element("MU")),
+                                              Parameter = AsNullableString(item.Element("PRM")),
+                                              MultipleParameterValues = AsNullableBool(item.Element("MP")),
+                                              ToolTip = AsNullableString(item.Element("TT"))
                                           };
                     if (syntaxTreeQuery is not null)
                     {
@@ -287,7 +283,7 @@ namespace ResolveArgument
             try
             {
                 var resourceManager = new ResourceManager(baseName, Assembly.GetExecutingAssembly());
-            toolTip = resourceManager.GetString(toolTipRef) ?? "";
+                toolTip = resourceManager.GetString(toolTipRef) ?? "";
             }
             catch (ArgumentNullException)
             {

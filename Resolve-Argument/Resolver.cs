@@ -84,11 +84,11 @@ namespace ResolveArgument
 #endif
             List<SyntaxItem> filteredSyntaxTree = SyntaxTrees.Get(syntaxTreeName)
                 .Where(syntaxItem =>
-                            syntaxItem.commandPath == commandPath)
+                            syntaxItem.CommandPath == commandPath)
                 .ToList();
 
             List<SyntaxItem> subCommands = filteredSyntaxTree
-                                            .Where(syntaxItem => syntaxItem.type == "CMD")
+                                            .Where(syntaxItem => syntaxItem.Type == "CMD")
                                             .ToList();
             int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
             int expectedCommandTokens = tokensInPath + (subCommands.Count > 0 ? 1 : 0);
@@ -109,18 +109,18 @@ namespace ResolveArgument
                 // Can we enter more than one value?
                 string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
                 var parameterSyntaxItems = filteredSyntaxTree
-                                .Where(syntaxItem => syntaxItem.parameter == lastParameter);
+                                .Where(syntaxItem => syntaxItem.Parameter == lastParameter);
 
                 if (parameterSyntaxItems is not null)
                 {
                     var syntaxItem = parameterSyntaxItems.FirstOrDefault();
-                    bool multipleParameterValues = syntaxItem?.multipleParameterValues ?? false;
+                    bool multipleParameterValues = syntaxItem?.MultipleParameterValues ?? false;
 
                     if (enteredValues == 0 | multipleParameterValues)
                     {
                         List<Suggestion> parameterValueOptions = CondaHelpers
                                                                     .GetParamaterValues(
-                                                                        syntaxItem?.parameter ?? "",
+                                                                        syntaxItem?.Parameter ?? "",
                                                                         wordToComplete);
 
                         suggestions.AddRange(parameterValueOptions);
@@ -136,15 +136,15 @@ namespace ResolveArgument
             {
                 LOGGER.Write("Listing positional parameters.");
                 var positionalValue = filteredSyntaxTree
-                                        .Where(syntaxItem => syntaxItem.type == "POS")
+                                        .Where(syntaxItem => syntaxItem.Type == "POS")
                                         .ToList();
                 if (positionalValue.Count > 0)
                 {
                     SyntaxItem positionalSyntaxItem = positionalValue.First();
-                    LOGGER.Write(positionalSyntaxItem.parameter ?? "");
+                    LOGGER.Write(positionalSyntaxItem.Parameter ?? "");
                     List<Suggestion> positionalValueSuggestions = CondaHelpers
                                                                      .GetParamaterValues(
-                                                                        positionalSyntaxItem.parameter ?? "",
+                                                                        positionalSyntaxItem.Parameter ?? "",
                                                                         wordToComplete);
 
                     suggestions.AddRange(positionalValueSuggestions);
@@ -158,9 +158,9 @@ namespace ResolveArgument
             {
                 List<SyntaxItem> availableOptions = filteredSyntaxTree
                     .Where(syntaxItem =>
-                            !(syntaxItem.type.Equals("CMD") && commandComplete)
-                            && syntaxItem.argument is not null
-                            && syntaxItem.argument.StartsWith(wordToComplete))
+                            !(syntaxItem.Type.Equals("CMD") && commandComplete)
+                            && syntaxItem.Argument is not null
+                            && syntaxItem.Argument.StartsWith(wordToComplete))
                     .ToList();
 
                 // TODO [ ][RESOLVER] Filter parameters by those already added.
@@ -170,10 +170,10 @@ namespace ResolveArgument
                 {
                     Suggestion suggestion = new()
                     {
-                        CompletionText = syntaxItem.argument??"",
-                        ListText = syntaxItem.argument??"",
+                        CompletionText = syntaxItem.Argument??"",
+                        ListText = syntaxItem.Argument??"",
                         Type = syntaxItem.ResultType,
-                        ToolTip = SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.toolTip)??"Tooltip was null."
+                        ToolTip = SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.ToolTip)??"Tooltip was null."
                     };
                     suggestions.Add(suggestion);
                 }
