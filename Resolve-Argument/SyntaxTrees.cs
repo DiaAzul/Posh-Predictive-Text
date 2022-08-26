@@ -1,6 +1,6 @@
-﻿// TODO [ ][SYNTAXTREES] Implement configuration file to centralise constant for commands (e.g. resource locations).
+﻿// TODO [X][SYNTAXTREES] Implement configuration file to centralise constant for commands (e.g. resource locations).
 // TODO [ ][SYNTAXTREES] Support aliasing commands and resource files.
-// TODO [ ][SYNTAXTREES] Remove hard coded references to conda resources.
+// TODO [-][SYNTAXTREES] Remove hard coded references to conda resources (still to do tooltip).
 
 namespace ResolveArgument
 {
@@ -135,8 +135,11 @@ namespace ResolveArgument
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                // TODO [ ][SYNTAXTREES] Change syntax tree xml source according to the syntax tree name.
-                var resourceStream = assembly.GetManifestResourceStream("Resolve_Argument.SyntaxTreeSpecs.CondaSyntaxTree.xml");
+                // TODO [X][SYNTAXTREES] Change syntax tree xml source according to the syntax tree name.
+                var resourcePath = SyntaxTreesConfig.Definition(syntaxTreeName);
+                if (resourcePath is null)
+                    throw new SyntaxTreeException($"Definition file not found for {syntaxTreeName}.");
+                var resourceStream = assembly.GetManifestResourceStream(resourcePath);
 
                 if (resourceStream is null) throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.");
 
@@ -147,7 +150,7 @@ namespace ResolveArgument
             }
             catch (FileNotFoundException ex)
             {
-                throw new SyntaxTreeException($"File not found for {syntaxTreeName}.", ex);
+                throw new SyntaxTreeException($"Definition file not found for {syntaxTreeName}.", ex);
             }
             catch (BadImageFormatException ex)
             {
@@ -155,11 +158,11 @@ namespace ResolveArgument
             }
             catch (FileLoadException ex)
             {
-                throw new SyntaxTreeException($"File was found, could not load {syntaxTreeName}.", ex);
+                throw new SyntaxTreeException($"Definition file was found, could not load {syntaxTreeName}.", ex);
             }
             catch (ArgumentException ex)
             {
-                throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.", ex);
+                throw new SyntaxTreeException($"Definition file stream could not be opened {syntaxTreeName}.", ex);
             }
 
             // Parse the XML document into a List.
