@@ -78,8 +78,10 @@ namespace ResolveArgument
             // complete we may offer positional parameters.
             List<string> uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
             var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
+#if DEBUG
             LOGGER.Write($"Tokens in command {tokensInPath}. Entered Tokens {enteredTokens.Count}");
-
+            LOGGER.Write($"Command path: {commandPath}");
+#endif
             List<SyntaxItem> filteredSyntaxTree = SyntaxTrees.Get(syntaxTreeName)
                 .Where(syntaxItem =>
                             syntaxItem.commandPath == commandPath)

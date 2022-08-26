@@ -128,13 +128,14 @@ namespace ResolveArgument
             int tokensInCommand = 0;
             foreach (var (position, commandToken) in this.tokens)
             {
-                if (uniqueCommands.Contains(commandToken.text))
+                string tokenText = commandToken.text.ToLower();
+                if (uniqueCommands.Contains(tokenText))
                 {
                     if (commandPath.Length > 0)
                     {
                         commandPath.Append('.');
                     }
-                    commandPath.Append(commandToken.text.ToLower());
+                    commandPath.Append(tokenText);
                     tokensInCommand++;
                 }
                 else
