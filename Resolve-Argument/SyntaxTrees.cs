@@ -7,6 +7,7 @@ namespace ResolveArgument
     using System.Reflection;
     using System.Xml.Linq;
     using System.Management.Automation;
+    using System.Resources;
 
     /// <summary>
     /// An exception raised if the syntax tree cannot be loaded.
@@ -277,14 +278,22 @@ namespace ResolveArgument
         /// <returns>Tooltip display text.</returns>
         internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
         {
-            // TODO [ ][SYNTAXTREES] Toolips method to get UI string. Add validation and remove hard coded reference.
-            string? toolTip = null;
-            if (toolTipRef is not null)
+            if (toolTipRef == null) return "";
+
+            string? baseName = SyntaxTreesConfig.ToolTips(syntaxTreeName);
+            if (baseName == null) return "";
+
+            string toolTip;
+            try
             {
-                // TODO [ ][SYNTAXTREES] Try..Catch around tooltip resource manager.
-                toolTip = Resolve_Argument.SyntaxTreeSpecs.CondaToolTips.ResourceManager.GetString(toolTipRef);
+                var resourceManager = new ResourceManager(baseName, Assembly.GetExecutingAssembly());
+            toolTip = resourceManager.GetString(toolTipRef) ?? "";
             }
-            toolTip ??= "";
+            catch (ArgumentNullException)
+            {
+                toolTip = "";
+            }
+
             return toolTip;
         }
     }

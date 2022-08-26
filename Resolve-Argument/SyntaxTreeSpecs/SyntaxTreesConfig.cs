@@ -1,11 +1,11 @@
-﻿
+﻿// TODO [ ] Conda config -> Missing a POSITIONAL parameter in ?? conda env remove POSITIONAL (env or path).
 
 namespace ResolveArgument
 {
     internal record ConfigItem
     {
         internal string? Definition { get; init; }
-        internal string? Tooltip { get; init; }
+        internal string? ToolTips { get; init; }
     }
 
     /// <summary>
@@ -13,23 +13,22 @@ namespace ResolveArgument
     /// </summary>
     internal static class SyntaxTreesConfig
     {
-        internal const string DEFINITION_PATH = "Resolve_Argument.SyntaxTreeSpecs.";
-        internal const string RESOURCE_PATH = ""; 
+        internal const string RESOURCE_ROOT = "Resolve_Argument.SyntaxTreeSpecs.";
 
         internal static readonly Dictionary<string, ConfigItem> config = new() {
             {"conda",  new ConfigItem {
                 Definition = "CondaSyntaxTree.xml",
-                Tooltip = "CondaToolTips" } },
+                ToolTips = "CondaToolTips" } },
             {"mamba", new ConfigItem {
                 Definition = "",
-                Tooltip = "" } }
+                ToolTips = "" } }
         };
         internal static string? Definition(string syntaxTreeName)
         {
             string? returnValue = null;
             try
             {
-                returnValue = DEFINITION_PATH + config[syntaxTreeName].Definition;
+                returnValue = RESOURCE_ROOT + config[syntaxTreeName].Definition;
             }
             catch (KeyNotFoundException)
             {
@@ -37,5 +36,19 @@ namespace ResolveArgument
             }
             return returnValue;
         }
+        internal static string? ToolTips(string syntaxTreeName)
+        {
+            string? returnValue = null;
+            try
+            {
+                returnValue = RESOURCE_ROOT + config[syntaxTreeName].ToolTips;
+            }
+            catch (KeyNotFoundException)
+            {
+                LOGGER.Write($"No config for {syntaxTreeName}");
+            }
+            return returnValue;
+        }
+
     }
 }
