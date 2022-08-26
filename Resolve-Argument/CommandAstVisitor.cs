@@ -47,9 +47,9 @@ namespace ResolveArgument
         /// <summary>
         /// Returns the first token in the command list.
         /// </summary>
-        internal Token? BaseCommand
+        internal string? BaseCommand
         {
-            get { return this.Index(0);}
+            get { return this.Index(0)?.text.ToLower(); }
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace ResolveArgument
                     {
                         commandPath.Append('.');
                     }
-                    commandPath.Append(commandToken.text);
+                    commandPath.Append(commandToken.text.ToLower());
                     tokensInCommand++;
                 }
                 else
