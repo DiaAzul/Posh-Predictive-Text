@@ -162,7 +162,7 @@ namespace ResolveArgument
 #if DEBUG
                         LOGGER.Write("Resolving word: " + WordToComplete??"");
                         LOGGER.Write("Resolving AST: " + CommandAst);
-                        LOGGER.Write($"Base Command: {enteredTokens.BaseCommand?.text ?? "Caught null"}");
+                        LOGGER.Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
                         LOGGER.Write($"Last Command: {enteredTokens.LastToken?.text ?? "Caught null"}");
                         LOGGER.Write($"Prior Command: {enteredTokens.PriorToken?.text ?? "Does not exist."}");
 #endif
