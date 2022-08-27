@@ -13,7 +13,7 @@ namespace ResolveArgument
     /// </summary>
     internal static class SyntaxTreesConfig
     {
-        internal const string RESOURCE_ROOT = "Resolve_Argument.SyntaxTreeSpecs.";
+        internal const string RESOURCE_ROOT = "ResolveArgument.SyntaxTreeSpecs.";
 
         internal static readonly Dictionary<string, ConfigItem> config = new() {
             {"conda",  new ConfigItem {

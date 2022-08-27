@@ -47,7 +47,7 @@ namespace ResolveArgument.Tests
                     using var powerShell = PSTestShell.GetConfiguredShell();
                     powerShell.AddCommand("resolve-argument");
                     powerShell.AddParameter("list");
-                    var expectedResult = Resolve_Argument.UIStrings.LIST_OF_COMMANDS;
+                    var expectedResult = ResolveArgument.UIStrings.LIST_OF_COMMANDS;
                     // Act
                     Collection<PSObject> results = powerShell.Invoke();
                     // Assert
@@ -62,7 +62,7 @@ namespace ResolveArgument.Tests
                     using var powerShell = PSTestShell.GetConfiguredShell();
                     powerShell.AddCommand("resolve-argument");
                     powerShell.AddParameter("Initialise");
-                    var expectedResult = Resolve_Argument.UIStrings.POSH_INIT_SCRIPT;
+                    var expectedResult = ResolveArgument.UIStrings.POSH_INIT_SCRIPT;
                     // Act
                     Collection<PSObject> results = powerShell.Invoke();
                     // Assert
