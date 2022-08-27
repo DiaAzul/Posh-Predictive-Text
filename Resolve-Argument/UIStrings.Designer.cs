@@ -63,9 +63,9 @@ namespace ResolveArgument {
         /// <summary>
         ///   Looks up a localized string similar to List commands supported with tab-expansion of arguments.
         /// </summary>
-        public static string HELP_LISTCOMMANDS {
+        public static string HELP_LIST_COMMANDS {
             get {
-                return ResourceManager.GetString("HELP_LISTCOMMANDS", resourceCulture);
+                return ResourceManager.GetString("HELP_LIST_COMMANDS", resourceCulture);
             }
         }
         

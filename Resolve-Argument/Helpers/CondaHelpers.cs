@@ -72,7 +72,7 @@ namespace ResolveArgument
                                 results = (List<Suggestion>)methodResult;
                             }
                         }
-                        catch (Exception ex) 
+                        catch (Exception ex)
                         {
                             throw new SyntaxTreeException($"Exception when invoking {parameterName} helper.", ex);
                         }

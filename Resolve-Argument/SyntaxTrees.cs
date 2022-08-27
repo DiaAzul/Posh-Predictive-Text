@@ -2,10 +2,10 @@
 
 namespace ResolveArgument
 {
-    using System.Reflection;
-    using System.Xml.Linq;
     using System.Management.Automation;
+    using System.Reflection;
     using System.Resources;
+    using System.Xml.Linq;
 
     /// <summary>
     /// An exception raised if the syntax tree cannot be loaded.
@@ -220,7 +220,7 @@ namespace ResolveArgument
         /// <returns>Contents of node as string.</returns>
         internal static string AsString(XElement? element)
         {
-            return  element?.Value.ToString() ?? "";
+            return element?.Value.ToString() ?? "";
         }
 
         /// <summary>

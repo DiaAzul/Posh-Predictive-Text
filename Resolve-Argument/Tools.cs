@@ -2,12 +2,40 @@
 
 namespace ResolveArgument
 {
-    using System.Collections.ObjectModel;
     using System.Management.Automation;
     using System.Reflection;
+    using System.Resources;
+
+    internal class UI
+    {
+        /// <summary>
+        /// Gets a resource string for the UIString resource file.
+        /// </summary>
+        /// <param name="resourceId">Name of the resource.</param>
+        /// <returns>Value of the resource or empty value if the resource does not exist.</returns>
+        /// <exception cref="SyntaxTreeException">Raised if the UI Resource file does not exist.</exception>
+        internal static string Resource(string resourceId)
+        {
+            const string BASE_NAME = "ResolveArgument.UIStrings";
+            var resourceManager = new ResourceManager(BASE_NAME, Assembly.GetExecutingAssembly());
+            string returnString;
+            try
+            {
+                returnString = resourceManager.GetString(resourceId) ?? "";
+            }
+            catch (MissingManifestResourceException ex)
+            {
+                throw new SyntaxTreeException("Missing UI Resource file.", ex);
+            }
+
+            return returnString;
+        }
+    }
 
     internal class Tools
     {
+
+
         internal static void WriteResourcesToLog()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -59,12 +87,12 @@ namespace ResolveArgument
                     string validatedPath = Path.GetFullPath(requesteLogFile)??"";
                     if (string.IsNullOrEmpty(validatedPath))
                     {
-                        var errorText = ResolveArgument.UIStrings.LOGGER_NOT_VALID_PATH + ": " + requesteLogFile;
+                        var errorText = UI.Resource("LOGGER_NOT_VALID_PATH") + ": " + requesteLogFile;
                         throw new LoggerException(errorText);
                     }
                     if (!Directory.Exists(Path.GetDirectoryName(validatedPath)))
                     {
-                        var errorText = ResolveArgument.UIStrings.LOGGER_NO_DIRECTORY + ": " + Path.GetDirectoryName(validatedPath);
+                        var errorText = UI.Resource("LOGGER_NO_DIRECTORY") + ": " + Path.GetDirectoryName(validatedPath);
                         throw new LoggerException(errorText);
                     }
 
@@ -72,7 +100,7 @@ namespace ResolveArgument
                     if (!File.Exists(validatedPath))
                     {
                         string timestamp = DateTime.Now.ToString("s");
-                        string outputText = $"[{timestamp}] {ResolveArgument.UIStrings.LOGFILE_CREATED_HEADER}";
+                        string outputText = $"[{timestamp}] {UI.Resource("LOGFILE_CREATED_HEADER")}";
                         using StreamWriter sw = File.CreateText(validatedPath);
                         sw.WriteLine(outputText);
                     }
@@ -88,7 +116,7 @@ namespace ResolveArgument
                 )
                 {
                     logFile = null;
-                    throw new LoggerException(ResolveArgument.UIStrings.LOGGER_NOT_VALID_PATH, ex);
+                    throw new LoggerException(UI.Resource("LOGGER_NOT_VALID_PATH"), ex);
                 }
 
                 if (requestedLogLevel is not null)
@@ -104,7 +132,7 @@ namespace ResolveArgument
                     || ex is OverflowException
                     )
                     {
-                        throw new LoggerException(ResolveArgument.UIStrings.LOGGER_NOT_VALID_LEVEL, ex);
+                        throw new LoggerException(UI.Resource("LOGGER_NOT_VALID_LEVEL"), ex);
                     }
                     finally
                     {
@@ -153,9 +181,9 @@ namespace ResolveArgument
                 LOGGER.Write("Executing: conda env list");
                 shell.AddCommand(command);
                 foreach (var argument in arguments) shell.AddArgument(argument);
-                    var psResults = shell.Invoke();
+                var psResults = shell.Invoke();
 
-                foreach(var result in psResults)
+                foreach (var result in psResults)
                 {
                     results.Add(result.ToString());
                 }

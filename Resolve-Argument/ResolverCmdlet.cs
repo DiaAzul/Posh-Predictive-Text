@@ -5,6 +5,7 @@ namespace ResolveArgument
     using System.Management.Automation.Language;
     using System.Text;
 
+
     /// <summary>
     /// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
     /// </summary>
@@ -16,13 +17,16 @@ namespace ResolveArgument
     [OutputType(typeof(CompletionResult))]
     public class ResolverCmdlet : PSCmdlet
     {
+        // TODO [ ][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
         /// <summary>
         /// Gets or sets the switch indicating List, ListCommand or L flag
         /// supported commands.
         /// </summary>
         [Parameter(
             ParameterSetName = "ListCommands",
-            HelpMessage = "List commands supported with tab-expansion of arguments")]
+            HelpMessage = "List commands supported with tab-expansion of arguments",
+            HelpMessageBaseName = "ResolveArgument.UIStrings",
+            HelpMessageResourceId = "HELP_TEXT")]
         [Alias("List", "l")]
         public SwitchParameter ListCommands { get; set; }
 
@@ -106,7 +110,7 @@ namespace ResolveArgument
             switch (ParameterSetName)
             {
                 case "ListCommands":
-                    result.Append(ResolveArgument.UIStrings.LIST_OF_COMMANDS);
+                    result.Append(UI.Resource("LIST_OF_COMMANDS"));
                     WriteObject(result.ToString());
                     break;
 
@@ -129,15 +133,17 @@ namespace ResolveArgument
                         ErrorCategory.InvalidArgument,
                         LogFile));
                     }
+
+                    LOGGER.Write(GetResourceString("ResolveArgument.UIStrings", "HELP_TEXT"));
                     // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
-                    var init_script = ResolveArgument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
+                    var init_script = UI.Resource("REGISTER_COMMAND_SCRIPT").Replace("$cmdNames", "conda");
                     result.Append(init_script);
                     WriteObject(result.ToString());
 
                     break;
 
                 case "PrintScript":
-                    var print_script = ResolveArgument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
+                    var print_script = UI.Resource("REGISTER_COMMAND_SCRIPT").Replace("$cmdNames", "conda");
                     result.Append(print_script);
                     WriteObject(result.ToString());
                     break;
@@ -200,16 +206,16 @@ namespace ResolveArgument
                         // Repackage results for Tab-Completions.
                         List<CompletionResult> cmdletSuggestions = new();
                         foreach (var suggestion in suggestions)
-                            {
-                                CompletionResult cmdletSuggestion = new(
-                                    completionText: suggestion.CompletionText,
-                                    listItemText: suggestion.ListText,
-                                    resultType: suggestion.Type,
-                                    toolTip: suggestion.ToolTip
-                                    );
+                        {
+                            CompletionResult cmdletSuggestion = new(
+                                completionText: suggestion.CompletionText,
+                                listItemText: suggestion.ListText,
+                                resultType: suggestion.Type,
+                                toolTip: suggestion.ToolTip
+                                );
 
-                                cmdletSuggestions.Add(cmdletSuggestion);
-                            };
+                            cmdletSuggestions.Add(cmdletSuggestion);
+                        };
 
                         WriteObject(cmdletSuggestions);
                     }

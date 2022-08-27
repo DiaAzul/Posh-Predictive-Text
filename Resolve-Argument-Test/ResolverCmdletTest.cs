@@ -4,7 +4,6 @@ namespace ResolveArgument.Tests
 {
     using System.Collections.ObjectModel;
     using System.Management.Automation;
-    using System.Management.Automation.Language;
     using System.Management.Automation.Runspaces;
     using Xunit;
 

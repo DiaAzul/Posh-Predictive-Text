@@ -41,7 +41,7 @@ namespace ResolveArgument
 
         // Returns the position of the token and updates the position count.
         private int TokenPosition
-            { get { return commandLinePosition++; } }
+        { get { return commandLinePosition++; } }
 
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace ResolveArgument
         /// </summary>
         internal int Count
         {
-            get { return this.tokens.Count;  }
+            get { return this.tokens.Count; }
         }
 
         /// <summary>
@@ -258,8 +258,6 @@ namespace ResolveArgument
 
             // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
             // Reclassify them as CommandParameters.
-
-
             this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
             LOGGER.Write($"String constant expression: {token.Value}, {token.Type}");
