@@ -1,7 +1,6 @@
 ﻿
 namespace ResolveArgument
 {
-    using Resolve_Argument;
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
@@ -107,7 +106,7 @@ namespace ResolveArgument
             switch (ParameterSetName)
             {
                 case "ListCommands":
-                    result.Append(Resolve_Argument.UIStrings.LIST_OF_COMMANDS);
+                    result.Append(ResolveArgument.UIStrings.LIST_OF_COMMANDS);
                     WriteObject(result.ToString());
                     break;
 
@@ -137,14 +136,14 @@ namespace ResolveArgument
                     LOGGER.Write($"Conda environments: {outString}");
 
                     // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
-                    var init_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
+                    var init_script = ResolveArgument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
                     result.Append(init_script);
                     WriteObject(result.ToString());
 
                     break;
 
                 case "PrintScript":
-                    var print_script = Resolve_Argument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
+                    var print_script = ResolveArgument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
                     result.Append(print_script);
                     WriteObject(result.ToString());
                     break;

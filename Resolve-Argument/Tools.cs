@@ -1,4 +1,5 @@
-﻿
+﻿// TODO [ ][UISTRING] Use a configurable resource manager to access UIString.
+
 namespace ResolveArgument
 {
     using System.Collections.ObjectModel;
@@ -58,12 +59,12 @@ namespace ResolveArgument
                     string validatedPath = Path.GetFullPath(requesteLogFile)??"";
                     if (string.IsNullOrEmpty(validatedPath))
                     {
-                        var errorText = Resolve_Argument.UIStrings.LOGGER_NOT_VALID_PATH + ": " + requesteLogFile;
+                        var errorText = ResolveArgument.UIStrings.LOGGER_NOT_VALID_PATH + ": " + requesteLogFile;
                         throw new LoggerException(errorText);
                     }
                     if (!Directory.Exists(Path.GetDirectoryName(validatedPath)))
                     {
-                        var errorText = Resolve_Argument.UIStrings.LOGGER_NO_DIRECTORY + ": " + Path.GetDirectoryName(validatedPath);
+                        var errorText = ResolveArgument.UIStrings.LOGGER_NO_DIRECTORY + ": " + Path.GetDirectoryName(validatedPath);
                         throw new LoggerException(errorText);
                     }
 
@@ -71,7 +72,7 @@ namespace ResolveArgument
                     if (!File.Exists(validatedPath))
                     {
                         string timestamp = DateTime.Now.ToString("s");
-                        string outputText = $"[{timestamp}] {Resolve_Argument.UIStrings.LOGFILE_CREATED_HEADER}";
+                        string outputText = $"[{timestamp}] {ResolveArgument.UIStrings.LOGFILE_CREATED_HEADER}";
                         using StreamWriter sw = File.CreateText(validatedPath);
                         sw.WriteLine(outputText);
                     }
@@ -87,7 +88,7 @@ namespace ResolveArgument
                 )
                 {
                     logFile = null;
-                    throw new LoggerException(Resolve_Argument.UIStrings.LOGGER_NOT_VALID_PATH, ex);
+                    throw new LoggerException(ResolveArgument.UIStrings.LOGGER_NOT_VALID_PATH, ex);
                 }
 
                 if (requestedLogLevel is not null)
@@ -103,7 +104,7 @@ namespace ResolveArgument
                     || ex is OverflowException
                     )
                     {
-                        throw new LoggerException(Resolve_Argument.UIStrings.LOGGER_NOT_VALID_LEVEL, ex);
+                        throw new LoggerException(ResolveArgument.UIStrings.LOGGER_NOT_VALID_LEVEL, ex);
                     }
                     finally
                     {
