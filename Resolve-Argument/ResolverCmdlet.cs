@@ -129,12 +129,6 @@ namespace ResolveArgument
                         ErrorCategory.InvalidArgument,
                         LogFile));
                     }
-
-                    // [ ][CONDAHELPER] Remove test code in cmdlet.
-                    var list = CondaHelpers.GetParamaterValues("ENVIRONMENT", "");
-                    var outString = string.Join(", ", list);
-                    LOGGER.Write($"Conda environments: {outString}");
-
                     // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
                     var init_script = ResolveArgument.UIStrings.REGISTER_COMMAND_SCRIPT.Replace("$cmdNames", "conda");
                     result.Append(init_script);
