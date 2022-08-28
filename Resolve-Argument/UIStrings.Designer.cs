@@ -170,5 +170,14 @@ namespace ResolveArgument {
                 return ResourceManager.GetString("REGISTER_COMMAND_SCRIPT", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.1.0.
+        /// </summary>
+        public static string VERSION {
+            get {
+                return ResourceManager.GetString("VERSION", resourceCulture);
+            }
+        }
     }
 }

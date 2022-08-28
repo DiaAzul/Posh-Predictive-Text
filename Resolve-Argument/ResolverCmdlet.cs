@@ -1,4 +1,5 @@
-﻿
+﻿// TODO [ ][RESOLVER] Add parameter to return the version (Store in UIString).
+
 namespace ResolveArgument
 {
     using System.Management.Automation;
@@ -24,9 +25,9 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "ListCommands",
-            HelpMessage = "List commands supported with tab-expansion of arguments",
+            HelpMessage = "List commands supported with tab-expansion of arguments.",
             HelpMessageBaseName = "ResolveArgument.UIStrings",
-            HelpMessageResourceId = "HELP_TEXT")]
+            HelpMessageResourceId = "HELP_LIST_COMMANDS")]
         [Alias("List", "l")]
         public SwitchParameter ListCommands { get; set; }
 
@@ -36,7 +37,7 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "Initialise",
-            HelpMessage = "Initialise tab-expansion of arguments")]
+            HelpMessage = "Initialise tab-expansion of arguments.")]
         [Alias("Init", "i")]
         public SwitchParameter Initialise { get; set; }
 
@@ -45,7 +46,7 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "Initialise",
-            HelpMessage = "Enable loging to log file.")]
+            HelpMessage = "Enable logging to log file.")]
         public string? LogFile { get; set; }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace ResolveArgument
         /// </summary>
         [Parameter(
             ParameterSetName = "PrintScript",
-            HelpMessage = "Print PowerShell script used to initialise tab-expansion of arguments")]
+            HelpMessage = "Print PowerShell script used to initialise tab-expansion of arguments.")]
         [Alias("Print", "p")]
         public SwitchParameter PrintScript { get; set; }
 
@@ -74,7 +75,7 @@ namespace ResolveArgument
         [Parameter(
             Position = 0,
             ParameterSetName = "Resolve",
-            HelpMessage = "Value provided by the user before they pressed tab")]
+            HelpMessage = "Value provided by the user before they pressed tab.")]
         public string? WordToComplete { get; set; }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace ResolveArgument
         [Parameter(
             Position = 1,
             ParameterSetName = "Resolve",
-            HelpMessage = "Abstract Syntax Tree for current input line")]
+            HelpMessage = "Abstract Syntax Tree for current input line.")]
         public CommandAst? CommandAst { get; set; }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace ResolveArgument
         [Parameter(
             Position = 2,
             ParameterSetName = "Resolve",
-            HelpMessage = "Command enered by user at the prompt")]
+            HelpMessage = "Command enered by user at the prompt.")]
         public int? CursorPosition { get; set; }
 
         /// <summary>
