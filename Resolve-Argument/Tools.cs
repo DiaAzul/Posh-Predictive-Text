@@ -1,5 +1,4 @@
-﻿// TODO [ ][UISTRING] Use a configurable resource manager to access UIString.
-
+﻿
 namespace ResolveArgument
 {
     using System.Management.Automation;

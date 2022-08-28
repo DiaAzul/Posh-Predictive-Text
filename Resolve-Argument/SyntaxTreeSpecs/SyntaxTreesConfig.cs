@@ -1,5 +1,4 @@
-﻿// TODO [ ] Conda config -> Missing a POSITIONAL parameter in ?? conda env remove POSITIONAL (env or path).
-
+﻿
 namespace ResolveArgument
 {
     internal record ConfigItem
