@@ -100,20 +100,23 @@ namespace ResolveArgument
             // entered. If the paramter expects more than value then we can offer other
             // suggestions once more than one value is entered. If the parameter value has a
             // helper then the results of the helper should be suggested.
+            // TODO [ ][RESOLVER] If previous parameter is an alias then need to search values 
+            // for the alias e.g. -n => ENVIRONMENT.
             bool listOnlyParameterValues = false;
             Dictionary<int, Token> enteredCommandParameters = enteredTokens.CommandParameters;
             if (enteredCommandParameters.Count > 0)
             {
                 int lastCommandPosition = enteredCommandParameters.Keys.Max();
-                int enteredValues = enteredTokens.Count - lastCommandPosition;
+                int enteredValues = enteredTokens.Count - lastCommandPosition - 1;
                 // Can we enter more than one value?
                 string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
                 var parameterSyntaxItems = filteredSyntaxTree
-                                .Where(syntaxItem => syntaxItem.Parameter == lastParameter);
+                                .Where(syntaxItem => syntaxItem.Argument == lastParameter)
+                                .ToList();
 
-                if (parameterSyntaxItems is not null)
+                if (parameterSyntaxItems.Count > 0)
                 {
-                    var syntaxItem = parameterSyntaxItems.FirstOrDefault();
+                    var syntaxItem = parameterSyntaxItems.First();
                     bool multipleParameterValues = syntaxItem?.MultipleParameterValues ?? false;
 
                     if (enteredValues == 0 | multipleParameterValues)
@@ -122,7 +125,6 @@ namespace ResolveArgument
                                                                     .GetParamaterValues(
                                                                         syntaxItem?.Parameter ?? "",
                                                                         wordToComplete);
-
                         suggestions.AddRange(parameterValueOptions);
                         // Don't provide any other suggestions if we must enter a parameter value.
                         listOnlyParameterValues = (enteredValues == 0);
