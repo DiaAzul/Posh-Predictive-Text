@@ -1,6 +1,7 @@
 ﻿
 namespace ResolveArgument
 {
+    using System.Diagnostics.Eventing.Reader;
     using System.Management.Automation;
     using System.Reflection;
     using System.Resources;
@@ -67,6 +68,14 @@ namespace ResolveArgument
         internal bool IsPositionalParameter
         {
             get { return Type == "POS"; }
+        }
+
+        /// <summary>
+        /// Returns true if the syntax item has an alias.
+        /// </summary>
+        internal bool HasAlias
+        {
+            get { return Alias != null; }
         }
 
         /// <summary>

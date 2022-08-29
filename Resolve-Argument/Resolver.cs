@@ -72,10 +72,7 @@ namespace ResolveArgument
             // complete we may offer positional parameters.
             List<string> uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
             var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
-#if DEBUG
-            LOGGER.Write($"Tokens in command {tokensInPath}. Entered Tokens {enteredTokens.Count}");
-            LOGGER.Write($"Command path: {commandPath}");
-#endif
+
             List<SyntaxItem> filteredSyntaxTree = SyntaxTrees.Get(syntaxTreeName)
                 .Where(syntaxItem =>
                             syntaxItem.CommandPath == commandPath)
@@ -94,8 +91,6 @@ namespace ResolveArgument
             // entered. If the paramter expects more than value then we can offer other
             // suggestions once more than one value is entered. If the parameter value has a
             // helper then the results of the helper should be suggested.
-            // TODO [ ][RESOLVER] If previous parameter is an alias then need to search values 
-            // for the alias e.g. -n => ENVIRONMENT.
             bool listOnlyParameterValues = false;
             Dictionary<int, Token> enteredCommandParameters = enteredTokens.CommandParameters;
             if (enteredCommandParameters.Count > 0)
@@ -104,23 +99,27 @@ namespace ResolveArgument
                 int enteredValues = enteredTokens.Count - lastCommandPosition - 1;
                 // Can we enter more than one value?
                 string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
-                var parameterSyntaxItems = filteredSyntaxTree
-                                .Where(syntaxItem => syntaxItem.Argument == lastParameter)
-                                .ToList();
+                // Search prior parameters for both parameter AND aliases.
+                var parameterSyntaxItems 
+                    = filteredSyntaxTree
+                        .Where(syntaxItem => syntaxItem.Argument == lastParameter
+                                | (syntaxItem.HasAlias && syntaxItem.Alias == lastParameter))
+                        .ToList();
 
                 if (parameterSyntaxItems.Count > 0)
                 {
-                    var syntaxItem = parameterSyntaxItems.First();
-                    bool acceptsMultipleParameterValues = syntaxItem?.MultipleParameterValues ?? false;
+                    SyntaxItem syntaxItem = parameterSyntaxItems.First();
+                    bool acceptsMultipleParameterValues
+                        = syntaxItem?.MultipleParameterValues ?? false;
                     bool isParameter = syntaxItem?.IsParameter ?? false;
                     if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
                     {
-                        List<Suggestion> parameterValueOptions = CondaHelpers
-                                                                    .GetParamaterValues(
-                                                                        syntaxItem?.Parameter ?? "",
-                                                                        wordToComplete);
+                        List<Suggestion> parameterValueOptions
+                            = CondaHelpers.GetParamaterValues(syntaxItem?.Parameter ?? "",
+                                                              wordToComplete);
                         suggestions.AddRange(parameterValueOptions);
-                        // Don't provide any other suggestions if we must enter a parameter value.
+                        // If the parameter value is mandatory then don't provide
+                        // any more suggestions.
                         listOnlyParameterValues = (enteredValues == 0);
                     }
                 }
@@ -138,10 +137,9 @@ namespace ResolveArgument
                 {
                     SyntaxItem positionalSyntaxItem = positionalValue.First();
                     LOGGER.Write(positionalSyntaxItem.Parameter ?? "");
-                    List<Suggestion> positionalValueSuggestions = CondaHelpers
-                                                                     .GetParamaterValues(
-                                                                        positionalSyntaxItem.Parameter ?? "",
-                                                                        wordToComplete);
+                    List<Suggestion> positionalValueSuggestions
+                        = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Parameter ?? "",
+                                                          wordToComplete);
 
                     suggestions.AddRange(positionalValueSuggestions);
                 }
@@ -168,7 +166,7 @@ namespace ResolveArgument
                         CompletionText = syntaxItem.Argument??"",
                         ListText = syntaxItem.Argument??"",
                         Type = syntaxItem.ResultType,
-                        ToolTip = SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.ToolTip)??"Tooltip was null."
+                        ToolTip = SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.ToolTip) ?? "Tooltip was null."
                     };
                     suggestions.Add(suggestion);
                 }
