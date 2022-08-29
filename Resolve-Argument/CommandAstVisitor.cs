@@ -126,16 +126,15 @@ namespace ResolveArgument
 
             StringBuilder commandPath = new(capacity: 64);
             int tokensInCommand = 0;
+            string delimeter = "";
             foreach (var (position, commandToken) in this.tokens)
             {
                 string tokenText = commandToken.Value.ToLower();
                 if (uniqueCommands.Contains(tokenText))
                 {
-                    if (commandPath.Length > 0)
-                    {
-                        commandPath.Append('.');
-                    }
+                    commandPath.Append(delimeter);
                     commandPath.Append(tokenText);
+                    delimeter = ".";
                     tokensInCommand++;
                 }
                 else
