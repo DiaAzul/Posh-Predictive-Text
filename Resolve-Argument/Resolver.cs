@@ -82,7 +82,7 @@ namespace ResolveArgument
                 .ToList();
 
             List<SyntaxItem> subCommands = filteredSyntaxTree
-                                            .Where(syntaxItem => syntaxItem.Type == "CMD")
+                                            .Where(syntaxItem => syntaxItem.IsCommand)
                                             .ToList();
             int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
             int expectedCommandTokens = tokensInPath + (subCommands.Count > 0 ? 1 : 0);
@@ -112,7 +112,7 @@ namespace ResolveArgument
                 {
                     var syntaxItem = parameterSyntaxItems.First();
                     bool acceptsMultipleParameterValues = syntaxItem?.MultipleParameterValues ?? false;
-                    bool isParameter = (syntaxItem?.Type ?? "") == "PRM";
+                    bool isParameter = syntaxItem?.IsParameter ?? false;
                     if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
                     {
                         List<Suggestion> parameterValueOptions = CondaHelpers
@@ -132,7 +132,7 @@ namespace ResolveArgument
             {
                 LOGGER.Write("Listing positional parameters.");
                 var positionalValue = filteredSyntaxTree
-                                        .Where(syntaxItem => syntaxItem.Type == "POS")
+                                        .Where(syntaxItem => syntaxItem.IsPositionalParameter)
                                         .ToList();
                 if (positionalValue.Count > 0)
                 {
@@ -154,7 +154,7 @@ namespace ResolveArgument
             {
                 List<SyntaxItem> availableOptions = filteredSyntaxTree
                     .Where(syntaxItem =>
-                            !(syntaxItem.Type.Equals("CMD") && commandComplete)
+                            !(syntaxItem.IsCommand && commandComplete)
                             && syntaxItem.Argument is not null
                             && syntaxItem.Argument.StartsWith(wordToComplete)
                             && enteredTokens.CanUse(syntaxItem))

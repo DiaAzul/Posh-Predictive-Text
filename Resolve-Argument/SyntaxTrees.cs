@@ -38,6 +38,38 @@ namespace ResolveArgument
         internal string? ToolTip { get; init; }
 
         /// <summary>
+        /// Returns true if the syntax item is a command.
+        /// </summary>
+        internal bool IsCommand
+        {
+            get { return Type == "CMD"; }
+        }
+
+        /// <summary>
+        /// Returns true if the syntax item is an option parameter.
+        /// </summary>
+        internal bool IsOptionParameter
+        {
+            get { return Type == "OPT";  }
+        }
+
+        /// <summary>
+        /// Returns true if the syntax item is a parameter that takes values.
+        /// </summary>
+        internal bool IsParameter
+        {
+            get { return Type == "PRM"; }
+        }
+
+        /// <summary>
+        /// Returns true if the syntax item is a positional parameter.
+        /// </summary>
+        internal bool IsPositionalParameter
+        {
+            get { return Type == "POS"; }
+        }
+
+        /// <summary>
         /// Property return the result type for the Syntax item.
         /// </summary>
         internal CompletionResultType ResultType
