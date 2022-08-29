@@ -1,5 +1,4 @@
-﻿// TODO [ ][SYNTAXTREES] Support aliasing commands and resource files.
-
+﻿
 namespace ResolveArgument
 {
     using System.Management.Automation;

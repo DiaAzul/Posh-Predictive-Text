@@ -57,10 +57,12 @@ namespace ResolveArgument
             // If we can't load a syntax tree then return early with empty suggestion list.
             List<Suggestion> suggestions = new();
 
-            string syntaxTreeName = enteredTokens.BaseCommand ?? "";
-            // If syntax tree not loaded then load it. If still not loaded abort early.
-            if (!SyntaxTrees.Exists(syntaxTreeName)) SyntaxTrees.Load(syntaxTreeName);
-            if (!SyntaxTrees.Exists(syntaxTreeName)) return suggestions;
+            string? syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(enteredTokens.BaseCommand);
+            // If syntax tree not loaded then load it. If still not loaded or command does exist abort early.
+            if (syntaxTreeName is not null && !SyntaxTrees.Exists(syntaxTreeName))
+                SyntaxTrees.Load(syntaxTreeName);
+            if (syntaxTreeName is null || !SyntaxTrees.Exists(syntaxTreeName))
+                return suggestions;
 
 #if DEBUG
             LOGGER.Write($"The syntaxTree {syntaxTreeName} exists. "

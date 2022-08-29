@@ -149,9 +149,6 @@ Resolve-Argument provides tab-completion for the following commands:
   <data name="LOGGER_UNABLE_TO_CREATE_LOGFILE" xml:space="preserve">
     <value>Unable to create log file. Use Get-Error for more detail.</value>
   </data>
-  <data name="POSH_INIT_SCRIPT" xml:space="preserve">
-    <value>Get-Process</value>
-  </data>
   <data name="REGISTER_COMMAND_SCRIPT" xml:space="preserve">
     <value># Remove conda tab-expansion if installed.
 if (Test-Path Function:\TabExpansion) {
@@ -176,8 +173,9 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
         Write-Host "Error."
     }
     
-    $suggestions 
-}</value>
+    $suggestions
+}
+</value>
   </data>
   <data name="VERSION" xml:space="preserve">
     <value>0.1.0</value>

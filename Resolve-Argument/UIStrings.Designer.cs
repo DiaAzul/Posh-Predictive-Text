@@ -141,15 +141,6 @@ namespace ResolveArgument {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get-Process.
-        /// </summary>
-        public static string POSH_INIT_SCRIPT {
-            get {
-                return ResourceManager.GetString("POSH_INIT_SCRIPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to # Remove conda tab-expansion if installed.
         ///if (Test-Path Function:\TabExpansion) {
         ///    $testForConda = Get-Item Function:\TabExpansion
