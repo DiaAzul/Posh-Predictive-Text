@@ -119,9 +119,9 @@ namespace ResolveArgument
                 if (parameterSyntaxItems.Count > 0)
                 {
                     var syntaxItem = parameterSyntaxItems.First();
-                    bool multipleParameterValues = syntaxItem?.MultipleParameterValues ?? false;
-
-                    if (enteredValues == 0 | multipleParameterValues)
+                    bool acceptsMultipleParameterValues = syntaxItem?.MultipleParameterValues ?? false;
+                    bool isParameter = (syntaxItem?.Type ?? "") == "PRM";
+                    if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
                     {
                         List<Suggestion> parameterValueOptions = CondaHelpers
                                                                     .GetParamaterValues(
