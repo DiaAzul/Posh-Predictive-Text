@@ -1,5 +1,4 @@
-﻿// TODO [ ][RESOLVER] Support return of aliases.
-
+﻿
 namespace ResolveArgument
 {
     using System.Linq;
@@ -39,13 +38,6 @@ namespace ResolveArgument
         /// for values are required then method identifies and calls an appropriate handler.
         /// 
         /// The state model for determining suggestions uses the following algorithm:
-        /// TODO [X] 1. Identify what command, or partial command has already been entered (commands may be multi-word).
-        /// TODO [X] 2. Identify if we have exited command entry (a parameter has been entered) skip to 4.
-        /// TODO [X] 3. Identify suggestions for sub-commands.
-        /// TODO [X] 4. Identify suggestions for parameter values if command parameter is active. If mandatory value skip to 7.
-        /// TODO [X] 5. Identify suggestions for positional parameters using a handler if appropriate
-        /// TODO [X] 6. Identify suggestions for command parameters.
-        /// TODO [ ] 7. Identify whether we have already entered command parameters which are unique (remove from suggestions).
         /// </remarks>
         internal static List<Suggestion> Suggestions(
             string wordToComplete,
@@ -133,7 +125,7 @@ namespace ResolveArgument
                     }
                 }
             }
-
+            
             // ----- POSITIONAL VALUES -----
             // If we have a helper for positional parameters then return the suggestions.
             if (!listOnlyParameterValues && commandComplete)
@@ -164,10 +156,9 @@ namespace ResolveArgument
                     .Where(syntaxItem =>
                             !(syntaxItem.Type.Equals("CMD") && commandComplete)
                             && syntaxItem.Argument is not null
-                            && syntaxItem.Argument.StartsWith(wordToComplete))
+                            && syntaxItem.Argument.StartsWith(wordToComplete)
+                            && enteredTokens.CanUse(syntaxItem))
                     .ToList();
-
-                // TODO [ ][RESOLVER] Filter parameters by those already added.
                 var filteredOptions = availableOptions;
 
                 foreach (var syntaxItem in filteredOptions)

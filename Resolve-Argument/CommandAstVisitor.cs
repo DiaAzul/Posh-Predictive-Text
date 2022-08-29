@@ -148,6 +148,31 @@ namespace ResolveArgument
         }
 
         /// <summary>
+        /// For any provided syntaxItem identify whether it can be used on the command line.
+        /// The parameter cannot be used if it is a single use parameter and has already
+        /// been used on the command line.
+        /// </summary>
+        /// <param name="syntaxItem">Returns true if a paramter can be used.</param>
+        /// <returns></returns>
+        internal bool CanUse(SyntaxItem syntaxItem)
+        {
+            // If item can be used multiple times then we do not need to
+            // check that it has been used on the command line already.
+            if (syntaxItem.MultipleUse) return true;
+
+            bool match = true;
+            foreach (Token token in this.tokens.Values)
+            {
+                if (syntaxItem.Argument is not null && token.Value == syntaxItem.Argument)
+                {
+                    match = false;
+                    break;
+                }
+            }
+            return match;
+        }
+
+        /// <summary>
         /// Default action if the token has not been processed by a
         /// more specific token handler. Adds the token text with a
         /// generic text type.
