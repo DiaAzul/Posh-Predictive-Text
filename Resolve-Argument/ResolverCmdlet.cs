@@ -1,4 +1,4 @@
-﻿// TODO [ ][RESOLVER] Add parameter to return the version (Store in UIString).
+﻿// TODO [ ][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
 
 namespace ResolveArgument
 {
@@ -18,7 +18,15 @@ namespace ResolveArgument
     [OutputType(typeof(CompletionResult))]
     public class ResolverCmdlet : PSCmdlet
     {
-        // TODO [ ][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
+        /// <summary>
+        /// Gets or sets the parameter requesting the version to be display.
+        /// </summary>
+        [Parameter(
+            ParameterSetName = "Version",
+            HelpMessage = "Returns the version.")]
+        [Alias("Ver", "v")]
+        public SwitchParameter Version { get; set; }
+
         /// <summary>
         /// Gets or sets the switch indicating List, ListCommand or L flag
         /// supported commands.
@@ -110,6 +118,11 @@ namespace ResolveArgument
 
             switch (ParameterSetName)
             {
+                case "Version":
+                    result.Append(UI.Resource("VERSION"));
+                    WriteObject(result.ToString());
+                    break;
+
                 case "ListCommands":
                     result.Append(UI.Resource("LIST_OF_COMMANDS"));
                     WriteObject(result.ToString());
