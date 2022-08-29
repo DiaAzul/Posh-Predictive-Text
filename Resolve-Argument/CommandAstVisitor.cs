@@ -16,9 +16,36 @@ namespace ResolveArgument
         internal string Value { get; init; } = default!;
         internal Type Type { get; init; } = typeof(StringConstantExpressionAst);
 
+        /// <summary>
+        /// True if the token is a command.
+        /// </summary>
+        internal bool IsCommand
+        {
+            get { return Type == typeof(CommandAst); }
+        }
+
+        /// <summary>
+        /// True if the token is a command expression.
+        /// </summary>
+        internal bool IsCommandExpression
+        {
+            get { return Type == typeof(CommandExpressionAst); }
+        }
+
+        /// <summary>
+        /// True if the token is a command parameter.
+        /// </summary>
         internal bool IsCommandParameter
         {
             get { return Type == typeof(CommandParameterAst); }
+        }
+
+        /// <summary>
+        /// True if the token is a string constant expression.
+        /// </summary>
+        internal bool IsStringConstantExpression
+        {
+            get { return Type == typeof(StringConstantExpressionAst); }
         }
     }
 
