@@ -160,6 +160,32 @@ namespace ResolveArgument
         }
 
         /// <summary>
+        /// Gets the display string for a tooltip reference.
+        /// </summary>
+        /// <param name="syntaxTreeName">Syntax tree from which tooltip required.</param>
+        /// <param name="toolTipRef">Tooltip reference used to identify display string.</param>
+        /// <returns>Tooltip display text.</returns>
+        internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
+        {
+            if (toolTipRef == null) return "";
+
+            string? baseName = SyntaxTreesConfig.ToolTips(syntaxTreeName);
+            if (baseName == null) return "";
+
+            string toolTip;
+            try
+            {
+                var resourceManager = new ResourceManager(baseName, Assembly.GetExecutingAssembly());
+                toolTip = resourceManager.GetString(toolTipRef) ?? "";
+            }
+            catch (ArgumentNullException)
+            {
+                toolTip = "";
+            }
+
+            return toolTip;
+        }
+        /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
         /// 
         /// The method reads the XML file embeded within the application, parses it
@@ -258,7 +284,7 @@ namespace ResolveArgument
         /// </summary>
         /// <param name="element">Node in XML tree.</param>
         /// <returns>Contents of node as string.</returns>
-        internal static string AsString(XElement? element)
+        private static string AsString(XElement? element)
         {
             return element?.Value.ToString() ?? "";
         }
@@ -269,7 +295,7 @@ namespace ResolveArgument
         /// </summary>
         /// <param name="element">Node in XML tree.</param>
         /// <returns>Contents of node as string.</returns>
-        internal static string? AsNullableString(XElement? element)
+        private static string? AsNullableString(XElement? element)
         {
             return element?.Value.ToString();
         }
@@ -285,7 +311,7 @@ namespace ResolveArgument
         /// <param name="element">Node in XML tree.</param>
         /// <param name="trueValue">Test pattern for true value. Default <c>TRUE</c>.</param>
         /// <returns>True when the contents of the node match the test pattern. <c>false</c> if the node is null.</returns>
-        internal static bool AsBool(XElement? element, string trueValue = "TRUE")
+        private static bool AsBool(XElement? element, string trueValue = "TRUE")
         {
             return element is not null && (element?.Value.ToString() ?? "") == trueValue;
         }
@@ -301,36 +327,9 @@ namespace ResolveArgument
         /// <param name="element">Node in XML tree.</param>
         /// <param name="trueValue">Test pattern for true value. Default <c>TRUE</c>.</param>
         /// <returns>True when the contents of the node match the test pattern. Null if the node is null.</returns>
-        internal static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
+        private static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
         {
             return element is not null ? (element?.Value.ToString() ?? "") == trueValue : null;
-        }
-
-        /// <summary>
-        /// Gets the display string for a tooltip reference.
-        /// </summary>
-        /// <param name="syntaxTreeName">Syntax tree from which tooltip required.</param>
-        /// <param name="toolTipRef">Tooltip reference used to identify display string.</param>
-        /// <returns>Tooltip display text.</returns>
-        internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
-        {
-            if (toolTipRef == null) return "";
-
-            string? baseName = SyntaxTreesConfig.ToolTips(syntaxTreeName);
-            if (baseName == null) return "";
-
-            string toolTip;
-            try
-            {
-                var resourceManager = new ResourceManager(baseName, Assembly.GetExecutingAssembly());
-                toolTip = resourceManager.GetString(toolTipRef) ?? "";
-            }
-            catch (ArgumentNullException)
-            {
-                toolTip = "";
-            }
-
-            return toolTip;
         }
     }
 }
