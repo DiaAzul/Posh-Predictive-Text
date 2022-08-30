@@ -42,9 +42,29 @@ namespace PoshPredictiveText.Tests
             Assert.False(IsCommandExpression);
         }
     }
+
+    /// <summary>
+    /// Test CommandAstVisitor
+    /// 
+    /// Class passed to the CommandAst.Visit() method. The visit method call 
+    /// method defined within the CommandAstVisitor class for each token 
+    /// parsed on the command line. Thevisitor class comprises two parts:
+    /// 1. Methods called when the visitor is passed to CommandAst.Visit(), these
+    /// method start with the verb 'Visit'.
+    /// 2. Methods and properties used to query the parsed command line tokens.
+    /// </summary>
+    public class CommandAstVisitorTest
+    {
+
+    }
 }
 
 
+//public override AstVisitAction DefaultVisit(Ast ast)
+//public override AstVisitAction VisitCommand(CommandAst commandAst)
+//public override AstVisitAction VisitCommandExpression(CommandExpressionAst commandExpressionAst)
+//public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
+//public override AstVisitAction VisitStringConstantExpression(StringConstantExpressionAst stringConstantExpressionAst)
 
 // internal class CommandAstVisitor : AstVisitor
 //internal CommandAstVisitor()
@@ -58,9 +78,5 @@ namespace PoshPredictiveText.Tests
 //internal Token? Index(int index)
 //internal (string, int) CommandPath(List<string> uniqueCommands)
 //internal bool CanUse(SyntaxItem syntaxItem)
-//public override AstVisitAction DefaultVisit(Ast ast)
-//public override AstVisitAction VisitCommand(CommandAst commandAst)
-//public override AstVisitAction VisitCommandExpression(CommandExpressionAst commandExpressionAst)
-//public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
-//public override AstVisitAction VisitStringConstantExpression(StringConstantExpressionAst stringConstantExpressionAst)
+
 
