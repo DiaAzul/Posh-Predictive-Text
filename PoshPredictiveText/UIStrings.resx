@@ -135,7 +135,7 @@ Resolve-Argument provides tab-completion for the following commands:
 </value>
   </data>
   <data name="LOGFILE_CREATED_HEADER" xml:space="preserve">
-    <value>Resolve-Argument logile created.</value>
+    <value>Install-PredictiveText logile created.</value>
   </data>
   <data name="LOGGER_NOT_VALID_LEVEL" xml:space="preserve">
     <value>The log level parameter must be INFO, WARN, ERROR. Use Get-Error for more detail.</value>
@@ -167,15 +167,14 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
         [int]$cursorPosition)
 
     try {
-        $suggestions = Resolve-Argument -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+        $suggestions = Install-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
     }
     catch {
         Write-Host "Error."
     }
     
-    $suggestions
-}
-</value>
+    $suggestions 
+}</value>
   </data>
   <data name="VERSION" xml:space="preserve">
     <value>0.1.0</value>

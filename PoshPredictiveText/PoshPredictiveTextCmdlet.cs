@@ -12,8 +12,8 @@ namespace PoshPredictiveText
     /// command arguments in PowerShell.
     /// </summary>
     [Cmdlet(
-        VerbsDiagnostic.Resolve,
-        "Argument",
+        VerbsLifecycle.Install,
+        "PredictiveText",
         DefaultParameterSetName = "Resolve")]
     [OutputType(typeof(string))]
     [OutputType(typeof(CompletionResult))]

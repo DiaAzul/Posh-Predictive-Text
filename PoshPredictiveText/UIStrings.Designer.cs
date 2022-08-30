@@ -96,7 +96,7 @@ namespace PoshPredictiveText {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resolve-Argument logile created..
+        ///   Looks up a localized string similar to Install-PredictiveText logile created..
         /// </summary>
         public static string LOGFILE_CREATED_HEADER {
             get {
