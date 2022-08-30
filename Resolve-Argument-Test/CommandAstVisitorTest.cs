@@ -1,28 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management.Automation.Language;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Resolve_Argument_Test
+namespace ResolveArgument.Tests
 {
+    using System.Management.Automation.Language;
+    using Xunit;
+
     // TODO [ ][TEST] Token
     // TODO [ ][TEST] CommandAstVisitor
- 
-    internal class CommandAstVisitorTest
+
+    /// <summary>
+    /// Test CommandAstVisitor Token records
+    /// </summary>
+    public class CommandAstVisitorTokenTest
     {
+        /// <summary>
+        /// Test Token create, store and immutability.
+        /// </summary>
+        [Fact]
+        public void CommandTokenTest()
+        {
+            // Arrange
+            ResolveArgument.Token testToken = new()
+            {
+                Value = "TestValue",
+                Type = typeof(CommandAst)
+            };
+            // Act
+            bool isCommand = testToken.IsCommand;
+            bool IsCommandExpression = testToken.IsCommandExpression;
+
+            // Assert
+            Assert.Equal("TestValue", testToken.Value);
+            Assert.True(isCommand);
+            Assert.False(IsCommandExpression);
+        }
     }
 }
-
-
-// internal record Token
-//internal string Value { get; init; } = default!;
-//internal Type Type { get; init; } = typeof(StringConstantExpressionAst);
-//internal bool IsCommand
-//internal bool IsCommandExpression
-//internal bool IsCommandParameter
-//internal bool IsStringConstantExpression
 
 
 
