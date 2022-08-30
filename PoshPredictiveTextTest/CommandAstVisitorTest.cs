@@ -2,10 +2,9 @@
 
 namespace PoshPredictiveText.Test
 {
+    using System.Management.Automation;
     using System.Management.Automation.Language;
     using Xunit;
-
-    // TODO [ ][TEST] CommandAstVisitor
 
     /// <summary>
     /// Test CommandAstVisitor Token records
@@ -164,17 +163,144 @@ namespace PoshPredictiveText.Test
             Assert.NotNull(token);
             Assert.Equal("value1", token.Value);
         }
+
+        /// <summary>
+        /// Test the All tokens property.
+        /// </summary>
+        [Fact]
+        public void AllTokensTest()
+        {
+            // Note: This test is already covered in TestCommandAstVisitorVisitTest
+            // So just do a quick test of count and one token.
+            // Act
+            Dictionary<int, PoshPredictiveText.Token> tokens= tokenisedInput.All;
+            // Assert
+            Assert.Equal(6, tokens.Count);
+            Assert.Equal("12", tokens[5].Value);
+            Assert.Equal(typeof(string), tokens[5].Type);
+        }
+
+        /// <summary>
+        /// Test the Count of tokens.
+        /// </summary>
+        [Fact]
+        public void CountTest()
+        {
+            // Act
+            int tokenCount = tokenisedInput.Count;
+            // Assert
+            Assert.Equal(6, tokenCount);
+        }
+
+        /// <summary>
+        /// Test CommandParameters returns list of command tokens.
+        /// </summary>
+        [Fact]
+        public void CommandParametersTest()
+        {
+            // Act
+            Dictionary<int, PoshPredictiveText.Token> commandTokens = tokenisedInput.CommandParameters;
+            // Assert
+            Assert.Equal(2, commandTokens.Count);
+
+            Assert.Equal("-parameter1", commandTokens[2].Value);
+            Assert.Equal(typeof(CommandParameterAst), commandTokens[2].Type);
+
+            Assert.Equal("--parameter2", commandTokens[3].Value);
+            Assert.Equal(typeof(CommandParameterAst), commandTokens[3].Type);
+        }
+
+        /// <summary>
+        /// Test Index returns the correct token at a given index.
+        /// Test for exceptions out of scope.
+        /// </summary>
+        [Fact]
+        public void IndexTest()
+        {
+            // Act
+            PoshPredictiveText.Token? secondToken = tokenisedInput.Index(1);
+            PoshPredictiveText.Token? negativeIndex = tokenisedInput.Index(-1);
+            PoshPredictiveText.Token? outOfBounds = tokenisedInput.Index(10);
+            // Assert
+            Assert.NotNull(secondToken);
+            Assert.Equal("env", secondToken.Value);
+            Assert.Null(negativeIndex);
+            Assert.Null(outOfBounds);
+        }
+
+        /// <summary>
+        /// Test CommandPath returns the correct path given
+        /// a list of commands.
+        /// </summary>
+        [Fact]
+        public void CommandPathTest()
+        {
+            // Arrange
+            List<string> commands = new() { "conda", "env" };
+            // Act
+            var (commandPath, length) = tokenisedInput.CommandPath(commands);
+            // Assert
+            Assert.NotNull(commandPath);
+            Assert.Equal(2, length);
+            Assert.Equal("conda.env", commandPath);
+        }
+
+        /// <summary>
+        /// Test CanUse. When given a syntaxItem will return
+        /// false if the syntax item already exists in the tokenised text
+        /// and can only be used once. Otherwise, CanUse will return
+        /// true indicating that the syntaxItem can be used again.
+        /// </summary>
+        [Fact]
+        public void CanUseTest()
+        {
+            // Arrange - create syntax items to test.
+            SyntaxItem singleUseDoesExist = new()
+            {
+                Command = "env",
+                CommandPath = "conda.env",
+                Type = "OPT",
+                Argument = "-parameter1",
+                Alias = null,
+                MultipleUse = false,
+            };
+
+            SyntaxItem singleUseDoesNotExist = new()
+            {
+                Command = "env",
+                CommandPath = "conda.env",
+                Type = "OPT",
+                Argument = "-parameter3",
+                Alias = null,
+                MultipleUse = false,
+            };
+
+            SyntaxItem multipleUseExists = new()
+            {
+                Command = "env",
+                CommandPath = "conda.env",
+                Type = "OPT",
+                Argument = "-parameter3",
+                Alias = null,
+                MultipleUse = false,
+            };
+
+            // Act
+            bool singleUseDoesExitCanUse = tokenisedInput.CanUse(singleUseDoesExist);
+            bool singleUseDoesNotExistCanUse = tokenisedInput.CanUse(singleUseDoesNotExist);
+            bool multipleUseExistsCanUse = tokenisedInput.CanUse(multipleUseExists);
+
+            // Assert
+            Assert.False(singleUseDoesExitCanUse);
+            Assert.True(singleUseDoesNotExistCanUse);
+            Assert.True(multipleUseExistsCanUse);
+        }
     } 
 }
 
 
 
 
-//internal Dictionary<int, Token> All
-//internal int Count
-//internal Dictionary<int, Token> CommandParameters
-//internal Token? Index(int index)
-//internal (string, int) CommandPath(List<string> uniqueCommands)
-//internal bool CanUse(SyntaxItem syntaxItem)
+
 
 
