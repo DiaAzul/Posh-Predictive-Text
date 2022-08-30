@@ -5,11 +5,18 @@ namespace ResolveArgument.Tests
     using System.Management.Automation.Language;
     using Xunit;
 
-    // TODO [ ][TEST] Token
     // TODO [ ][TEST] CommandAstVisitor
 
     /// <summary>
     /// Test CommandAstVisitor Token records
+    /// 
+    /// Basic tests to create a token and test its value and properties.
+    /// 
+    /// Risks:
+    /// 1. [Low] Only testing one type and limited properties.
+    /// 2. [Low] Token does not constrain values or type, there is a
+    /// possibilty of error if an unexpected type is assigned to token
+    /// and other code relies on Token having known types.
     /// </summary>
     public class CommandAstVisitorTokenTest
     {
