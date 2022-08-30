@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ResolveArgument {
+namespace PoshPredictiveText {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ResolveArgument {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ResolveArgument.UIStrings", typeof(UIStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PoshPredictiveText.UIStrings", typeof(UIStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

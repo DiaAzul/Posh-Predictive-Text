@@ -1,6 +1,6 @@
 ﻿
 
-namespace ResolveArgument
+namespace PoshPredictiveText
 {
     using System;
     using System.Collections.Generic;

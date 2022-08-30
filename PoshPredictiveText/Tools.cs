@@ -1,5 +1,5 @@
 ﻿
-namespace ResolveArgument
+namespace PoshPredictiveText
 {
     using System.Management.Automation;
     using System.Reflection;
@@ -15,7 +15,7 @@ namespace ResolveArgument
         /// <exception cref="SyntaxTreeException">Raised if the UI Resource file does not exist.</exception>
         internal static string Resource(string resourceId)
         {
-            const string BASE_NAME = "ResolveArgument.UIStrings";
+            const string BASE_NAME = "PoshPredictiveText.UIStrings";
             var resourceManager = new ResourceManager(BASE_NAME, Assembly.GetExecutingAssembly());
             string returnString;
             try

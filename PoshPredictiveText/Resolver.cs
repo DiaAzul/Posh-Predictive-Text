@@ -1,5 +1,5 @@
 ﻿
-namespace ResolveArgument
+namespace PoshPredictiveText
 {
     using System.Linq;
     using System.Management.Automation;

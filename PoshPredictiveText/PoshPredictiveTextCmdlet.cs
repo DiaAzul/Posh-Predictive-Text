@@ -1,6 +1,6 @@
 ﻿// TODO [ ][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
 
-namespace ResolveArgument
+namespace PoshPredictiveText
 {
     using System.Management.Automation;
     using System.Management.Automation.Language;
@@ -16,7 +16,7 @@ namespace ResolveArgument
         DefaultParameterSetName = "Resolve")]
     [OutputType(typeof(string))]
     [OutputType(typeof(CompletionResult))]
-    public class ResolverCmdlet : PSCmdlet
+    public class PoshPredictiveTextCmdlet : PSCmdlet
     {
         /// <summary>
         /// Gets or sets the parameter requesting the version to be display.
@@ -34,7 +34,7 @@ namespace ResolveArgument
         [Parameter(
             ParameterSetName = "ListCommands",
             HelpMessage = "List commands supported with tab-expansion of arguments.",
-            HelpMessageBaseName = "ResolveArgument.UIStrings",
+            HelpMessageBaseName = "PoshPredictiveText.UIStrings",
             HelpMessageResourceId = "HELP_LIST_COMMANDS")]
         [Alias("List", "l")]
         public SwitchParameter ListCommands { get; set; }
@@ -148,7 +148,7 @@ namespace ResolveArgument
                         LogFile));
                     }
 
-                    LOGGER.Write(GetResourceString("ResolveArgument.UIStrings", "HELP_TEXT"));
+                    LOGGER.Write(GetResourceString("PoshPredictiveText.UIStrings", "HELP_TEXT"));
                     // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
                     var init_script = UI.Resource("REGISTER_COMMAND_SCRIPT")
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());

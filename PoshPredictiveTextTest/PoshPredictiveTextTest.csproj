@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>ResolveArgumentTest</RootNamespace>
+    <RootNamespace>PoshPredictiveTextTest</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Resolve-Argument\POSH_Jogger.csproj">
+    <ProjectReference Include="..\PoshPredictiveText\PoshPredictiveText.csproj">
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

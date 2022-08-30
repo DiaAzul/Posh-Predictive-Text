@@ -1,5 +1,5 @@
 ﻿
-namespace ResolveArgument
+namespace PoshPredictiveText
 {
     using System.Diagnostics.Eventing.Reader;
     using System.Management.Automation;

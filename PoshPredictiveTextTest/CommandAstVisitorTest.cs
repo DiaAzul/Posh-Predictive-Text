@@ -1,6 +1,6 @@
 ﻿
 
-namespace ResolveArgument.Tests
+namespace PoshPredictiveText.Tests
 {
     using System.Management.Automation.Language;
     using Xunit;
@@ -27,7 +27,7 @@ namespace ResolveArgument.Tests
         public void CommandTokenTest()
         {
             // Arrange
-            ResolveArgument.Token testToken = new()
+            PoshPredictiveText.Token testToken = new()
             {
                 Value = "TestValue",
                 Type = typeof(CommandAst)

@@ -1,7 +1,7 @@
 ﻿
 using System.Text;
 
-namespace ResolveArgument
+namespace PoshPredictiveText
 {
     internal record ConfigItem
     {
@@ -31,7 +31,7 @@ namespace ResolveArgument
         /// files are defined in the COMMAND_CONFIGS dictionary. File names are added to
         /// the RESOURCE_ROOT to build the location of the relevant file.
         /// </summary>
-        internal const string RESOURCE_ROOT = "ResolveArgument.SyntaxTreeSpecs.";
+        internal const string RESOURCE_ROOT = "PoshPredictiveText.SyntaxTreeSpecs.";
 
         internal static readonly Dictionary<string, ConfigItem> COMMAND_CONFIGS = new() {
             {"conda",  new ConfigItem {

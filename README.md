@@ -1,6 +1,6 @@
 ![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
 
-# Posh-Predictive-Text
+# Posh Predictive Text
 
 > PowerShell module providing predictive text completions for common CLI tools.
 
@@ -8,7 +8,7 @@ Most people will be familiar with predictive text on mobile phones. Posh-predict
 brings the same capability to the PowerShell command line interface for common CLI tools
 used within the software development and data science community.
 
-Posh-Predictive-Text provides suggested completions for:
+Posh Predictive Text provides suggested completions for:
 
 - conda
 - docker
@@ -80,6 +80,7 @@ And again you'd need to tell what the previous code actually does.
 ## Features
 
 What's all the bells and whistles this project can perform?
+
 - What's the main functionality
 - You can also do another thing
 - If you get really randy, you can even do this
@@ -146,4 +147,4 @@ links to humans using your project. You can include links like:
 
 The code in this project is licensed under the Apache-2.0 license.
 
-The name Posh-Predictive-Text and associated trade marks are the property of Tanzo Creative Ltd.
+The name Posh Predictive Text and associated trade marks are the property of Tanzo Creative Ltd.

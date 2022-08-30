@@ -1,6 +1,6 @@
 
 
-namespace ResolveArgument.Tests
+namespace PoshPredictiveText.Tests
 {
     using System.Collections.ObjectModel;
     using System.Management.Automation;
@@ -23,7 +23,7 @@ namespace ResolveArgument.Tests
             var sessionState = InitialSessionState.CreateDefault();
 
             // Add cmdlet to the shell instance.
-            SessionStateCmdletEntry cmdletToTest = new("resolve-argument", typeof(ResolverCmdlet), null);
+            SessionStateCmdletEntry cmdletToTest = new("resolve-argument", typeof(PoshPredictiveTextCmdlet), null);
             sessionState.Commands.Add(cmdletToTest);
 
             // Create an instance of the shell.
@@ -52,7 +52,7 @@ namespace ResolveArgument.Tests
     /// <summary>
     /// Test for the cmdlet.
     /// </summary>
-    public class ResolveArgumentCmdletTests
+    public class PoshPredictiveTextCmdletTests
     {
         /// <summary>
         /// Test parameters when calling the cmdlet.

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ResolveArgument.SyntaxTreeSpecs {
+namespace PoshPredictiveText.SyntaxTreeSpecs {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ResolveArgument.SyntaxTreeSpecs {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ResolveArgument.SyntaxTreeSpecs.CondaToolTips", typeof(CondaToolTips).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PoshPredictiveText.SyntaxTreeSpecs.CondaToolTips", typeof(CondaToolTips).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
