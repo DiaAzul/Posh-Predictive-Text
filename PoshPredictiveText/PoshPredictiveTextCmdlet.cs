@@ -8,7 +8,8 @@ namespace PoshPredictiveText
 
 
     /// <summary>
-    /// The Resolve-Argument cmdlet provides tab-completion for command arguments in PowerShell.
+    /// The Posh Predictive Text cmdlet provides suggested completions for
+    /// command arguments in PowerShell.
     /// </summary>
     [Cmdlet(
         VerbsDiagnostic.Resolve,
@@ -33,7 +34,7 @@ namespace PoshPredictiveText
         /// </summary>
         [Parameter(
             ParameterSetName = "ListCommands",
-            HelpMessage = "List commands supported with tab-expansion of arguments.",
+            HelpMessage = "List commands supported with predictive text.",
             HelpMessageBaseName = "PoshPredictiveText.UIStrings",
             HelpMessageResourceId = "HELP_LIST_COMMANDS")]
         [Alias("List", "l")]
@@ -45,7 +46,7 @@ namespace PoshPredictiveText
         /// </summary>
         [Parameter(
             ParameterSetName = "Initialise",
-            HelpMessage = "Initialise tab-expansion of arguments.")]
+            HelpMessage = "Initialise predictive texts.")]
         [Alias("Init", "i")]
         public SwitchParameter Initialise { get; set; }
 
@@ -73,7 +74,7 @@ namespace PoshPredictiveText
         /// </summary>
         [Parameter(
             ParameterSetName = "PrintScript",
-            HelpMessage = "Print PowerShell script used to initialise tab-expansion of arguments.")]
+            HelpMessage = "Print PowerShell script used to initialise Powershell Predictive Text.")]
         [Alias("Print", "p")]
         public SwitchParameter PrintScript { get; set; }
 
@@ -134,10 +135,10 @@ namespace PoshPredictiveText
                     {
                         LOGGER.Initialise(LogFile, LogLevel);
                     }
-                    // For tab-completions exceptions are silently suppressed and errors
+                    // For predictive text exceptions are silently suppressed and errors
                     // reported to a log file to facilitate debugging. However, prior to
                     // successful creation of the log file exceptions are captured and
-                    // rethrown as a LoggerException which is then output on the cmdlet
+                    // re-thrown as a LoggerException which is then output on the cmdlet
                     // error stream.
                     catch (LoggerException ex)
                     {
@@ -219,7 +220,7 @@ namespace PoshPredictiveText
 #endif
                         }
 
-                        // Repackage results for Tab-Completions.
+                        // Repackage suggestions for PowerShell.
                         List<CompletionResult> cmdletSuggestions = new();
                         foreach (var suggestion in suggestions)
                         {
