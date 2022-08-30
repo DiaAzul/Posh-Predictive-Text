@@ -56,11 +56,16 @@ namespace PoshPredictiveText
     /// </summary>
     internal class CommandAstVisitor : AstVisitor
     {
+        // List of tokens the key represents the position of the token
+        // on the command line.
         private readonly Dictionary<int, Token> tokens;
         // Incremented each time a new token is created.
         // Indicates position of token on the command line.
         private int commandLinePosition = 0;
 
+        /// <summary>
+        /// Class construtor initialising the token dictionary
+        /// </summary>
         internal CommandAstVisitor()
         {
             this.tokens = new Dictionary<int, Token>();
@@ -293,6 +298,8 @@ namespace PoshPredictiveText
         {
             string Value = stringConstantExpressionAst.ToString();
             Type type = stringConstantExpressionAst.StaticType;
+            // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
+            // Reclassify them as CommandParameters.
             try
             {
                 if (Value[..2] == "--")
@@ -306,9 +313,6 @@ namespace PoshPredictiveText
                 Value = Value,
                 Type = type
             };
-
-            // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
-            // Reclassify them as CommandParameters.
             this.tokens.Add(this.TokenPosition, token);
 #if DEBUG
             LOGGER.Write($"String constant expression: {token.Value}, {token.Type}");
