@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Resolve_Argument_Test
+namespace PoshPredictiveText.Test
 {
     //TODO [ ][TEST] Syntax Tree Config
     internal class SyntaxTreeConfigTest

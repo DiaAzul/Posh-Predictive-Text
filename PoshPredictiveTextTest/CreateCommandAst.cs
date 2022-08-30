@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveTextTest
+namespace PoshPredictiveText.Test
 {
     using System.Management.Automation.Language;
     using Xunit;

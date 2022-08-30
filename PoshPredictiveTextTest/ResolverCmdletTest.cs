@@ -1,6 +1,6 @@
 
 
-namespace PoshPredictiveText.Tests
+namespace PoshPredictiveText.Test
 {
     using System.Collections.ObjectModel;
     using System.Management.Automation;

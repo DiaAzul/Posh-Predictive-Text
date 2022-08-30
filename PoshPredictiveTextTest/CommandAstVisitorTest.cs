@@ -1,6 +1,6 @@
 ﻿
 
-namespace PoshPredictiveText.Tests
+namespace PoshPredictiveText.Test
 {
     using System.Management.Automation.Language;
     using Xunit;
@@ -53,25 +53,123 @@ namespace PoshPredictiveText.Tests
     /// method start with the verb 'Visit'.
     /// 2. Methods and properties used to query the parsed command line tokens.
     /// </summary>
-    public class CommandAstVisitorTest
+    public class CommandAstVisitorVisitTest
     {
 
+        /// <summary>
+        /// Test CommandAstVisitor and ability to parse tokens from text representing
+        /// commands entered at the command prompt.
+        /// 
+        /// Test for specific cases:
+        /// 1: CommandParameterAst using single - (-parameter)
+        /// 2: CommandParameterAst using double - (--parameter)
+        /// 3: Confirm that the number of tokens is as expected.
+        /// 
+        /// Risks:
+        /// 1: [Low] A single test case will identify errors.
+        /// </summary>
+        [Fact]
+        public void TestCommandAstVisitorVisitTest()
+        {
+            // Arrange
+            CommandAstVisitor visitor = new CommandAstVisitor();
+            string promptText = "conda env -parameter1 --parameter2 value1 12";
+            CommandAst ast = AstHelper.CreateCommandAst(promptText);
+
+            // Act
+            ast.Visit(visitor);
+            var tokens = visitor.All;
+
+            // Assert
+            Assert.Equal(6, tokens.Count);
+
+            Assert.Equal("conda", tokens[0].Value);
+            Assert.Equal(typeof(string), tokens[0].Type);
+
+            Assert.Equal("env", tokens[1].Value);
+            Assert.Equal(typeof(string), tokens[0].Type);
+
+            Assert.Equal("-parameter1", tokens[2].Value);
+            Assert.Equal(typeof(CommandParameterAst), tokens[2].Type);
+
+            Assert.Equal("--parameter2", tokens[3].Value);
+            Assert.Equal(typeof(CommandParameterAst), tokens[3].Type);
+
+            Assert.Equal("value1", tokens[4].Value);
+            Assert.Equal(typeof(string), tokens[4].Type);
+
+            Assert.Equal("12", tokens[5].Value);
+            Assert.Equal(typeof(string), tokens[5].Type);
+        }
     }
+
+    /// <summary>
+    /// Test the retrieval of information from the CommandAstVisitor assuming
+    /// it has sccessfully retrieved values from the prompt. 
+    /// </summary>
+    public class CommandAstVisitorValueTest
+    {
+        /// <summary>
+        /// The tokenised input is created when the class is instantiated and 
+        /// then used across all the tests in this class.
+        /// </summary>
+        private readonly CommandAstVisitor tokenisedInput = new();
+
+        /// <summary>
+        /// Initialise the Commandast visitor with the input string.
+        /// </summary>
+        public CommandAstVisitorValueTest()
+        {
+            // Arrange
+            const string inputText = "conda env -parameter1 --parameter2 value1 12";
+            CommandAst ast = AstHelper.CreateCommandAst(inputText);
+            ast.Visit(tokenisedInput);
+        }
+
+        /// <summary>
+        /// Test the BaseCommand method.
+        /// </summary>
+        [Fact]
+        public void BaseCommandTest()
+        {
+            // Act
+            string? baseCommand = tokenisedInput.BaseCommand;
+            // Assert
+            Assert.NotNull(baseCommand);
+            Assert.Equal("conda", baseCommand);
+        }
+
+        /// <summary>
+        /// Test the LastToken method.
+        /// </summary>
+        [Fact]
+        public void LastTokenTest()
+        {
+            // Act
+            PoshPredictiveText.Token? token = tokenisedInput.LastToken;
+            // Assert
+            Assert.NotNull(token);
+            Assert.Equal("12", token.Value);
+        }
+
+        /// <summary>
+        /// Test the PriorToken method.
+        /// </summary>
+        [Fact]
+        public void PriorTokenTest()
+        {
+            // Act
+            PoshPredictiveText.Token? token = tokenisedInput.PriorToken;
+            // Assert
+            Assert.NotNull(token);
+            Assert.Equal("value1", token.Value);
+        }
+    } 
 }
 
 
-//public override AstVisitAction DefaultVisit(Ast ast)
-//public override AstVisitAction VisitCommand(CommandAst commandAst)
-//public override AstVisitAction VisitCommandExpression(CommandExpressionAst commandExpressionAst)
-//public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
-//public override AstVisitAction VisitStringConstantExpression(StringConstantExpressionAst stringConstantExpressionAst)
 
-// internal class CommandAstVisitor : AstVisitor
-//internal CommandAstVisitor()
-//private int TokenPosition
-//internal string? BaseCommand
-//internal Token? LastToken
-//internal Token? PriorToken
+
 //internal Dictionary<int, Token> All
 //internal int Count
 //internal Dictionary<int, Token> CommandParameters

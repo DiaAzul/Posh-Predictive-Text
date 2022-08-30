@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Resolve_Argument_Test
+﻿
+namespace PoshPredictiveText.Test
 {
     // [ ][TEST] Syntax Trees
     internal class SyntaxTreesTest
