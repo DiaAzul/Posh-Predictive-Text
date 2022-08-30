@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PoshPredictiveText.Test
 {
-    //TODO [ ][TEST] Syntax Tree Config
-    internal class SyntaxTreeConfigTest
+    //TODO [ ][TEST] Syntax Trees Config
+    internal class SyntaxTreeConfigTests
     {
         // Supported Commands
         // Command From Alias
