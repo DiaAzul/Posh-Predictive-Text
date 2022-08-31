@@ -67,19 +67,51 @@ namespace PoshPredictiveText.Test
 
 
     // TODO [ ][TEST] Syntax Trees - How do we do this? Per Command?
+    /// <summary>
+    /// Syntax tree tests using a mock syntax tree.
+    /// </summary>
     public class SyntaxTreesTests
     {
+        // Name of the syntax tree used across all tests.
+        const string syntaxTreeName = "Test";
+
+        /// <summary>
+        /// Create a mock SyntaxTree.
+        /// </summary>
+        public SyntaxTreesTests()
+        {
+            // Add a SyntaxTree.
+            // Need three records: Two same commands and one different.
+            // The biggest test is UniqueCommands.
+            List<SyntaxItem> syntaxTree = new()
+            {
+                new SyntaxItem()
+                {
+                    //Command 
+                    //CommandPath 
+                    //Type 
+                    //Argument
+                    //Alias
+                    //MultipleUse
+                    //Parameter
+                    //MultipleParameterValues
+                    //ToolTip
+                }
+            };
+
+            SyntaxTrees.Add(syntaxTreeName, syntaxTree);
+        }
     }
 }
 
-
 // internal static class SyntaxTrees
-//private static readonly Dictionary<string, List<SyntaxItem>> syntaxTrees = new();
+
 //internal static bool Exists(string syntaxTreeName)
 //internal static int Count(string syntaxTreeName)
 //internal static List<SyntaxItem> Get(string syntaxTreeName)
 //internal static List<string> UniqueCommands(string syntaxTreeName)
-//internal static void Load(string syntaxTreeName)
+
+// These are easy test.
 //internal static string AsString(XElement? element)
 //internal static string? AsNullableString(XElement? element)
 //internal static bool AsBool(XElement? element, string trueValue = "TRUE")

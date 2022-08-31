@@ -109,6 +109,22 @@ namespace PoshPredictiveText
         /// </summary>
         private static readonly Dictionary<string, List<SyntaxItem>> syntaxTrees = new();
 
+
+        /// <summary>
+        /// Add a syntax tree to the database of syntax trees.
+        /// </summary>
+        /// <param name="syntaxTreeName">Name of syntax tree</param>
+        /// <param name="syntaxTree">Syntax tree</param>
+        /// <exception cref="SyntaxTreeException">Thrown if the syntax tree already
+        /// exists in the database.</exception>
+        internal static void Add(string syntaxTreeName, List<SyntaxItem> syntaxTree)
+        {
+            if (syntaxTrees.ContainsKey(syntaxTreeName))
+                throw new SyntaxTreeException($"Syntax Tree {syntaxTreeName} already exists.");
+
+            syntaxTrees[syntaxTreeName] = syntaxTree;
+        }
+
         /// <summary>
         /// Test that a syntax tree is loaded.
         /// </summary>
