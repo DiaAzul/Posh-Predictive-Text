@@ -1,4 +1,4 @@
-![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
+![Posh Predictive Text Logo](./Assets/PoshPredictiveText%20Plain.svg)
 
 # Posh Predictive Text
 
