@@ -1,4 +1,4 @@
-![Posh Predictive Text Logo](./Assets/PoshPredictiveText%20Plain.svg)
+![Posh Predictive Text Logo](./Assets/PoshPredictiveText%20Plain.png)
 
 # Posh Predictive Text
 
