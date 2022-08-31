@@ -1,7 +1,6 @@
 ﻿
 namespace PoshPredictiveText
 {
-    using System.Diagnostics.Eventing.Reader;
     using System.Management.Automation;
     using System.Reflection;
     using System.Resources;
