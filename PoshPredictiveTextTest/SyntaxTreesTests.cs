@@ -65,8 +65,6 @@ namespace PoshPredictiveText.Test
         }
     }
 
-
-    // TODO [ ][TEST] Syntax Trees - How do we do this? Per Command?
     /// <summary>
     /// Syntax tree tests using a mock syntax tree.
     /// </summary>
