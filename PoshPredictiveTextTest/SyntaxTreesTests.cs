@@ -2,7 +2,6 @@
 namespace PoshPredictiveText.Test
 {
     using System.Management.Automation;
-    using System.Xml.Linq;
     using Xunit;
 
     /// <summary>
