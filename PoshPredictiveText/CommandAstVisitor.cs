@@ -307,6 +307,26 @@ namespace PoshPredictiveText
         }
 
         /// <summary>
+        /// Process ConstantExpressionAst node in the abstract syntax tree.
+        /// Add token to the list of tokens on the command line.
+        /// </summary>
+        /// <param name="constantExpressionAst">Node in the abstract syntax tree.</param>
+        /// <returns>Continue to next node.</returns>
+        public override AstVisitAction VisitConstantExpression(ConstantExpressionAst constantExpressionAst)
+        {
+            Token token = new()
+            {
+                Value = constantExpressionAst.ToString(),
+                Type = constantExpressionAst.GetType(),
+            };
+            this.tokens.Add(this.TokenPosition, token);
+#if DEBUG
+            LOGGER.Write($"Constant expression: {token.Value}, {token.Type}");
+#endif
+            return AstVisitAction.Continue;
+        }
+
+        /// <summary>
         /// Process stringConstantExpressionAst node in the abstract syntax tree.
         /// 
         /// Identifies Gnu/Posix formatted parameters which start with a double dash and

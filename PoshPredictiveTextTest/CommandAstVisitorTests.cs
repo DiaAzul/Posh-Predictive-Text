@@ -2,7 +2,6 @@
 
 namespace PoshPredictiveText.Test
 {
-    using System.Management.Automation;
     using System.Management.Automation.Language;
     using Xunit;
 
@@ -98,7 +97,7 @@ namespace PoshPredictiveText.Test
             Assert.Equal(typeof(string), tokens[4].Type);
 
             Assert.Equal("12", tokens[5].Value);
-            Assert.Equal(typeof(string), tokens[5].Type);
+            Assert.Equal(typeof(ConstantExpressionAst), tokens[5].Type);
         }
     }
 
@@ -177,7 +176,7 @@ namespace PoshPredictiveText.Test
             // Assert
             Assert.Equal(6, tokens.Count);
             Assert.Equal("12", tokens[5].Value);
-            Assert.Equal(typeof(string), tokens[5].Type);
+            Assert.Equal(typeof(ConstantExpressionAst), tokens[5].Type);
         }
 
         /// <summary>
