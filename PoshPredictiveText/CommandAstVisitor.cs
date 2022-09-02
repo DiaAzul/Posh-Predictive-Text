@@ -153,6 +153,15 @@ namespace PoshPredictiveText
             return token;
         }
 
+        internal void AddDefaultToken()
+        {
+            Token token = new()
+            {
+                Value = "",
+                Type = typeof(string)
+            };
+            this.tokens.Add(this.TokenPosition, token);
+        }
         internal (string, int) CommandPath(List<string> uniqueCommands)
         {
 
