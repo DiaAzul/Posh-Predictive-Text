@@ -162,6 +162,18 @@ namespace PoshPredictiveText
             };
             this.tokens.Add(this.TokenPosition, token);
         }
+
+        /// <summary>
+        /// Returns the command path given a list of unique commands.
+        /// 
+        /// Command line tools often have sub-commands which are tokens entered after the
+        /// main command. To identify options specific to each command/sub-command a
+        /// command path is generated based upon unique commands known to the parser and
+        /// command tokens entered at the command line. The command path is a dot notation
+        /// identifier for each command/sub-command combination.
+        /// </summary>
+        /// <param name="uniqueCommands">List of unique commands/sub-commands.</param>
+        /// <returns>Dot notation path identifying the command/sub-command.</returns>
         internal (string, int) CommandPath(List<string> uniqueCommands)
         {
 
