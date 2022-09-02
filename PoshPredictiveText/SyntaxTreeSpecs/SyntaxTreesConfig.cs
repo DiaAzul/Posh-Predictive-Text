@@ -42,6 +42,17 @@ namespace PoshPredictiveText
                 ToolTips = "CondaToolTips" } },
         };
 
+
+        /// <summary>
+        /// Test wehther a given command is supported.
+        /// </summary>
+        /// <param name="commandNameToTest">Name, or part name, of command.</param>
+        /// <returns>True if the command is supported.</returns>
+        internal static bool IsSupportedCommand(string commandNameToTest)
+        {
+            return SUPPORTED_COMMANDS.ContainsKey(commandNameToTest);
+        }
+
         /// <summary>
         /// Returns supported commands as a comma separated list.
         /// </summary>
