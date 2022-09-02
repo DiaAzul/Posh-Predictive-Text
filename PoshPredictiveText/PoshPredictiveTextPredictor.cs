@@ -59,12 +59,11 @@ namespace PoshPredictiveText
             if (string.IsNullOrWhiteSpace(inputText)) return default;
 
             // If there is no abstract syntax tree return.
-            var promptAst = context.InputAst;
-            if (promptAst is null) return default;
+            if (context.InputAst is null) return default;
 
             // Tokenise the syntax tree.
             var enteredTokens = new CommandAstVisitor();
-            promptAst.Visit(enteredTokens);
+            context.InputAst.Visit(enteredTokens);
 
             // If there is no base command, or the base command is not supported then return.
             if (enteredTokens.BaseCommand is null) return default;
