@@ -59,7 +59,7 @@ namespace PoshPredictiveText
             if (string.IsNullOrWhiteSpace(inputText)) return default;
 
             // If there is no abstract syntax tree return.
-            var promptAst = context.RelatedAsts[0];
+            var promptAst = context.InputAst;
             if (promptAst is null) return default;
 
             // Tokenise the syntax tree.
