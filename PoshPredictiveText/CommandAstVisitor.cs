@@ -239,9 +239,10 @@ namespace PoshPredictiveText
                 Value = ast.ToString(),
                 Type = typeof(string)
             };
-            this.tokens.Add(this.TokenPosition, token);
+            //this.tokens.Add(this.TokenPosition, token);
+            var t = ast.GetType();
 #if DEBUG
-            LOGGER.Write($"Default: {token.Value}, {token.Type}");
+            LOGGER.Write($"Default (not tokenised): {token.Value}, {t}");
 #endif
             return AstVisitAction.Continue;
         }
