@@ -75,7 +75,6 @@ namespace PoshPredictiveText
         private int TokenPosition
         { get { return commandLinePosition++; } }
 
-
         /// <summary>
         /// Returns the first token in the command list.
         /// </summary>
