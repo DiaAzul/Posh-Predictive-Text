@@ -149,7 +149,6 @@ namespace PoshPredictiveText
                         LogFile));
                     }
 
-                    LOGGER.Write(GetResourceString("PoshPredictiveText.UIStrings", "HELP_TEXT"));
                     // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
                     var init_script = UI.Resource("REGISTER_COMMAND_SCRIPT")
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
