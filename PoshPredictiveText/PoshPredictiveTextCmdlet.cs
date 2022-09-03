@@ -144,16 +144,32 @@ namespace PoshPredictiveText
                     {
                         WriteError(new ErrorRecord(
                         ex,
-                        "Resolve-Argument-Logger-Error",
+                        "Install-PoshPRedictiveText-Logger-Error",
                         ErrorCategory.InvalidArgument,
                         LogFile));
                     }
 
-                    // Return the initialisation script -> output should be piped to Invoke-Expression to activate module.
                     var init_script = UI.Resource("REGISTER_COMMAND_SCRIPT")
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
-                    result.Append(init_script);
-                    WriteObject(result.ToString());
+                    try
+                    {
+                        InvokeCommand.InvokeScript(init_script);
+                    }
+                    catch(Exception ex) when (
+                    ex is ParseException
+                    || ex is RuntimeException
+                    || ex is FlowControlException)
+                    {
+                        WriteError(new ErrorRecord(
+                        ex,
+                        "Install-PoshPRedictiveText-InitialiseScript-Error",
+                        ErrorCategory.InvalidOperation,
+                        LogFile));
+                    }
+
+                    string? finalResult = result.ToString();
+                    if (!string.IsNullOrWhiteSpace(finalResult))
+                        WriteObject(finalResult);
 
                     break;
 
