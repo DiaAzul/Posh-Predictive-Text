@@ -130,16 +130,16 @@ namespace PoshPredictiveText
                     break;
 
                 case "Initialise":
-                    // Initialise logging to file if requested.
-                    try
-                    {
-                        LOGGER.Initialise(LogFile, LogLevel);
-                    }
                     // For predictive text exceptions are silently suppressed and errors
                     // reported to a log file to facilitate debugging. However, prior to
                     // successful creation of the log file exceptions are captured and
                     // re-thrown as a LoggerException which is then output on the cmdlet
                     // error stream.
+                    try
+                    {
+                        LOGGER.Initialise(LogFile, LogLevel);
+                    }
+
                     catch (LoggerException ex)
                     {
                         WriteError(new ErrorRecord(
