@@ -79,19 +79,11 @@ namespace PoshPredictiveText {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
-        ///Resolve-Argument provides tab-completion for the following commands:
-        ///
-        ///    Conda
-        ///    Git
-        ///    Mamba
-        ///    Pip
-        ///    Python
-        ///.
+        ///   Looks up a localized string similar to Predictive text is available for the following commands..
         /// </summary>
-        public static string LIST_OF_COMMANDS {
+        public static string LIST_COMMANDS {
             get {
-                return ResourceManager.GetString("LIST_OF_COMMANDS", resourceCulture);
+                return ResourceManager.GetString("LIST_COMMANDS", resourceCulture);
             }
         }
         

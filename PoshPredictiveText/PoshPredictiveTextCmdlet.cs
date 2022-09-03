@@ -120,12 +120,15 @@ namespace PoshPredictiveText
             switch (ParameterSetName)
             {
                 case "Version":
-                    result.Append(UI.Resource("VERSION"));
+                    result.AppendLine(UI.Resource("VERSION"));
                     WriteObject(result.ToString());
                     break;
 
                 case "ListCommands":
-                    result.Append(UI.Resource("LIST_OF_COMMANDS"));
+                    result.AppendLine(UI.Resource("LIST_COMMANDS"));
+                    string supportedCommands = SyntaxTreesConfig.SupportedCommands();
+                    result.AppendLine(supportedCommands);
+
                     WriteObject(result.ToString());
                     break;
 
@@ -254,9 +257,6 @@ namespace PoshPredictiveText
                     break;
 
                 default:
-                    // TODO [ ][USERINTERFACE] All cases where we don't have a parameter set.
-                    result.Append("Default we should print help text.");
-                    WriteObject(result.ToString());
                     break;
             }
         }

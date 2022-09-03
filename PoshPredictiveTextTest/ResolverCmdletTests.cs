@@ -100,14 +100,26 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.AddCommand("resolve-argument");
+                powerShell.AddCommand("Install-PredictiveText");
                 powerShell.AddParameter("list");
-                var expectedResult = UIStrings.LIST_OF_COMMANDS;
+                var expectedResult = UIStrings.LIST_COMMANDS;
+                var expectedCommands = SyntaxTreesConfig.SupportedCommands();
                 // Act
                 Collection<PSObject> results = powerShell.Invoke();
                 // Assert
-                Assert.Equal(results.First(), expectedResult);
-                Assert.True(results.Count == 1);
+                Assert.Single(results);
+
+                List<string> lines = new();
+                using (var reader = new StringReader(results.First().ToString()))
+                {
+                    string? line;
+                    while ((line = reader.ReadLine()) is not null)
+                        lines.Add(line);
+                }
+
+                Assert.Equal(2, lines.Count);
+                Assert.Equal(expectedResult, lines[0]);
+                Assert.Equal(expectedCommands, lines[1]);
             }
 
             /// <summary>

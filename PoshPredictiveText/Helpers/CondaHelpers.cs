@@ -163,7 +163,7 @@ namespace PoshPredictiveText
                 {
                     Suggestion suggestion = new()
                     {
-                        CompletionText =  envName,
+                        CompletionText =  $"\"{envName}\"",
                         ListText = envName,
                         Type = CompletionResultType.ParameterValue,
                         ToolTip = envPath
