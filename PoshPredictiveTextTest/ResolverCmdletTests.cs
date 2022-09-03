@@ -2,6 +2,7 @@
 
 namespace PoshPredictiveText.Test
 {
+    using Namotion.Reflection;
     using System.Collections.ObjectModel;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
@@ -23,7 +24,7 @@ namespace PoshPredictiveText.Test
             var sessionState = InitialSessionState.CreateDefault();
 
             // Add cmdlet to the shell instance.
-            SessionStateCmdletEntry cmdletToTest = new("resolve-argument", typeof(PoshPredictiveTextCmdlet), null);
+            SessionStateCmdletEntry cmdletToTest = new("Install-PredictiveText", typeof(PoshPredictiveTextCmdlet), null);
             sessionState.Commands.Add(cmdletToTest);
 
             // Create an instance of the shell.
@@ -134,15 +135,24 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.AddCommand("resolve-argument");
+                powerShell.AddCommand("Install-PredictiveText");
                 powerShell.AddParameter("Initialise");
                 var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
                 // Act
                 Collection<PSObject> results = powerShell.Invoke();
+
+                powerShell.Commands.Clear();
+                powerShell.AddCommand("Get-Module");
+                Collection<PSObject> allModules = powerShell.Invoke();
+
+                powerShell.Commands.Clear();
+                powerShell.AddCommand("Get-Module").AddArgument("PoshPredictiveText");
+                Collection<PSObject> IsModuleListed = powerShell.Invoke();
                 // Assert
-                Assert.True(results.Count == 1);
-                var firstLineOfResponse = PSTestHelpers.GetFirstLine(results.First().ToString());
-                Assert.Equal(firstLineOfResponse, expectedResult);
+                Assert.Empty(results);
+                Assert.Single(IsModuleListed);
+                Assert.True(results.HasProperty("Version"));
+
             }
 
             /// <summary>
@@ -157,7 +167,7 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.AddCommand("resolve-argument");
+                powerShell.AddCommand("Install-PredictiveText");
                 powerShell.AddParameter("printscript");
                 var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
                 // Act

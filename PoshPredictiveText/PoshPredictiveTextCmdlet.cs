@@ -151,7 +151,7 @@ namespace PoshPredictiveText
                         ErrorCategory.InvalidArgument,
                         LogFile));
                     }
-
+                  
                     var init_script = UI.Resource("REGISTER_COMMAND_SCRIPT")
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
                     try
