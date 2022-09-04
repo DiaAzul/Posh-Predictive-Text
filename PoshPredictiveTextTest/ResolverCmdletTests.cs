@@ -2,6 +2,7 @@
 
 namespace PoshPredictiveText.Test
 {
+    using Microsoft.PowerShell.Commands;
     using Namotion.Reflection;
     using System.Collections.ObjectModel;
     using System.Management.Automation;
@@ -135,18 +136,23 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.AddCommand("Install-PredictiveText");
-                powerShell.AddParameter("Initialise");
-                var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
-                // Act
-                Collection<PSObject> results = powerShell.Invoke();
-
                 powerShell.Commands.Clear();
                 powerShell.AddCommand("Get-Module");
                 Collection<PSObject> allModules = powerShell.Invoke();
 
                 powerShell.Commands.Clear();
-                powerShell.AddCommand("Get-Module").AddArgument("PoshPredictiveText");
+                powerShell.AddCommand("Install-PredictiveText"); // TODO [ ][TESTS] Check that script is running in the same PowerShell runspace.
+                powerShell.AddParameter("Initialise");
+                // var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
+                // Act
+                Collection<PSObject> results = powerShell.Invoke();
+
+                powerShell.Commands.Clear();
+                powerShell.AddCommand("Get-Error"); // .AddArgument("PoshPredictiveText");
+                Collection<PSObject> error = powerShell.Invoke();
+
+                powerShell.Commands.Clear();
+                powerShell.AddCommand("Get-Module"); // .AddArgument("PoshPredictiveText");
                 Collection<PSObject> IsModuleListed = powerShell.Invoke();
                 // Assert
                 Assert.Empty(results);
