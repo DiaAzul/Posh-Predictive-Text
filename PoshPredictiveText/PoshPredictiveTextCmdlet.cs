@@ -156,7 +156,8 @@ namespace PoshPredictiveText
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
                     try
                     {
-                        InvokeCommand.InvokeScript(init_script);
+                        var scriptBlock = InvokeCommand.NewScriptBlock(init_script);
+                        InvokeCommand.InvokeScript(false, scriptBlock, null, null);
                     }
                     catch(Exception ex) when (
                     ex is ParseException
@@ -169,10 +170,6 @@ namespace PoshPredictiveText
                         ErrorCategory.InvalidOperation,
                         LogFile));
                     }
-
-                    string? finalResult = result.ToString();
-                    if (!string.IsNullOrWhiteSpace(finalResult))
-                        WriteObject(finalResult);
 
                     break;
 

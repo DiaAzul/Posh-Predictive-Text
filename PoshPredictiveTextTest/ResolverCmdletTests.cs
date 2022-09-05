@@ -2,11 +2,13 @@
 
 namespace PoshPredictiveText.Test
 {
-    using Microsoft.PowerShell.Commands;
+    using Microsoft.Win32;
     using Namotion.Reflection;
     using System.Collections.ObjectModel;
     using System.Management.Automation;
+    using System.Management.Automation.Language;
     using System.Management.Automation.Runspaces;
+    using System.Xml.Linq;
     using Xunit;
 
     /// <summary>
@@ -24,12 +26,17 @@ namespace PoshPredictiveText.Test
         {
             var sessionState = InitialSessionState.CreateDefault();
 
-            // Add cmdlet to the shell instance.
+            string[] moduleDependencies = new string[] 
+            {
+                "PSReadLine"
+            };
+            sessionState.ImportPSModule(moduleDependencies);
+
             SessionStateCmdletEntry cmdletToTest = new("Install-PredictiveText", typeof(PoshPredictiveTextCmdlet), null);
             sessionState.Commands.Add(cmdletToTest);
 
-            // Create an instance of the shell.
             var testShellInstance = PowerShell.Create(sessionState);
+
             return testShellInstance;
         }
 
@@ -136,29 +143,24 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.Commands.Clear();
-                powerShell.AddCommand("Get-Module");
-                Collection<PSObject> allModules = powerShell.Invoke();
 
-                powerShell.Commands.Clear();
-                powerShell.AddCommand("Install-PredictiveText"); // TODO [ ][TESTS] Check that script is running in the same PowerShell runspace.
-                powerShell.AddParameter("Initialise");
-                // var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
                 // Act
-                Collection<PSObject> results = powerShell.Invoke();
-
                 powerShell.Commands.Clear();
-                powerShell.AddCommand("Get-Error"); // .AddArgument("PoshPredictiveText");
-                Collection<PSObject> error = powerShell.Invoke();
+                Collection<PSObject> results = powerShell.AddCommand("Install-PredictiveText")
+                                                            .AddParameter("Initialise")
+                                                            .Invoke();
 
+                // Test for cmdlet installed.
+                // Note: The testing installs cmdlets individually, they are not installed from a module.
+                // Therefore, we cannot test for a module, only the cmdlets.
                 powerShell.Commands.Clear();
-                powerShell.AddCommand("Get-Module"); // .AddArgument("PoshPredictiveText");
-                Collection<PSObject> IsModuleListed = powerShell.Invoke();
+                Collection<PSObject> IsCmdLetListed = powerShell.AddCommand("Get-Command")
+                                                                .AddParameter("Name", "Install-PredictiveText")
+                                                                .Invoke();
+
                 // Assert
                 Assert.Empty(results);
-                Assert.Single(IsModuleListed);
-                Assert.True(results.HasProperty("Version"));
-
+                Assert.Single(IsCmdLetListed);
             }
 
             /// <summary>
