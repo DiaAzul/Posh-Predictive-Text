@@ -26,6 +26,9 @@ namespace PoshPredictiveText.Test
         {
             var sessionState = InitialSessionState.CreateDefault();
 
+            // Create a permissive authorisation manager.
+            sessionState.AuthorizationManager = new("Microsoft.PowerShell");
+
             string[] moduleDependencies = new string[] 
             {
                 "PSReadLine"
