@@ -16,6 +16,17 @@ args = parser.parse_args()
 print(args.accumulate(args.integers))
 */
 
+/*
+Test for `import argparse` in the first n lines of code.
+
+If it exists then:
+find the name of the parser searching for 
+...name... = argparse.ArgumetParser(....)
+
+Use regex to pull out individual arguments:
+(parser\.add_argument\([\s\S]*?\))
+ */
+
 
 namespace PoshPredictiveText.Helpers
 {
