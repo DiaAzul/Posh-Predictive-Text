@@ -5,6 +5,23 @@ namespace PoshPredictiveText
     using System.Text;
 
     /// <summary>
+    /// Sets the rules to be followed duruing parsing.
+    /// 
+    /// There is no single standard for command arguments, and different commands
+    /// (arising from different programming heritages) will have different neanings
+    /// for symbols and policies for what is, and is not, permissible. The ParseMode
+    /// is a flag to indicate what symbols and policies to implement when parsing
+    /// the command line and predicting text.
+    /// </summary>
+    internal enum ParseMode
+    {
+        Windows,
+        Posix,
+        Python
+    }
+
+
+    /// <summary>
     /// Token representing each distinct item entered by the 
     /// user after the command prompt. The value of token is
     /// the text entered by the user. Type is the abstract
@@ -63,6 +80,9 @@ namespace PoshPredictiveText
         // Indicates position of token on the command line.
         private int commandLinePosition = 0;
 
+        // Sets the parsing mode for the command line.
+        private ParseMode? parseMode = null;
+
         /// <summary>
         /// Class construtor initialising the token dictionary
         /// </summary>
@@ -71,7 +91,9 @@ namespace PoshPredictiveText
             this.tokens = new Dictionary<int, Token>();
         }
 
-        // Returns the position of the token and updates the position count.
+        /// <summary>
+        /// Returns the position of the token and updates the position count.
+        /// </summary>
         private int TokenPosition
         { get { return commandLinePosition++; } }
 
@@ -81,6 +103,19 @@ namespace PoshPredictiveText
         internal string? BaseCommand
         {
             get { return this.Index(0)?.Value.ToLower(); }
+        }
+
+        private ParseMode ParseMode
+        {
+            get
+            {
+                if (BaseCommand is null) return ParseMode.Windows;
+
+                if (parseMode is not null) return parseMode ?? ParseMode.Windows;
+                // TODO [ ][VISITOR] Need to get some syntax tree information
+                // To identify the parse mode.
+                return ParseMode.Windows;
+            }
         }
 
         /// <summary>
