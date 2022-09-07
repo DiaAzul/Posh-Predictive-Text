@@ -5,23 +5,6 @@ namespace PoshPredictiveText
     using System.Text;
 
     /// <summary>
-    /// Sets the rules to be followed duruing parsing.
-    /// 
-    /// There is no single standard for command arguments, and different commands
-    /// (arising from different programming heritages) will have different neanings
-    /// for symbols and policies for what is, and is not, permissible. The ParseMode
-    /// is a flag to indicate what symbols and policies to implement when parsing
-    /// the command line and predicting text.
-    /// </summary>
-    internal enum ParseMode
-    {
-        Windows,
-        Posix,
-        Python
-    }
-
-
-    /// <summary>
     /// Token representing each distinct item entered by the 
     /// user after the command prompt. The value of token is
     /// the text entered by the user. Type is the abstract
@@ -105,16 +88,23 @@ namespace PoshPredictiveText
             get { return this.Index(0)?.Value.ToLower(); }
         }
 
-        private ParseMode ParseMode
+        /// <summary>
+        /// Returns the ParseMode for the command.
+        /// 
+        /// Command line argument parsing varies depending upon the heritage
+        /// of the command. Windows and Posix systems have different symbols
+        /// and policies with respect to arguments. This continues to other
+        /// commands which may have their own policies. Once the base command
+        /// is identified the parseMode is set so that the visitor can implement
+        /// policies which correctly parse the arguments.
+        /// </summary>
+        internal ParseMode ParseMode
         {
             get
             {
-                if (BaseCommand is null) return ParseMode.Windows;
-
-                if (parseMode is not null) return parseMode ?? ParseMode.Windows;
-                // TODO [ ][VISITOR] Need to get some syntax tree information
-                // To identify the parse mode.
-                return ParseMode.Windows;
+                if (this.parseMode is null && BaseCommand is not null)
+                    parseMode = SyntaxTreesConfig.ParseMode(BaseCommand);
+                return parseMode ?? ParseMode.Windows;
             }
         }
 
@@ -328,6 +318,13 @@ namespace PoshPredictiveText
             // process tokens (check token zero).
             // NOTE: git-am with -S option, the GPG key must be directly appended to the option (no space). GPG Key-ids are
             // 16 hex character (long) or 8 hex character (short). "^-S[0-9a-fA-F]{8|16}$".
+
+            if (ParseMode == ParseMode.Posix)
+            {
+                // In a Posix system multiple parameters may be concatenated after the single dash.
+                // (e.g. -abc is -a -b -c). It is also possible to concatenate the parameters value directly
+                // after the parameter flag. (e.g. -p0 is the same as -p 0).
+            }
             Token token = new()
             {
                 Value = commandParameterAst.ToString(),
@@ -376,6 +373,7 @@ namespace PoshPredictiveText
             Type type = stringConstantExpressionAst.StaticType;
             // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
             // Reclassify them as CommandParameters.
+            // TODO [ ][VISITOR] Need to consider additional flag options such as + - * > >>.
             try
             {
                 if (Value[..2] == "--")

@@ -6,10 +6,28 @@ using System.Xml.Linq;
 
 namespace PoshPredictiveText
 {
+
+    /// <summary>
+    /// Sets the rules to be followed duruing parsing.
+    /// 
+    /// There is no single standard for command arguments, and different commands
+    /// (arising from different programming heritages) will have different neanings
+    /// for symbols and policies for what is, and is not, permissible. The ParseMode
+    /// is a flag to indicate what symbols and policies to implement when parsing
+    /// the command line and predicting text.
+    /// </summary>
+    internal enum ParseMode
+    {
+        Windows,
+        Posix,
+        Python
+    }
+
     internal record ConfigItem
     {
         internal string? Definition { get; init; }
         internal string? ToolTips { get; init; }
+        internal ParseMode? ParseMode { get; init; }
     }
 
     /// <summary>
@@ -39,7 +57,8 @@ namespace PoshPredictiveText
         private static readonly Dictionary<string, ConfigItem> COMMAND_CONFIGS = new() {
             {"conda",  new ConfigItem {
                 Definition = "CondaSyntaxTree.xml",
-                ToolTips = "CondaToolTips" } },
+                ToolTips = "CondaToolTips",
+                ParseMode = PoshPredictiveText.ParseMode.Windows } },
         };
 
 
@@ -150,6 +169,7 @@ namespace PoshPredictiveText
             }
             return returnValue;
         }
+
         internal static string? ToolTips(string syntaxTreeName)
         {
             string? returnValue = null;
@@ -162,6 +182,21 @@ namespace PoshPredictiveText
                 LOGGER.Write($"No config for {syntaxTreeName}");
             }
             return returnValue;
+        }
+
+        internal static ParseMode? ParseMode(string syntaxTreeName)
+        {
+            ParseMode? returnValue = null;
+            try
+            {
+                returnValue = COMMAND_CONFIGS[syntaxTreeName].ParseMode;
+            }
+            catch (KeyNotFoundException)
+            {
+                LOGGER.Write($"No config for {syntaxTreeName}");
+            }
+            return returnValue;
+
         }
 
     }
