@@ -2,13 +2,9 @@
 
 namespace PoshPredictiveText.Test
 {
-    using Microsoft.Win32;
-    using Namotion.Reflection;
     using System.Collections.ObjectModel;
     using System.Management.Automation;
-    using System.Management.Automation.Language;
     using System.Management.Automation.Runspaces;
-    using System.Xml.Linq;
     using Xunit;
 
     /// <summary>

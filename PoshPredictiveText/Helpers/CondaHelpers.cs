@@ -119,9 +119,32 @@ namespace PoshPredictiveText
         [ParameterValue("SHOW")]
         [ParameterValue("SUBDIR")]
         [ParameterValue("TEMPFILES")]
+        [ParameterValue("CONDAHELPERTESTFAIL")]
         internal static List<Suggestion> NullReturn(string wordToComplete)
         {
             return new List<Suggestion>();
+        }
+
+        /// <summary>
+        /// Additional method to test lookup by attribute.
+        /// </summary>
+        /// <param name="wordToComplete"></param>
+        /// <returns></returns>
+        [ParameterValue("CONDAHELPERTEST")]
+        [ParameterValue("CONDAHELPERTESTFAIL")]
+        internal static List<Suggestion> Test(string wordToComplete)
+        {
+            var results = new List<Suggestion>()
+            {
+                new Suggestion()
+                {
+                    CompletionText = wordToComplete,
+                    ListText = "TestSuccessful",
+                    Type = CompletionResultType.ParameterValue,
+                    ToolTip = ""
+                }
+            };
+            return results;
         }
 
         /// <summary>
