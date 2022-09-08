@@ -1,5 +1,4 @@
-﻿// TODO [ ][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
-
+﻿
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.SyntaxTreeSpecs;

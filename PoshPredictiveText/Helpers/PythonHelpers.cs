@@ -1,4 +1,4 @@
-﻿// TODO [ ][PYTHON] Create helper to parse .py file for arguments.
+﻿// TODO [LOW][PYTHON] Create helper to parse .py file for arguments.
 // Python has a standard library to define arguments, this knowledge can be
 // used to parse python files to identify arguments for predictive completion.
 // https://docs.python.org/3/library/argparse.html

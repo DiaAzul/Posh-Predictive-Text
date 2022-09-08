@@ -322,7 +322,7 @@ namespace PoshPredictiveText
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
         {
-            // TODO [ ][VISITOR] Resolve git parameters with integer values appended e.g. -U5
+            // TODO [LOW][VISITOR] Resolve git parameters with integer values appended e.g. -U5
             // Regex "^-([a-zA-z])([0-9]+)*$" First capture group is argument, second is value.
             // Beware, this is Git specific and may cause problems with other commands which do not require splitting.
             // Perhaps we need to record first command visited so that we can change visitor behaviour as we
@@ -384,7 +384,7 @@ namespace PoshPredictiveText
             Type type = stringConstantExpressionAst.StaticType;
             // Double dashed parameters are parsed by PowerShell as String Constant Expressions.
             // Reclassify them as CommandParameters.
-            // TODO [ ][VISITOR] Need to consider additional flag options such as + - * > >>.
+            // TODO [LOW][VISITOR] Need to consider additional flag options such as + - * > >>.
             try
             {
                 if (Value[..2] == "--")

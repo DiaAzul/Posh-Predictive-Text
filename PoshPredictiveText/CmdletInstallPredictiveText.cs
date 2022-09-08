@@ -1,4 +1,4 @@
-﻿// TODO [ ][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
+﻿// TODO [LOW][POWERSHELL] Raise issue: The HelpMessageBaseName/ResourceId does not generate help text.
 
 namespace PoshPredictiveText
 {

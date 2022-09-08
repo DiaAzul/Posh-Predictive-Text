@@ -1,6 +1,6 @@
 ﻿namespace PoshPredictiveText.Test
 {
-    // TODO [ ][TEST] Resolver.
+    // TODO [HIGH][TEST] Resolver.
     internal class ResolverTests
     {
     }

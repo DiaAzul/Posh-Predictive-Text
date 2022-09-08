@@ -129,7 +129,7 @@ namespace PoshPredictiveText
 
             // ----- POSITIONAL VALUES -----
             // If we have a helper for positional parameters then return the suggestions.
-            // BUG [ ][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.
+            // BUG [HIGH][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.
             if (!listOnlyParameterValues && commandComplete)
             {
                 LOGGER.Write("Listing positional parameters.");
