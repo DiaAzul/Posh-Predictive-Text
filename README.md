@@ -1,4 +1,8 @@
-![Posh Predictive Text Logo](./Assets/PoshPredictiveText%20Plain.png)
+
+<img src="./Assets/PoshPredictiveText%20Plain.png"
+     alt="Powershell predicitve text logo"
+     width=200
+     align="right"/>
 
 # Posh Predictive Text
 
