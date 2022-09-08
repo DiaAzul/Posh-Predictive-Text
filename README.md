@@ -1,9 +1,7 @@
-
 <img src="./Assets/PoshPredictiveText%20Plain.png"
      alt="Powershell predicitve text logo"
-     width=200
+     width=256
      align="right"/>
-
 # Posh Predictive Text
 
 > PowerShell module providing predictive text completions for common CLI tools.
