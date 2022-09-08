@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
@@ -17,6 +19,8 @@ namespace PoshPredictiveText
     {
         private readonly Guid _guid;
 
+        private readonly CommandAstVisitor enteredTokens = new();
+
         /// <summary>
         /// Initialise a new guid.
         /// </summary>
@@ -32,9 +36,18 @@ namespace PoshPredictiveText
         public Guid Id => _guid;
 
         /// <summary>
-        /// Gets the name of a subsystem implementation.
+        /// Gets the name of a command for which suggestion are being made.
         /// </summary>
-        public string Name => "PoshPredictiveText";
+        public string Name
+        {
+            get 
+            {
+                string? command = enteredTokens.BaseCommand;
+                if (command is null) return "Predictive Text";
+                string capitaliseFirstLetter = string.Concat(command[0].ToString().ToUpper(), command.AsSpan(1));
+                return capitaliseFirstLetter; 
+            }
+        }
 
         /// <summary>
         /// Gets the description of a subsystem implementation.
@@ -63,7 +76,7 @@ namespace PoshPredictiveText
             if (context.InputAst is null) return default;
 
             // Tokenise the syntax tree.
-            var enteredTokens = new CommandAstVisitor();
+            enteredTokens.Reset();
             context.InputAst.Visit(enteredTokens);
 
             // If there is no base command, or the base command is not supported then return.

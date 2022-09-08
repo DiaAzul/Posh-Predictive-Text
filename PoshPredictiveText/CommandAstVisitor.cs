@@ -82,6 +82,16 @@ namespace PoshPredictiveText
         { get { return commandLinePosition++; } }
 
         /// <summary>
+        /// Resets the CommandAstVisitor to the initial state.
+        /// </summary>
+        internal void Reset()
+        {
+            tokens.Clear();
+            commandLinePosition = 0;
+            parseMode = null;
+        }
+
+        /// <summary>
         /// Returns the first token in the command list.
         /// </summary>
         internal string? BaseCommand
