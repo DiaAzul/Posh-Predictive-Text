@@ -1,10 +1,10 @@
 ﻿
-using System.DirectoryServices;
-using Xunit;
+
 
 namespace PoshPredictiveText.Test
 {
-    // TODO [ ][TEST] Tools tests.
+    using Xunit;
+
     /// <summary>
     /// Tests logging functionality
     /// </summary>
