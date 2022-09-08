@@ -13,6 +13,16 @@
     <FileVersion>0.1.0</FileVersion>
     <Copyright>Tanzo Creative Ltd</Copyright>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Title>Posh Predictive Text</Title>
+    <Company>Tanzo Creative Ltd</Company>
+    <Version>0.1.0</Version>
+    <Authors>David Plummer</Authors>
+    <Product>Posh-PredictiveText</Product>
+    <Description>Provides predictive text suggestions for a limited set of common command line tools.</Description>
+    <PackageProjectUrl>https://github.com/DiaAzul/Posh-Predictive-Text</PackageProjectUrl>
+    <PackageIcon>PoshPredictiveText Plain.png</PackageIcon>
+    <RepositoryUrl>https://github.com/DiaAzul/Posh-Predictive-Text</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\Assets\PoshPredictiveText Plain.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -67,6 +81,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UIStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="PoshPredictiveText.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

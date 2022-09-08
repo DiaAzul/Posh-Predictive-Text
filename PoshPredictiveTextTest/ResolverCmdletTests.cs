@@ -32,8 +32,16 @@ namespace PoshPredictiveText.Test
             };
             sessionState.ImportPSModule(moduleDependencies);
 
-            SessionStateCmdletEntry cmdletToTest = new("Install-PredictiveText", typeof(PoshPredictiveTextCmdlet), null);
-            sessionState.Commands.Add(cmdletToTest);
+            // Add cmdlets
+            SessionStateCmdletEntry cmdletToTestIPT = new("Install-PredictiveText", typeof(InstallPredictiveText), null);
+            sessionState.Commands.Add(cmdletToTestIPT);
+            SessionStateCmdletEntry cmdletToTestGPT = new("Get-PredictiveText", typeof(GetPredictiveText), null);
+            sessionState.Commands.Add(cmdletToTestGPT);
+
+            SessionStateCmdletEntry cmdletToTestGPTO = new("Get-PredictiveTextOption", typeof(GetPredictiveTextOption), null);
+            sessionState.Commands.Add(cmdletToTestGPTO);
+            SessionStateCmdletEntry cmdletToTestSPTO = new("Set-PredictiveTextOption", typeof(SetPredictiveTextOption), null);
+            sessionState.Commands.Add(cmdletToTestSPTO);
 
             var testShellInstance = PowerShell.Create(sessionState);
 
@@ -109,7 +117,7 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.AddCommand("Install-PredictiveText");
+                powerShell.AddCommand("Get-PredictiveTextOption");
                 powerShell.AddParameter("list");
                 var expectedResult = UIStrings.LIST_COMMANDS;
                 var expectedCommands = SyntaxTreesConfig.SupportedCommands();
@@ -147,8 +155,7 @@ namespace PoshPredictiveText.Test
                 // Act
                 powerShell.Commands.Clear();
                 Collection<PSObject> results = powerShell.AddCommand("Install-PredictiveText")
-                                                            .AddParameter("Initialise")
-                                                            .Invoke();
+                                                               .Invoke();
 
                 // Test for cmdlet installed.
                 // Note: The testing installs cmdlets individually, they are not installed from a module.
@@ -175,7 +182,7 @@ namespace PoshPredictiveText.Test
             {
                 // Arrange
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
-                powerShell.AddCommand("Install-PredictiveText");
+                powerShell.AddCommand("Get-PredictiveTextOption");
                 powerShell.AddParameter("printscript");
                 var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
                 // Act

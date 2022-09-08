@@ -159,7 +159,7 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
         [int]$cursorPosition)
 
     try {
-        $suggestions = Install-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+        $suggestions = Get-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
     }
     catch {
         Write-Host "Error."
