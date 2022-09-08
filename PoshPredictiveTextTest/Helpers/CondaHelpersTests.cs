@@ -1,6 +1,4 @@
 ﻿
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
 namespace PoshPredictiveText.Test.Helpers
 {
     using Xunit;

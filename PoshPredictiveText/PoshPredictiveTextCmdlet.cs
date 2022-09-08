@@ -120,12 +120,12 @@ namespace PoshPredictiveText
             switch (ParameterSetName)
             {
                 case "Version":
-                    result.AppendLine(UI.Resource("VERSION"));
+                    result.AppendLine(UIstring.Resource("VERSION"));
                     WriteObject(result.ToString());
                     break;
 
                 case "ListCommands":
-                    result.AppendLine(UI.Resource("LIST_COMMANDS"));
+                    result.AppendLine(UIstring.Resource("LIST_COMMANDS"));
                     string supportedCommands = SyntaxTreesConfig.SupportedCommands();
                     result.AppendLine(supportedCommands);
 
@@ -152,7 +152,7 @@ namespace PoshPredictiveText
                         LogFile));
                     }
                   
-                    var init_script = UI.Resource("REGISTER_COMMAND_SCRIPT")
+                    var init_script = UIstring.Resource("REGISTER_COMMAND_SCRIPT")
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
                     try
                     {
@@ -174,7 +174,7 @@ namespace PoshPredictiveText
                     break;
 
                 case "PrintScript":
-                    var print_script = UI.Resource("REGISTER_COMMAND_SCRIPT")
+                    var print_script = UIstring.Resource("REGISTER_COMMAND_SCRIPT")
                                          .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
                     result.Append(print_script);
                     WriteObject(result.ToString());
