@@ -2,6 +2,7 @@
 
 namespace PoshPredictiveText
 {
+    using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Text;
@@ -151,7 +152,7 @@ namespace PoshPredictiveText
                         ErrorCategory.InvalidArgument,
                         LogFile));
                     }
-                  
+
                     var init_script = UIstring.Resource("REGISTER_COMMAND_SCRIPT")
                                         .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
                     try
@@ -159,7 +160,7 @@ namespace PoshPredictiveText
                         var scriptBlock = InvokeCommand.NewScriptBlock(init_script);
                         InvokeCommand.InvokeScript(false, scriptBlock, null, null);
                     }
-                    catch(Exception ex) when (
+                    catch (Exception ex) when (
                     ex is ParseException
                     || ex is RuntimeException
                     || ex is FlowControlException)

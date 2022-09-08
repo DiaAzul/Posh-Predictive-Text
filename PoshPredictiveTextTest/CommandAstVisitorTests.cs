@@ -172,7 +172,7 @@ namespace PoshPredictiveText.Test
             // Note: This test is already covered in TestCommandAstVisitorVisitTest
             // So just do a quick test of count and one token.
             // Act
-            Dictionary<int, PoshPredictiveText.Token> tokens= tokenisedInput.All;
+            Dictionary<int, PoshPredictiveText.Token> tokens = tokenisedInput.All;
             // Assert
             Assert.Equal(6, tokens.Count);
             Assert.Equal("12", tokens[5].Value);
@@ -294,7 +294,7 @@ namespace PoshPredictiveText.Test
             Assert.True(singleUseDoesNotExistCanUse);
             Assert.True(multipleUseExistsCanUse);
         }
-    } 
+    }
 }
 
 

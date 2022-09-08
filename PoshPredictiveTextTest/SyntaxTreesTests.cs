@@ -157,7 +157,7 @@ namespace PoshPredictiveText.Test
             var syntaxTree = SyntaxTrees.Get(syntaxTreeName);
             Assert.IsType<List<SyntaxItem>>(syntaxTree);
 
-            int itemsInTree = syntaxTree.Count;          
+            int itemsInTree = syntaxTree.Count;
             Assert.Equal(3, itemsInTree);
 
             SyntaxItem syntaxItem = syntaxTree[2];

@@ -2,6 +2,7 @@
 
 namespace PoshPredictiveText.Test
 {
+    using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Collections.ObjectModel;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
@@ -25,7 +26,7 @@ namespace PoshPredictiveText.Test
             // Create a permissive authorisation manager.
             sessionState.AuthorizationManager = new("Microsoft.PowerShell");
 
-            string[] moduleDependencies = new string[] 
+            string[] moduleDependencies = new string[]
             {
                 "PSReadLine"
             };

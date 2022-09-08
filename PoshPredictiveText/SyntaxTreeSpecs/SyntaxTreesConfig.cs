@@ -1,10 +1,7 @@
-﻿
-using System.Reflection;
-using System.Resources;
+﻿using System.Reflection;
 using System.Text;
-using System.Xml.Linq;
 
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SyntaxTreeSpecs
 {
 
     /// <summary>
@@ -58,7 +55,7 @@ namespace PoshPredictiveText
             {"conda",  new ConfigItem {
                 Definition = "CondaSyntaxTree.xml",
                 ToolTips = "CondaToolTips",
-                ParseMode = PoshPredictiveText.ParseMode.Windows } },
+                ParseMode = SyntaxTreeSpecs.ParseMode.Windows } },
         };
 
 
@@ -80,7 +77,7 @@ namespace PoshPredictiveText
         {
             StringBuilder commands = new();
             string delimeter = "";
-            foreach(var command in SUPPORTED_COMMANDS.Keys)
+            foreach (var command in SUPPORTED_COMMANDS.Keys)
             {
                 commands.Append(delimeter);
                 commands.Append(command);

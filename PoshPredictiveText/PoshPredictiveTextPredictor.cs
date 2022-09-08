@@ -2,12 +2,13 @@
 
 namespace PoshPredictiveText
 {
+    using PoshPredictiveText.SyntaxTreeSpecs;
     using System;
     using System.Collections.Generic;
-    using System.Threading;
     using System.Management.Automation;
     using System.Management.Automation.Subsystem;
     using System.Management.Automation.Subsystem.Prediction;
+    using System.Threading;
 
     /// <summary>
     /// PSReadLine plugin providing predictive text capabilities.
@@ -74,12 +75,12 @@ namespace PoshPredictiveText
             {
                 enteredTokens.AddDefaultToken();
             }
-            
+
             string wordToComplete = enteredTokens.LastToken?.Value ?? "";
             string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
 
             var results = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
-            if (results.Count == 0 ) return default;
+            if (results.Count == 0) return default;
 
             List<PredictiveSuggestion> predictiveSuggestions = new();
             foreach (Suggestion result in results)

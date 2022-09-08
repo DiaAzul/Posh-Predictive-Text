@@ -1,6 +1,7 @@
 ﻿
 namespace PoshPredictiveText.Test.Helpers
 {
+    using PoshPredictiveText.Helpers;
     using Xunit;
 
     /// <summary>

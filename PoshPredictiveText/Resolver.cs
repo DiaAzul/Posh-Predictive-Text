@@ -1,6 +1,8 @@
 ﻿
 namespace PoshPredictiveText
 {
+    using PoshPredictiveText.Helpers;
+    using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Linq;
     using System.Management.Automation;
 
@@ -100,7 +102,7 @@ namespace PoshPredictiveText
                 // Can we enter more than one value?
                 string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
                 // Search prior parameters for both parameter AND aliases.
-                var parameterSyntaxItems 
+                var parameterSyntaxItems
                     = filteredSyntaxTree
                         .Where(syntaxItem => syntaxItem.Argument == lastParameter
                                 | (syntaxItem.HasAlias && syntaxItem.Alias == lastParameter))
@@ -124,7 +126,7 @@ namespace PoshPredictiveText
                     }
                 }
             }
-            
+
             // ----- POSITIONAL VALUES -----
             // If we have a helper for positional parameters then return the suggestions.
             // BUG [ ][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.

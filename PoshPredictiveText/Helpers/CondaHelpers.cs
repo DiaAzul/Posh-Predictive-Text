@@ -1,7 +1,8 @@
 ﻿
 
-namespace PoshPredictiveText
+namespace PoshPredictiveText.Helpers
 {
+    using PoshPredictiveText;
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
@@ -12,7 +13,7 @@ namespace PoshPredictiveText
     /// Attribute declaring the Parameter value that the method provides
     /// suggestions for.
     /// </summary>
-    [System.AttributeUsage(System.AttributeTargets.Method, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class ParameterValueAttribute : Attribute
     {
         internal string Name { get; private set; }
@@ -23,7 +24,7 @@ namespace PoshPredictiveText
         /// <param name="name">Name of the Parameter Value</param>
         public ParameterValueAttribute(string name)
         {
-            this.Name = name;
+            Name = name;
         }
     }
 

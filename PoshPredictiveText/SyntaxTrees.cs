@@ -1,6 +1,7 @@
 ﻿
 namespace PoshPredictiveText
 {
+    using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation;
     using System.Reflection;
     using System.Resources;
@@ -50,7 +51,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsOptionParameter
         {
-            get { return Type == "OPT";  }
+            get { return Type == "OPT"; }
         }
 
         /// <summary>
