@@ -24,7 +24,7 @@ namespace PoshPredictiveText.Test
         }
 
 
-        private void createTemporaryLogFile()
+        private static void CreateTemporaryLogFile()
         {
 
         }
