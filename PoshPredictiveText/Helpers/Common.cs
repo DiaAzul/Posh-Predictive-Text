@@ -19,11 +19,11 @@ namespace PoshPredictiveText
         /// <returns>Encapsulated string if it contains spaces.</returns>
         internal static string EncapsulateIfSpaces(string inputString, char wrapper)
         {
-            if (inputString.Contains(' '))
+            return inputString.Contains(' ') switch
             {
-                return string.Concat(wrapper, inputString, wrapper);
-            }
-            return inputString;
+                true => string.Concat(wrapper, inputString, wrapper),
+                false => inputString,
+            };
         }
 
         /// <summary>
