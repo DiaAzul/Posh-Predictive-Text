@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <AssemblyVersion>0.1.0</AssemblyVersion>
     <FileVersion>0.1.0</FileVersion>
@@ -17,12 +17,13 @@
     <Company>Tanzo Creative Ltd</Company>
     <Version>0.1.0</Version>
     <Authors>David Plummer</Authors>
-    <Product>Posh-PredictiveText</Product>
-    <Description>Provides predictive text suggestions for a limited set of common command line tools.</Description>
+    <Product>Posh Predictive Text</Product>
+    <Description>Improves productivity with predictive text suggestions for command line tools.</Description>
     <PackageProjectUrl>https://github.com/DiaAzul/Posh-Predictive-Text</PackageProjectUrl>
     <PackageIcon>PoshPredictiveText Plain.png</PackageIcon>
     <RepositoryUrl>https://github.com/DiaAzul/Posh-Predictive-Text</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Configurations>Debug;Release;CreatePackage</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

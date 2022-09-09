@@ -9,6 +9,8 @@
     <IsPackable>false</IsPackable>
 
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

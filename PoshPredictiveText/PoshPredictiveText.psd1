@@ -30,22 +30,22 @@ CompanyName = 'Tanzo Creative Ltd'
 Copyright = '(c) Tanzo Creative Ltd. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = 'Provides predictive text suggestions for a limited set of common command line tools.'
+Description = 'Predictive text for command line tools.'
 
 # Minimum version of the PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '6.0'
 
 # Name of the PowerShell host required by this module
-# PowerShellHostName = ''
+PowerShellHostName = 'ConsoleHost'
 
 # Minimum version of the PowerShell host required by this module
-# PowerShellHostVersion = ''
+PowerShellHostVersion = '7.0'
 
 # Minimum version of Microsoft .NET Framework required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-# DotNetFrameworkVersion = ''
+DotNetFrameworkVersion = '4.6.2'
 
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-# ClrVersion = ''
+ClrVersion = '4.0.0'
 
 # Processor architecture (None, X86, Amd64) required by this module
 # ProcessorArchitecture = ''
@@ -72,7 +72,7 @@ Copyright = '(c) Tanzo Creative Ltd. All rights reserved.'
 FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @()
+CmdletsToExport = @("Get-PredictiveText","Install-PredictiveText","Get-PredictiveTextOption","Set-PredictiveTextOption")
 
 # Variables to export from this module
 VariablesToExport = '*'
