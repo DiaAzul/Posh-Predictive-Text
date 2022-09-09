@@ -187,8 +187,7 @@ namespace PoshPredictiveText.Helpers
                 {
                     Suggestion suggestion = new()
                     {
-                        // TODO [HIGH][CONDA] Need to intelligently add quotes to suggestions and remove them when parsing.
-                        CompletionText =  $"\"{envName}\"",
+                        CompletionText =  CommonTasks.EncapsulateIfSpaces(envName, '\''),
                         ListText = envName,
                         Type = CompletionResultType.ParameterValue,
                         ToolTip = envPath

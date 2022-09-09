@@ -395,7 +395,7 @@ namespace PoshPredictiveText
             catch (ArgumentOutOfRangeException) { }
             Token token = new()
             {
-                Value = Value,
+                Value = CommonTasks.Decapsulate(Value),
                 Type = type
             };
             this.tokens.Add(this.TokenPosition, token);
