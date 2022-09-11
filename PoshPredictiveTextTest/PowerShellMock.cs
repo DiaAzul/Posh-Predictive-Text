@@ -1,36 +1,52 @@
 ﻿
 namespace PoshPredictiveText.Test
 {
+
+    using System.Management.Automation;
     using System.Management.Automation.Language;
+    using System.Management.Automation.Runspaces;
     using Xunit;
 
     /// <summary>
-    /// Abstract syntax tree visitor to capture the CommandAst
+    /// Create PowerShell shells for testing.
     /// </summary>
-    public class GetCommandAst : AstVisitor
+    public class PowerShellMock
     {
         /// <summary>
-        /// Hold the last found commandAst, null if no commandAst found.
+        /// Configures an instance of PowerShell containing the cmdlet to test.
         /// </summary>
-        public CommandAst? commandAst;
-
-        /// <summary>
-        /// Action when visiting a commandAst node.
-        /// </summary>
-        /// <param name="commandAst">Node in the abstract syntax tree.</param>
-        /// <returns>Continue processing.</returns>
-        public override AstVisitAction VisitCommand(CommandAst commandAst)
+        /// <returns>
+        /// Instance of PowerShell containing cmdlet.
+        /// </returns>
+        public static PowerShell GetConfiguredShell()
         {
-            this.commandAst = commandAst;
-            return AstVisitAction.Continue;
-        }
-    }
+            var sessionState = InitialSessionState.CreateDefault();
 
-    /// <summary>
-    /// Methods to support testing of the Abstract Syntax Tree.
-    /// </summary>
-    public class AstHelper
-    {
+            // Create a permissive authorisation manager.
+            sessionState.AuthorizationManager = new("Microsoft.PowerShell");
+
+            string[] moduleDependencies = new string[]
+            {
+                "PSReadLine"
+            };
+            sessionState.ImportPSModule(moduleDependencies);
+
+            // Add cmdlets
+            SessionStateCmdletEntry cmdletToTestIPT = new("Install-PredictiveText", typeof(InstallPredictiveText), null);
+            sessionState.Commands.Add(cmdletToTestIPT);
+            SessionStateCmdletEntry cmdletToTestGPT = new("Get-PredictiveText", typeof(GetPredictiveText), null);
+            sessionState.Commands.Add(cmdletToTestGPT);
+
+            SessionStateCmdletEntry cmdletToTestGPTO = new("Get-PredictiveTextOption", typeof(GetPredictiveTextOption), null);
+            sessionState.Commands.Add(cmdletToTestGPTO);
+            SessionStateCmdletEntry cmdletToTestSPTO = new("Set-PredictiveTextOption", typeof(SetPredictiveTextOption), null);
+            sessionState.Commands.Add(cmdletToTestSPTO);
+
+            var testShellInstance = PowerShell.Create(sessionState);
+
+            return testShellInstance;
+        }
+
         /// <summary>
         /// Helper command to generate a commandAst class given a string of commands as if
         /// they were entered at the command prompt.
@@ -71,3 +87,4 @@ namespace PoshPredictiveText.Test
         }
     }
 }
+

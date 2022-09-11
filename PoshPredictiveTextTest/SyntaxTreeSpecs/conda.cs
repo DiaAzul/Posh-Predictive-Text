@@ -17,7 +17,7 @@ namespace PoshPredictiveText.Test
             // Arrange
             // WordToComplete. CommandAstVisitor. CursorPosition.
             string wordToComplete = "";
-            var commandAst = AstHelper.CreateCommandAst("conda");
+            var commandAst = PowerShellMock.CreateCommandAst("conda");
             int cursorPosition = commandAst.Extent.EndOffset;
 
             // Act

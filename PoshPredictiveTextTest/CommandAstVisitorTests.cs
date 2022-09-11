@@ -72,7 +72,7 @@ namespace PoshPredictiveText.Test
             // Arrange
             CommandAstVisitor visitor = new CommandAstVisitor();
             string promptText = "conda env -parameter1 --parameter2 value1 12";
-            CommandAst ast = AstHelper.CreateCommandAst(promptText);
+            CommandAst ast = PowerShellMock.CreateCommandAst(promptText);
 
             // Act
             ast.Visit(visitor);
@@ -120,7 +120,7 @@ namespace PoshPredictiveText.Test
         {
             // Arrange
             const string inputText = "conda env -parameter1 --parameter2 value1 12";
-            CommandAst ast = AstHelper.CreateCommandAst(inputText);
+            CommandAst ast = PowerShellMock.CreateCommandAst(inputText);
             ast.Visit(tokenisedInput);
         }
 

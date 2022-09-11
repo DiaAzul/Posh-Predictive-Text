@@ -21,6 +21,7 @@ namespace PoshPredictiveText
         /// Gets or sets the file to which messages will be written.
         /// </summary>
         [Parameter(
+            Mandatory = true,
             ParameterSetName = "Logging",
             HelpMessage = "Enable logging to log file.")]
         public string? LogFile { get; set; }
