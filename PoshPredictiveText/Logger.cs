@@ -124,31 +124,4 @@ namespace PoshPredictiveText
             }
         }
     }
-
-    internal static class CommandShell
-    {
-        static PowerShell? shell = null;
-        internal static List<string> QueryPowerShell(string command, List<string> arguments)
-        {
-            List<string> results = new();
-            shell ??= PowerShell.Create();
-            try
-            {
-                LOGGER.Write("Executing: conda env list");
-                shell.AddCommand(command);
-                foreach (var argument in arguments) shell.AddArgument(argument);
-                var psResults = shell.Invoke();
-
-                foreach (var result in psResults)
-                {
-                    results.Add(result.ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                LOGGER.Write(ex.ToString());
-            }
-            return results;
-        }
-    }
 }
