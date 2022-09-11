@@ -184,7 +184,8 @@ namespace PoshPredictiveText.Test
                 using var powerShell = PSTestHelpers.GetConfiguredShell();
                 powerShell.AddCommand("Get-PredictiveTextOption");
                 powerShell.AddParameter("printscript");
-                var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT);
+                var expectedResult = PSTestHelpers.GetFirstLine(UIStrings.REGISTER_COMMAND_SCRIPT)
+                                                .Replace("$cmdNames", SyntaxTreesConfig.SupportedCommands());
                 // Act
                 Collection<PSObject> results = powerShell.Invoke();
                 // Assert
