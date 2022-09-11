@@ -1,10 +1,4 @@
-﻿
-
-
-using PoshPredictiveText;
-using Xunit;
-
-namespace PoshPredictiveText.Test
+﻿namespace PoshPredictiveText.Test
 {
     using Xunit;
 

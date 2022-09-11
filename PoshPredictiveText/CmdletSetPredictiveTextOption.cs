@@ -4,7 +4,6 @@
 namespace PoshPredictiveText
 {
     using System.Management.Automation;
-    using System.Management.Automation.Runspaces;
     using static PoshPredictiveText.LOGGER;
 
     /// <summary>
@@ -16,7 +15,7 @@ namespace PoshPredictiveText
         "PredictiveTextOption")]
     [OutputType(typeof(string))]
     [OutputType(typeof(CompletionResult))]
-    public class SetPredictiveTextOption: PSCmdlet
+    public class SetPredictiveTextOption : PSCmdlet
     {
         /// <summary>
         /// Gets or sets the file to which messages will be written.
@@ -69,8 +68,6 @@ namespace PoshPredictiveText
                         "Install-PoshPRedictiveText-Logger-Error",
                         ErrorCategory.InvalidArgument,
                         LogFile));
-
-                        
                     }
                     break;
 
@@ -94,7 +91,7 @@ namespace PoshPredictiveText
                     }
                     break;
 
-            default:
+                default:
                     break;
             }
 

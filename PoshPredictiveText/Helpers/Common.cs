@@ -3,7 +3,6 @@
 namespace PoshPredictiveText
 {
     using System.Text.RegularExpressions;
-    using static System.Net.Mime.MediaTypeNames;
 
     /// <summary>
     /// Functions which are applicable across helpers

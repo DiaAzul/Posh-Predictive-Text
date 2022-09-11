@@ -14,7 +14,7 @@ namespace PoshPredictiveText
         "PredictiveText")]
     [OutputType(typeof(string))]
     [OutputType(typeof(CompletionResult))]
-    public class GetPredictiveText: PSCmdlet
+    public class GetPredictiveText : PSCmdlet
     {
         /// <summary>
         /// Gets or sets the partial word provided before the user pressed Tab.

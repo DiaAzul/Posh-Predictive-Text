@@ -1,8 +1,6 @@
 ﻿
 namespace PoshPredictiveText
 {
-    using System.Management.Automation;
-
     /// <summary>
     /// Custom logger exception propagated up to the root of the cmdlet for outputing
     /// to the error stream.

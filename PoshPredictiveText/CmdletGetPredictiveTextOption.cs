@@ -15,8 +15,8 @@ namespace PoshPredictiveText
         "PredictiveTextOption")]
     [OutputType(typeof(string))]
     [OutputType(typeof(CompletionResult))]
-    public class GetPredictiveTextOption: PSCmdlet
-    { 
+    public class GetPredictiveTextOption : PSCmdlet
+    {
         /// <summary>
         /// Gets or sets the parameter requesting the version to be display.
         /// </summary>

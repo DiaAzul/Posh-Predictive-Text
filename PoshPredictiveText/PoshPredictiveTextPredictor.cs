@@ -37,12 +37,12 @@ namespace PoshPredictiveText
         /// </summary>
         public string Name
         {
-            get 
+            get
             {
                 string? command = enteredTokens.BaseCommand;
                 if (command is null) return "Predictive Text";
                 string capitaliseFirstLetter = string.Concat(command[0].ToString().ToUpper(), command.AsSpan(1));
-                return capitaliseFirstLetter; 
+                return capitaliseFirstLetter;
             }
         }
 
