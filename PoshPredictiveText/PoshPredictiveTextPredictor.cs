@@ -1,7 +1,4 @@
 ﻿
-
-using System;
-
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
