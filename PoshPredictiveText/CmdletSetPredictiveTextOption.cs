@@ -4,8 +4,8 @@
 namespace PoshPredictiveText
 {
     using System.Management.Automation;
+    using System.Management.Automation.Runspaces;
     using static PoshPredictiveText.LOGGER;
-
 
     /// <summary>
     /// The Posh Predictive Text cmdlet provides suggested completions for
@@ -37,6 +37,14 @@ namespace PoshPredictiveText
         public string? LogLevel { get; set; }
 
         /// <summary>
+        /// Gets or sets the flag that conda tabexpansion should be removed.
+        /// </summary>
+        [Parameter(
+            ParameterSetName = "RemoveCondaTabExpansion",
+            HelpMessage = "Remove conda installed tab expansion.")]
+        public SwitchParameter RemoveCondaTabExpansion { get; set; }
+
+        /// <summary>
         /// Set options
         /// </summary>
         protected override void EndProcessing()
@@ -61,10 +69,32 @@ namespace PoshPredictiveText
                         "Install-PoshPRedictiveText-Logger-Error",
                         ErrorCategory.InvalidArgument,
                         LogFile));
+
+                        
                     }
                     break;
 
-                default:
+                case "RemoveCondaTabExpansion":
+                    var init_script = UIstring.Resource("REMOVE_CONDA_SCRIPT");
+                    try
+                    {
+                        var scriptBlock = InvokeCommand.NewScriptBlock(init_script);
+                        InvokeCommand.InvokeScript(false, scriptBlock, null, null);
+                    }
+                    catch (Exception ex) when (
+                    ex is ParseException
+                    || ex is RuntimeException
+                    || ex is FlowControlException)
+                    {
+                        WriteError(new ErrorRecord(
+                        ex,
+                        "Install-PoshPRedictiveText-RemoveCondaScript-Error",
+                        ErrorCategory.InvalidOperation,
+                        ""));
+                    }
+                    break;
+
+            default:
                     break;
             }
 

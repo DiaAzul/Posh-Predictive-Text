@@ -142,17 +142,7 @@
     <value>Unable to create log file. Use Get-Error for more detail.</value>
   </data>
   <data name="REGISTER_COMMAND_SCRIPT" xml:space="preserve">
-    <value># Remove conda tab-expansion if installed.
-if (Test-Path Function:\TabExpansion) {
-    $testForConda = Get-Item Function:\TabExpansion
-    if ($testForConda.Source -eq "conda") {
-        Remove-Item Function:\TabExpansion
-        if (Test-Path Function:\CondaTabExpansionBackup) {
-            Rename-Item Function:\CondaTabExpansionBackup Function:\TabExpansion
-        }
-    }
-}
-Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+    <value>Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
     param(
         [string]$wordToComplete, 
         [System.Management.Automation.Language.CommandAst]$commandAst,
@@ -166,6 +156,17 @@ Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
     }
     
     $suggestions 
+}</value>
+  </data>
+  <data name="REMOVE_CONDA_SCRIPT" xml:space="preserve">
+    <value>if (Test-Path Function:\TabExpansion) {
+    $testForConda = Get-Item Function:\TabExpansion
+    if ($testForConda.Source -eq "conda") {
+        Remove-Item Function:\TabExpansion
+        if (Test-Path Function:\CondaTabExpansionBackup) {
+            Rename-Item Function:\CondaTabExpansionBackup Function:\TabExpansion
+        }
+    }
 }</value>
   </data>
   <data name="VERSION" xml:space="preserve">

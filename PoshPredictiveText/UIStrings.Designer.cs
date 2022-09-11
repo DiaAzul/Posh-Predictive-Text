@@ -133,8 +133,30 @@ namespace PoshPredictiveText {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Remove conda tab-expansion if installed.
-        ///if (Test-Path Function:\TabExpansion) {
+        ///   Looks up a localized string similar to Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
+        ///    param(
+        ///        [string]$wordToComplete, 
+        ///        [System.Management.Automation.Language.CommandAst]$commandAst,
+        ///        [int]$cursorPosition)
+        ///
+        ///    try {
+        ///        $suggestions = Get-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+        ///    }
+        ///    catch {
+        ///        Write-Host &quot;Error.&quot;
+        ///    }
+        ///    
+        ///    $suggestions 
+        ///}.
+        /// </summary>
+        public static string REGISTER_COMMAND_SCRIPT {
+            get {
+                return ResourceManager.GetString("REGISTER_COMMAND_SCRIPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to if (Test-Path Function:\TabExpansion) {
         ///    $testForConda = Get-Item Function:\TabExpansion
         ///    if ($testForConda.Source -eq &quot;conda&quot;) {
         ///        Remove-Item Function:\TabExpansion
@@ -142,15 +164,11 @@ namespace PoshPredictiveText {
         ///            Rename-Item Function:\CondaTabExpansionBackup Function:\TabExpansion
         ///        }
         ///    }
-        ///}
-        ///Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
-        ///    param(
-        ///        [string]$wordToComplete, 
-        ///  [rest of string was truncated]&quot;;.
+        ///}.
         /// </summary>
-        public static string REGISTER_COMMAND_SCRIPT {
+        public static string REMOVE_CONDA_SCRIPT {
             get {
-                return ResourceManager.GetString("REGISTER_COMMAND_SCRIPT", resourceCulture);
+                return ResourceManager.GetString("REMOVE_CONDA_SCRIPT", resourceCulture);
             }
         }
         
