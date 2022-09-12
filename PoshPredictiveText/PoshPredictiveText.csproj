@@ -85,6 +85,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="PoshPredictiveText.dll-Help.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="PoshPredictiveText.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

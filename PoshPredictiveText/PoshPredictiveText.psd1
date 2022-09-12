@@ -12,10 +12,10 @@
 RootModule = 'PoshPredictiveText.dll'
 
 # Version number of this module.
-ModuleVersion = '0.1.2'
+ModuleVersion = '0.1.3'
 
 # Supported PSEditions
-# CompatiblePSEditions = @('PSEdition_Core', 'Windows', 'Linux', 'MacOS')
+CompatiblePSEditions = @('PSEdition_Core', 'Windows', 'Linux', 'MacOS')
 
 # ID used to uniquely identify this module
 GUID = '120bef46-74d0-46bf-b98b-d7beedeb91ad'
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @( 'PSEdition_Core', Windows', 'Linux', 'MacOS', 'Console', 'PSReadLine', 'Predictive-Text', 'Tab-Completion', 'Tab-Expansion', 'Conda', 'Anaconda', 'Miniconda' )
+        Tags = @( 'PSEdition_Core', 'Windows', 'Linux', 'MacOS', 'Console', 'PSReadLine', 'Predictive-Text', 'Tab-Completion', 'Tab-Expansion', 'Conda', 'Anaconda', 'Miniconda' )
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/LICENSE.txt'
@@ -116,7 +116,7 @@ PrivateData = @{
         # RequireLicenseAcceptance = $false
 
         # External dependent modules of this module
-        # ExternalModuleDependencies = @(@{ModuleName="PSReadLine"; ModuleVersion="2.2.2"; GUID="5714753b-2afd-4492-a5fd-01d9e2cff8b5"})
+        ExternalModuleDependencies = @()
 
     } # End of PSData hashtable
 

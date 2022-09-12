@@ -7,6 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoshPredictiveText", "PoshP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoshPredictiveTextTest", "PoshPredictiveTextTest\PoshPredictiveTextTest.csproj", "{83FA08F2-47F0-4703-BAD4-FE5866824FEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdditionalFiles", "AdditionalFiles", "{3D24DBAF-EC91-42DC-AF8F-D962AE583BD0}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		Debug-RunModule.ps1 = Debug-RunModule.ps1
+		DEVELOPER.md = DEVELOPER.md
+		PROGRAMMING NOTES.md = PROGRAMMING NOTES.md
+		README.md = README.md
+		Release-RunModule.ps1 = Release-RunModule.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
