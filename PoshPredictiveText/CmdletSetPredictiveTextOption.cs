@@ -1,6 +1,4 @@
-﻿// TODO [ ][OPTIONSCMDLET] Use set option to remove conda tab-expansion code.
-// TODO [ ][CMDLET] Add cmdlet tests
-
+﻿
 namespace PoshPredictiveText
 {
     using System.Management.Automation;
