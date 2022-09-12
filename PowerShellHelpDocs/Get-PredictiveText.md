@@ -119,4 +119,4 @@ This cmdlet is intended for uses as a registered argument completer and is not i
 
 ## RELATED LINKS
 
-[https://github.com/DiaAzul/Posh-Predictive-Text](https://github.com/DiaAzul/Posh-Predictive-Text)
+[GitHub PoshPredictiveText](https://github.com/DiaAzul/Posh-Predictive-Text)

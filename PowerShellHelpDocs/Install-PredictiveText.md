@@ -44,4 +44,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://github.com/DiaAzul/Posh-Predictive-Text](https://github.com/DiaAzul/Posh-Predictive-Text)
+[GitHub PoshPredictiveText](https://github.com/DiaAzul/Posh-Predictive-Text)
