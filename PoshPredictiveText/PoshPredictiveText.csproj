@@ -5,7 +5,7 @@
     <RootNamespace>PoshPredictiveText</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,6 +24,7 @@
     <RepositoryUrl>https://github.com/DiaAzul/Posh-Predictive-Text</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Configurations>Debug;Release;CreatePackage</Configurations>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -92,5 +93,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="pwsh -NoProfile -ExecutionPolicy RemoteSigned -file &quot;$(ProjectDir)\postBuildScript.ps1&quot; $(SolutionDir) $(ProjectDir) $(OutDir)&#xD;&#xA;" />
+  </Target>
 
 </Project>

@@ -4,12 +4,12 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+Module/
 *.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-
 logfile.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
