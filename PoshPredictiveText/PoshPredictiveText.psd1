@@ -12,7 +12,7 @@
 RootModule = 'PoshPredictiveText.dll'
 
 # Version number of this module.
-ModuleVersion = '0.1.4'
+ModuleVersion = '!{version}'
 
 # Supported PSEditions
 CompatiblePSEditions = @('PSEdition_Core', 'Windows', 'Linux', 'MacOS')

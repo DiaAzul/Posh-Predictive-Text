@@ -15,7 +15,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Title>Posh Predictive Text</Title>
     <Company>Tanzo Creative Ltd</Company>
-    <Version>0.1.0</Version>
+    <Version>0.1.5</Version>
     <Authors>David Plummer</Authors>
     <Product>Posh Predictive Text</Product>
     <Description>Improves productivity with predictive text suggestions for command line tools.</Description>
@@ -95,7 +95,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="pwsh -NoProfile -ExecutionPolicy RemoteSigned -file &quot;$(ProjectDir)\postBuildScript.ps1&quot; $(SolutionDir) $(ProjectDir) $(OutDir)&#xD;&#xA;" />
+    <Exec Command="pwsh -NoProfile -ExecutionPolicy RemoteSigned -file &quot;$(ProjectDir)\postBuildScript.ps1&quot; $(Configuration) $(SolutionDir) $(ProjectDir) $(OutDir) $(Version)&#xD;&#xA;" />
   </Target>
 
 </Project>

@@ -1,5 +1,11 @@
 ﻿
-param($solution, $project, $OutDir)
+param($Configuration, $solution, $project, $OutDir, $version)
+
+# Exit script if we are not in release (reduce time in build-test-debug cycle)
+if ($Configuration -ne "Release") {
+    Write-Output "***** Skipping Post Build Script. *****"
+    return
+}
 
 Write-Output "***** Starting Post Build Script. *****" 
 
@@ -8,26 +14,30 @@ Write-Host "Project path: ${project}"
 Write-Host "Output path: ${OutDir}"
 
 # Create module output directories if they do not exist
-$moduleRoot = Join-Path -path $solution -Childpath "Module/"
+$moduleRoot = Join-Path $solution "Module"
 if(!(Test-Path -Path $moduleRoot )){
     $null = New-Item -ItemType directory -Path $moduleRoot
 }
-$moduleOutput = Join-Path -path $solution -Childpath "Module/PoshPredictiveText/"
+$moduleOutput = Join-Path $moduleRoot "PoshPredictiveText"
 if(!(Test-Path -Path $moduleOutput )){
     $null = New-Item -ItemType directory -Path $moduleOutput 
 }
 Write-Host "Module output: ${moduleOutput}"
 # Clear previous build if there are files.
-Remove-Item (Join-Path -path $moduleOutput -Childpath "*.*")
+Remove-Item (Join-Path $moduleOutput "*.*")
 
 # Copy built artifacts to module folder
-$buildDirectory = Join-Path -path $project -Childpath $OutDir
+$buildDirectory = Join-Path $project $OutDir
 Write-Host "Build path: ${buildDirectory}"
-Copy-Item (Join-Path -path $buildDirectory -Childpath "PoshPredictiveText.dll") -Destination $moduleOutput
-Copy-Item (Join-Path -path $buildDirectory -Childpath "PoshPredictiveText.psd1") -Destination $moduleOutput
+Copy-Item (Join-Path $buildDirectory "PoshPredictiveText.dll") -Destination $moduleOutput
+
+# Update version number when copying psd file.
+$psdSourceFile = Join-Path $buildDirectory "PoshPredictiveText.psd1"
+$psdDestinationFile = Join-Path $moduleOutput "PoshPredictiveText.psd1"
+((Get-Content -path $psdSourceFile -Raw) -replace '!{version}', $version) | Set-Content -Path $psdDestinationFile
 
 # Create help documentation
-$documentationSource = join-path -path $solution -Childpath "PowerShellHelpDocs\"
+$documentationSource = join-path $solution "PowerShellHelpDocs"
 Write-Host "Documentation source: ${documentationSource}"
 
 Write-Host "Building documentation."
@@ -37,13 +47,15 @@ $null = New-ExternalHelp -Path $documentationSource -OutputPath $moduleOutput -F
 Write-Host "Documentation complete."
 
 # Test module manifest and whatif publishing (without key).
-$testResults = Test-ModuleManifest (Join-Path -path $moduleOutput -Childpath "PoshPredictiveText.psd1")
+Write-Host "----- Test-Module Manifest. ----"
+$testResults = Test-ModuleManifest (Join-Path $moduleOutput "PoshPredictiveText.psd1")
 $testResults.PSObject.Properties | ForEach-Object {
     $_.Name + " : " + $_.Value
 }
+Write-Host "----- End Module Manifest. ----"
 
 # Output hint to publish module (without the NugetAPIKey).
-Write-Host "Publish-Module -Path ""${moduleOutput}"" -NugetAPIKey """" -WhatIf -Verbose"
+Write-Host "Publish-Module -Path ""${moduleOutput}"" -NugetAPIKey ""EnterKeyHere"" -WhatIf -Verbose"
 
 Write-Output "***** Post Build Script complete. *****"
 
