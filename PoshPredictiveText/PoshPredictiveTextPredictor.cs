@@ -49,7 +49,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Gets the description of a subsystem implementation.
         /// </summary>
-        public string Description => "Predictive text plug-in for PSReadLine";
+        public string Description => "PowerShell tab-expansion of arguments for popular command line tools.";
 
         /// <summary>
         /// Get the predictive suggestions. It indicates the start of a suggestion rendering session.
