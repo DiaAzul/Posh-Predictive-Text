@@ -39,5 +39,55 @@ namespace PoshPredictiveText.Test
             Assert.NotNull(suggestions);
             Assert.Equal(expectedSuggestions, suggestions.Count);
         }
+
+        /// <summary>
+        /// Test the properties of the predictor.
+        /// </summary>
+        [Fact]
+        public void PropertiesNoCommandTest()
+        {
+            // Arrange
+            string guid = Guid.NewGuid().ToString();
+            var predictor = new PoshPredictiveTextPredictor(guid);
+
+            // Act
+            var id = predictor.Id.ToString();
+            var name = predictor.Name.ToString();
+            var description =  predictor.Description.ToString();
+
+            // Assert
+            Assert.Equal(guid, id);
+            Assert.Equal("Predictive Text", name);
+            Assert.Equal("PowerShell tab-expansion of arguments for popular command line tools.", description);
+        }
+
+        /// <summary>
+        /// Test the properties of the predictor when a command has been entered.
+        /// The name property should be the name of the command.
+        /// </summary>
+        [Fact]
+        public void PropertiesWithCommandTest()
+        {
+            // Arrange
+            string guid = Guid.NewGuid().ToString();
+            var predictor = new PoshPredictiveTextPredictor(guid);
+
+            PredictionClient client = new("test", PredictionClientKind.Terminal);
+            PredictionContext context = PredictionContext.Create("conda env list");
+            CancellationToken cancellationToken = new(false);
+
+            // Act
+            // Get suggestions to set name property to conda.
+            var _ = predictor.GetSuggestion(client, context, cancellationToken);
+
+            var id = predictor.Id.ToString();
+            var name = predictor.Name.ToString();
+            var description = predictor.Description.ToString();
+
+            // Assert
+            Assert.Equal(guid, id);
+            Assert.Equal("Conda", name);
+            Assert.Equal("PowerShell tab-expansion of arguments for popular command line tools.", description);
+        }
     }
 }
