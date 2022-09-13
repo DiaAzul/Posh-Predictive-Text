@@ -151,6 +151,7 @@ namespace PoshPredictiveText
             // ----- SUB-COMMANDS, OPTIONAL and PARAMETER TOKENS -----
             // If the command is not complete then offer sub-commands.
             // Filter tokens already added from optional and parameter suggestions.
+            // BUG [HIGH][PREDICTOR] Not returning commands in list of suggestions only parameters.
             if (!listOnlyParameterValues)
             {
                 List<SyntaxItem> availableOptions = filteredSyntaxTree

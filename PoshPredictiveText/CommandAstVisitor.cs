@@ -269,15 +269,11 @@ namespace PoshPredictiveText
         /// <returns>Flag to continue processing the abstract syntax tree.</returns>
         public override AstVisitAction DefaultVisit(Ast ast)
         {
-            Token token = new()
-            {
-                Value = ast.ToString(),
-                Type = typeof(string)
-            };
-            //this.tokens.Add(this.TokenPosition, token);
-            var t = ast.GetType();
 #if DEBUG
-            LOGGER.Write($"Default (not tokenised): {token.Value}, {t}");
+            // Keep the following, even though not used often. Useful when the calling
+            // ast structure changes and we need to find out what types we are NOT
+            // explicitly capturing.
+            // LOGGER.Write($"Default (not tokenised): {ast.ToString()}, {ast.GetType()}");
 #endif
             return AstVisitAction.Continue;
         }
