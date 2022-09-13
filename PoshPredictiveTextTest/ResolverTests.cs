@@ -1,6 +1,6 @@
 ﻿namespace PoshPredictiveText.Test
 {
-    // TODO [HIGH][TEST] Resolver.
+    // TODO [LOW][RESOLVER] Resolver is already well tested, do we need more tests?
     internal class ResolverTests
     {
     }
