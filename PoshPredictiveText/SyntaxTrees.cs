@@ -98,7 +98,7 @@ namespace PoshPredictiveText
     }
 
 
-    // [ ] [SYNTAXTREE] Add documentation to SyntaxTreeClass.
+    // TODO [HIGH][SYNTAXTREE] Add documentation to SyntaxTreeClass.
     internal static class SyntaxTrees
     {
         /// <summary>

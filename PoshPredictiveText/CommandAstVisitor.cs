@@ -230,9 +230,20 @@ namespace PoshPredictiveText
                     break;
                 }
             }
-
             return (commandPath.ToString() ?? "", tokensInCommand);
+        }
 
+        /// <summary>
+        /// Parses the commandAst against a syntax tree to identify
+        /// tokens by type (command, parameter key, parameter value,
+        /// positional, optional, etc).
+        /// </summary>
+        /// <param name="syntaxTreeName">Name of tree</param>
+
+        // TODO [HIGH][COMMANDAST] Parse the command Ast against syntax of command.
+        internal void ParseSyntax(string syntaxTreeName)
+        {
+            var syntaxTree = SyntaxTrees.Get(syntaxTreeName);
         }
 
         /// <summary>
