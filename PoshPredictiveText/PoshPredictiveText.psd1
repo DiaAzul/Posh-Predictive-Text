@@ -15,7 +15,7 @@ RootModule = 'PoshPredictiveText.dll'
 ModuleVersion = '!{version}'
 
 # Supported PSEditions
-CompatiblePSEditions = @('PSEdition_Core', 'Windows', 'Linux', 'MacOS')
+CompatiblePSEditions = @('PSEdition_Core')
 
 # ID used to uniquely identify this module
 GUID = '120bef46-74d0-46bf-b98b-d7beedeb91ad'
