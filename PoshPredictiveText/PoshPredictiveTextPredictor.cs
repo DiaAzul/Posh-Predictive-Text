@@ -4,6 +4,7 @@ namespace PoshPredictiveText
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Management.Automation;
     using System.Management.Automation.Subsystem;
     using System.Management.Automation.Subsystem.Prediction;
@@ -49,7 +50,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Gets the description of a subsystem implementation.
         /// </summary>
-        public string Description => "Predictive text plug-in for PSReadLine";
+        public string Description => "PowerShell tab-expansion of arguments for popular command line tools.";
 
         /// <summary>
         /// Get the predictive suggestions. It indicates the start of a suggestion rendering session.
@@ -161,6 +162,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Gets called when assembly is loaded.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         public void OnImport()
         {
             var predictor = new PoshPredictiveTextPredictor(Identifier);
@@ -170,6 +172,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Gets called when the binary module is unloaded.
         /// </summary>
+        [ExcludeFromCodeCoverage]
         public void OnRemove(PSModuleInfo psModuleInfo)
         {
             SubsystemManager.UnregisterSubsystem(SubsystemKind.CommandPredictor, new Guid(Identifier));
