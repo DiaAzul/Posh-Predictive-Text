@@ -12,6 +12,7 @@
 RootModule = 'PoshPredictiveText.dll'
 
 # Version number of this module.
+# NOTE: ** The placeholder !{version} is replaced during build **
 ModuleVersion = '!{version}'
 
 # Supported PSEditions
@@ -30,7 +31,7 @@ CompanyName = 'Tanzo Creative Ltd'
 Copyright = '(c) Tanzo Creative Ltd. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Predictive text for command line tools.'
+Description = 'PowerShell tab-expansion of arguments for popular command line tools.'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '7.2'
