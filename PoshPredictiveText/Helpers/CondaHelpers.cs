@@ -183,7 +183,7 @@ namespace PoshPredictiveText.Helpers
                         envName = envPath;
                     }
                 }
-                if (envName.Contains(wordToComplete))
+                if (envName.StartsWith(wordToComplete))
                 {
                     Suggestion suggestion = new()
                     {
