@@ -7,7 +7,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
     /// <summary>
     /// Test conda syntax trees
     /// </summary>
-    public class Conda
+    public class CondaTests
     {
         /// <summary>
         /// Basic test to return suggestions for conda

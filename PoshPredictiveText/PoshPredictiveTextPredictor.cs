@@ -80,13 +80,11 @@ namespace PoshPredictiveText
             if (enteredTokens.BaseCommand is null) return default;
             if (!SyntaxTreesConfig.IsSupportedCommand(enteredTokens.BaseCommand)) return default;
 
-            // If last character is a space then add an extra empty token to trigger suggestions of next token.
+            string wordToComplete = enteredTokens.LastToken?.Value ?? "";
             if (inputText[^1] == ' ')
             {
-                enteredTokens.AddDefaultToken();
+                wordToComplete = "";
             }
-
-            string wordToComplete = enteredTokens.LastToken?.Value ?? "";
             string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
 
             var results = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
