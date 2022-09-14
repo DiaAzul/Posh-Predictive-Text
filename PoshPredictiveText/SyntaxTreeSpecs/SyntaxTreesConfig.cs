@@ -58,7 +58,6 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
                 ParseMode = SyntaxTreeSpecs.ParseMode.Windows } },
         };
 
-
         /// <summary>
         /// Test wehther a given command is supported.
         /// </summary>

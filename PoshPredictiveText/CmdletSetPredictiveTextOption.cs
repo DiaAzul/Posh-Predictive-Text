@@ -64,7 +64,7 @@ namespace PoshPredictiveText
                     {
                         WriteError(new ErrorRecord(
                         ex,
-                        "Install-PoshPRedictiveText-Logger-Error",
+                        "Install-PoshPredictiveText-Logger-Error",
                         ErrorCategory.InvalidArgument,
                         LogFile));
                     }
@@ -84,7 +84,7 @@ namespace PoshPredictiveText
                     {
                         WriteError(new ErrorRecord(
                         ex,
-                        "Install-PoshPRedictiveText-RemoveCondaScript-Error",
+                        "Install-PoshPredictiveText-RemoveCondaScript-Error",
                         ErrorCategory.InvalidOperation,
                         ""));
                     }

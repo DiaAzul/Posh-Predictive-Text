@@ -243,7 +243,7 @@ namespace PoshPredictiveText
         // TODO [HIGH][COMMANDAST] Parse the command Ast against syntax of command.
         internal void ParseSyntax(string syntaxTreeName)
         {
-            var syntaxTree = SyntaxTrees.Get(syntaxTreeName);
+            var syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
         }
 
         /// <summary>

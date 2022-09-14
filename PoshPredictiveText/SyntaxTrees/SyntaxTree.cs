@@ -1,178 +1,169 @@
 ﻿
 namespace PoshPredictiveText
 {
+
     using PoshPredictiveText.SyntaxTreeSpecs;
-    using System.Management.Automation;
     using System.Reflection;
     using System.Resources;
     using System.Xml.Linq;
-
     /// <summary>
-    /// An exception raised if the syntax tree cannot be loaded.
+    /// Each command has a syntax tree which sets out the possible combination of tokens
+    /// on the command line. The trees are strored as XML resource files embeded within
+    /// the application. These are loaded, parsed and converted to a list of Syntax items
+    /// when a command requires tab-completions.
     /// </summary>
-    internal class SyntaxTreeException : Exception
+    internal class SyntaxTree
     {
-        internal SyntaxTreeException() { }
 
-        internal SyntaxTreeException(string message)
-            : base(message) { }
+        private List<SyntaxItem> syntaxItems = new();
 
-        internal SyntaxTreeException(string message, Exception inner)
-            : base(message, inner) { }
-    }
-
-    /// <summary>
-    /// Record within the command syntax tree.
-    /// 
-    /// Used to enumerate query results on the XML syntax tree.
-    /// </summary>
-    internal record SyntaxItem
-    {
-        internal string Command { get; init; } = default!;
-        internal string CommandPath { get; init; } = default!;
-        internal string Type { get; init; } = default!;
-        internal string? Argument { get; init; }
-        internal string? Alias { get; init; }
-        internal bool MultipleUse { get; init; } = default!;
-        internal string? Parameter { get; init; }
-        internal bool? MultipleParameterValues { get; init; }
-        internal string? ToolTip { get; init; }
+        private readonly string syntaxTreeName;
 
         /// <summary>
-        /// Returns true if the syntax item is a command.
+        /// Create a new syntax tree.
+        /// 
+        /// Load configuration from file into the tree.
         /// </summary>
-        internal bool IsCommand
+        /// <param name="name">Syntax tree name.</param>
+        internal SyntaxTree(string name)
         {
-            get { return Type == "CMD"; }
+            syntaxTreeName = name;
+            Load();
         }
 
         /// <summary>
-        /// Returns true if the syntax item is an option parameter.
+        /// Create a new syntax tree and load items from list.
         /// </summary>
-        internal bool IsOptionParameter
+        /// <param name="name">Syntax tree name.</param>
+        /// <param name="newSyntaxItems">List of syntax items.</param>
+        internal SyntaxTree(string name, List<SyntaxItem> newSyntaxItems)
         {
-            get { return Type == "OPT"; }
+            syntaxTreeName = name;
+            syntaxItems = newSyntaxItems;
         }
 
         /// <summary>
-        /// Returns true if the syntax item is a parameter that takes values.
+        /// Name of the syntax tree.
         /// </summary>
-        internal bool IsParameter
+        internal string Name => syntaxTreeName;
+
+        /// <summary>
+        /// Count of items in the syntax tree.
+        /// </summary>
+        internal int Count =>  syntaxItems.Count;
+
+        /// <summary>
+        /// The list of items in the syntax tree.
+        /// </summary>
+        internal List<SyntaxItem> GetItems => syntaxItems;
+
+        /// <summary>
+        /// A list of unique commands in the syntax tree.
+        /// </summary>
+        internal List<string> UniqueCommands => syntaxItems
+                                                .Select(syntaxItem => syntaxItem.Command)
+                                                .Distinct()
+                                                .ToList();
+
+        private string? cachedCommandPath;
+        private List<SyntaxItem>? cachedFilteredItems;
+        /// <summary>
+        /// Gets a list of syntax items filter by command path.
+        /// </summary>
+        /// <param name="commandPath">Command path to filter syntax items.</param>
+        /// <returns>Filter list of syntax items.</returns>
+        /// <remarks>This function is often called several times with the same command path,
+        /// the last result is cached to minimise the number of times the linq query is called.
+        /// </remarks>
+        internal List<SyntaxItem> FilteredByCommandPath(string commandPath)
         {
-            get { return Type == "PRM"; }
+            if (cachedFilteredItems is not null && cachedCommandPath == commandPath)
+                return cachedFilteredItems;
+
+            cachedCommandPath = commandPath;
+            cachedFilteredItems = syntaxItems
+                                    .Where(syntaxItem => syntaxItem.CommandPath == commandPath)
+                                    .ToList();
+
+            return cachedFilteredItems;
         }
 
         /// <summary>
-        /// Returns true if the syntax item is a positional parameter.
+        /// Get list of subcommands filtered by command path.
         /// </summary>
-        internal bool IsPositionalParameter
+        /// <param name="commandPath">Command path.</param>
+        /// <returns>Subcommands available at command path.</returns>
+        internal List<SyntaxItem> SubCommands(string commandPath)
         {
-            get { return Type == "POS"; }
+            return syntaxItems
+                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath)
+                                        && syntaxItem.IsCommand)
+                .ToList();
         }
 
         /// <summary>
-        /// Returns true if the syntax item has an alias.
+        /// Count of subcommands filtered by command path.
         /// </summary>
-        internal bool HasAlias
+        /// <param name="commandPath">Command path.</param>
+        /// <returns>Count of subcommands available at command path.</returns>
+        internal int CountOfSubCommands(string commandPath)
         {
-            get { return Alias != null; }
+            return syntaxItems
+                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath) 
+                                        && syntaxItem.IsCommand)
+                .Count();
+        }
+
+        // TODO [LOW][SYNTAXTREE] What is last parameter?
+        /// <summary>
+        /// List of parameter syntax items at command path.
+        /// </summary>
+        /// <param name="commandPath">Command path</param>
+        /// <param name="lastParameter"></param>
+        /// <returns>Parameter syntax items.</returns>
+        internal List<SyntaxItem> ParameterSyntaxItems(
+                                                string commandPath,
+                                                string lastParameter)
+        {
+            return FilteredByCommandPath(commandPath)
+                .Where(syntaxItem => syntaxItem.Argument == lastParameter
+                        | (syntaxItem.HasAlias && syntaxItem.Alias == lastParameter))
+                .ToList();
         }
 
         /// <summary>
-        /// Property return the result type for the Syntax item.
+        /// List of positional value syntax items at command path
         /// </summary>
-        internal CompletionResultType ResultType
+        /// <param name="commandPath">Command path.</param>
+        /// <returns>List of positional value syntax items.</returns>
+        internal List<SyntaxItem> PositionalValues(string commandPath)
         {
-            get
-            {
-                return Type switch
-                {
-                    "CMD" => CompletionResultType.Command,
-                    "OPT" => CompletionResultType.ParameterName,
-                    "PRM" => CompletionResultType.ParameterName,
-                    "POS" => CompletionResultType.ParameterValue,
-                    _ => CompletionResultType.ParameterValue,
-                };
-            }
-        }
-    }
-
-
-    // TODO [HIGH][SYNTAXTREE] Add documentation to SyntaxTreeClass.
-    internal static class SyntaxTrees
-    {
-        /// <summary>
-        /// Each command has a syntax tree which sets out the possible combination of tokens
-        /// on the command line. The trees are strored as XML resource files embeded within
-        /// the application. These are loaded, parsed and converted to a list of Syntax items
-        /// when a command requires tab-completions.
-        /// </summary>
-        private static readonly Dictionary<string, List<SyntaxItem>> syntaxTrees = new();
-
-
-        /// <summary>
-        /// Add a syntax tree to the database of syntax trees.
-        /// </summary>
-        /// <param name="syntaxTreeName">Name of syntax tree</param>
-        /// <param name="syntaxTree">Syntax tree</param>
-        /// <exception cref="SyntaxTreeException">Thrown if the syntax tree already
-        /// exists in the database.</exception>
-        internal static void Add(string syntaxTreeName, List<SyntaxItem> syntaxTree)
-        {
-            if (syntaxTrees.ContainsKey(syntaxTreeName))
-                throw new SyntaxTreeException($"Syntax Tree {syntaxTreeName} already exists.");
-
-            syntaxTrees[syntaxTreeName] = syntaxTree;
+            return FilteredByCommandPath(commandPath)
+                        .Where(syntaxItem => syntaxItem.IsPositionalParameter)
+                        .ToList();
         }
 
         /// <summary>
-        /// Test that a syntax tree is loaded.
+        /// Returns a list of available suggestions for the entered text.
         /// </summary>
-        /// <param name="syntaxTreeName">Name of syntax tree to test.</param>
-        /// <returns>True if syntax tree is loaded.</returns>  
-        internal static bool Exists(string syntaxTreeName)
+        /// <param name="commandPath">Command path</param>
+        /// <param name="commandComplete">True if the command is complete.</param>
+        /// <param name="enteredTokens">Tokens entered on the command line.</param>
+        /// <param name="wordToComplete">Word to complete.</param>
+        /// <returns></returns>
+        internal List<SyntaxItem> AvailableOptions(
+            string commandPath,
+            bool commandComplete,
+            CommandAstVisitor enteredTokens,
+            string wordToComplete)
         {
-            return syntaxTrees.ContainsKey(syntaxTreeName);
-        }
-
-        internal static int Count(string syntaxTreeName)
-        {
-            return syntaxTrees[syntaxTreeName].Count;
-        }
-
-        internal static List<SyntaxItem> Get(string syntaxTreeName)
-        {
-            List<SyntaxItem> result = new();
-            try
-            {
-                result = syntaxTrees[syntaxTreeName];
-
-            }
-            catch (KeyNotFoundException)
-            {
-                LOGGER.Write($"Syntax Tree {syntaxTreeName} not found when getting list of tokens.");
-            }
-
-            return result;
-        }
-
-        internal static List<string> UniqueCommands(string syntaxTreeName)
-        {
-            List<string> uniqueCommands = new();
-
-            if (Exists(syntaxTreeName))
-            {
-                uniqueCommands = syntaxTrees[syntaxTreeName]
-                    .Select(item => item.Command)
-                    .Distinct()
-                    .ToList();
-            }
-            else
-            {
-                LOGGER.Write($"Syntax Tree {syntaxTreeName} not found when getting unique commands.");
-            }
-
-            return uniqueCommands;
+            return FilteredByCommandPath(commandPath)
+                     .Where(syntaxItem =>
+                             !(syntaxItem.IsCommand && commandComplete)
+                             && syntaxItem.Argument is not null
+                             && syntaxItem.Argument.StartsWith(wordToComplete)
+                             && enteredTokens.CanUse(syntaxItem))
+                     .ToList();
         }
 
         /// <summary>
@@ -181,9 +172,9 @@ namespace PoshPredictiveText
         /// <param name="syntaxTreeName">Syntax tree from which tooltip required.</param>
         /// <param name="toolTipRef">Tooltip reference used to identify display string.</param>
         /// <returns>Tooltip display text.</returns>
-        internal static string Tooltip(string syntaxTreeName, string? toolTipRef)
+        internal string Tooltip(string? toolTipRef)
         {
-            if (toolTipRef == null) return "";
+            if (toolTipRef is null) return "";
 
             string? baseName = SyntaxTreesConfig.ToolTips(syntaxTreeName);
             if (baseName == null) return "";
@@ -191,7 +182,9 @@ namespace PoshPredictiveText
             string toolTip;
             try
             {
-                var resourceManager = new ResourceManager(baseName, Assembly.GetExecutingAssembly());
+                var resourceManager = new ResourceManager(
+                                            baseName,
+                                            Assembly.GetExecutingAssembly());
                 toolTip = resourceManager.GetString(toolTipRef) ?? "";
             }
             catch (ArgumentNullException)
@@ -201,13 +194,14 @@ namespace PoshPredictiveText
 
             return toolTip;
         }
+
         /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
         /// 
         /// The method reads the XML file embeded within the application, parses it
         /// </summary>
         /// <param name="syntaxTreeName">Name of syntax tree to load.</param>
-        internal static void Load(string syntaxTreeName)
+        private void Load()
         {
             XDocument? syntaxTreeInputFile = null;
 
@@ -225,7 +219,6 @@ namespace PoshPredictiveText
                 using StreamReader reader = new(resourceStream);
                 var xmlDoc = reader.ReadToEnd();
                 syntaxTreeInputFile = XDocument.Parse(xmlDoc);
-
             }
             catch (FileNotFoundException ex)
             {
@@ -245,9 +238,7 @@ namespace PoshPredictiveText
             }
 
             // Parse the XML document into a List.
-            List<SyntaxItem> syntaxTree = new();
             XElement? root = syntaxTreeInputFile?.Root;
-
             try
             {
                 if (root is not null)
@@ -268,28 +259,13 @@ namespace PoshPredictiveText
                     if (syntaxTreeQuery is not null)
                     {
 
-                        syntaxTree = syntaxTreeQuery.ToList();
+                        syntaxItems = syntaxTreeQuery.ToList();
                     }
                 }
             }
             catch (Exception ex)
             {
                 throw new SyntaxTreeException($"Unable to parse {syntaxTreeName}.", ex);
-            }
-            // If the syntax tree loaded successfully, add to the dictionary.
-            if (syntaxTree.Any())
-            {
-                syntaxTrees[syntaxTreeName] = syntaxTree;
-#if DEBUG
-                LOGGER.Write($"Syntax tree {syntaxTreeName} saved.");
-#endif
-            }
-            else
-            {
-                syntaxTrees.Remove(syntaxTreeName);
-#if DEBUG
-                LOGGER.Write($"Syntax tree {syntaxTreeName} not saved.");
-#endif
             }
         }
 

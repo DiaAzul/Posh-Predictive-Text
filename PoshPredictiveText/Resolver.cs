@@ -55,14 +55,14 @@ namespace PoshPredictiveText
             // TODO [HIGH][SYNTAXTREE] Can we push Linq into SyntaxTree class to simplify? New Branch
             string? syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(enteredTokens.BaseCommand);
             // If syntax tree not loaded then load it. If still not loaded or command does exist abort early.
-            if (syntaxTreeName is not null && !SyntaxTrees.Exists(syntaxTreeName))
-                SyntaxTrees.Load(syntaxTreeName);
-            if (syntaxTreeName is null || !SyntaxTrees.Exists(syntaxTreeName))
+
+            SyntaxTree? syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+            if (syntaxTree is null)
                 return suggestions;
 
 #if DEBUG
             LOGGER.Write($"The syntaxTree {syntaxTreeName} exists. "
-                + $"There are {SyntaxTrees.Count(syntaxTreeName)} entries in the tree.");
+                + $"There are {syntaxTree.Count} entries in the tree.");
 #endif
 
             // ----- IDENTIFY SUB-COMMANDS -----
@@ -74,19 +74,11 @@ namespace PoshPredictiveText
             // therefore, we need to identify if this particular command is complete so
             // that we don't offer sub-commands as an option. Also, if the command is
             // complete we may offer positional parameters.
-            List<string> uniqueCommands = SyntaxTrees.UniqueCommands(syntaxTreeName);
+            List<string> uniqueCommands = syntaxTree.UniqueCommands;
             var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
 
-            List<SyntaxItem> filteredSyntaxTree = SyntaxTrees.Get(syntaxTreeName)
-                .Where(syntaxItem =>
-                            syntaxItem.CommandPath == commandPath)
-                .ToList();
-
-            List<SyntaxItem> subCommands = filteredSyntaxTree
-                                            .Where(syntaxItem => syntaxItem.IsCommand)
-                                            .ToList();
             int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
-            int expectedCommandTokens = tokensInPath + (subCommands.Count > 0 ? 1 : 0);
+            int expectedCommandTokens = tokensInPath + (syntaxTree.CountOfSubCommands(commandPath) > 0 ? 1 : 0);
             bool commandComplete = countOfEnteredTokens > expectedCommandTokens;
 
             // ----- PARAMETER VALUES -----
@@ -104,11 +96,7 @@ namespace PoshPredictiveText
                 // Can we enter more than one value?
                 string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
                 // Search prior parameters for both parameter AND aliases.
-                var parameterSyntaxItems
-                    = filteredSyntaxTree
-                        .Where(syntaxItem => syntaxItem.Argument == lastParameter
-                                | (syntaxItem.HasAlias && syntaxItem.Alias == lastParameter))
-                        .ToList();
+                var parameterSyntaxItems = syntaxTree.ParameterSyntaxItems(commandPath, lastParameter);
 
                 if (parameterSyntaxItems.Count > 0)
                 {
@@ -135,12 +123,10 @@ namespace PoshPredictiveText
             if (!listOnlyParameterValues && commandComplete)
             {
                 LOGGER.Write("Listing positional parameters.");
-                var positionalValue = filteredSyntaxTree
-                                        .Where(syntaxItem => syntaxItem.IsPositionalParameter)
-                                        .ToList();
-                if (positionalValue.Count > 0)
+                var positionalValues = syntaxTree.PositionalValues(commandPath);
+                if (positionalValues.Count > 0)
                 {
-                    SyntaxItem positionalSyntaxItem = positionalValue.First();
+                    SyntaxItem positionalSyntaxItem = positionalValues.First();
                     LOGGER.Write(positionalSyntaxItem.Parameter ?? "");
                     List<Suggestion> positionalValueSuggestions
                         = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Parameter ?? "",
@@ -155,23 +141,20 @@ namespace PoshPredictiveText
             // Filter tokens already added from optional and parameter suggestions.
             if (!listOnlyParameterValues)
             {
-                List<SyntaxItem> availableOptions = filteredSyntaxTree
-                    .Where(syntaxItem =>
-                            !(syntaxItem.IsCommand && commandComplete)
-                            && syntaxItem.Argument is not null
-                            && syntaxItem.Argument.StartsWith(wordToComplete)
-                            && enteredTokens.CanUse(syntaxItem))
-                    .ToList();
-                var filteredOptions = availableOptions;
+                List<SyntaxItem> availableOptions = syntaxTree.AvailableOptions(
+                                                                    commandPath,
+                                                                    commandComplete,
+                                                                    enteredTokens,
+                                                                    wordToComplete);
 
-                foreach (var syntaxItem in filteredOptions)
+                foreach (var syntaxItem in availableOptions)
                 {
                     Suggestion suggestion = new()
                     {
                         CompletionText = syntaxItem.Argument??"",
                         ListText = syntaxItem.Argument??"",
                         Type = syntaxItem.ResultType,
-                        ToolTip = SyntaxTrees.Tooltip(syntaxTreeName, syntaxItem.ToolTip) ?? "Tooltip was null."
+                        ToolTip = syntaxTree.Tooltip(syntaxItem.ToolTip) ?? "Tooltip was null."
                     };
                     suggestions.Add(suggestion);
                 }
