@@ -26,6 +26,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
         [InlineData("conda i", 3)]
         [InlineData("conda list --name --md5 ", 12)]
         [InlineData("conda activate -", 3)]
+        [InlineData("conda config --file ", 0)]
 
         public void CondaSuggestionsTest(string inputString, int expectedSuggestions)
         {
