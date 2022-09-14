@@ -114,9 +114,11 @@ namespace PoshPredictiveText
                 .Count();
         }
 
-        // TODO [LOW][SYNTAXTREE] What is last parameter?
         /// <summary>
-        /// List of parameter syntax items at command path.
+        /// Returns a syntax item for the last entered parameter
+        /// prior to the current token position. The last entered
+        /// parameter syntax item holds details for the number of
+        /// parameter values that can be entered after a parameter.
         /// </summary>
         /// <param name="commandPath">Command path</param>
         /// <param name="lastParameter"></param>

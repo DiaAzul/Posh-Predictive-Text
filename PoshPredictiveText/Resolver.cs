@@ -51,8 +51,6 @@ namespace PoshPredictiveText
             // If we can't load a syntax tree then return early with empty suggestion list.
             List<Suggestion> suggestions = new();
 
-            // TODO [HIGH][SYNTAXTREE] Do we need SyntaxTree class in SyntaxTrees?
-            // TODO [HIGH][SYNTAXTREE] Can we push Linq into SyntaxTree class to simplify? New Branch
             string? syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(enteredTokens.BaseCommand);
             // If syntax tree not loaded then load it. If still not loaded or command does exist abort early.
 
