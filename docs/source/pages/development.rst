@@ -82,7 +82,8 @@ Source documents are generated using several tools and then collated within the 
 - Sphinx RTD Theme: https://sphinx-rtd-theme.readthedocs.io/en/stable/
 
 
-1. Download and install Doxygen (https://doxygen.nl/download.html).
+1. Download and install Doxygen (https://doxygen.nl/download.html). If installing on Windows, add the
+   doxygen bin folder to the path `C:\Program Files\doxygen\bin`.
 
 2. Create a Python environment for the Sphinx tools and install packages.
 
