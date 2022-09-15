@@ -10,6 +10,8 @@ Module/
 # Build files for Doxygen and Sphinx.
 docs/build/
 docs/source/xml/
+docs/source/pshelp/
+docs/source/assets/
 # Other files
 *.rsuser
 *.suo

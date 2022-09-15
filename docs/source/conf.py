@@ -30,7 +30,11 @@ asset_list = [
 ]
 basedir = Path(__file__).parent.parent.parent
 print(f"Using base directory {basedir}")
+
 target_directory = basedir / "docs" / "source" / "assets"
+if not target_directory.exists():
+    target_directory.mkdir()
+
 for asset in asset_list:
     source_file = basedir / asset
     filename = os.path.basename(source_file)
@@ -39,8 +43,12 @@ for asset in asset_list:
 
 pshelp_dir = basedir / "PowerShellHelpDocs"
 pshelp_files = glob.glob(str(pshelp_dir) + "/*.md")
-pshelp_target_directory = basedir / "docs" / "source" / "pshelp"
 print(f"Copying PowerShell help files from {pshelp_dir}")
+
+pshelp_target_directory = basedir / "docs" / "source" / "pshelp"
+if not pshelp_target_directory.exists():
+    pshelp_target_directory.mkdir()
+
 for pshelp_file in pshelp_files:
     filename = os.path.basename(pshelp_file)
     destination_file = pshelp_target_directory / filename
@@ -48,7 +56,6 @@ for pshelp_file in pshelp_files:
     print(destination_file)
 
 # Get version of Doxygen and save it as a tuple
-
 doxygen_test = subprocess.run(["doxygen", "--version"], capture_output=True)
 if doxygen_test.returncode < 0:
     raise RuntimeError(
@@ -59,6 +66,11 @@ doxygen_version = tuple(
     int(x) for x in str(doxygen_test.stdout, encoding="utf-8").split()[0].split(".")
 )
 print("Using Doxygen v%d.%d.%d" % doxygen_version)
+
+# Run Doxygen and capture output in source/xml
+print("Starting Doxygen.")
+doxygen_test = subprocess.run(["doxygen", "doxygen.conf"], capture_output=True)
+print("Doxygen completed.")
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
