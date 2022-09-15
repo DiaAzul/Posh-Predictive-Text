@@ -69,7 +69,16 @@ print("Using Doxygen v%d.%d.%d" % doxygen_version)
 
 # Run Doxygen and capture output in source/xml
 print("Starting Doxygen.")
+
+doxygen_target_directory = basedir / "docs" / "source" / "xml"
+if not doxygen_target_directory.exists():
+    doxygen_target_directory.mkdir()
 doxygen_test = subprocess.run(["doxygen", "doxygen.conf"], capture_output=True)
+if doxygen_test.returncode != 0:
+    raise RuntimeError(
+        "doxygen failed to compile with following error:\n\t"
+        + str(doxygen_test.stderr, encoding="utf-8")
+    )
 print("Doxygen completed.")
 
 # -- Project information -----------------------------------------------------
