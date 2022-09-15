@@ -4,7 +4,13 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+
+# Module contains the built PowerShell Module
 Module/
+# Build files for Doxygen and Sphinx.
+docs/build/
+docs/source/xml/
+# Other files
 *.rsuser
 *.suo
 *.user
