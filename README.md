@@ -19,12 +19,7 @@ appear each time the `tab` key is pressed.
 - If PSReadLine options `-PredictionSource` is set to use the plugin and `-PredictionViewStyle`
 is set to `ListView` then suggestions will appear below the command line.
 
-
- <video controls autoplay>
-  <source src=https://user-images.githubusercontent.com/28156158/190742185-8842a5cf-3cc5-4945-8571-66d9ad6b4e6e.mp4 type="video/mp4">
-  Your browser does not support the video tag.
-</video> 
-
+https://user-images.githubusercontent.com/28156158/190742185-8842a5cf-3cc5-4945-8571-66d9ad6b4e6e.mp4
 
 
 ## Supported Command Line Tools
