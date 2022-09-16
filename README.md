@@ -19,6 +19,8 @@ appear each time the `tab` key is pressed.
 - If PSReadLine options `-PredictionSource` is set to use the plugin and `-PredictionViewStyle`
 is set to `ListView` then suggestions will appear below the command line.
 
+https://user-images.githubusercontent.com/28156158/190739719-5298d976-ab59-4533-b290-1ebc33a1fcaa.mp4
+
 ## Supported Command Line Tools
 
 Predictive text is available for the following commands line tools.
