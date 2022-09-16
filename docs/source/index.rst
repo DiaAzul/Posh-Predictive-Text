@@ -34,7 +34,8 @@ Download and install PowerShell module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Install PoshPredictive text from the PowerShell Gallery. This will download the module to
-the local user account.
+the local user account. You may be asked for permission if you have not already set PowerShell
+gallery as trusted source.
 
 .. code-block:: PowerShell
    
