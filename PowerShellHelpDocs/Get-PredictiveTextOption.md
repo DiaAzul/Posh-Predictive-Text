@@ -101,3 +101,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [GitHub PoshPredictiveText](https://github.com/DiaAzul/Posh-Predictive-Text)
+[Documentation](https://posh-predictive-text.readthedocs.io/en/latest/)

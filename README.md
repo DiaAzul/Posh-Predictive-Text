@@ -1,6 +1,6 @@
 # Posh Predictive Text
 <img src="./Assets/PoshPredictiveText%20Plain.png"
-     alt="Powershell predicitve text logo"
+     alt="Powershell predictive text logo"
      width=128
      align="right"/>
 
@@ -48,9 +48,9 @@ to do everything and there is always another way to do things which may be bette
 If you have a problem then raise an issue on the project issue tracker. If you have a suggested
 code improvement then submit a pull request.
 
-If you wish to add support for another command line tool then read the developer documentation
-on the project web site ()[]. This will explain how the syntax tree files are developed, processed
-and integrated into the tool.
+If you wish to add support for another command line tool then read the [developer documentation
+on the project web site](https://posh-predictive-text.readthedocs.io/en/latest/pages/development.html).
+This will explain how the syntax tree files are developed, processed and integrated into the tool.
 
 ## Links
 
@@ -58,7 +58,7 @@ Even though this information can be found inside the project on machine-readable
 format like in a .json file, it's good to include a summary of most useful
 links to humans using your project. You can include links like:
 
-- Project homepage: <https://github.com/DiaAzul/Posh-Predictive-Text>
+- Project homepage: <https://posh-predictive-text.readthedocs.io/en/latest/>
 - Repository: <https://github.com/DiaAzul/Posh-Predictive-Text>
 - Issue tracker: <https://github.com/DiaAzul/Posh-Predictive-Text/issues>
   - In case of sensitive bugs like security vulnerabilities, please contact

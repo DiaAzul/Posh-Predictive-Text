@@ -120,3 +120,4 @@ This cmdlet is intended for uses as a registered argument completer and is not i
 ## RELATED LINKS
 
 [GitHub PoshPredictiveText](https://github.com/DiaAzul/Posh-Predictive-Text)
+[Documentation](https://posh-predictive-text.readthedocs.io/en/latest/)
