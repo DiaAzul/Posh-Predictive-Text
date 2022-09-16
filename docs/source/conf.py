@@ -63,8 +63,7 @@ if doxygen_test.returncode < 0:
         + str(doxygen_test.stderr, encoding="utf-8")
     )
 doxygen_version = tuple(
-    int(x) for x in str(doxygen_test.stdout, encoding="utf-8").split()[0].split(".")
-)
+    int(x) for x in str(doxygen_test.stdout, encoding="utf-8").split()[0].split("."))
 print("Using Doxygen v%d.%d.%d" % doxygen_version)
 
 # Run Doxygen and capture output in source/xml
