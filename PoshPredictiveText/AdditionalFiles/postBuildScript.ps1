@@ -33,18 +33,18 @@ Copy-Item (Join-Path $buildDirectory "PoshPredictiveText.dll") -Destination $mod
 
 # Update version number when copying psd file.
 $psdSourceFile = Join-Path $buildDirectory "PoshPredictiveText.psd1"
-$psdDestinationFile = Join-Path $moduleOutput "PoshPredictiveText.psd1"
+$psdDestinationFile = Join-Path $moduleOutput "Additional Files" "PoshPredictiveText.psd1"
 ((Get-Content -path $psdSourceFile -Raw) -replace '!{version}', $version) | Set-Content -Path $psdDestinationFile
 
-# Create help documentation
+# Create PS Help documentation
 $documentationSource = join-path $solution "PowerShellHelpDocs"
-Write-Host "Documentation source: ${documentationSource}"
+Write-Host "PS Help documentation source: ${documentationSource}"
 
-Write-Host "Building documentation."
+Write-Host "Building PS Help documentation."
 Install-Module -Name platyPS -Scope CurrentUser -force
 Import-Module platyPS
 $null = New-ExternalHelp -Path $documentationSource -OutputPath $moduleOutput -Force
-Write-Host "Documentation complete."
+Write-Host "PS Help Documentation complete."
 
 # Test module manifest and whatif publishing (without key).
 Write-Host "----- Test-Module Manifest. ----"

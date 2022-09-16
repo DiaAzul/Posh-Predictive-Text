@@ -12,7 +12,7 @@
     <AssemblyVersion>0.1.0</AssemblyVersion>
     <FileVersion>0.1.0</FileVersion>
     <Copyright>Tanzo Creative Ltd</Copyright>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>AdditionalFiles\favicon.ico</ApplicationIcon>
     <Title>Posh Predictive Text</Title>
     <Company>Tanzo Creative Ltd</Company>
     <Version>0.1.5</Version>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="favicon.ico" />
+    <Content Include="AdditionalFiles\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,11 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Assets\PoshPredictiveText Plain.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
+    <None Include="..\Assets\PoshPredictiveText Plain.png" Link="AdditionalFiles\PoshPredictiveText Plain.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -89,13 +85,13 @@
     <None Update="PoshPredictiveText.dll-Help.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="PoshPredictiveText.psd1">
+    <None Update="AdditionalFiles\PoshPredictiveText.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="pwsh -NoProfile -ExecutionPolicy RemoteSigned -file &quot;$(ProjectDir)\postBuildScript.ps1&quot; $(Configuration) $(SolutionDir) $(ProjectDir) $(OutDir) $(Version)&#xD;&#xA;" />
+    <Exec Command="pwsh -NoProfile -ExecutionPolicy RemoteSigned -file &quot;$(ProjectDir)\AdditionalFiles\postBuildScript.ps1&quot; $(Configuration) $(SolutionDir) $(ProjectDir) $(OutDir) $(Version)&#xD;&#xA;" />
   </Target>
 
 </Project>
