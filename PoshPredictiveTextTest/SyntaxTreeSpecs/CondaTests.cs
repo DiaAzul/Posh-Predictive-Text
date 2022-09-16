@@ -69,10 +69,9 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
         /// in the suggestions.
         /// </summary>
         /// <param name="inputString"></param>
-        /// <param name="expectedSuggestion"></param>
-        [InlineData("conda activate ", 1)]
+        [InlineData("conda activate ")]
         [Theory]
-        public void CondaParameterValueTest(string inputString, int expectedSuggestion)
+        public void CondaParameterValueTest(string inputString)
         {
 
             var powershell = PowerShellMock.GetConfiguredShell();

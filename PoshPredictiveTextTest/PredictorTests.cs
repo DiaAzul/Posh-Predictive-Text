@@ -8,7 +8,7 @@ namespace PoshPredictiveText.Test
     /// <summary>
     /// Posh Predictive Text Predictor Tests.
     /// </summary>
-    public class PoshPredictiveTextPredictorTests
+    public class PredictorTests
     {
         /// <summary>
         /// Tests the predictive text predictor.
