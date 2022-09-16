@@ -1,0 +1,6 @@
+breathe
+myst-parser
+Sphinx
+sphinx-csharp
+sphinx-rtd-theme
+git+https://github.com/rogerbarton/sphinx-csharp.git
