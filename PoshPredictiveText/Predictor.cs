@@ -13,7 +13,7 @@ namespace PoshPredictiveText
     /// <summary>
     /// PSReadLine plugin providing predictive text capabilities.
     /// </summary>
-    public class PoshPredictiveTextPredictor : ICommandPredictor
+    public class Predictor : ICommandPredictor
     {
         private readonly Guid _guid;
 
@@ -23,7 +23,7 @@ namespace PoshPredictiveText
         /// Initialise a new guid.
         /// </summary>
         /// <param name="guid">Guid passed from PSReadLine</param>
-        internal PoshPredictiveTextPredictor(string guid)
+        internal Predictor(string guid)
         {
             _guid = new Guid(guid);
         }
@@ -110,6 +110,7 @@ namespace PoshPredictiveText
         /// <param name="client">Represents the client that initiates the call.</param>
         /// <param name="feedback">A specific type of feedback.</param>
         /// <returns>True or false, to indicate whether the specific feedback is accepted.</returns>
+        [ExcludeFromCodeCoverage]
         public bool CanAcceptFeedback(PredictionClient client, PredictorFeedbackKind feedback) => false;
 
         /// <summary>
@@ -123,6 +124,7 @@ namespace PoshPredictiveText
         /// less than or equal to 0, it means a single suggestion from the list got displayed, and
         /// the index is the absolute value.
         /// </param>
+        [ExcludeFromCodeCoverage]
         public void OnSuggestionDisplayed(PredictionClient client, uint session, int countOrIndex) { }
 
         /// <summary>
@@ -131,6 +133,7 @@ namespace PoshPredictiveText
         /// <param name="client">Represents the client that initiates the call.</param>
         /// <param name="session">Represents the mini-session where the accepted suggestion came from.</param>
         /// <param name="acceptedSuggestion">The accepted suggestion text.</param>
+        [ExcludeFromCodeCoverage]
         public void OnSuggestionAccepted(PredictionClient client, uint session, string acceptedSuggestion) { }
 
         /// <summary>
@@ -139,6 +142,7 @@ namespace PoshPredictiveText
         /// </summary>
         /// <param name="client">Represents the client that initiates the call.</param>
         /// <param name="history">History command lines provided as references for prediction.</param>
+        [ExcludeFromCodeCoverage]
         public void OnCommandLineAccepted(PredictionClient client, IReadOnlyList<string> history) { }
 
         /// <summary>
@@ -147,6 +151,7 @@ namespace PoshPredictiveText
         /// <param name="client">Represents the client that initiates the call.</param>
         /// <param name="commandLine">The last accepted command line.</param>
         /// <param name="success">Shows whether the execution was successful.</param>
+        [ExcludeFromCodeCoverage]
         public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success) { }
 
         #endregion;
@@ -165,7 +170,7 @@ namespace PoshPredictiveText
         [ExcludeFromCodeCoverage]
         public void OnImport()
         {
-            var predictor = new PoshPredictiveTextPredictor(Identifier);
+            var predictor = new Predictor(Identifier);
             SubsystemManager.RegisterSubsystem(SubsystemKind.CommandPredictor, predictor);
         }
 

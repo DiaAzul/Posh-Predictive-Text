@@ -25,7 +25,7 @@ namespace PoshPredictiveText.Test
         {
             // Arrange
             string guid = Guid.NewGuid().ToString();
-            var predictor = new PoshPredictiveTextPredictor(guid);
+            var predictor = new Predictor(guid);
 
             PredictionClient client = new("test", PredictionClientKind.Terminal);
             PredictionContext context = PredictionContext.Create(inputString);
@@ -48,7 +48,7 @@ namespace PoshPredictiveText.Test
         {
             // Arrange
             string guid = Guid.NewGuid().ToString();
-            var predictor = new PoshPredictiveTextPredictor(guid);
+            var predictor = new Predictor(guid);
 
             // Act
             var id = predictor.Id.ToString();
@@ -70,7 +70,7 @@ namespace PoshPredictiveText.Test
         {
             // Arrange
             string guid = Guid.NewGuid().ToString();
-            var predictor = new PoshPredictiveTextPredictor(guid);
+            var predictor = new Predictor(guid);
 
             PredictionClient client = new("test", PredictionClientKind.Terminal);
             PredictionContext context = PredictionContext.Create("conda env list");
