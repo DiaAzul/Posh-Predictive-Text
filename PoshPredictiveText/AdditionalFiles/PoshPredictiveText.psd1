@@ -33,7 +33,8 @@
     # Description of the functionality provided by this module
     Description            = @"
 PowerShell argument completer for popular command line tools. Supports
-both tab-expansion and PSReadLine plugin.
+both tab-expansion and worls as a PSReadLine plugin providing suggestions
+in the drop-down list.
 
 # Supported Command Line Tools
 
@@ -60,6 +61,14 @@ Install-PredictiveText
 The first command needed to remove the tab-expansion code automatically and silently installed
 by conda. The conda code prevents Posh Predictive Text from providing completions. The second
 command installs Posh Predictive Text.
+
+Completions will appear when a partial argument is entered and the tab key is pressed. A longer
+list of options with tooltips is available by pressing ctrl-space.
+
+It is recommended to add the following PSReadLine options in the PowerShell profile so that
+suggestions appear below the command line as command arguments are entered. 
+
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionVewStyle ListView
 
 # Further information
 

@@ -11,6 +11,14 @@ Most people will be familiar with predictive text on mobile phones. Posh-predict
 brings the same capability to the PowerShell command line interface for common CLI tools
 used within the software development and data science community.
 
+PoshPredictiveText provides suggested completions:
+
+- When a partial argument is entered and the `tab` key is pressed. Successive suggestion 
+appear each time the `tab` key is pressed.
+- Pressing `ctrl` + `space` display a popup list of options with tooltips.
+- If PSReadLine options `-PredictionSource` is set to use the plugin and `-PredictionViewStyle`
+is set to `ListView` then suggestions will appear below the command line.
+
 ## Supported Command Line Tools
 
 Predictive text is available for the following commands line tools.
@@ -68,6 +76,16 @@ Install-PredictiveText
 The first command removes tab-expansion that is already installed by conda, and which prevents
 Posh Predictive Text from providing completions. The second command installs Posh Predictive
 Text.
+
+Completions will appear when a partial argument is entered and the tab key is pressed. A longer
+list of options with tooltips is available by pressing ctrl-space.
+
+It is recommended to add the following PSReadLine options in the PowerShell profile so that
+suggestions appear below the command line as command arguments are entered.
+
+```powershell
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionVewStyle ListView
+```
 
 ## Contributing
 
