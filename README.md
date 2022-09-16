@@ -1,4 +1,5 @@
 # Posh Predictive Text
+
 <img src="./Assets/PoshPredictiveText%20Plain.png"
      alt="Powershell predictive text logo"
      width=128
@@ -10,9 +11,14 @@ Most people will be familiar with predictive text on mobile phones. Posh-predict
 brings the same capability to the PowerShell command line interface for common CLI tools
 used within the software development and data science community.
 
+## Supported Command Line Tools
+
 Predictive text is available for the following commands line tools.
 
 - conda
+
+If a tools is not supported then please consider helping by developing the syntax tree file
+needed to support it. Further information is available in the developer documentation.
 
 ## Sponsorship
 
@@ -20,9 +26,32 @@ t.b.a
 
 ## Installing / Getting started
 
-Install PoshPredictive text from the PowerShell Gallery. This will download the module to
-the local user account. You may be asked for permission if you have not already set PowerShell
-gallery as trusted source.
+PoshPredictiveText requires PowerShell version `7.2` or greater, and PSReadLine version `2.6` or
+greater.
+
+You can check the version of PowerShell using the following command.
+
+```powershell
+$PSVersionTable.PSVersion
+```
+
+The latest version of PowerShell is available on [Github](https://www.powershellgallery.com/packages/PoshPredictiveText).
+
+You can check the version of PSReadLine using the following command.
+
+```powershell
+Get-Module PSReadLine | Format-List
+```
+
+Version `2.2.6` is pre-release and to install it the `AllowPreRelease` and `-force` options are required.
+
+```powershell
+Install-Module PSReadLine -AllowPrerelease -Force
+```
+
+Install PoshPredictiveText from the [PowerShell Gallery](https://www.powershellgallery.com/packages/PoshPredictiveText).
+This will download the module to the local user account. You may be asked for permission
+if you have not already set PowerShell gallery as trusted source.
 
 ```shell
 Install-Module -name PoshPredictiveText
@@ -54,15 +83,13 @@ This will explain how the syntax tree files are developed, processed and integra
 
 ## Links
 
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
 - Project homepage: <https://posh-predictive-text.readthedocs.io/en/latest/>
 - Repository: <https://github.com/DiaAzul/Posh-Predictive-Text>
+- PowerShell Gallery: <https://posh-predictive-text.readthedocs.io>
 - Issue tracker: <https://github.com/DiaAzul/Posh-Predictive-Text/issues>
   - In case of sensitive bugs like security vulnerabilities, please contact
-    me using the contact form on PowerShell Gallery (LINK TODO).
+    me using the `contact owners` form listed under info on the PowerShell Gallery page
+    for the module <https://www.powershellgallery.com/packages/PoshPredictiveText>.
 
 ## Licensing
 

@@ -8,126 +8,160 @@
 
 @{
 
-# Script module or binary module file associated with this manifest.
-RootModule = 'PoshPredictiveText.dll'
+    # Script module or binary module file associated with this manifest.
+    RootModule             = 'PoshPredictiveText.dll'
 
-# Version number of this module.
-# NOTE: ** The placeholder !{version} is replaced during build **
-ModuleVersion = '!{version}'
+    # Version number of this module.
+    # NOTE: ** The placeholder !{version} is replaced during build **
+    ModuleVersion          = '!{version}'
 
-# Supported PSEditions
-CompatiblePSEditions = @('PSEdition_Core')
+    # Supported PSEditions
+    CompatiblePSEditions   = @('PSEdition_Core')
 
-# ID used to uniquely identify this module
-GUID = '120bef46-74d0-46bf-b98b-d7beedeb91ad'
+    # ID used to uniquely identify this module
+    GUID                   = '120bef46-74d0-46bf-b98b-d7beedeb91ad'
 
-# Author of this module
-Author = 'David Plummer'
+    # Author of this module
+    Author                 = 'David Plummer'
 
-# Company or vendor of this module
-CompanyName = 'Tanzo Creative Ltd'
+    # Company or vendor of this module
+    CompanyName            = 'Tanzo Creative Ltd'
 
-# Copyright statement for this module
-Copyright = '(c) Tanzo Creative Ltd. All rights reserved.'
+    # Copyright statement for this module
+    Copyright              = '(c) Tanzo Creative Ltd. All rights reserved.'
 
-# Description of the functionality provided by this module
-Description = 'PowerShell tab-expansion of arguments for popular command line tools.'
+    # Description of the functionality provided by this module
+    Description            = @"
+PowerShell argument completer for popular command line tools. Supports
+both tab-expansion and PSReadLine plugin.
 
-# Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '7.2'
+# Supported Command Line Tools
 
-# Name of the PowerShell host required by this module
-PowerShellHostName = 'ConsoleHost'
+The following tools are supported by PoshPredictiveText. If your favourite
+tool is not supported then please consider helping develop the syntax tree
+file needed to support it. Further information is available in the developer
+documentation on the project site.
 
-# Minimum version of the PowerShell host required by this module
-PowerShellHostVersion = '7.2'
+* conda
 
-# Minimum version of Microsoft .NET Framework required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-DotNetFrameworkVersion = '4.6.2'
+# Installing / Getting started
 
-# Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-ClrVersion = '4.0.0'
+PoshPredictiveText requires PowerShell version `7.2` or greater, and PSReadLine version `2.6` or
+greater.
 
-# Processor architecture (None, X86, Amd64) required by this module
-# ProcessorArchitecture = ''
+Install-Module -name PoshPredictiveText
 
-# Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @()
+Add the following commands to the PowerShell profile. To locate the PowerShell profile open
+a command prompt and type `$PROFILE`.
 
-# Assemblies that must be loaded prior to importing this module
-# RequiredAssemblies = @()
+Set-PredictiveTextOption -RemoveCondaTabExpansion
+Install-PredictiveText
 
-# Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @()
+The first command needed to remove the tab-expansion code automatically and silently installed
+by conda. The conda code prevents Posh Predictive Text from providing completions. The second
+command installs Posh Predictive Text.
 
-# Type files (.ps1xml) to be loaded when importing this module
-# TypesToProcess = @()
+# Further information
 
-# Format files (.ps1xml) to be loaded when importing this module
-# FormatsToProcess = @()
+Additional settings are described on the project website.
+https://posh-predictive-text.readthedocs.io
+"@
 
-# Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-# NestedModules = @()
+    # Minimum version of the PowerShell engine required by this module
+    PowerShellVersion      = '7.2'
 
-# Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @()
+    # Name of the PowerShell host required by this module
+    PowerShellHostName     = 'ConsoleHost'
 
-# Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @("Get-PredictiveText","Install-PredictiveText","Get-PredictiveTextOption","Set-PredictiveTextOption")
+    # Minimum version of the PowerShell host required by this module
+    PowerShellHostVersion  = '7.2'
 
-# Variables to export from this module
-VariablesToExport = '*'
+    # Minimum version of Microsoft .NET Framework required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
+    DotNetFrameworkVersion = '4.6.2'
 
-# Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = @()
+    # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
+    ClrVersion             = '4.0.0'
 
-# DSC resources to export from this module
-# DscResourcesToExport = @()
+    # Processor architecture (None, X86, Amd64) required by this module
+    # ProcessorArchitecture = ''
 
-# List of all modules packaged with this module
-# ModuleList = @()
+    # Modules that must be imported into the global environment prior to importing this module
+    RequiredModules        = @()
 
-# List of all files packaged with this module
-# FileList = @()
+    # Assemblies that must be loaded prior to importing this module
+    # RequiredAssemblies = @()
 
-# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-PrivateData = @{
+    # Script files (.ps1) that are run in the caller's environment prior to importing this module.
+    # ScriptsToProcess = @()
 
-    PSData = @{
+    # Type files (.ps1xml) to be loaded when importing this module
+    # TypesToProcess = @()
 
-        # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @( 'PSEdition_Core', 'Windows', 'Linux', 'MacOS', 'Console', 'PSReadLine', 'Predictive-Text', 'Tab-Completion', 'Tab-Expansion', 'Conda', 'Anaconda', 'Miniconda' )
+    # Format files (.ps1xml) to be loaded when importing this module
+    # FormatsToProcess = @()
 
-        # A URL to the license for this module.
-        LicenseUri = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/LICENSE.txt'
+    # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
+    # NestedModules = @()
 
-        # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/DiaAzul/Posh-Predictive-Text'
+    # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
+    FunctionsToExport      = @()
 
-        # A URL to an icon representing this module.
-        IconUri = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/Assets/PoshPredictiveTextPSGallery.png'
+    # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
+    CmdletsToExport        = @("Get-PredictiveText", "Install-PredictiveText", "Get-PredictiveTextOption", "Set-PredictiveTextOption")
 
-        # ReleaseNotes of this module
-        ReleaseNotes = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/CHANGELOG.md'
+    # Variables to export from this module
+    VariablesToExport      = '*'
 
-        # Prerelease string of this module
-        # Prerelease = ''
+    # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
+    AliasesToExport        = @()
 
-        # Flag to indicate whether the module requires explicit user acceptance for install/update/save
-        # RequireLicenseAcceptance = $false
+    # DSC resources to export from this module
+    # DscResourcesToExport = @()
 
-        # External dependent modules of this module
-        ExternalModuleDependencies = @()
+    # List of all modules packaged with this module
+    # ModuleList = @()
 
-    } # End of PSData hashtable
+    # List of all files packaged with this module
+    # FileList = @()
 
-} # End of PrivateData hashtable
+    # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
+    PrivateData            = @{
 
-# HelpInfo URI of this module
-# HelpInfoURI = ''
+        PSData = @{
 
-# Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
-# DefaultCommandPrefix = ''
+            # Tags applied to this module. These help with module discovery in online galleries.
+            Tags                       = @( 'PSEdition_Core', 'Windows', 'Linux', 'MacOS', 'Console', 'PSReadLine', 'Predictive-Text', 'Tab-Completion', 'Tab-Expansion', 'Conda', 'Anaconda', 'Miniconda' )
+
+            # A URL to the license for this module.
+            LicenseUri                 = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/LICENSE.txt'
+
+            # A URL to the main website for this project.
+            ProjectUri                 = 'https://posh-predictive-text.readthedocs.io'
+
+            # A URL to an icon representing this module.
+            IconUri                    = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/Assets/PoshPredictiveTextPSGallery.png'
+
+            # ReleaseNotes of this module
+            ReleaseNotes               = 'https://github.com/DiaAzul/Posh-Predictive-Text/blob/main/CHANGELOG.md'
+
+            # Prerelease string of this module
+            # Prerelease = ''
+
+            # Flag to indicate whether the module requires explicit user acceptance for install/update/save
+            # RequireLicenseAcceptance = $false
+
+            # External dependent modules of this module
+            ExternalModuleDependencies = @()
+
+        } # End of PSData hashtable
+
+    } # End of PrivateData hashtable
+
+    # HelpInfo URI of this module
+    # HelpInfoURI = ''
+
+    # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
+    # DefaultCommandPrefix = ''
 
 }
 

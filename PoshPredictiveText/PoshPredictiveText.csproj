@@ -15,7 +15,7 @@
     <ApplicationIcon>AdditionalFiles\favicon.ico</ApplicationIcon>
     <Title>Posh Predictive Text</Title>
     <Company>Tanzo Creative Ltd</Company>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>David Plummer</Authors>
     <Product>Posh Predictive Text</Product>
     <Description>Improves productivity with predictive text suggestions for command line tools.</Description>
