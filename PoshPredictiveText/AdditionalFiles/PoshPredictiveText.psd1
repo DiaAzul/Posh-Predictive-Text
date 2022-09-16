@@ -45,12 +45,14 @@ documentation on the project site.
 
 * conda
 
-# Installing / Getting started
+# Installing
 
 PoshPredictiveText requires PowerShell version `7.2` or greater, and PSReadLine version `2.6` or
 greater.
 
 Install-Module -name PoshPredictiveText
+
+# Getting Started
 
 Add the following commands to the PowerShell profile. To locate the PowerShell profile open
 a command prompt and type `$PROFILE`.
@@ -64,6 +66,8 @@ command installs Posh Predictive Text.
 
 Completions will appear when a partial argument is entered and the tab key is pressed. A longer
 list of options with tooltips is available by pressing ctrl-space.
+
+# Enable predictions in PSReadLine listview
 
 It is recommended to add the following PSReadLine options in the PowerShell profile so that
 suggestions appear below the command line as command arguments are entered. 
