@@ -15,12 +15,11 @@ PoshPredictiveText provides suggested completions:
 
 - When a partial argument is entered and the `tab` key is pressed. Successive suggestion 
 appear each time the `tab` key is pressed.
-- Pressing `ctrl` + `space` display a popup list of options with tooltips.
+- Pressing `ctrl` + `space` displays a popup list of options with tooltips.
 - If PSReadLine options `-PredictionSource` is set to use the plugin and `-PredictionViewStyle`
 is set to `ListView` then suggestions will appear below the command line.
 
-https://user-images.githubusercontent.com/28156158/190742185-8842a5cf-3cc5-4945-8571-66d9ad6b4e6e.mp4
-
+<https://user-images.githubusercontent.com/28156158/190742185-8842a5cf-3cc5-4945-8571-66d9ad6b4e6e.mp4>
 
 ## Supported Command Line Tools
 
@@ -104,9 +103,9 @@ This will explain how the syntax tree files are developed, processed and integra
 
 ## Links
 
-- Project homepage: <https://posh-predictive-text.readthedocs.io/en/latest/>
+- Project homepage: <https://posh-predictive-text.readthedocs.io>
 - Repository: <https://github.com/DiaAzul/Posh-Predictive-Text>
-- PowerShell Gallery: <https://posh-predictive-text.readthedocs.io>
+- PowerShell Gallery: <https://www.powershellgallery.com/packages/PoshPredictiveText>
 - Issue tracker: <https://github.com/DiaAzul/Posh-Predictive-Text/issues>
   - In case of sensitive bugs like security vulnerabilities, please contact
     me using the `contact owners` form listed under info on the PowerShell Gallery page
