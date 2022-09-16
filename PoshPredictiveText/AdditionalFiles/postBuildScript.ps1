@@ -32,8 +32,8 @@ Write-Host "Build path: ${buildDirectory}"
 Copy-Item (Join-Path $buildDirectory "PoshPredictiveText.dll") -Destination $moduleOutput
 
 # Update version number when copying psd file.
-$psdSourceFile = Join-Path $buildDirectory "PoshPredictiveText.psd1"
-$psdDestinationFile = Join-Path $moduleOutput "Additional Files" "PoshPredictiveText.psd1"
+$psdSourceFile = Join-Path $buildDirectory "AdditionalFiles" "PoshPredictiveText.psd1"
+$psdDestinationFile = Join-Path $moduleOutput "PoshPredictiveText.psd1"
 ((Get-Content -path $psdSourceFile -Raw) -replace '!{version}', $version) | Set-Content -Path $psdDestinationFile
 
 # Create PS Help documentation
