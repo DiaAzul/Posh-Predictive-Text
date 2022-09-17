@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ei77wk9mkauty0j2/branch/main?svg=true)](https://ci.appveyor.com/project/DiaAzul/posh-predictive-text/branch/main)
+
 # Posh Predictive Text
 
 <img src="./Assets/PoshPredictiveText%20Plain.png"
