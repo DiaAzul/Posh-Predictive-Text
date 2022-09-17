@@ -52,6 +52,8 @@ namespace PoshPredictiveText.Test
 
         readonly SyntaxTree syntaxTree = new(syntaxTreeName, syntaxItems);
 
+
+
         /// <summary>
         /// Test count of items in the syntax tree.
         /// </summary>
@@ -83,8 +85,6 @@ namespace PoshPredictiveText.Test
         public void UniqueCommandsTest()
         {
             // Act & Assert
-            var syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
-            Assert.NotNull(syntaxTree);
             var uniqueCommnads = syntaxTree.UniqueCommands;
             Assert.IsType<List<string>>(uniqueCommnads);
             Assert.Equal(2, uniqueCommnads.Count);
