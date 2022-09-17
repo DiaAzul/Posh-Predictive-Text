@@ -5,6 +5,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
     using PoshPredictiveText.Test;
     using System.Linq.Expressions;
     using System.Management.Automation;
+    using System.Text;
     using System.Text.RegularExpressions;
     using Xunit;
     using static System.Net.Mime.MediaTypeNames;
@@ -35,7 +36,27 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             // Cannot guarantee running on windows or the location of conda or whether it is on the path.
             powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
             var profile = powershell.Invoke();
-            Assert.False(powershell.HadErrors);
+            if (powershell.HadErrors)
+            {
+                powershell.Commands.Clear();
+                powershell.AddCommand("Get-ChildItem")
+                            .AddParameter("Path", "C:\\")
+                            .AddParameter("Include", "conda.exe")
+                            .AddParameter("Recurse");
+                var whereConda = powershell.Invoke();
+                Assert.False(powershell.HadErrors, $"Attempting to find conda...PowerShell script thew errors.");
+                Assert.NotEmpty(whereConda);
+                StringBuilder condaLocations = new StringBuilder();
+                string delimeter = "";
+                foreach (dynamic where in whereConda)
+                {
+                    condaLocations.Append(delimeter);
+                    condaLocations.Append(where.ToString());
+                    delimeter = "; ";
+
+                }
+                Assert.True(false, $"Conda location: {condaLocations}");
+            }
         }
 
         /// <summary>
