@@ -9,6 +9,17 @@ namespace PoshPredictiveText.Test.Helpers
     /// </summary>
     public class CondaHelpersTests
     {
+        /// <summary>
+        /// Ensure that Conda is available within the environment.
+        /// </summary>
+        public CondaHelpersTests()
+        {
+
+            var powershell = PowerShellMock.GetConfiguredShell();
+            // Cannot guarantee running on windows or the location of conda or whether it is on the path.
+            powershell.AddScript(@"(& ""conda.exe"" ""shell.powershell"" ""hook"") | Out-String | Invoke-Expression");
+            var profile = powershell.Invoke();
+        }
 
         /// <summary>
         /// SOLVER keyword tests.

@@ -3,6 +3,8 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
 {
     using Microsoft.Management.Infrastructure.Generic;
     using PoshPredictiveText.Test;
+    using System.Linq.Expressions;
+    using System.Management.Automation;
     using System.Text.RegularExpressions;
     using Xunit;
     using static System.Net.Mime.MediaTypeNames;
@@ -75,17 +77,10 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
         {
 
             var powershell = PowerShellMock.GetConfiguredShell();
-            powershell.AddScript("conda env list");
-            powershell.AddCommand("select-string").AddParameter("Pattern", "base");
-            var result = powershell.Invoke();
-            Assert.Single(result);
-            string firstLine = result.First().ToString();
-
-            Regex rx = new Regex(@"^.*\\(.*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            MatchCollection matches = rx.Matches(firstLine);
-            Assert.Single(matches);
-            Assert.Equal(2, matches.First().Groups.Count);
-            string reportedBaseFolder = matches.First().Groups[1].ToString();
+            // Cannot guarantee running on windows or the location of conda or whether it is on the path.
+            powershell.AddScript(@"(& ""conda.exe"" ""shell.powershell"" ""hook"") | Out-String | Invoke-Expression");
+            var profile = powershell.Invoke();
+            powershell.Commands.Clear();
 
             // Arrange
             // WordToComplete. CommandAstVisitor. CursorPosition.
@@ -111,7 +106,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             {
                 environments.Add(suggestion.CompletionText);
             }
-            Assert.Contains(reportedBaseFolder, environments);
+            Assert.Contains("base", environments);
         }
     }
 }

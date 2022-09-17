@@ -52,6 +52,13 @@ namespace PoshPredictiveText.Helpers
         {
             List<Suggestion> results = new();
 
+            // Test conda is installed.
+            var testCondaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
+            if (Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process) is null)
+            {
+                return results;
+            }
+
             var methods = typeof(CondaHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
                 .Where(method =>
                 method.GetCustomAttributes(typeof(ParameterValueAttribute), false).FirstOrDefault() != null
@@ -155,14 +162,15 @@ namespace PoshPredictiveText.Helpers
         [ParameterValue("ENVIRONMENT")]
         internal static List<Suggestion> GetEnvironments(string wordToComplete)
         {
+            List<Suggestion> environmentSuggestions = new();
             string condaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process) ?? "";
-
             // The environments are listed in ~\.conda\environments.txt
             string home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string environmentsFile = Path.Combine(home, CONDA_SETTINGS_FOLDER, CONDA_ENVIRONMENTS_FILE);
+
+            if (!File.Exists(environmentsFile)) return environmentSuggestions;
             List<string> environments = File.ReadAllLines(environmentsFile).ToList();
 
-            List<Suggestion> environmentSuggestions = new();
             foreach (var envPath in environments)
             {
                 string envName;
