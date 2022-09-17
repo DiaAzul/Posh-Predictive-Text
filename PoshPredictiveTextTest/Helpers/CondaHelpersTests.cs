@@ -14,11 +14,23 @@ namespace PoshPredictiveText.Test.Helpers
         /// </summary>
         public CondaHelpersTests()
         {
+            string? appveyor = Environment.GetEnvironmentVariable("APPVEYOR", EnvironmentVariableTarget.Process) ?? "false";
+            bool isAppveyor = appveyor == "true";
 
+            string conda = "conda";
+            if (isAppveyor)
+            {
+                string? condaRoot = Environment.GetEnvironmentVariable("CONDA_INSTALL_LOCN", EnvironmentVariableTarget.Process);
+                if (condaRoot is not null)
+                {
+                    conda = condaRoot + @"\Scipts\conda.exe";
+                }
+            }
             var powershell = PowerShellMock.GetConfiguredShell();
             // Cannot guarantee running on windows or the location of conda or whether it is on the path.
-            powershell.AddScript(@"(& ""conda.exe"" ""shell.powershell"" ""hook"") | Out-String | Invoke-Expression");
+            powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
             var profile = powershell.Invoke();
+            Assert.False(powershell.HadErrors);
         }
 
         /// <summary>

@@ -15,6 +15,30 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
     public class CondaTests
     {
         /// <summary>
+        /// Ensure that Conda is available within the environment.
+        /// </summary>
+        public CondaTests()
+        {
+            string? appveyor = Environment.GetEnvironmentVariable("APPVEYOR", EnvironmentVariableTarget.Process) ?? "false";
+            bool isAppveyor = appveyor == "true";
+
+            string conda = "conda";
+            if (isAppveyor)
+            {
+                string? condaRoot = Environment.GetEnvironmentVariable("CONDA_INSTALL_LOCN", EnvironmentVariableTarget.Process);
+                if (condaRoot is not null)
+                {
+                    conda = condaRoot + @"\Scipts\conda.exe";
+                }
+            }
+            var powershell = PowerShellMock.GetConfiguredShell();
+            // Cannot guarantee running on windows or the location of conda or whether it is on the path.
+            powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
+            var profile = powershell.Invoke();
+            Assert.False(powershell.HadErrors);
+        }
+
+        /// <summary>
         /// Basic test to return suggestions for conda
         /// 
         /// The inline data must have the following format:
@@ -52,36 +76,12 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
 
         /// <summary>
         /// Test that we get suggestions when asking for parameter values.
-        /// 
-        /// Note: Unless we know the state of the conda environment we won't
-        /// know in advance how many suggestions will be returned. Therefore, we
-        /// check to see whether the base environment is listed in the suggestions.
-        /// 
-        /// However, the test is running within the Visual Studio process and doesn't have
-        /// access to the PowerShell console environment variables. Therefore, when conda
-        /// helper looks for the conda environment variable it cannot find the root for
-        /// conda.
-        /// 
-        /// To overcome this limitation in the test, we  create a powerShell console and
-        /// execute 'conda env list' and then select the line which records the
-        /// location of the 'base' environment. We then regex the folder name for the
-        /// base environment which is what conda helper  reports instead of the base environment.
-        /// 
-        /// We then execute the resolver and check the base environment folder appears
-        /// in the suggestions.
         /// </summary>
         /// <param name="inputString"></param>
         [InlineData("conda activate ")]
         [Theory]
         public void CondaParameterValueTest(string inputString)
         {
-
-            var powershell = PowerShellMock.GetConfiguredShell();
-            // Cannot guarantee running on windows or the location of conda or whether it is on the path.
-            powershell.AddScript(@"(& ""conda.exe"" ""shell.powershell"" ""hook"") | Out-String | Invoke-Expression");
-            var profile = powershell.Invoke();
-            powershell.Commands.Clear();
-
             // Arrange
             // WordToComplete. CommandAstVisitor. CursorPosition.
             string wordToComplete = "";
