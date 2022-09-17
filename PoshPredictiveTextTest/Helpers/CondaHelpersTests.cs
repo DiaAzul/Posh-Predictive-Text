@@ -51,7 +51,7 @@ namespace PoshPredictiveText.Test.Helpers
                     
             //    }
             //    Assert.True(false, $"Conda location: {condaLocations}");
-            }
+            // }
             Assert.False(powershell.HadErrors, $"Unable to configure PowerShell with conda.Appveyor({isAppveyor}), Conda executable: {conda}");
         }
 
