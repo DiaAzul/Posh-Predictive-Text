@@ -94,7 +94,10 @@ namespace PoshPredictiveText
                         logLevel = (LOGLEVEL)enumeratedLogLevel;
                     }
                 }
-
+                else
+                {
+                    logLevel = LOGLEVEL.ERROR;
+                }
                 Write($"Log level {logLevel}.");
             }
         }
