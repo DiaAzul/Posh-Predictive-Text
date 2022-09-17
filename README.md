@@ -1,4 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ei77wk9mkauty0j2/branch/main?svg=true)](https://ci.appveyor.com/project/DiaAzul/posh-predictive-text/branch/main)
+[![Documentation Status](https://readthedocs.org/projects/posh-predictive-text/badge/?version=latest)](https://posh-predictive-text.readthedocs.io/en/latest/?badge=latest)
 
 # Posh Predictive Text
 
