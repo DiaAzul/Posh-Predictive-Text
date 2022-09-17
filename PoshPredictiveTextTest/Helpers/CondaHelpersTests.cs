@@ -24,35 +24,14 @@ namespace PoshPredictiveText.Test.Helpers
                 string? condaRoot = Environment.GetEnvironmentVariable("CONDA_INSTALL_LOCN", EnvironmentVariableTarget.Process);
                 if (condaRoot is not null)
                 {
-                    conda = condaRoot + @"\Scipts\conda.exe";
+                    conda = condaRoot + @"\Scripts\conda.exe";
                 }
             }
             var powershell = PowerShellMock.GetConfiguredShell();
             // Cannot guarantee running on windows or the location of conda or whether it is on the path.
             powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
             var profile = powershell.Invoke();
-            //if (powershell.HadErrors)
-            //{
-            //    powershell.Commands.Clear();
-            //    powershell.AddCommand("Get-ChildItem")
-            //                .AddParameter("Path", "C:\\")
-            //                .AddParameter("Include", "conda.exe")
-            //                .AddParameter("Recurse");
-            //    var whereConda = powershell.Invoke();
-            //    Assert.False(powershell.HadErrors, $"Attempting to find conda...PowerShell script thew errors.");
-            //    Assert.NotEmpty(whereConda);
-            //    StringBuilder condaLocations = new StringBuilder();
-            //    string delimeter = "";
-            //    foreach (dynamic where in whereConda)
-            //    {
-            //        condaLocations.Append(delimeter);
-            //        condaLocations.Append(where.ToString());
-            //        delimeter = "; ";
-                    
-            //    }
-            //    Assert.True(false, $"Conda location: {condaLocations}");
-            // }
-            Assert.False(powershell.HadErrors, $"Unable to configure PowerShell with conda.Appveyor({isAppveyor}), Conda executable: {conda}");
+            Assert.False(powershell.HadErrors, $"Unable to configure PowerShell with conda.Appveyor({isAppveyor}), Conda executable: {conda}. Check path for Miniconda in specification for build.");
         }
 
         /// <summary>
