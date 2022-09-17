@@ -42,6 +42,8 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
                 powershell.AddCommand("Get-ChildItem")
                             .AddParameter("Path", "C:\\")
                             .AddParameter("Include", "conda.exe")
+                            .AddParameter("Exclude", "C:\\Windows, C:\\Users")
+                            .AddParameter("Depth", "4")
                             .AddParameter("Recurse");
                 var whereConda = powershell.Invoke();
                 Assert.False(powershell.HadErrors, $"Attempting to find conda...PowerShell script thew errors.");
