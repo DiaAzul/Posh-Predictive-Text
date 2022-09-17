@@ -93,16 +93,6 @@ namespace PoshPredictiveText.Test
         }
 
         /// <summary>
-        /// Test loading of a syntax tree from a configuration
-        /// file.
-        /// </summary>
-        [Fact]
-        public void LoadSyntaxTreeTest()
-        {
-            SyntaxTrees.Add("conda");
-        }
-
-        /// <summary>
         /// Tests that a syntax tree is loaded when it is 
         /// first referenced.
         /// </summary>
