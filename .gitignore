@@ -11,7 +11,7 @@ Module/
 docs/build/
 docs/source/xml/
 docs/source/pshelp/
-docs/source/assets/
+# docs/source/assets/
 # Other files
 *.rsuser
 *.suo
