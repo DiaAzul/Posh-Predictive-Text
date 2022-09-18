@@ -23,10 +23,9 @@ sys.setrecursionlimit(1500)
 
 asset_list = [
     "CHANGELOG.md",
-    "Assets/PoshPredictiveText Plain.svg",
-    "Assets/PoshPredictiveText Plain.png",
-    "Assets/PoshPredictiveText Banner.png",
-    "Assets/PoshPredictiveText Banner Clear.png",
+    "Assets/PoshPredictiveTextPlain.png",
+    "Assets/CondaDropDown.png",
+    "Assets/CondaPopUp.png",
 ]
 basedir = Path(__file__).parent.parent.parent
 print(f"Using base directory {basedir}")
