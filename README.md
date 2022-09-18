@@ -51,12 +51,11 @@ cost option. However, without funding open-source projects die. If you find this
 then consider sponsoring the developers. It doesn't have to be a lot. The cost of a cup of coffee
 will do. Little contributions help and it is all very much appreciated.
 
-GitHub Sponsors
+GitHub Sponsors:
 
-<iframe src="https://github.com/sponsors/DiaAzul/button" title="Sponsor DiaAzul" height="35" width="116" style="border: 0;">
-</iframe>
+Please use the button at the top of the page to contribute via GitHub sponsors.
 
-Ko-fi
+Ko-fi:
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R0EC7N8)
 
