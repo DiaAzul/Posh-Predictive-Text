@@ -1,6 +1,6 @@
 .. Posh Predictive Text 
 
-.. image:: ./assets/PoshPredictiveTextPlain.png
+.. image:: assets/PoshPredictiveTextPlain.png
    :align: right
    :scale: 50%
 
@@ -70,12 +70,12 @@ Ko-fi
 Screenshots
 ^^^^^^^^^^^
 
-.. figure:: ./assets/CondaDropDown.png
+.. figure:: assets/CondaDropDown.png
 
    *Suggestions appear in the drop-down list when Posh Predictive Text is configured as a
    PSReadLine plugin.*
 
-.. figure:: ./assets/CondaPopUp.png
+.. figure:: assets/CondaPopUp.png
 
   *Pressing ``ctrl+space`` shows a pop-up list of suggested commands with tooltips.*
 
