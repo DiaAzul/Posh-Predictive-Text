@@ -26,7 +26,7 @@ asset_list = [
     "Assets/PoshPredictiveText Plain.svg",
     "Assets/PoshPredictiveText Plain.png",
     "Assets/PoshPredictiveText Banner.png",
-    "Assets/PoshPredictiveText Clear Banner Plain.svg",
+    "Assets/PoshPredictiveText Banner Clear.png",
 ]
 basedir = Path(__file__).parent.parent.parent
 print(f"Using base directory {basedir}")
@@ -130,7 +130,7 @@ html_theme_path = [
     "_themes",
 ]
 
-html_logo = "./assets/PoshPredictiveText Clear Banner Plain.svg"
+html_logo = "./assets/PoshPredictiveText Banner Clear.png"
 html_theme_options = {
     "logo_only": True,
     "display_version": False,

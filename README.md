@@ -10,11 +10,22 @@
 
 > PowerShell module providing predictive text completions for common CLI tools.
 
-Most people will be familiar with predictive text on mobile phones. Posh-predictive-text
-brings the same capability to the PowerShell command line interface for common CLI tools
-used within the software development and data science community.
+Most people will be familiar with predictive text on mobile phones.
+Posh-predictive-text brings the same capability to the PowerShell command line
+interface for common CLI tools used within the software development and data
+science community.
 
-PoshPredictiveText provides suggested completions:
+Modern command line tools are highly configurable and have many parameters. It
+is difficult to remember them all. Posh Predictive Text improves productivity,
+not only by providing suggested completions, but also providing a pop-up list
+of suggestions with tooltips. These tooltips remove the need to break off from
+enter the command and search documentation for the correct parameter name.
+
+In addition, Posh Predictive Text is also able to suggest a limited number of
+parameter arguments. For instance when using conda to activate an environment
+a list of environments is shown.
+
+PoshPredictiveText provides suggested completions in the following situations:
 
 - When a partial argument is entered and the `tab` key is pressed. Successive suggestion 
 appear each time the `tab` key is pressed.
@@ -35,7 +46,19 @@ needed to support it. Further information is available in the developer document
 
 ## Sponsorship
 
-t.b.a
+We all love open-source software. It's the freedom to use it and adapt it as you like. Its the no
+cost option. However, without funding open-source projects die. If you find this software useful
+then consider sponsoring the developers. It doesn't have to be a lot. The cost of a cup of coffee
+will do. Little contributions help and it is all very much appreciated.
+
+GitHub Sponsors
+
+<iframe src="https://github.com/sponsors/DiaAzul/button" title="Sponsor DiaAzul" height="35" width="116" style="border: 0;">
+</iframe>
+
+Ko-fi
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R0EC7N8)
 
 ## Installing / Getting started
 
@@ -48,7 +71,7 @@ You can check the version of PowerShell using the following command.
 $PSVersionTable.PSVersion
 ```
 
-The latest version of PowerShell is available on [Github](https://www.powershellgallery.com/packages/PoshPredictiveText).
+The latest version of PowerShell is available on [Github](https://github.com/PowerShell/PowerShell).
 
 You can check the version of PSReadLine using the following command.
 
