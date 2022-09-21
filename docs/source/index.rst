@@ -135,7 +135,7 @@ a command prompt and type `$PROFILE`.
    :caption: Contents:
    :hidden:
 
-   pages/Installation
+   pages/Installation And Setup
    pages/Features/Features
    pages/PowerShellHelp
    pages/Development/Development

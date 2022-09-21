@@ -1,5 +1,5 @@
 ======================
-Installation and Setup
+Installation And Setup
 ======================
 
 Pre-requisites
