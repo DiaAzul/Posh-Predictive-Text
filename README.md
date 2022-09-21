@@ -3,7 +3,7 @@
 
 # Posh Predictive Text
 
-<img src="./Assets/PoshPredictiveText%20Plain.png"
+<img src="./Assets/PoshPredictiveTextPlain.png"
      alt="Powershell predictive text logo"
      width=128
      align="right"/>
