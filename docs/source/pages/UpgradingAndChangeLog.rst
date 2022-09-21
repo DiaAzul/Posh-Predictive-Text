@@ -1,9 +1,9 @@
 ========================
-Upgrading and change log
+Upgrading And Change Log
 ========================
 
 Recent versions of Posh Predictive Text have a corresponding git tag for each version
-released to `PowerShell Gallery <https://pypi.python.org/pypi/django-message-broker>`_.
+released to `PowerShell Gallery <https://www.powershellgallery.com/packages/PoshPredictiveText>`_.
 
 
 .. toctree::
