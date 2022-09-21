@@ -53,7 +53,7 @@ namespace PoshPredictiveText.Test
             // Act
             var id = predictor.Id.ToString();
             var name = predictor.Name.ToString();
-            var description =  predictor.Description.ToString();
+            var description = predictor.Description.ToString();
 
             // Assert
             Assert.Equal(guid, id);

@@ -35,7 +35,7 @@ PoshPredictiveText provides suggested completions in the following situations:
   command line.
 
 Supported Command Line tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 Predictive text is available for the following commands line tools.
 
@@ -45,30 +45,33 @@ If a tools is not supported then please consider helping by developing the synta
 file needed to support it. Further information is available in the developer documentation.
 
 Sponsorship
-^^^^^^^^^^^
+-----------
 
 We all love open-source software. It's the freedom to use it and adapt it as you like. Its the no
 cost option. However, without funding open-source projects die. If you find this software useful
 then consider sponsoring the developers. It doesn't have to be a lot. The cost of a cup of coffee
 will do. Little contributions help and it is all very much appreciated.
 
-GitHub Sponsors
+.. list-table::
+   :header-rows: 1
 
-.. raw:: html
-   
-   <iframe src="https://github.com/sponsors/DiaAzul/button" title="Sponsor DiaAzul" height="35" width="116" style="border: 0;">
-   </iframe>
+   * - GitHub Sponsors
+     - Ko-fi
 
-Ko-fi
+   * - .. raw:: html
+       
+         <iframe src="https://github.com/sponsors/DiaAzul/button" title="Sponsor DiaAzul" height="35" width="116" style="border: 0;">
+         </iframe>
 
-.. raw:: html
+     - .. raw:: html
 
-   <a href='https://ko-fi.com/R5R0EC7N8' target='_blank'>
-   <img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
-   </a>
+         <a href='https://ko-fi.com/R5R0EC7N8' target='_blank'>
+         <img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+         </a>
+
 
 Screenshots
-^^^^^^^^^^^
+-----------
 
 .. figure:: assets/CondaDropDown.png
 
@@ -88,9 +91,9 @@ The following short video shows Posh Predictive Text in action.
 
 |
 
-===========
+
 Quick Start
-===========
+-----------
 
 Posh Predictive Text is available from PowerShell Gallery and is installed and activated 
 using the following instructions. A more detailed set of instructions are available on the
@@ -127,14 +130,13 @@ a command prompt and type `$PROFILE`.
    Install-PredictiveText
 
 
-
-
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
    :hidden:
 
-   pages/installation
+   pages/Installation
+   pages/Features/Features
    pages/PowerShellHelp
-   pages/development
-   pages/upgrade-changelog
+   pages/Development/Development
+   pages/Upgrade-changelog

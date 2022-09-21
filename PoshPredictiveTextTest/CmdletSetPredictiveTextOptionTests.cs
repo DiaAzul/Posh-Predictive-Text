@@ -10,7 +10,7 @@ namespace PoshPredictiveText.Test
     /// - Logging
     /// - Remove conda tab-expansion script.
     /// </summary>
-     public class CmdletSetPredictiveTextOptionTests : IDisposable
+    public class CmdletSetPredictiveTextOptionTests : IDisposable
     {
         private readonly string tempLoggingFile;
 

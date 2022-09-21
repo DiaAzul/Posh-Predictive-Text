@@ -1,6 +1,6 @@
-==============================
-Installation and configuration
-==============================
+======================
+Installation and Setup
+======================
 
 Pre-requisites
 ^^^^^^^^^^^^^^

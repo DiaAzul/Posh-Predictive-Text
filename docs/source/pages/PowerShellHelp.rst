@@ -1,12 +1,22 @@
-PowerShell Cmdlets
-==================
+Cmdlet Help Files
+=================
 
-Posh Predictive Text uses cmdlets to implement features. These
+The Posh Predictive Text module includes several PowerShell cmdlets. Each
+cmdlet has its own help file accessed using ``Get-Help``. For example:
+
+.. code-block:: powershell
+
+    Get-Help Get-PredictiveTextOption
+
+Online Help
+-----------
+
+The help files are also available online.
 
 .. toctree::
     :maxdepth: 1
-    :caption: PowerShell cmdlets
 
     ../pshelp/Install-PredictiveText.md
     ../pshelp/Get-PredictiveTextOption.md    
     ../pshelp/Set-PredictiveTextOption.md
+    ../pshelp/Get-PredictiveText.md

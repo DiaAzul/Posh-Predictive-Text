@@ -1,6 +1,6 @@
-===========
-Development
-===========
+=======================
+Application Development
+=======================
 
 PoshPredictiveText is developed using Visual Studio. The majority of the code is C# with a small amount
 of PowerShell scripting to register the native argument completer and remove conda tab-expansion code,
@@ -9,9 +9,12 @@ if it is installed.
 Coding Standards
 ----------------
 
-Coding should follow Microsoft conventions <https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions>.
+Itis expected that coding will following the coding standards, however, it may take some time for the conventions
+used in this application to settle and code to comply with those conventions.
 
-Additional guidance provided by Google is used where appropriate <https://google.github.io/styleguide/csharp-style.html>.
+Coding should follow `Microsoft Coding Conventions <https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions>`_.
+
+Additional guidance provided by `Google Csharp Style Guide <https://google.github.io/styleguide/csharp-style.html>`_ is used where appropriate .
 
 The following standards are used in the code which may conflict with the above:
 
@@ -20,10 +23,13 @@ The following standards are used in the code which may conflict with the above:
 - Indentation is four spaces (no tabs).
 - Don't use underscore to indicate private, protected, internal and protected internal fields. It
   adds noise.
-- `const` are indicated in capital case. Though this should change to follow Google guidelines.
-- Opening braces do start on a new line.
-- Do not use braces for single statements where it improves readability, e.g. if statements follwed by
-  return to exit a method early `if (x is null) return null;`.
+- `const` should be in lower case, except where the value of the constant is determined by a third party
+  application outside of the code. For instance, ``CONDA_BASE`` is capitalised to indicate that the value
+  it contains must match that provided by a third party, and may be subject to change. The use of upper
+  case is to draw attention to constant values which may generate errors if they do not match the third
+  party application.
+- Do not use braces for single statements where it improves readability, e.g. if statements followed by
+  return to exit a method early ``if (x is null) return null;``.
 
 Testing
 -------
@@ -42,7 +48,7 @@ PowerShell has traditionally used MAML XML files for console help. These are dif
 As an alternative, help files can be written in Markdown and then exported in required formats using the
 PowerShell PlatyPS module.
 
-The PlatyPS module is described on GitHub <https://github.com/PowerShell/platyps>
+The PlatyPS module is described on `GitHub <https://github.com/PowerShell/platyps>`_
 
 The PlatyPS module must be downloaded and installed on the local development machine.
 
@@ -52,9 +58,9 @@ The PlatyPS module must be downloaded and installed on the local development mac
    Import-Module platyPS
 
 
-The base documentation is already created within the folder `PowerShellHelpDocs`.
+The base documentation is already created within the folder ``PowerShellHelpDocs``.
 
-To create the external helpfiles run the following command whilist in the `PowerShellHelpDocs` folder.
+To create the external helpfiles run the following command whilst in the ``PowerShellHelpDocs`` folder.
 
 .. code-block:: PowerShell
    
@@ -74,16 +80,16 @@ Source documents are generated using several tools and then collated within the 
 3. The CHANGELOG.md is copied into the sphinx source directory and added to the sphinx documents.
 
 
-- Doxygen: https://doxygen.nl/index.html
-- Sphinx: https://www.sphinx-doc.org/en/master/
-- Breathe: https://breathe.readthedocs.io/en/latest/index.html
-- Sphinx-csharp: https://github.com/rogerbarton/sphinx-csharp
-- Myst-parser: https://myst-parser.readthedocs.io/en/latest/
-- Sphinx RTD Theme: https://sphinx-rtd-theme.readthedocs.io/en/stable/
+- Doxygen: `<https://doxygen.nl/index.html>`_
+- Sphinx: `<https://www.sphinx-doc.org/en/master/>`_
+- Breathe: `<https://breathe.readthedocs.io/en/latest/index.html>`_
+- Sphinx-csharp: `<https://github.com/rogerbarton/sphinx-csharp>`_
+- Myst-parser: `<https://myst-parser.readthedocs.io/en/latest/>`_
+- Sphinx RTD Theme: `<https://sphinx-rtd-theme.readthedocs.io/en/stable/>`_
 
 
-1. Download and install Doxygen (https://doxygen.nl/download.html). If installing on Windows, add the
-   doxygen bin folder to the path `C:\Program Files\doxygen\bin`.
+1. Download and install Doxygen `<https://doxygen.nl/download.html>`_. If installing on Windows, add the
+   doxygen bin folder to the path ``C:\Program Files\doxygen\bin``.
 
 2. Create a Python environment for the Sphinx tools and install packages.
 
@@ -99,7 +105,7 @@ Source documents are generated using several tools and then collated within the 
     pip install git+https://github.com/rogerbarton/sphinx-csharp.git
 
 All documentation is generated during packaging and assumes that a 'conda' environment named
-`poshpredictivetext` is configured with the required dependencies.
+``poshpredictivetext`` is configured with the required dependencies.
 
 API Documentation
 -----------------
@@ -109,4 +115,4 @@ API Documentation
     :caption: APIs
     :glob:
 
-    class_*
+    API/class_*

@@ -50,7 +50,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Count of items in the syntax tree.
         /// </summary>
-        internal int Count =>  syntaxItems.Count;
+        internal int Count => syntaxItems.Count;
 
         /// <summary>
         /// The list of items in the syntax tree.
@@ -109,7 +109,7 @@ namespace PoshPredictiveText
         internal int CountOfSubCommands(string commandPath)
         {
             return syntaxItems
-                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath) 
+                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath)
                                         && syntaxItem.IsCommand)
                 .Count();
         }

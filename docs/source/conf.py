@@ -23,6 +23,8 @@ sys.setrecursionlimit(1500)
 
 asset_list = [
     "CHANGELOG.md",
+    "Assets/PoshPredictiveTextBanner.png",
+    "Assets/PoshPredictiveTextBannerClear.png",
     "Assets/PoshPredictiveTextPlain.png",
     "Assets/CondaDropDown.png",
     "Assets/CondaPopUp.png",
@@ -83,9 +85,9 @@ print("Doxygen completed.")
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Posh Predictive Text"
-copyright = "2022, Tanzo Creative Ltd."
+copyright = "2022, Tanzo Creative Ltd"
 author = "David Plummer"
-release = "0.1.5"
+release = "0.1.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -129,7 +131,7 @@ html_theme_path = [
     "_themes",
 ]
 
-html_logo = "./assets/PoshPredictiveText Banner Clear.png"
+html_logo = "./assets/PoshPredictiveTextBannerClear.png"
 html_theme_options = {
     "logo_only": True,
     "display_version": False,

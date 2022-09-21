@@ -1,14 +1,8 @@
 ﻿
 namespace PoshPredictiveText.SyntaxTreeSpecs.Test
 {
-    using Microsoft.Management.Infrastructure.Generic;
     using PoshPredictiveText.Test;
-    using System.Linq.Expressions;
-    using System.Management.Automation;
-    using System.Text;
-    using System.Text.RegularExpressions;
     using Xunit;
-    using static System.Net.Mime.MediaTypeNames;
 
     /// <summary>
     /// Test conda syntax trees
@@ -60,10 +54,10 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
         {
             // Arrange
             // WordToComplete. CommandAstVisitor. CursorPosition.
-            string wordToComplete = ""; 
+            string wordToComplete = "";
             if (inputString[inputString.Length - 1] != ' ')
                 wordToComplete = inputString.Split(' ').ToList().Last();
-                
+
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
             int cursorPosition = commandAst.Extent.EndOffset;
 
