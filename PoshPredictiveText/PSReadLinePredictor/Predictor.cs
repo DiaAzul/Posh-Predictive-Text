@@ -17,7 +17,7 @@ namespace PoshPredictiveText
     {
         private readonly Guid _guid;
 
-        private readonly CommandAstVisitor enteredTokens = new();
+        private Tokeniser? enteredTokens = null;
 
         /// <summary>
         /// Initialise a new guid.
@@ -40,7 +40,7 @@ namespace PoshPredictiveText
         {
             get
             {
-                string? command = enteredTokens.BaseCommand;
+                string? command = enteredTokens?.BaseCommand;
                 if (command is null) return "Predictive Text";
                 string capitaliseFirstLetter = string.Concat(command[0].ToString().ToUpper(), command.AsSpan(1));
                 return capitaliseFirstLetter;
@@ -74,8 +74,9 @@ namespace PoshPredictiveText
             if (context.InputAst is null) return default;
 
             // Tokenise the syntax tree.
-            enteredTokens.Reset();
-            context.InputAst.Visit(enteredTokens);
+            CommandAstVisitor visitor = new();
+            context.InputAst.Visit(visitor);
+            enteredTokens = visitor.Tokeniser;
 
             // If there is no base command, or the base command is not supported then return.
             if (enteredTokens.BaseCommand is null) return default;

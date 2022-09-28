@@ -145,6 +145,7 @@ namespace PoshPredictiveText
                         .ToList();
         }
 
+        // TODO [HIGH][TOKENISER] Can this be moved to the tokeniser?
         /// <summary>
         /// Returns a list of available suggestions for the entered text.
         /// </summary>
@@ -156,7 +157,7 @@ namespace PoshPredictiveText
         internal List<SyntaxItem> AvailableOptions(
             string commandPath,
             bool commandComplete,
-            CommandAstVisitor enteredTokens,
+            Tokeniser enteredTokens,
             string wordToComplete)
         {
             return FilteredByCommandPath(commandPath)

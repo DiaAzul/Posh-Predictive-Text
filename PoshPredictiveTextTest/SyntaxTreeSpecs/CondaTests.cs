@@ -62,8 +62,9 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             int cursorPosition = commandAst.Extent.EndOffset;
 
             // Act
-            CommandAstVisitor enteredTokens = new();
-            commandAst.Visit(enteredTokens);
+            CommandAstVisitor visitor = new();
+            commandAst.Visit(visitor);
+            var enteredTokens = visitor.Tokeniser;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 
             // Assert
@@ -88,8 +89,9 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             int cursorPosition = commandAst.Extent.EndOffset;
 
             // Act
-            CommandAstVisitor enteredTokens = new();
-            commandAst.Visit(enteredTokens);
+            CommandAstVisitor visitor = new();
+            commandAst.Visit(visitor);
+            var enteredTokens = visitor.Tokeniser;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 
             // Assert - As we don't know conda environment all we can test for is

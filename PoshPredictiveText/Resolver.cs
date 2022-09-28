@@ -43,7 +43,7 @@ namespace PoshPredictiveText
         /// </remarks>
         internal static List<Suggestion> Suggestions(
             string wordToComplete,
-            CommandAstVisitor enteredTokens,
+            Tokeniser enteredTokens,
             int cursorPosition)
         {
             // ----- INITIALISE -----

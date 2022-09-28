@@ -15,9 +15,9 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
     /// </summary>
     internal enum ParseMode
     {
-        Windows,
         Posix,
-        Python
+        Python,
+        Windows,
     }
 
     internal record ConfigItem

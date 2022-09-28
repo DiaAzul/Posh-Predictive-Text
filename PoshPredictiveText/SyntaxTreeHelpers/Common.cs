@@ -32,8 +32,31 @@ namespace PoshPredictiveText
         /// <returns>String with opening and closing quotes removed.</returns>
         internal static string Decapsulate(string inputString)
         {
-            Regex stripper = new(@"^['""](.*)['""]$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex stripper = new(@"^['""](.*)['""]$",
+                                RegexOptions.Compiled | RegexOptions.IgnoreCase);
             var match = stripper.Match(inputString);
+
+            return match.Groups.Count switch
+            {
+                2 => match.Groups[1].Value,
+                _ => inputString,
+            };
+        }
+
+        /// <summary>
+        /// Extract the command name from a string.
+        /// 
+        /// Commands could be entered on the command line using its name (conda),
+        /// the name with its exeuctable file type (conda.exe) or 
+        /// with the full path to the executable (C:\mambaforge\scripts\conda.exe).
+        /// </summary>
+        /// <param name="inputString">String containing command</param>
+        /// <returns>Command</returns>
+        internal static string ExtractCommand(string inputString)
+        {
+            Regex extract = new(@"[\/]?([^\/\\]*?)(?:\..{3})?$",
+                                RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var match = extract.Match(inputString);
 
             return match.Groups.Count switch
             {

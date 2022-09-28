@@ -4,6 +4,7 @@ namespace PoshPredictiveText.Test
 {
     using System.Management.Automation.Language;
     using Xunit;
+    using static PoshPredictiveText.Token;
 
     /// <summary>
     /// Test CommandAstVisitor Token records
@@ -28,16 +29,16 @@ namespace PoshPredictiveText.Test
             PoshPredictiveText.Token testToken = new()
             {
                 Value = "TestValue",
-                Type = typeof(CommandAst)
+                SemanticType = TokenType.Command
             };
             // Act
             bool isCommand = testToken.IsCommand;
-            bool IsCommandExpression = testToken.IsCommandExpression;
+            bool IsParameter = testToken.IsParameter;
 
             // Assert
             Assert.Equal("TestValue", testToken.Value);
             Assert.True(isCommand);
-            Assert.False(IsCommandExpression);
+            Assert.False(IsParameter);
         }
     }
 
@@ -70,34 +71,35 @@ namespace PoshPredictiveText.Test
         public void TestCommandAstVisitorVisitTest()
         {
             // Arrange
-            CommandAstVisitor visitor = new CommandAstVisitor();
+            CommandAstVisitor visitor = new();
             string promptText = "conda env -parameter1 --parameter2 value1 12";
             CommandAst ast = PowerShellMock.CreateCommandAst(promptText);
 
             // Act
             ast.Visit(visitor);
-            var tokens = visitor.All;
+            var tokeniser = visitor.Tokeniser;
+            var tokens = tokeniser.All;
 
             // Assert
             Assert.Equal(6, tokens.Count);
 
             Assert.Equal("conda", tokens[0].Value);
-            Assert.Equal(typeof(string), tokens[0].Type);
+            Assert.Equal(TokenType.Command, tokens[0].SemanticType);
 
             Assert.Equal("env", tokens[1].Value);
-            Assert.Equal(typeof(string), tokens[0].Type);
+            Assert.Equal(TokenType.Command, tokens[0].SemanticType);
 
             Assert.Equal("-parameter1", tokens[2].Value);
-            Assert.Equal(typeof(CommandParameterAst), tokens[2].Type);
+            Assert.Equal(TokenType.Parameter, tokens[2].SemanticType);
 
             Assert.Equal("--parameter2", tokens[3].Value);
-            Assert.Equal(typeof(CommandParameterAst), tokens[3].Type);
+            Assert.Equal(TokenType.Parameter, tokens[3].SemanticType);
 
             Assert.Equal("value1", tokens[4].Value);
-            Assert.Equal(typeof(string), tokens[4].Type);
+            Assert.Equal(TokenType.ParameterValue, tokens[4].SemanticType);
 
             Assert.Equal("12", tokens[5].Value);
-            Assert.Equal(typeof(ConstantExpressionAst), tokens[5].Type);
+            Assert.Equal(TokenType.Constant, tokens[5].SemanticType);
         }
     }
 
@@ -111,7 +113,7 @@ namespace PoshPredictiveText.Test
         /// The tokenised input is created when the class is instantiated and 
         /// then used across all the tests in this class.
         /// </summary>
-        private readonly CommandAstVisitor tokenisedInput = new();
+        private readonly Tokeniser tokenisedInput = new();
 
         /// <summary>
         /// Initialise the Commandast visitor with the input string.
@@ -121,7 +123,9 @@ namespace PoshPredictiveText.Test
             // Arrange
             const string inputText = "conda env -parameter1 --parameter2 value1 12";
             CommandAst ast = PowerShellMock.CreateCommandAst(inputText);
-            ast.Visit(tokenisedInput);
+            CommandAstVisitor visitor = new();
+            ast.Visit(visitor);
+            tokenisedInput = visitor.Tokeniser;
         }
 
         /// <summary>
@@ -176,7 +180,7 @@ namespace PoshPredictiveText.Test
             // Assert
             Assert.Equal(6, tokens.Count);
             Assert.Equal("12", tokens[5].Value);
-            Assert.Equal(typeof(ConstantExpressionAst), tokens[5].Type);
+            Assert.Equal(TokenType.Constant, tokens[5].SemanticType);
         }
 
         /// <summary>
@@ -203,10 +207,10 @@ namespace PoshPredictiveText.Test
             Assert.Equal(2, commandTokens.Count);
 
             Assert.Equal("-parameter1", commandTokens[2].Value);
-            Assert.Equal(typeof(CommandParameterAst), commandTokens[2].Type);
+            Assert.Equal(TokenType.Parameter, commandTokens[2].SemanticType);
 
             Assert.Equal("--parameter2", commandTokens[3].Value);
-            Assert.Equal(typeof(CommandParameterAst), commandTokens[3].Type);
+            Assert.Equal(TokenType.Parameter, commandTokens[3].SemanticType);
         }
 
         /// <summary>

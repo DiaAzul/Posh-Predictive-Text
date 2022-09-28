@@ -56,8 +56,9 @@ namespace PoshPredictiveText
             {
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
                 // which options are avaialble for the next parameter.
-                var enteredTokens = new CommandAstVisitor();
-                CommandAst.Visit(enteredTokens);
+                CommandAstVisitor visitor = new();
+                CommandAst.Visit(visitor);
+                Tokeniser enteredTokens = visitor.Tokeniser;
 #if DEBUG
                 Write("Resolving word: " + WordToComplete??"");
                 Write("Resolving AST: " + CommandAst);
