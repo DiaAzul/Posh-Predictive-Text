@@ -17,17 +17,30 @@
             ParameterValue,
             PositionalValue,
             Redirection,
-            Separator
+            Separator,
+            StringConstant
         }
 
+        // Value recorded on the command line
         internal string Value { get; init; } = default!;
+        // Abstract syntax type recorded for command line.
         internal Type AstType { get; init; } = default!;
+        // Start position of text.
         internal int LowerExtent { get; init; } = 0;
+        // End position of text.
         internal int UpperExtent { get; init; } = 0;
-        // The following are mutable values.
+
+        // ** The following are mutable values.**
+        // Semantic type of the token.
         internal TokenType? SemanticType { get; set; } = null;
+        // True if the token is recognised.
+        internal bool Complete { get; set; } = false;
+        // Parameter Value name (matches syntax tree helper).
         internal string? ParameterValueName { get; set; } = null;
+        // Maximum number of parameter values for a parameter.
         internal int MaximumParameterValues { get; set; } = 0;
+        // List of suggestions for this token (if partial word).
+        internal List<SyntaxItem>? SuggestedSyntaxItems { get; set; } = null;
 
         /// <summary>
         /// True if the token is a command.

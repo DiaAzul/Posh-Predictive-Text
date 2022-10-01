@@ -52,6 +52,11 @@ namespace PoshPredictiveText
             get { return Type == "POS"; }
         }
 
+        internal bool isRedirection
+        {
+            get { return Type == "RED";  }
+        }
+
         /// <summary>
         /// Returns true if the syntax item has an alias.
         /// </summary>
@@ -73,6 +78,7 @@ namespace PoshPredictiveText
                     "OPT" => CompletionResultType.ParameterName,
                     "PRM" => CompletionResultType.ParameterName,
                     "POS" => CompletionResultType.ParameterValue,
+                    "RED" => CompletionResultType.ParameterName,
                     _ => CompletionResultType.ParameterValue,
                 };
             }

@@ -24,7 +24,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
     {
         internal string? Definition { get; init; }
         internal string? ToolTips { get; init; }
-        internal ParseMode? ParseMode { get; init; }
+        internal ParseMode ParseMode { get; init; }
     }
 
     /// <summary>
@@ -40,6 +40,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         private static readonly Dictionary<string, string> SUPPORTED_COMMANDS = new()
         {
             {"conda", "conda" },
+            {"conda.exe", "conda" },
             {"mamba", "conda" }  // Note, this is not strictly correct.
         };
 
@@ -180,9 +181,11 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
             return returnValue;
         }
 
-        internal static ParseMode? ParseMode(string syntaxTreeName)
+        internal static ParseMode ParseMode(string? syntaxTreeName)
         {
-            ParseMode? returnValue = null;
+            ParseMode returnValue = SyntaxTreeSpecs.ParseMode.Windows;
+            if (string.IsNullOrWhiteSpace(syntaxTreeName)) return returnValue;
+
             try
             {
                 returnValue = COMMAND_CONFIGS[syntaxTreeName].ParseMode;

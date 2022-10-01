@@ -12,7 +12,7 @@ namespace PoshPredictiveText.Test
     public class CmdletGetPredictiveTextOptionTests
     {
         /// <summary>
-        /// Return list of commands when calling cmdlet with -list parameter.
+        /// Return list of commands when calling cmdlet with -list parameter.ge
         /// </summary>
         [Fact]
         public void ListOfSupportedCommandsTest()

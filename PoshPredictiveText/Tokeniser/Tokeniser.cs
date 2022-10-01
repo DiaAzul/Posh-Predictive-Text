@@ -15,7 +15,9 @@ namespace PoshPredictiveText
         /// List of tokens, the key represents the order of the token
         /// on the command line.
         /// </summary>
-        private readonly Dictionary<int, Token> tokens;
+        private readonly Dictionary<int, Token> tokens = new();
+
+        private readonly StateMachine stateMachine = new();
 
         /// <summary>
         /// Incremented each time a new token is created.
@@ -28,17 +30,19 @@ namespace PoshPredictiveText
         /// </summary>
         private ParseMode? parseMode = null;
 
-        /// <summary>
-        /// Name of the syntax tree once the base command is identified.
-        /// </summary>
-        private readonly string? syntaxTreeName = null;
+        ///// <summary>
+        ///// Name of the syntax tree once the base command is identified.
+        ///// </summary>
+        //private readonly string? syntaxTreeName = null;
 
-        /// <summary>
-        /// Class construtor initialising the token dictionary
-        /// </summary>
-        internal Tokeniser()
+        internal string? SyntaxTreeName
         {
-            this.tokens = new Dictionary<int, Token>();
+            get { return stateMachine.SyntaxTreeName; }
+        }
+
+        internal SyntaxTree? SyntaxTree
+        {
+            get { return stateMachine.SyntaxTree; }
         }
 
 
@@ -52,29 +56,12 @@ namespace PoshPredictiveText
 #if DEBUG
             LOGGER.Write($"Constant expression: {token.Value}, {token.SemanticType}");
 #endif
-            // Pre-process tokens to add semantic information.
-            // If the command does not have a syntax tree then don't add more tokens.
-            if (commandLinePosition > 0 && syntaxTreeName is null) return;
+            List<Token> returnedTokens = stateMachine.Evaluate(token);
 
-            if (commandLinePosition == 0)
+            foreach (Token returnedToken in returnedTokens)
             {
-                string baseCommand = CommonTasks.ExtractCommand(token.Value);
-                if (!SyntaxTreesConfig.IsSupportedCommand(baseCommand)) return;
-
-
-            }
-
-            // Is this a command we can parse?
-            // If not first token is first token actionable command?
-            // If first token do we have an actionable command?
-            //   If first token then get config and store reference.
-            // Save first token as base command.
-
-
-
-
-            // Add token to dictionary.
-            this.tokens.Add(this.TokenPosition, token);
+                this.tokens.Add(this.TokenPosition, returnedToken);
+            }           
         }
 
         /// <summary>
@@ -96,6 +83,7 @@ namespace PoshPredictiveText
         internal void Reset()
         {
             tokens.Clear();
+            stateMachine.Reset();
             commandLinePosition = 0;
             parseMode = null;
         }

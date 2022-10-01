@@ -137,7 +137,7 @@ namespace PoshPredictiveText
         {
             string Value = stringConstantExpressionAst.ToString();
             Type astType = stringConstantExpressionAst.StaticType;
-            Token.TokenType semanticType = Token.TokenType.ParameterValue;
+            Token.TokenType semanticType = Token.TokenType.StringConstant;
             // Record strings starting with double-dash (--) as parameters.
             try
             {

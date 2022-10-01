@@ -114,6 +114,14 @@ namespace PoshPredictiveText
                 .Count();
         }
 
+        internal List<SyntaxItem> ParametersAndOptions(string commandPath)
+        {
+            return syntaxItems
+                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath)
+                                        && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter))
+                .ToList();
+        }
+
         /// <summary>
         /// Returns a syntax item for the last entered parameter
         /// prior to the current token position. The last entered

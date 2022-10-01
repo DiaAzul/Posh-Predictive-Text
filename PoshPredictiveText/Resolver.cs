@@ -51,10 +51,11 @@ namespace PoshPredictiveText
             // If we can't load a syntax tree then return early with empty suggestion list.
             List<Suggestion> suggestions = new();
 
-            string? syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(enteredTokens.BaseCommand);
+            string? syntaxTreeName = enteredTokens.SyntaxTreeName;
             // If syntax tree not loaded then load it. If still not loaded or command does exist abort early.
 
-            SyntaxTree? syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+            SyntaxTree? syntaxTree = enteredTokens.SyntaxTree;
+                SyntaxTrees.Tree(syntaxTreeName);
             if (syntaxTree is null)
                 return suggestions;
 

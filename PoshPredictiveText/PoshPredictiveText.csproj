@@ -9,13 +9,13 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0</FileVersion>
+    <AssemblyVersion>0.2.0</AssemblyVersion>
+    <FileVersion>0.2.0</FileVersion>
     <Copyright>Tanzo Creative Ltd</Copyright>
     <ApplicationIcon>AdditionalFiles\favicon.ico</ApplicationIcon>
     <Title>Posh Predictive Text</Title>
     <Company>Tanzo Creative Ltd</Company>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Authors>David Plummer</Authors>
     <Product>Posh Predictive Text</Product>
     <Description>Improves productivity with predictive text suggestions for command line tools.</Description>

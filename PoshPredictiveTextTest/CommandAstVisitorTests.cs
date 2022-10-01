@@ -72,7 +72,7 @@ namespace PoshPredictiveText.Test
         {
             // Arrange
             CommandAstVisitor visitor = new();
-            string promptText = "conda env -parameter1 --parameter2 value1 12";
+            string promptText = "conda create --name py35 python=3.5";
             CommandAst ast = PowerShellMock.CreateCommandAst(promptText);
 
             // Act
@@ -81,25 +81,22 @@ namespace PoshPredictiveText.Test
             var tokens = tokeniser.All;
 
             // Assert
-            Assert.Equal(6, tokens.Count);
+            Assert.Equal(5, tokens.Count);
 
             Assert.Equal("conda", tokens[0].Value);
             Assert.Equal(TokenType.Command, tokens[0].SemanticType);
 
-            Assert.Equal("env", tokens[1].Value);
+            Assert.Equal("create", tokens[1].Value);
             Assert.Equal(TokenType.Command, tokens[0].SemanticType);
 
-            Assert.Equal("-parameter1", tokens[2].Value);
+            Assert.Equal("--name", tokens[2].Value);
             Assert.Equal(TokenType.Parameter, tokens[2].SemanticType);
 
-            Assert.Equal("--parameter2", tokens[3].Value);
-            Assert.Equal(TokenType.Parameter, tokens[3].SemanticType);
+            Assert.Equal("py35", tokens[3].Value);
+            Assert.Equal(TokenType.ParameterValue, tokens[3].SemanticType);
 
-            Assert.Equal("value1", tokens[4].Value);
-            Assert.Equal(TokenType.ParameterValue, tokens[4].SemanticType);
-
-            Assert.Equal("12", tokens[5].Value);
-            Assert.Equal(TokenType.Constant, tokens[5].SemanticType);
+            Assert.Equal("python=3.5", tokens[4].Value);
+            Assert.Equal(TokenType.PositionalValue, tokens[4].SemanticType);
         }
     }
 
@@ -180,7 +177,7 @@ namespace PoshPredictiveText.Test
             // Assert
             Assert.Equal(6, tokens.Count);
             Assert.Equal("12", tokens[5].Value);
-            Assert.Equal(TokenType.Constant, tokens[5].SemanticType);
+            Assert.Equal(TokenType.PositionalValue, tokens[5].SemanticType);
         }
 
         /// <summary>
