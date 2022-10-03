@@ -1,7 +1,6 @@
 ﻿
 namespace PoshPredictiveText
 {
-    using Microsoft.Extensions.Caching.Memory;
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation.Language;
 
