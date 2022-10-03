@@ -1,6 +1,7 @@
 ﻿
 namespace PoshPredictiveText
 {
+    using Microsoft.Extensions.Caching.Memory;
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation.Language;
 
@@ -57,6 +58,20 @@ namespace PoshPredictiveText
         /// </summary>
         private SyntaxItem? parameterSyntaxItem = null;
 
+
+        private readonly Dictionary<string, CacheItem> tokenCache = new();
+
+        //private readonly MemoryCache tokenCache = new(new MemoryCacheOptions()
+        //{
+        //    SizeLimit = 24
+        //});
+
+        //private readonly MemoryCacheEntryOptions tokenCacheOptions = new MemoryCacheEntryOptions()
+        //    .SetSize(1)
+        //    .SetPriority(CacheItemPriority.Normal)
+        //    .SetSlidingExpiration(TimeSpan.FromSeconds(30))
+        //    .SetAbsoluteExpiration(TimeSpan.FromSeconds(500));
+
         /// <summary>
         /// StateMachine adds semantic information to command line tokens.
         /// </summary>
@@ -104,6 +119,8 @@ namespace PoshPredictiveText
         {
             state = State.NoCommand;
             syntaxTreeName = null;
+            syntaxTree = null;
+            SharedCache.Reset();
         }
 
         // ******** STATE MACHINE ********
@@ -115,21 +132,77 @@ namespace PoshPredictiveText
         /// <returns>Enhanced tokens</returns>
         internal List<Token> Evaluate(Token token)
         {
-            return state switch
+            LOGGER.Write("Enter evaluate.");
+            List<Token> returnTokens;
+
+            string cacheKey = commandPath + "+" + token.Value;
+            bool doNotCache = syntaxTree is null;
+            CacheItem? cacheItem = SharedCache.Get(cacheKey);
+            if (cacheItem is not null)
             {
-                State.NoCommand => NoCommand(token),
-                State.Item => EvaluateItem(token),
-                State.Value => EvaluateValue(token),
-                State.Inert => new List<Token> { token },
-                _ => new List<Token> { token },
-            };
+                state = cacheItem.State;
+                commandPath = cacheItem.CommandPath;
+                parameterValues = cacheItem.ParameterValues;
+                parameterSyntaxItem = cacheItem.ParameterSyntaxItem;
+                returnTokens = cacheItem.ReturnTokens;
+            }
+            else
+            {
+                returnTokens = state switch
+                {
+                    State.NoCommand => NoCommand(token),
+                    State.Item => EvaluateItem(token),
+                    State.Value => EvaluateValue(token),
+                    State.Inert => new List<Token> { token },
+                    _ => new List<Token> { token },
+                };
+
+                if (!doNotCache && returnTokens.Count > 0 && returnTokens[0].Complete)
+                {
+                    switch (returnTokens[0].SemanticType)
+                    {
+                        case Token.TokenType.ParameterValue:
+                        case Token.TokenType.PositionalValue:
+                            break;
+                        default:
+                            CacheItem newCacheItem = new()
+                            {
+                                State = state,
+                                CommandPath = commandPath,
+                                ParameterValues = parameterValues,
+                                ParameterSyntaxItem = parameterSyntaxItem,
+                                ReturnTokens = returnTokens
+                            };
+
+                            SharedCache.Add(cacheKey, newCacheItem);
+                            break;
+                    }
+                }
+            }
+            LOGGER.Write("Exit Evaluate.");
+            return returnTokens;
         }
 
         // ******** STATE 0 ********
         internal List<Token> NoCommand(Token token)
         {
             string command = token.Value.ToLower();
-            if (!SyntaxTreesConfig.IsSupportedCommand(command)) return new List<Token> { token };
+            if (!SyntaxTreesConfig.IsSupportedCommand(command))
+            {
+                List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
+                if (suggestedCommands.Count == 0) return new List<Token> { token };
+
+                List<SyntaxItem> suggestions = new();
+                foreach (string suggestedCommand in suggestedCommands)
+                {
+                    SyntaxItem suggestion = new()
+                    {
+                        Command = suggestedCommand
+                    };
+                    suggestions.Add(suggestion);
+                }
+                token.SuggestedSyntaxItems = suggestions;
+            }
 
             // If the command is supported then there will be a syntax tree.
             syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
@@ -141,7 +214,6 @@ namespace PoshPredictiveText
             token.Complete = true;
             state = State.Item;
             
-            // TODO [HIGH][STATEMACHINE] return list of suggested commands.
             return new List<Token> { token };
         }
 

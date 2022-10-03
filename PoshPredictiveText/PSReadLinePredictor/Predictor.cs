@@ -112,7 +112,7 @@ namespace PoshPredictiveText
         /// <param name="feedback">A specific type of feedback.</param>
         /// <returns>True or false, to indicate whether the specific feedback is accepted.</returns>
         [ExcludeFromCodeCoverage]
-        public bool CanAcceptFeedback(PredictionClient client, PredictorFeedbackKind feedback) => false;
+        public bool CanAcceptFeedback(PredictionClient client, PredictorFeedbackKind feedback) => true;
 
         /// <summary>
         /// One or more suggestions provided by the predictor were displayed to the user.
@@ -153,7 +153,11 @@ namespace PoshPredictiveText
         /// <param name="commandLine">The last accepted command line.</param>
         /// <param name="success">Shows whether the execution was successful.</param>
         [ExcludeFromCodeCoverage]
-        public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success) { }
+        public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success)
+        {
+            // Reset the cache once the command is executed.
+            SharedCache.Reset();
+        }
 
         #endregion;
     }

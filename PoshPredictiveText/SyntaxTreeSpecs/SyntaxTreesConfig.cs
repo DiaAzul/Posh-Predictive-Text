@@ -70,6 +70,18 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         }
 
         /// <summary>
+        /// Get list of command suggestions given a partial command name.
+        /// </summary>
+        /// <param name="partialCommand">Partial command name.</param>
+        /// <returns>List of potential commands.</returns>
+        internal static List<string>SuggestedCommands(string partialCommand)
+        {
+            return COMMAND_CONFIGS.Keys
+                                    .Where( key => key.StartsWith(partialCommand))
+                                    .ToList();
+        }
+
+        /// <summary>
         /// Returns supported commands as a comma separated list.
         /// </summary>
         /// <returns>Supported commands as comma separated list.</returns>

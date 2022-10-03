@@ -57,7 +57,25 @@ namespace PoshPredictiveText
             SyntaxTree? syntaxTree = enteredTokens.SyntaxTree;
                 SyntaxTrees.Tree(syntaxTreeName);
             if (syntaxTree is null)
+            {
+                // The syntax tree may be empty, but we may have suggestions for completing the command name.
+                Token? firstToken = enteredTokens.FirstToken;
+                if (firstToken is null) return suggestions;
+                List<SyntaxItem>? commandSuggestions = firstToken.SuggestedSyntaxItems;
+                if (commandSuggestions is null || commandSuggestions.Count == 0) return suggestions;
+                foreach (SyntaxItem commandSuggestion in commandSuggestions)
+                {
+                    Suggestion suggestion = new()
+                    {
+                        CompletionText = commandSuggestion.Command??"",
+                        ListText = commandSuggestion.Command??"",
+                        Type = CompletionResultType.Command,
+                        ToolTip = commandSuggestion.Command??""
+                    };
+                    suggestions.Add(suggestion);
+                }
                 return suggestions;
+            }
 
 #if DEBUG
             LOGGER.Write($"The syntaxTree {syntaxTreeName} exists. "

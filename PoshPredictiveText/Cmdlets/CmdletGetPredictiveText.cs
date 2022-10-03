@@ -59,13 +59,11 @@ namespace PoshPredictiveText
                 CommandAstVisitor visitor = new();
                 CommandAst.Visit(visitor);
                 Tokeniser enteredTokens = visitor.Tokeniser;
-#if DEBUG
+
                 Write("Resolving word: " + WordToComplete??"");
                 Write("Resolving AST: " + CommandAst);
                 Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
-                Write($"Last Command: {enteredTokens.LastToken?.Value ?? "Caught null"}");
-                Write($"Prior Command: {enteredTokens.PriorToken?.Value ?? "Does not exist."}");
-#endif
+
                 // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
                 List<Suggestion> suggestions = new();
                 try

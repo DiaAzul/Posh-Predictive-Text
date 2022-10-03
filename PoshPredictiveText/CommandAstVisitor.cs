@@ -1,7 +1,6 @@
 ﻿
 namespace PoshPredictiveText
 {
-    using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation.Language;
 
     /// <summary>

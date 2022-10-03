@@ -45,8 +45,6 @@ namespace PoshPredictiveText
             get { return stateMachine.SyntaxTree; }
         }
 
-
-        // TODO [HIGH][TOKENISER] Add processing for tokens when adding to tokeniser.
         /// <summary>
         /// Add token to the list.
         /// </summary>
@@ -54,7 +52,7 @@ namespace PoshPredictiveText
         internal void Add(Token token)
         {
 #if DEBUG
-            LOGGER.Write($"Constant expression: {token.Value}, {token.SemanticType}");
+            LOGGER.Write($"PARSE TOKEN: {token.Value}, {token.SemanticType}");
 #endif
             List<Token> returnedTokens = stateMachine.Evaluate(token);
 
@@ -120,6 +118,14 @@ namespace PoshPredictiveText
                     parseMode = SyntaxTreesConfig.ParseMode(BaseCommand);
                 return parseMode ?? ParseMode.Windows;
             }
+        }
+
+        /// <summary>
+        /// Returns the first token if it exists.
+        /// </summary>
+        internal Token? FirstToken
+        {
+            get { return this.Index(0); }
         }
 
         /// <summary>
