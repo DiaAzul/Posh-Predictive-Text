@@ -16,6 +16,8 @@ namespace PoshPredictiveText
     [OutputType(typeof(CompletionResult))]
     public class GetPredictiveText : PSCmdlet
     {
+        private readonly Guid guid = new("55c982c1-00c3-4005-90fb-010d008fd3bd");
+
         /// <summary>
         /// Gets or sets the partial word provided before the user pressed Tab.
         /// </summary>
@@ -56,50 +58,67 @@ namespace PoshPredictiveText
             {
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
                 // which options are avaialble for the next parameter.
-                CommandAstVisitor visitor = new();
-                CommandAst.Visit(visitor);
-                Tokeniser enteredTokens = visitor.Tokeniser;
-
-                Write("Resolving word: " + WordToComplete??"");
-                Write("Resolving AST: " + CommandAst);
-                Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
-
-                // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
                 List<Suggestion> suggestions = new();
-                try
+                using (CachedTokeniser cachedTokeniser = new())
                 {
-                    suggestions = Resolver.Suggestions(
-                        wordToComplete: WordToComplete ?? "",
-                        enteredTokens: enteredTokens,
-                        cursorPosition: CursorPosition ?? CommandAst.ToString().Length
-                    );
-                }
-                // Process any errors raised. Raise an error if DEBUG build,
-                // for RELEASE builds swallow excpetions (better to do nothing than
-                // interrupt entry at the prompt when the user can do nothing to fix
-                // the problem).
-                catch (Exception ex)
-                {
-                    Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
-#if DEBUG
-                    switch (ex)
+                    if (cachedTokeniser.Acquired)
                     {
-                        case SyntaxTreeException:
-                            WriteError(new ErrorRecord(
-                                ex,
-                                "Error-loading-syntax-tree",
-                                ErrorCategory.ObjectNotFound,
-                                enteredTokens));
-                            break;
-                        default:
-                            WriteError(new ErrorRecord(
-                                ex,
-                                "Error-processing-record",
-                                ErrorCategory.InvalidOperation,
-                                enteredTokens));
-                            break;
-                    }
+                        LOGGER.Write("Cmdlet acquired cached tokeniser.");
+                        Tokeniser? enteredTokens = CachedTokeniser.Get(guid);
+                        if (enteredTokens is null)
+                        {
+                            LOGGER.Write("Creating tokeniser from cmdlet CommandAst");
+                            CommandAstVisitor visitor = new();
+                            CommandAst.Visit(visitor);
+                            enteredTokens = visitor.Tokeniser;
+                        }
+                        else
+                        {
+                            LOGGER.Write("Cmdlet using cached tokeniser.");
+                        }
+
+                        Write("Resolving word: " + WordToComplete??"");
+                        Write("Resolving AST: " + CommandAst);
+                        Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
+
+                        // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
+
+                        try
+                        {
+                            suggestions = Resolver.Suggestions(
+                                wordToComplete: WordToComplete ?? "",
+                                enteredTokens: enteredTokens,
+                                cursorPosition: CursorPosition ?? CommandAst.ToString().Length
+                            );
+                        }
+                        // Process any errors raised. Raise an error if DEBUG build,
+                        // for RELEASE builds swallow excpetions (better to do nothing than
+                        // interrupt entry at the prompt when the user can do nothing to fix
+                        // the problem).
+                        catch (Exception ex)
+                        {
+                            Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
+#if DEBUG
+                            switch (ex)
+                            {
+                                case SyntaxTreeException:
+                                    WriteError(new ErrorRecord(
+                                        ex,
+                                        "Error-loading-syntax-tree",
+                                        ErrorCategory.ObjectNotFound,
+                                        enteredTokens));
+                                    break;
+                                default:
+                                    WriteError(new ErrorRecord(
+                                        ex,
+                                        "Error-processing-record",
+                                        ErrorCategory.InvalidOperation,
+                                        enteredTokens));
+                                    break;
+                            }
 #endif
+                        }
+                    }
                 }
 
                 // Repackage suggestions for PowerShell.

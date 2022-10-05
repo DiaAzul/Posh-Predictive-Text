@@ -26,7 +26,7 @@ namespace PoshPredictiveText.Test.Helpers
                     conda = condaRoot + @"\Scripts\conda.exe";
                 }
             }
-            var powershell = PowerShellMock.GetConfiguredShell();
+            using var powershell = PowerShellMock.GetConfiguredShell();
             // Cannot guarantee running on windows or the location of conda or whether it is on the path.
             powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
             var profile = powershell.Invoke();

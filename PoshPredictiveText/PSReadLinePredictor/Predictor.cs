@@ -17,7 +17,7 @@ namespace PoshPredictiveText
     {
         private readonly Guid _guid;
 
-        private Tokeniser? enteredTokens = null;
+        private string? baseCommand = null;
 
         /// <summary>
         /// Initialise a new guid.
@@ -40,9 +40,8 @@ namespace PoshPredictiveText
         {
             get
             {
-                string? command = enteredTokens?.BaseCommand;
-                if (command is null) return "Predictive Text";
-                string capitaliseFirstLetter = string.Concat(command[0].ToString().ToUpper(), command.AsSpan(1));
+                if (baseCommand is null) return "Predictive Text";
+                string capitaliseFirstLetter = string.Concat(baseCommand[0].ToString().ToUpper(), baseCommand.AsSpan(1));
                 return capitaliseFirstLetter;
             }
         }
@@ -74,32 +73,39 @@ namespace PoshPredictiveText
             if (context.InputAst is null) return default;
 
             // Tokenise the syntax tree.
-            CommandAstVisitor visitor = new();
-            context.InputAst.Visit(visitor);
-            enteredTokens = visitor.Tokeniser;
-
-            // If there is no base command, or the base command is not supported then return.
-            if (enteredTokens.BaseCommand is null) return default;
-            if (!SyntaxTreesConfig.IsSupportedCommand(enteredTokens.BaseCommand)) return default;
-
-            string wordToComplete = enteredTokens.LastToken?.Value ?? "";
-            if (inputText[^1] == ' ')
-            {
-                wordToComplete = "";
-            }
-            string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
-
-            var results = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
-            if (results.Count == 0) return default;
-
             List<PredictiveSuggestion> predictiveSuggestions = new();
-            foreach (Suggestion result in results)
+            using (CachedTokeniser cachedTokeniser = new())
             {
-                PredictiveSuggestion suggestion = new(baseText + result.CompletionText, result.ToolTip);
-                predictiveSuggestions.Add(suggestion);
+                if (cachedTokeniser.Acquired)
+                {
+                    CommandAstVisitor visitor = new();
+                    context.InputAst.Visit(visitor);
+                    Tokeniser enteredTokens = visitor.Tokeniser;
+                    CachedTokeniser.Stash(visitor.Tokeniser, _guid);
+
+                    // If there is no base command, or the base command is not supported then return.
+                    if (enteredTokens.BaseCommand is null) return default;
+                    baseCommand = enteredTokens.BaseCommand;
+                    if (!SyntaxTreesConfig.IsSupportedCommand(enteredTokens.BaseCommand)) return default;
+
+                    string wordToComplete = enteredTokens.LastToken?.Value ?? "";
+                    if (inputText[^1] == ' ')
+                    {
+                        wordToComplete = "";
+                    }
+                    string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
+
+                    var results = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
+                    if (results.Count == 0) return default;
+
+                    foreach (Suggestion result in results)
+                    {
+                        PredictiveSuggestion suggestion = new(baseText + result.CompletionText, result.ToolTip);
+                        predictiveSuggestions.Add(suggestion);
+                    }
+                }
             }
             SuggestionPackage suggestionPackage = new(predictiveSuggestions);
-
             return suggestionPackage;
         }
 
@@ -157,6 +163,11 @@ namespace PoshPredictiveText
         {
             // Reset the cache once the command is executed.
             SharedCache.Reset();
+            using CachedTokeniser cachedTokeniser = new();
+            if (cachedTokeniser.Acquired)
+            {
+                CachedTokeniser.Clear();
+            }
         }
 
         #endregion;

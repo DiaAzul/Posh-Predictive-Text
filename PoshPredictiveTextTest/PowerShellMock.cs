@@ -1,7 +1,6 @@
 ﻿
 namespace PoshPredictiveText.Test
 {
-
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Management.Automation.Runspaces;
@@ -13,12 +12,10 @@ namespace PoshPredictiveText.Test
     public class PowerShellMock
     {
         /// <summary>
-        /// Configures an instance of PowerShell containing the cmdlet to test.
+        /// Create the initial session state.
         /// </summary>
-        /// <returns>
-        /// Instance of PowerShell containing cmdlet.
-        /// </returns>
-        public static PowerShell GetConfiguredShell()
+        /// <returns></returns>
+        private static InitialSessionState ISS()
         {
             var sessionState = InitialSessionState.CreateDefault();
 
@@ -42,7 +39,23 @@ namespace PoshPredictiveText.Test
             SessionStateCmdletEntry cmdletToTestSPTO = new("Set-PredictiveTextOption", typeof(SetPredictiveTextOption), null);
             sessionState.Commands.Add(cmdletToTestSPTO);
 
-            var testShellInstance = PowerShell.Create(sessionState);
+            return sessionState;
+        }
+
+        /// <summary>
+        /// Configures an instance of PowerShell containing the cmdlet to test.
+        /// </summary>
+        /// <returns>
+        /// Instance of PowerShell containing cmdlet.
+        /// </returns>
+        public static PowerShell GetConfiguredShell()
+        {
+            var InititalSessionState = ISS();
+            RunspacePool pool = RunspaceFactory.CreateRunspacePool(InititalSessionState);
+            pool.Open();
+
+            var testShellInstance = PowerShell.Create();
+            testShellInstance.RunspacePool = pool;
 
             return testShellInstance;
         }
@@ -60,11 +73,11 @@ namespace PoshPredictiveText.Test
             Assert.Empty(errors);
 
             // Extract the command abstract syntax tree from the script block abstract syntax tree.
-            var commandAst = new GetCommandAst();
-            scriptBlock.Visit(commandAst);
-            Assert.NotNull(commandAst.commandAst);
+            var visitor = new GetCommandAst();
+            scriptBlock.Visit(visitor);
+            Assert.NotNull(visitor.commandAst);
 
-            return commandAst.commandAst;
+            return visitor.commandAst;
         }
 
         /// <summary>
