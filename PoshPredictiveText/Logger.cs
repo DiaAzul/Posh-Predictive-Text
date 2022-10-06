@@ -113,14 +113,26 @@ namespace PoshPredictiveText
                 {
                     if (Directory.Exists(logFile))
                     {
-                        using StreamWriter sw = File.CreateText(logFile);
-                        sw.WriteLine(outputText);
+                        try
+                        {
+                            using StreamWriter sw = File.CreateText(logFile);
+                            sw.WriteLine(outputText);
+                        }
+                        // IOException is thrown when the command line application throws an error and the callback
+                        // into Predictor.OnCommandLineExecuted comes from PSReadLine originates from a second process
+                        // which tries to write to the logfile whilst it is still open in the first.
+                        // TODO [LOW][LOGGER] Write thread safe logger implementation.
+                        catch (IOException) { }
                     }
                 }
                 else
                 {
-                    using StreamWriter sw = File.AppendText(logFile);
-                    sw.WriteLine(outputText);
+                    try
+                    {
+                        using StreamWriter sw = File.AppendText(logFile);
+                        sw.WriteLine(outputText);
+                    }
+                    catch (IOException) { }
                 }
             }
         }

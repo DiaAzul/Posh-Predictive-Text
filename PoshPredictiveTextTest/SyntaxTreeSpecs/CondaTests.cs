@@ -62,7 +62,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             int cursorPosition = commandAst.Extent.EndOffset;
 
             // Act
-            CommandAstVisitor visitor = new();
+            Visitor visitor = new();
             commandAst.Visit(visitor);
             var enteredTokens = visitor.Tokeniser;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
@@ -89,7 +89,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             int cursorPosition = commandAst.Extent.EndOffset;
 
             // Act
-            CommandAstVisitor visitor = new();
+            Visitor visitor = new();
             commandAst.Visit(visitor);
             var enteredTokens = visitor.Tokeniser;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);

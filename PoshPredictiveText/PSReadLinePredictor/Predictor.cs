@@ -74,14 +74,14 @@ namespace PoshPredictiveText
 
             // Tokenise the syntax tree.
             List<PredictiveSuggestion> predictiveSuggestions = new();
-            using (CachedTokeniser cachedTokeniser = new())
+            using (TokeniserCache cachedTokeniser = new())
             {
                 if (cachedTokeniser.Acquired)
                 {
-                    CommandAstVisitor visitor = new();
+                    Visitor visitor = new();
                     context.InputAst.Visit(visitor);
                     Tokeniser enteredTokens = visitor.Tokeniser;
-                    CachedTokeniser.Stash(visitor.Tokeniser, _guid);
+                    TokeniserCache.Stash(visitor.Tokeniser, _guid);
 
                     // If there is no base command, or the base command is not supported then return.
                     if (enteredTokens.BaseCommand is null) return default;
@@ -162,11 +162,11 @@ namespace PoshPredictiveText
         public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success)
         {
             // Reset the cache once the command is executed.
-            SharedCache.Reset();
-            using CachedTokeniser cachedTokeniser = new();
+            StateMachineStateCache.Reset();
+            using TokeniserCache cachedTokeniser = new();
             if (cachedTokeniser.Acquired)
             {
-                CachedTokeniser.Clear();
+                TokeniserCache.Clear();
             }
         }
 

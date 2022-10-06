@@ -12,22 +12,22 @@ namespace PoshPredictiveText
     /// The cache is reset once the command line is exectuted so that cached items do
     /// not influence subsequent command lines entries.
     /// </summary>
-    internal static class SharedCache
+    internal static class StateMachineStateCache
     {
         /// <summary>
         /// Dictionary of cached entries.
         /// </summary>
-        private static readonly ConcurrentDictionary<string, CacheItem> cache = new();
+        private static readonly ConcurrentDictionary<string, StateMachineState> cache = new();
 
         /// <summary>
         /// Add an item to the cache.
         /// </summary>
         /// <param name="key">Key to the cache item.</param>
-        /// <param name="cacheItem">Cached item.</param>
-        internal static void Add(string key, CacheItem cacheItem)
+        /// <param name="stateMachineState">Cached item.</param>
+        internal static void Add(string key, StateMachineState stateMachineState)
         {
             LOGGER.Write($"CACHE: Add key: {key}");
-            cache.TryAdd(key, cacheItem);
+            cache.TryAdd(key, stateMachineState);
         }
 
         /// <summary>
@@ -35,13 +35,13 @@ namespace PoshPredictiveText
         /// </summary>
         /// <param name="key">Key to the cache item.</param>
         /// <returns>Cached item. Null if no cached item.</returns>
-        internal static CacheItem? Get(string key)
+        internal static StateMachineState? Get(string key)
         {
-            cache.TryGetValue(key, out CacheItem? cacheItem);
-            if (cacheItem is not null){
+            cache.TryGetValue(key, out StateMachineState? stateMachineState);
+            if (stateMachineState is not null){
                 LOGGER.Write($"CACHE: Fetching key: {key}");
             }
-            return cacheItem;
+            return stateMachineState;
         }
 
         /// <summary>

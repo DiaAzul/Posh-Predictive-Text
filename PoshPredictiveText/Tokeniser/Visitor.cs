@@ -8,7 +8,7 @@ namespace PoshPredictiveText
     /// Reads the input no the command line and creates an ordered list of
     /// tokens representing user input.
     /// </summary>
-    internal class CommandAstVisitor : AstVisitor
+    internal class Visitor : AstVisitor
     {
         /// <summary>
         /// The tokeniser holds the list of items on the command line
@@ -19,7 +19,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Class construtor initialising the token dictionary
         /// </summary>
-        internal CommandAstVisitor()
+        internal Visitor()
         {
             this.tokeniser = new();
         }

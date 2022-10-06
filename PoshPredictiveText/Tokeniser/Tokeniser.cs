@@ -208,28 +208,33 @@ namespace PoshPredictiveText
         /// </summary>
         /// <param name="uniqueCommands">List of unique commands/sub-commands.</param>
         /// <returns>Dot notation path identifying the command/sub-command.</returns>
-        internal (string, int) CommandPath(List<string> uniqueCommands)
-        {
+        //internal (string, int) CommandPath(List<string> uniqueCommands)
+        //{
 
-            StringBuilder commandPath = new(capacity: 64);
-            int tokensInCommand = 0;
-            string delimeter = "";
-            foreach (var (position, commandToken) in this.tokens)
-            {
-                string tokenText = commandToken.Value.ToLower();
-                if (uniqueCommands.Contains(tokenText))
-                {
-                    commandPath.Append(delimeter);
-                    commandPath.Append(tokenText);
-                    delimeter = ".";
-                    tokensInCommand++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return (commandPath.ToString() ?? "", tokensInCommand);
+        //    StringBuilder commandPath = new(capacity: 64);
+        //    int tokensInCommand = 0;
+        //    string delimeter = "";
+        //    foreach (var (position, commandToken) in this.tokens)
+        //    {
+        //        string tokenText = commandToken.Value.ToLower();
+        //        if (uniqueCommands.Contains(tokenText))
+        //        {
+        //            commandPath.Append(delimeter);
+        //            commandPath.Append(tokenText);
+        //            delimeter = ".";
+        //            tokensInCommand++;
+        //        }
+        //        else
+        //        {
+        //            break;
+        //        }
+        //    }
+        //    return (commandPath.ToString() ?? "", tokensInCommand);
+        //}
+
+        internal CommandPath CommandPath
+        {
+            get { return stateMachine.CommandPath; }
         }
 
         /// <summary>

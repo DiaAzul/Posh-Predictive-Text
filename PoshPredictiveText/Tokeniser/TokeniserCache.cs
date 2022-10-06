@@ -14,9 +14,9 @@ namespace PoshPredictiveText
     /// that specific test in the cache. Tab-expansion will only use the cached
     /// tokeniser when it matches the expected guid for the production predictor.
     /// </summary>
-    internal class CachedTokeniser : IDisposable
+    internal class TokeniserCache : IDisposable
     {
-        private static Dictionary<Guid, Tokeniser> tokenisers = new();
+        private static readonly Dictionary<Guid, Tokeniser> tokenisers = new();
         private static readonly Mutex available = new();
 
         internal bool Acquired {get; set;} = false;
@@ -24,7 +24,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Acquire unique access to the cache.
         /// </summary>
-        internal CachedTokeniser()
+        internal TokeniserCache()
         {
             if (available.WaitOne(30))
             {

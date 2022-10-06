@@ -2,7 +2,6 @@
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.Helpers;
-    using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Linq;
     using System.Management.Automation;
 
@@ -52,12 +51,10 @@ namespace PoshPredictiveText
             List<Suggestion> suggestions = new();
 
             string? syntaxTreeName = enteredTokens.SyntaxTreeName;
-            // If syntax tree not loaded then load it. If still not loaded or command does exist abort early.
-
             SyntaxTree? syntaxTree = enteredTokens.SyntaxTree;
-                SyntaxTrees.Tree(syntaxTreeName);
             if (syntaxTree is null)
             {
+                LOGGER.Write($"RESOLVER: Syntax Tree {syntaxTreeName} null, suggesting command names.");
                 // The syntax tree may be empty, but we may have suggestions for completing the command name.
                 Token? firstToken = enteredTokens.FirstToken;
                 if (firstToken is null) return suggestions;
@@ -78,7 +75,7 @@ namespace PoshPredictiveText
             }
 
 #if DEBUG
-            LOGGER.Write($"The syntaxTree {syntaxTreeName} exists. "
+            LOGGER.Write($"RESOLVER: The syntaxTree {syntaxTreeName} exists. "
                 + $"There are {syntaxTree.Count} entries in the tree.");
 #endif
 
@@ -92,7 +89,10 @@ namespace PoshPredictiveText
             // that we don't offer sub-commands as an option. Also, if the command is
             // complete we may offer positional parameters.
             List<string> uniqueCommands = syntaxTree.UniqueCommands;
-            var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
+            string commandPath = enteredTokens.CommandPath.ToString();
+            int tokensInPath = enteredTokens.CommandPath.Count;
+            LOGGER.Write($"RESOLVER: Command path [{commandPath}], tokens in path: {tokensInPath}");
+            //var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
 
             int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
             int expectedCommandTokens = tokensInPath + (syntaxTree.CountOfSubCommands(commandPath) > 0 ? 1 : 0);
@@ -139,7 +139,7 @@ namespace PoshPredictiveText
             // BUG [HIGH][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.
             if (!listOnlyParameterValues && commandComplete)
             {
-                LOGGER.Write("Listing positional parameters.");
+                LOGGER.Write("RESOLVER: Listing positional parameters.");
                 var positionalValues = syntaxTree.PositionalValues(commandPath);
                 if (positionalValues.Count > 0)
                 {
@@ -179,7 +179,7 @@ namespace PoshPredictiveText
 
             // ----- RETURN SUGGESTIONS -----
 #if DEBUG
-            LOGGER.Write($"The algorithm is providing {suggestions.Count} suggestions.");
+            LOGGER.Write($"RESOLVER: The algorithm is providing {suggestions.Count} suggestions.");
             foreach (var suggestion in suggestions)
             {
                 LOGGER.Write($"::Suggestion -> {suggestion.CompletionText}");

@@ -7,7 +7,7 @@ namespace PoshPredictiveText.Test
     using static PoshPredictiveText.Token;
 
     /// <summary>
-    /// Test CommandAstVisitor Token records
+    /// Test Visitor records
     /// 
     /// Basic tests to create a token and test its value and properties.
     /// 
@@ -17,7 +17,7 @@ namespace PoshPredictiveText.Test
     /// possibilty of error if an unexpected type is assigned to token
     /// and other code relies on Token having known types.
     /// </summary>
-    public class CommandAstVisitorTokenTest
+    public class VisitorTokenTest
     {
         /// <summary>
         /// Test Token create, store and immutability.
@@ -43,7 +43,7 @@ namespace PoshPredictiveText.Test
     }
 
     /// <summary>
-    /// Test CommandAstVisitor
+    /// Test Visitor
     /// 
     /// Class passed to the CommandAst.Visit() method. The visit method call 
     /// method defined within the CommandAstVisitor class for each token 
@@ -52,7 +52,7 @@ namespace PoshPredictiveText.Test
     /// method start with the verb 'Visit'.
     /// 2. Methods and properties used to query the parsed command line tokens.
     /// </summary>
-    public class CommandAstVisitorVisitTest
+    public class VisitorVisitTests
     {
 
         /// <summary>
@@ -68,10 +68,10 @@ namespace PoshPredictiveText.Test
         /// 1: [Low] A single test case will identify errors.
         /// </summary>
         [Fact]
-        public void TestCommandAstVisitorVisitTest()
+        public void VisitTest()
         {
             // Arrange
-            CommandAstVisitor visitor = new();
+            Visitor visitor = new();
             string promptText = "conda create --name py35 python=3.5";
             CommandAst ast = PowerShellMock.CreateCommandAst(promptText);
 
@@ -104,7 +104,7 @@ namespace PoshPredictiveText.Test
     /// Test the retrieval of information from the CommandAstVisitor assuming
     /// it has sccessfully retrieved values from the prompt. 
     /// </summary>
-    public class CommandAstVisitorValueTest
+    public class ValueTest
     {
         /// <summary>
         /// The tokenised input is created when the class is instantiated and 
@@ -115,12 +115,12 @@ namespace PoshPredictiveText.Test
         /// <summary>
         /// Initialise the Commandast visitor with the input string.
         /// </summary>
-        public CommandAstVisitorValueTest()
+        public ValueTest()
         {
             // Arrange
             const string inputText = "conda env -parameter1 --parameter2 value1 12";
             CommandAst ast = PowerShellMock.CreateCommandAst(inputText);
-            CommandAstVisitor visitor = new();
+            Visitor visitor = new();
             ast.Visit(visitor);
             tokenisedInput = visitor.Tokeniser;
         }
@@ -226,23 +226,6 @@ namespace PoshPredictiveText.Test
             Assert.Equal("env", secondToken.Value);
             Assert.Null(negativeIndex);
             Assert.Null(outOfBounds);
-        }
-
-        /// <summary>
-        /// Test CommandPath returns the correct path given
-        /// a list of commands.
-        /// </summary>
-        [Fact]
-        public void CommandPathTest()
-        {
-            // Arrange
-            List<string> commands = new() { "conda", "env" };
-            // Act
-            var (commandPath, length) = tokenisedInput.CommandPath(commands);
-            // Assert
-            Assert.NotNull(commandPath);
-            Assert.Equal(2, length);
-            Assert.Equal("conda.env", commandPath);
         }
 
         /// <summary>

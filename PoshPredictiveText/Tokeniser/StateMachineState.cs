@@ -4,7 +4,7 @@ namespace PoshPredictiveText
     /// <summary>
     /// Cached information for command line arguments which have already been parsed.
     /// </summary>
-    internal class CacheItem
+    internal class StateMachineState
     {
         /// <summary>
         /// State of the statemachine after the argument was parsed.
@@ -13,7 +13,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Command path after the argument was parsed.
         /// </summary>
-        internal string CommandPath { get; set; } = default!;
+        internal CommandPath CommandPath { get; set; } = default!;
         /// <summary>
         /// Number of parameter values to be entered after the argument if the parsed item
         /// was a parameter which expects values.

@@ -58,19 +58,6 @@ namespace PoshPredictiveText
         private SyntaxItem? parameterSyntaxItem = null;
 
 
-        private readonly Dictionary<string, CacheItem> tokenCache = new();
-
-        //private readonly MemoryCache tokenCache = new(new MemoryCacheOptions()
-        //{
-        //    SizeLimit = 24
-        //});
-
-        //private readonly MemoryCacheEntryOptions tokenCacheOptions = new MemoryCacheEntryOptions()
-        //    .SetSize(1)
-        //    .SetPriority(CacheItemPriority.Normal)
-        //    .SetSlidingExpiration(TimeSpan.FromSeconds(30))
-        //    .SetAbsoluteExpiration(TimeSpan.FromSeconds(500));
-
         /// <summary>
         /// StateMachine adds semantic information to command line tokens.
         /// </summary>
@@ -127,7 +114,7 @@ namespace PoshPredictiveText
             state = State.NoCommand;
             syntaxTreeName = null;
             syntaxTree = null;
-            SharedCache.Reset();
+            StateMachineStateCache.Reset();
         }
 
         // ******** STATE MACHINE ********
@@ -144,15 +131,18 @@ namespace PoshPredictiveText
 
             string cacheKey = commandPath + "+" + token.Value;
             bool doNotCache = syntaxTree is null;
-            CacheItem? cacheItem = SharedCache.Get(cacheKey);
-            if (cacheItem is not null)
+            StateMachineState? stateMachineState = StateMachineStateCache.Get(cacheKey);
+
+            // If we have already processed and cached this argument use the cached version.
+            if (stateMachineState is not null)
             {
-                state = cacheItem.State;
-                commandPath = cacheItem.CommandPath;
-                parameterValues = cacheItem.ParameterValues;
-                parameterSyntaxItem = cacheItem.ParameterSyntaxItem;
-                returnTokens = cacheItem.ReturnTokens;
+                state = stateMachineState.State;
+                commandPath = stateMachineState.CommandPath;
+                parameterValues = stateMachineState.ParameterValues;
+                parameterSyntaxItem = stateMachineState.ParameterSyntaxItem;
+                returnTokens = stateMachineState.ReturnTokens;
             }
+            // Otherwise parse the argument and add semantic information.
             else
             {
                 returnTokens = state switch
@@ -164,15 +154,17 @@ namespace PoshPredictiveText
                     _ => new List<Token> { token },
                 };
 
+                // Cache the result if the argument is complete.
                 if (!doNotCache && returnTokens.Count > 0 && returnTokens[0].Complete)
                 {
                     switch (returnTokens[0].SemanticType)
                     {
+                        // Do not cache parameter and positional values.
                         case Token.TokenType.ParameterValue:
                         case Token.TokenType.PositionalValue:
                             break;
                         default:
-                            CacheItem newCacheItem = new()
+                            StateMachineState newCacheItem = new()
                             {
                                 State = state,
                                 CommandPath = commandPath,
@@ -181,7 +173,7 @@ namespace PoshPredictiveText
                                 ReturnTokens = returnTokens
                             };
 
-                            SharedCache.Add(cacheKey, newCacheItem);
+                            StateMachineStateCache.Add(cacheKey, newCacheItem);
                             break;
                     }
                 }
@@ -194,8 +186,23 @@ namespace PoshPredictiveText
         internal List<Token> NoCommand(Token token)
         {
             string command = token.Value.ToLower();
-            if (!SyntaxTreesConfig.IsSupportedCommand(command))
+
+            // If this is a supported command then load syntax tree.
+            if (SyntaxTreesConfig.IsSupportedCommand(command))
             {
+                LOGGER.Write($"STATE MACHINE: Supported command: {command}");
+                syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
+                LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {syntaxTreeName}");
+                syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+                parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
+                commandPath = new(SyntaxTreeName!);
+                token.SemanticType = Token.TokenType.Command;
+                token.Complete = true;
+                state = State.Item;
+            }
+            else
+            {
+                // See if this is a partial command and add suggested completion.
                 List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
                 if (suggestedCommands.Count == 0) return new List<Token> { token };
 
@@ -209,18 +216,7 @@ namespace PoshPredictiveText
                     suggestions.Add(suggestion);
                 }
                 token.SuggestedSyntaxItems = suggestions;
-            }
-
-            // If the command is supported then there will be a syntax tree.
-            syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
-            syntaxTree = new SyntaxTree(syntaxTreeName!);
-            parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
-            commandPath = command;
-
-            token.SemanticType = Token.TokenType.Command;
-            token.Complete = true;
-            state = State.Item;
-            
+            }         
             return new List<Token> { token };
         }
 
@@ -368,8 +364,8 @@ namespace PoshPredictiveText
             List<Token> resultTokens;
             switch (suggestedCommands.Count)
             {
+                // If we don't recognise a command or partial command perhaps this is a positional value.
                 case 0:
-                    // If we don't recognise a command or partial command perhaps this is a positional value.
                     state = State.Value;
                     token.SemanticType = Token.TokenType.PositionalValue;
                     resultTokens = EvaluateValue(token);
@@ -382,6 +378,7 @@ namespace PoshPredictiveText
                     state = State.Item;
                     resultTokens = new() { token };
                     break;
+                // Otherwise add suggestions to response.
                 default:
                     token.SuggestedSyntaxItems = suggestedCommands;
                     token.Complete = false;

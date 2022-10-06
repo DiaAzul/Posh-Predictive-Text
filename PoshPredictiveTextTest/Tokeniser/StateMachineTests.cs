@@ -25,7 +25,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 "conda",
                 new SyntaxTree("conda"),
                 SyntaxTreeSpecs.ParseMode.Posix,
-                "conda"
+                new CommandPath("conda")
                 );
 
             Token token = new()
@@ -73,7 +73,7 @@ namespace PoshPredictiveText.StateMachine.Test
 
             // Act
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
-            CommandAstVisitor visitor = new();
+            Visitor visitor = new();
             commandAst.Visit(visitor);
             Tokeniser enteredTokens = visitor.Tokeniser;
             var returnedTokens = enteredTokens.All;
@@ -115,7 +115,7 @@ namespace PoshPredictiveText.StateMachine.Test
 
             // Act
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
-            CommandAstVisitor visitor = new();
+            Visitor visitor = new();
             commandAst.Visit(visitor);
             Tokeniser enteredTokens = visitor.Tokeniser;
             var returnedTokens = enteredTokens.All;

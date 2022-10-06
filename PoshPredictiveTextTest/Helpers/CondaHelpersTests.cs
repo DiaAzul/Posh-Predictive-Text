@@ -17,7 +17,9 @@ namespace PoshPredictiveText.Test.Helpers
             string? appveyor = Environment.GetEnvironmentVariable("APPVEYOR", EnvironmentVariableTarget.Process) ?? "false";
             bool isAppveyor = appveyor == "true";
 
+            // Assumes that conda is on the path.
             string conda = "conda";
+            // Unless we are running in appveyor, in which case we need to find the conda installation location.
             if (isAppveyor)
             {
                 string? condaRoot = Environment.GetEnvironmentVariable("CONDA_INSTALL_LOCN", EnvironmentVariableTarget.Process);
@@ -26,8 +28,9 @@ namespace PoshPredictiveText.Test.Helpers
                     conda = condaRoot + @"\Scripts\conda.exe";
                 }
             }
+            // Get a configured shell.
             using var powershell = PowerShellMock.GetConfiguredShell();
-            // Cannot guarantee running on windows or the location of conda or whether it is on the path.
+            // Initialise conda in the powershell environment.
             powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
             var profile = powershell.Invoke();
             Assert.False(powershell.HadErrors, $"Unable to configure PowerShell with conda.Appveyor({isAppveyor}), Conda executable: {conda}. Check path for Miniconda in specification for build.");

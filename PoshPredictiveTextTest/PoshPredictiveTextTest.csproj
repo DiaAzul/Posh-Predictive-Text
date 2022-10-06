@@ -11,6 +11,8 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
     <Configurations>Debug;Release</Configurations>
+
+    <RunSettingsFilePath>D:\workspace\csharp\Posh-Predictive-Text\PoshPredictiveTextTest\bin\Debug\net6.0\fine-code-coverage\coverage-tool-output\PoshPredictiveTextTest-fcc-mscodecoverage-generated.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
 

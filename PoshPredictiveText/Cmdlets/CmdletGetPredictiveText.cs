@@ -59,16 +59,16 @@ namespace PoshPredictiveText
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
                 // which options are avaialble for the next parameter.
                 List<Suggestion> suggestions = new();
-                using (CachedTokeniser cachedTokeniser = new())
+                using (TokeniserCache cachedTokeniser = new())
                 {
                     if (cachedTokeniser.Acquired)
                     {
                         LOGGER.Write("Cmdlet acquired cached tokeniser.");
-                        Tokeniser? enteredTokens = CachedTokeniser.Get(guid);
+                        Tokeniser? enteredTokens = TokeniserCache.Get(guid);
                         if (enteredTokens is null)
                         {
                             LOGGER.Write("Creating tokeniser from cmdlet CommandAst");
-                            CommandAstVisitor visitor = new();
+                            Visitor visitor = new();
                             CommandAst.Visit(visitor);
                             enteredTokens = visitor.Tokeniser;
                         }
