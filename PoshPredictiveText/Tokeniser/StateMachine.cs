@@ -5,7 +5,7 @@ namespace PoshPredictiveText
     using System.Management.Automation.Language;
 
     /// <summary>
-    /// The state machine evaluates tokens and adds
+    /// The state machine evaluates tokenised command line input and adds
     /// semantic information.
     /// </summary>
     internal class StateMachine
@@ -66,7 +66,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// StateMachine adds semantic information to command line tokens. 
         /// 
-        /// This constructor allows the initial state to be defined.
+        /// This constructor allows the initial state to be defined during testing.
         /// </summary>
         /// <param name="state">State of the machine</param>
         /// <param name="syntaxTreeName">Name of syntax tree</param>
@@ -119,6 +119,8 @@ namespace PoshPredictiveText
 
         // ******** STATE MACHINE ********
         /// <summary>
+        /// Main entry point to the state machine.
+        /// 
         /// Routing function passing token to evaluation method
         /// dependent upon the state of the state machine.
         /// </summary>
@@ -155,7 +157,7 @@ namespace PoshPredictiveText
                 };
 
                 // Cache the result if the argument is complete.
-                if (!doNotCache && returnTokens.Count > 0 && returnTokens[0].Complete)
+                if (!doNotCache && returnTokens.Count > 0 && returnTokens[0].IsComplete)
                 {
                     switch (returnTokens[0].SemanticType)
                     {
@@ -197,7 +199,7 @@ namespace PoshPredictiveText
                 parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
                 commandPath = new(SyntaxTreeName!);
                 token.SemanticType = Token.TokenType.Command;
-                token.Complete = true;
+                token.IsComplete = true;
                 state = State.Item;
             }
             else
@@ -275,7 +277,7 @@ namespace PoshPredictiveText
                 case 0:
                     // If we don't identify a valid parameter then just return the token.
                     // User may have mis-spelled parameter name.
-                    token.Complete = false;
+                    token.IsComplete = false;
                     state = State.Item;
                     break;
                 case 1:
@@ -295,19 +297,19 @@ namespace PoshPredictiveText
                             parameterSyntaxItem = null;
                             state = State.Item;
                         }
-                        token.Complete = true;
+                        token.IsComplete = true;
                     }
                     else // Partial completion
                     {
                         token.SuggestedSyntaxItems = suggestedParameters;
-                        token.Complete = false;
+                        token.IsComplete = false;
                         state = State.Item;
                     }
                     
                     break;
                 default:
                     token.SuggestedSyntaxItems = suggestedParameters;
-                    token.Complete = false;
+                    token.IsComplete = false;
                     state = State.Item;
                     break;
             }
@@ -337,7 +339,7 @@ namespace PoshPredictiveText
                 LowerExtent = token.LowerExtent,
                 UpperExtent = token.LowerExtent + redirectSymbol.Length - 1,
                 SemanticType = Token.TokenType.Redirection,
-                Complete = true,
+                IsComplete = true,
             };
 
             parameterValues = 1;
@@ -373,7 +375,7 @@ namespace PoshPredictiveText
                 // When there is one suggestion and it is an exact match.
                 case 1 when enteredValue == suggestedCommands.First().Argument:
                     commandPath.Add(enteredValue);
-                    token.Complete = true;
+                    token.IsComplete = true;
                     token.SemanticType = Token.TokenType.Command;
                     state = State.Item;
                     resultTokens = new() { token };
@@ -381,7 +383,7 @@ namespace PoshPredictiveText
                 // Otherwise add suggestions to response.
                 default:
                     token.SuggestedSyntaxItems = suggestedCommands;
-                    token.Complete = false;
+                    token.IsComplete = false;
                     state = State.Item;
                     resultTokens = new() { token };
                     break;
@@ -428,7 +430,7 @@ namespace PoshPredictiveText
                 state = State.Value;
             }
 
-            token.Complete = true;
+            token.IsComplete = true;
             return new List<Token> { token };
         }
     }

@@ -2,6 +2,7 @@
 
 namespace PoshPredictiveText.StateMachine.Test
 {
+    using NuGet.Frameworks;
     using PoshPredictiveText;
     using PoshPredictiveText.Test;
     using Xunit;
@@ -12,6 +13,120 @@ namespace PoshPredictiveText.StateMachine.Test
     /// </summary>
     public class StateMachineTests
     {
+        /// <summary>
+        /// Add a single command to the syntax tree.
+        /// </summary>
+        [Fact]
+        public void AddCommand()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = commandToAdd.Length,
+                SemanticType = Token.TokenType.StringConstant,
+            };
+
+            // Act
+            stateMachine.Evaluate(commandToken);
+
+            // Assert
+            Assert.Equal(1, stateMachine.CommandPath.Count);
+            Assert.Equal("conda", stateMachine.CommandPath.ToString());
+            Assert.Equal("conda", stateMachine.SyntaxTreeName);
+            Assert.NotNull(stateMachine.SyntaxTree);
+        }
+
+        /// <summary>
+        /// Add a single command to the syntax tree.
+        /// </summary>
+        [Fact]
+        public void AddTwoCommands()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = commandToAdd.Length,
+                SemanticType = Token.TokenType.StringConstant,
+            };
+            string secondCommandToAdd = "env";
+            Token secondCommandToken = new()
+            {
+                Value = secondCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = commandToAdd.Length + 1,
+                UpperExtent = commandToAdd.Length + 1 + secondCommandToAdd.Length,
+                SemanticType = Token.TokenType.StringConstant,
+            };
+
+            // Act
+            stateMachine.Evaluate(commandToken);
+            stateMachine.Evaluate(secondCommandToken);
+
+            // Assert
+            Assert.Equal(2, stateMachine.CommandPath.Count);
+            Assert.Equal("conda.env", stateMachine.CommandPath.ToString());
+            Assert.Equal("conda", stateMachine.SyntaxTreeName);
+            Assert.NotNull(stateMachine.SyntaxTree);
+        }
+
+        /// <summary>
+        /// Add a single command to the syntax tree.
+        /// </summary>
+        [Fact]
+        public void AddPartialCommand()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = commandToAdd.Length,
+                SemanticType = Token.TokenType.StringConstant,
+            };
+            string secondCommandToAdd = "i";
+            Token secondCommandToken = new()
+            {
+                Value = secondCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = commandToAdd.Length + 1,
+                UpperExtent = commandToAdd.Length + 1 + secondCommandToAdd.Length,
+                SemanticType = Token.TokenType.StringConstant,
+            };
+
+            // Act
+            var result1 = stateMachine.Evaluate(commandToken);
+            var result2 = stateMachine.Evaluate(secondCommandToken);
+
+            // Assert
+            Assert.Single(result1);
+            Assert.True(result1.First().IsComplete);
+            Assert.True(result1.First().IsCommand);
+            Assert.Equal(1, stateMachine.CommandPath.Count);
+            Assert.Equal("conda", stateMachine.CommandPath.ToString());
+            Assert.Equal("conda", stateMachine.SyntaxTreeName);
+            Assert.NotNull(stateMachine.SyntaxTree);
+
+            Assert.Single(result2);
+            Assert.False(result2.First().IsComplete);
+            var syntaxItems = result2.First().SuggestedSyntaxItems;
+            Assert.NotNull(syntaxItems);
+            Assert.Equal(3, syntaxItems.Count);
+        }
+
+
         /// <summary>
         /// Test resolution of parameter tokens.
         /// </summary>

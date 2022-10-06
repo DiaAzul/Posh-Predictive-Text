@@ -50,12 +50,12 @@ namespace PoshPredictiveText.Test
         /// </returns>
         public static PowerShell GetConfiguredShell()
         {
-            var InititalSessionState = ISS();
-            RunspacePool pool = RunspaceFactory.CreateRunspacePool(InititalSessionState);
-            pool.Open();
+            InitialSessionState inititalSessionState = ISS();
+            //RunspacePool pool = RunspaceFactory.CreateRunspacePool(inititalSessionState);
+            //pool.Open();
 
-            var testShellInstance = PowerShell.Create();
-            testShellInstance.RunspacePool = pool;
+            var testShellInstance = PowerShell.Create(inititalSessionState);
+            //testShellInstance.RunspacePool = pool;
 
             return testShellInstance;
         }
@@ -67,8 +67,8 @@ namespace PoshPredictiveText.Test
         public static CommandAst CreateCommandAst(string promptText)
         {
             // Generate a script block abstract syntax tree from the provided prompt text.
-            Token[] tokens = new Token[0];
-            ParseError[] errors = new ParseError[0];
+            Token[] tokens = Array.Empty<Token>();
+            ParseError[] errors = Array.Empty<ParseError>();
             ScriptBlockAst scriptBlock = Parser.ParseInput(promptText, out tokens, out errors);
             Assert.Empty(errors);
 

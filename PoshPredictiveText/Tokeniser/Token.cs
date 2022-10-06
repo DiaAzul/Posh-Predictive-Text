@@ -34,7 +34,7 @@
         // Semantic type of the token.
         internal TokenType? SemanticType { get; set; } = null;
         // True if the token is recognised.
-        internal bool Complete { get; set; } = false;
+        internal bool IsComplete { get; set; } = false;
         // Parameter Value name (matches syntax tree helper).
         internal string? ParameterValueName { get; set; } = null;
         // Maximum number of parameter values for a parameter.
