@@ -45,7 +45,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Command path at this point in the evaluation.
         /// </summary>
-        private string commandPath = string.Empty;
+        private CommandPath commandPath = new();
 
         /// <summary>
         /// Number of parameter values still to be entered.
@@ -86,7 +86,7 @@ namespace PoshPredictiveText
         /// <param name="syntaxTree">Syntax tree</param>
         /// <param name="parseMode">Parse mode (Windows, Posix, Python)</param>
         /// <param name="commandPath">Command Path</param>
-        internal StateMachine(State state, string? syntaxTreeName, SyntaxTree? syntaxTree, ParseMode parseMode, string commandPath)
+        internal StateMachine(State state, string? syntaxTreeName, SyntaxTree? syntaxTree, ParseMode parseMode, CommandPath commandPath)
         {
             this.state=state;
             this.syntaxTreeName=syntaxTreeName;
@@ -109,6 +109,14 @@ namespace PoshPredictiveText
         internal SyntaxTree? SyntaxTree
         {
             get { return syntaxTree; }
+        }
+
+        /// <summary>
+        /// Command Path for command tokens entered on the command line.
+        /// </summary>
+        internal CommandPath CommandPath
+        {
+            get { return commandPath; }
         }
 
         /// <summary>
@@ -258,7 +266,7 @@ namespace PoshPredictiveText
 
             string enteredParameter = token.Value.ToLower();
 
-            List<SyntaxItem> parameters = syntaxTree!.ParametersAndOptions(commandPath);
+            List<SyntaxItem> parameters = syntaxTree!.ParametersAndOptions(commandPath.ToString());
 
             List<SyntaxItem> suggestedParameters = parameters
                 .Where(syntaxItem => (syntaxItem.Argument?.StartsWith(enteredParameter) ?? false) ||
@@ -351,7 +359,7 @@ namespace PoshPredictiveText
         internal List<Token> EvaluateStringConstant(Token token)
         {
             string enteredValue = token.Value.ToLower();
-            List<SyntaxItem> subCommands = syntaxTree!.SubCommands(commandPath);
+            List<SyntaxItem> subCommands = syntaxTree!.SubCommands(commandPath.ToString());
 
             List<SyntaxItem> suggestedCommands = subCommands
                 .Where(syntaxItem => syntaxItem.Argument?.StartsWith(enteredValue) ?? false)
@@ -366,8 +374,9 @@ namespace PoshPredictiveText
                     token.SemanticType = Token.TokenType.PositionalValue;
                     resultTokens = EvaluateValue(token);
                     break;
-                case 1:
-                    commandPath += (commandPath == string.Empty ? "" : ".") + enteredValue;
+                // When there is one suggestion and it is an exact match.
+                case 1 when enteredValue == suggestedCommands.First().Argument:
+                    commandPath.Add(enteredValue);
                     token.Complete = true;
                     token.SemanticType = Token.TokenType.Command;
                     state = State.Item;
