@@ -2,7 +2,6 @@
 
 namespace PoshPredictiveText.StateMachine.Test
 {
-    using NuGet.Frameworks;
     using PoshPredictiveText;
     using PoshPredictiveText.Test;
     using Xunit;
@@ -28,7 +27,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
                 LowerExtent = 1,
                 UpperExtent = commandToAdd.Length,
-                SemanticType = Token.TokenType.StringConstant,
+                SemanticType = TokenType.StringConstant,
             };
 
             // Act
@@ -42,7 +41,9 @@ namespace PoshPredictiveText.StateMachine.Test
         }
 
         /// <summary>
-        /// Add a single command to the syntax tree.
+        /// Add a second command to the syntax tree.
+        /// 
+        /// Test that the second command is recognised as a command.
         /// </summary>
         [Fact]
         public void AddTwoCommands()
@@ -56,7 +57,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
                 LowerExtent = 1,
                 UpperExtent = commandToAdd.Length,
-                SemanticType = Token.TokenType.StringConstant,
+                SemanticType = TokenType.StringConstant,
             };
             string secondCommandToAdd = "env";
             Token secondCommandToken = new()
@@ -65,7 +66,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
                 LowerExtent = commandToAdd.Length + 1,
                 UpperExtent = commandToAdd.Length + 1 + secondCommandToAdd.Length,
-                SemanticType = Token.TokenType.StringConstant,
+                SemanticType = TokenType.StringConstant,
             };
 
             // Act
@@ -80,7 +81,9 @@ namespace PoshPredictiveText.StateMachine.Test
         }
 
         /// <summary>
-        /// Add a single command to the syntax tree.
+        /// Add a second partial command to the syntax tree.
+        /// 
+        /// Test for suggestions.
         /// </summary>
         [Fact]
         public void AddPartialCommand()
@@ -94,7 +97,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
                 LowerExtent = 1,
                 UpperExtent = commandToAdd.Length,
-                SemanticType = Token.TokenType.StringConstant,
+                SemanticType = TokenType.StringConstant,
             };
             string secondCommandToAdd = "i";
             Token secondCommandToken = new()
@@ -103,7 +106,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
                 LowerExtent = commandToAdd.Length + 1,
                 UpperExtent = commandToAdd.Length + 1 + secondCommandToAdd.Length,
-                SemanticType = Token.TokenType.StringConstant,
+                SemanticType = TokenType.StringConstant,
             };
 
             // Act
@@ -149,7 +152,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
                 LowerExtent = 1,
                 UpperExtent = 6,
-                SemanticType = Token.TokenType.Parameter,
+                SemanticType = TokenType.Parameter,
             };
             // Act
             List<Token> result = stateMachine.EvaluateParameter(token);
