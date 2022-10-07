@@ -1,4 +1,6 @@
 ﻿
+using static PoshPredictiveText.LOGGER;
+
 namespace PoshPredictiveText
 {
     /// <summary>
@@ -135,6 +137,20 @@ namespace PoshPredictiveText
                     catch (IOException) { }
                 }
             }
+        }
+
+        internal static void DeleteLogFile()
+        {
+            if (File.Exists(logFile))
+            {
+                try
+                {
+                    File.Delete(logFile);
+                }
+                catch { }
+            }
+            logFile = null;
+            logLevel = LOGLEVEL.ERROR;
         }
     }
 }

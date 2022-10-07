@@ -24,10 +24,7 @@
         /// </summary>
         public void Dispose()
         {
-            if (File.Exists(tempLoggingFile))
-            {
-                File.Delete(tempLoggingFile);
-            }
+            LOGGER.DeleteLogFile();
             GC.SuppressFinalize(this);
         }
 
