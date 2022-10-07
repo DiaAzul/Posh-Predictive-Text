@@ -32,7 +32,11 @@ namespace PoshPredictiveText.Cmdlet.Test
         {
             if (File.Exists(tempLoggingFile))
             {
-                File.Delete(tempLoggingFile);
+                try
+                {
+                    File.Delete(tempLoggingFile);
+                }
+                catch { }
             }
             GC.SuppressFinalize(this);
         }
