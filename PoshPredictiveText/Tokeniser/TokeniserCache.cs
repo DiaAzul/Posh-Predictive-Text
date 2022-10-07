@@ -54,15 +54,15 @@ namespace PoshPredictiveText
         internal static Tokeniser? Get(Guid guid)
         {
             _ = tokenisers.TryGetValue(guid, out var tokeniser);
-             return tokeniser;
+            return tokeniser;
         }
 
         /// <summary>
         /// Clear the cache of all entries.
         /// </summary>
-        internal static void Clear()
+        internal static void Remove(Guid guid)
         {
-            tokenisers.Clear();
+            if (tokenisers.ContainsKey(guid)) tokenisers.Remove(guid);
         }
 
         /// <summary>

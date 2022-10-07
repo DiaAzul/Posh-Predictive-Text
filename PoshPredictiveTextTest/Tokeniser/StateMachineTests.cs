@@ -14,6 +14,10 @@ namespace PoshPredictiveText.StateMachine.Test
     {
         /// <summary>
         /// Add a single command to the syntax tree.
+        /// 
+        /// => Added semantic information.
+        /// => IsComplete, IsCommand.
+        /// => Added syntaxTreeName and syntaxTree.
         /// </summary>
         [Fact]
         public void AddCommand()
@@ -31,19 +35,62 @@ namespace PoshPredictiveText.StateMachine.Test
             };
 
             // Act
-            stateMachine.Evaluate(commandToken);
+            var result = stateMachine.Evaluate(commandToken);
 
             // Assert
+            Assert.Single(result);
+            Assert.True(result.First().IsComplete);
+            Assert.True(result.First().IsCommand);
             Assert.Equal(1, stateMachine.CommandPath.Count);
             Assert.Equal("conda", stateMachine.CommandPath.ToString());
             Assert.Equal("conda", stateMachine.SyntaxTreeName);
             Assert.NotNull(stateMachine.SyntaxTree);
+            Assert.Equal(StateMachine.State.Item, stateMachine.CurrentState);
+        }
+
+        /// <summary>
+        /// Add a partial base command to the syntax tree.
+        /// 
+        /// Test result => Suggested base command.
+        /// </summary>
+        [Fact]
+        public void AddPartialBaseCommand()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "con";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = commandToAdd.Length,
+                SemanticType = TokenType.StringConstant,
+            };
+
+            // Act
+            var result = stateMachine.Evaluate(commandToken);
+
+            // Assert
+            Assert.Single(result);
+            Assert.False(result.First().IsComplete);
+            Assert.False(result.First().IsCommand);
+            var suggestedItems = result.First().SuggestedSyntaxItems;
+            Assert.NotNull(suggestedItems);
+            Assert.Single(suggestedItems);
+            Assert.Equal("conda", suggestedItems.First().Command);
+            Assert.Equal(0, stateMachine.CommandPath.Count);
+            Assert.Equal("", stateMachine.CommandPath.ToString());
+            Assert.Null(stateMachine.SyntaxTreeName);
+            Assert.Null(stateMachine.SyntaxTree);
+            Assert.Equal(StateMachine.State.NoCommand, stateMachine.CurrentState);
         }
 
         /// <summary>
         /// Add a second command to the syntax tree.
         /// 
         /// Test that the second command is recognised as a command.
+        /// 
         /// </summary>
         [Fact]
         public void AddTwoCommands()
@@ -70,10 +117,16 @@ namespace PoshPredictiveText.StateMachine.Test
             };
 
             // Act
-            stateMachine.Evaluate(commandToken);
-            stateMachine.Evaluate(secondCommandToken);
+            var result1 = stateMachine.Evaluate(commandToken);
+            var result2 = stateMachine.Evaluate(secondCommandToken);
 
             // Assert
+            Assert.Single(result1);
+            Assert.True(result1.First().IsComplete);
+            Assert.True(result1.First().IsCommand);
+            Assert.Single(result2);
+            Assert.True(result2.First().IsComplete);
+            Assert.True(result2.First().IsCommand);
             Assert.Equal(2, stateMachine.CommandPath.Count);
             Assert.Equal("conda.env", stateMachine.CommandPath.ToString());
             Assert.Equal("conda", stateMachine.SyntaxTreeName);
@@ -129,6 +182,128 @@ namespace PoshPredictiveText.StateMachine.Test
             Assert.Equal(3, syntaxItems.Count);
         }
 
+
+        /// <summary>
+        /// Test that a option parameter is identified
+        /// and doesn't expect a value after.
+        /// 
+        /// Test string => conda --help
+        /// 
+        /// Expect:
+        /// CurrentState => Item after --help
+        /// 
+        /// </summary>
+        [Fact]
+        public void AddParameterOption()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = 5,
+                SemanticType = TokenType.StringConstant,
+            };
+            string thirdCommandToAdd = "--help";
+            Token thirdCommandToken = new()
+            {
+                Value = thirdCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
+                LowerExtent = 14,
+                UpperExtent = 19,
+                SemanticType = TokenType.Parameter,
+            };
+
+            // Act
+            var result1 = stateMachine.Evaluate(commandToken);
+            var result3 = stateMachine.Evaluate(thirdCommandToken);
+            var stateAfterParameter = stateMachine.CurrentState;
+
+            // Assert
+            Assert.Single(result3);
+            Assert.True(result3.First().IsParameter);
+            Assert.True(result3.First().IsComplete);
+            Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
+            Assert.Equal(StateMachine.State.Item, stateAfterParameter);
+        }
+
+        /// <summary>
+        /// Test that a parameter expects a value and then
+        /// expects more parameters after the parameter value
+        /// entered.
+        /// 
+        /// Test string => conda create --name pyEnv
+        /// 
+        /// Expect:
+        /// CurrentState => Value after --name
+        /// CurrentState => Item after pyEnv
+        /// 
+        /// </summary>
+        [Fact]
+        public void AddParameterExpecingValue()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = 5,
+                SemanticType = TokenType.StringConstant,
+            };
+            string secondCommandToAdd = "create";
+            Token secondCommandToken = new()
+            {
+                Value = secondCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 7,
+                UpperExtent = 12,
+                SemanticType = TokenType.StringConstant,
+            };
+            string thirdCommandToAdd = "--name";
+            Token thirdCommandToken = new()
+            {
+                Value = thirdCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
+                LowerExtent = 14,
+                UpperExtent = 19,
+                SemanticType = TokenType.Parameter,
+            };
+            string fourthCommandToAdd = "pyEnv";
+            Token fourthCommandToken = new()
+            {
+                Value = fourthCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 21,
+                UpperExtent = 25,
+                SemanticType = TokenType.StringConstant,
+            };
+
+            // Act
+            var result1 = stateMachine.Evaluate(commandToken);
+            var result2 = stateMachine.Evaluate(secondCommandToken);
+            var result3 = stateMachine.Evaluate(thirdCommandToken);
+            var stateAfterParameter = stateMachine.CurrentState;
+            var result4 = stateMachine.Evaluate(fourthCommandToken);
+            var stateAfterParameterValue = stateMachine.CurrentState;
+
+            // Assert
+            Assert.Single(result3);
+            Assert.True(result3.First().IsParameter);
+            Assert.True(result3.First().IsComplete);
+            Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
+            Assert.Equal(StateMachine.State.Value, stateAfterParameter);
+            Assert.Single(result4);
+            Assert.True(result4.First().IsComplete);
+            Assert.Equal(TokenType.ParameterValue, result4.First().SemanticType);
+            Assert.Equal("ENVIRONMENT", result4.First().ParameterValueName);
+            Assert.Equal(StateMachine.State.Item, stateAfterParameterValue);
+        }
 
         /// <summary>
         /// Test resolution of parameter tokens.

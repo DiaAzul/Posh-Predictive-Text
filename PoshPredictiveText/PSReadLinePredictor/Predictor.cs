@@ -162,11 +162,11 @@ namespace PoshPredictiveText
         public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success)
         {
             // Reset the cache once the command is executed.
-            StateMachineStateCache.Reset();
+            StateMachineItemCache.Reset();
             using TokeniserCache cachedTokeniser = new();
             if (cachedTokeniser.Acquired)
             {
-                TokeniserCache.Clear();
+                TokeniserCache.Remove(_guid);
             }
         }
 

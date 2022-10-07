@@ -2,7 +2,6 @@
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
-    using System.Text;
     /// <summary>
     /// The tokeniser provides semantic analysis of the text
     /// entered on the command line. The meaning of text is
@@ -198,40 +197,9 @@ namespace PoshPredictiveText
         }
 
         /// <summary>
-        /// Returns the command path given a list of unique commands.
-        /// 
-        /// Command line tools often have sub-commands which are tokens entered after the
-        /// main command. To identify options specific to each command/sub-command a
-        /// command path is generated based upon unique commands known to the parser and
-        /// command tokens entered at the command line. The command path is a dot notation
-        /// identifier for each command/sub-command combination.
+        /// Returns the commandPath for commands
+        /// entered on the command line.
         /// </summary>
-        /// <param name="uniqueCommands">List of unique commands/sub-commands.</param>
-        /// <returns>Dot notation path identifying the command/sub-command.</returns>
-        //internal (string, int) CommandPath(List<string> uniqueCommands)
-        //{
-
-        //    StringBuilder commandPath = new(capacity: 64);
-        //    int tokensInCommand = 0;
-        //    string delimeter = "";
-        //    foreach (var (position, commandToken) in this.tokens)
-        //    {
-        //        string tokenText = commandToken.Value.ToLower();
-        //        if (uniqueCommands.Contains(tokenText))
-        //        {
-        //            commandPath.Append(delimeter);
-        //            commandPath.Append(tokenText);
-        //            delimeter = ".";
-        //            tokensInCommand++;
-        //        }
-        //        else
-        //        {
-        //            break;
-        //        }
-        //    }
-        //    return (commandPath.ToString() ?? "", tokensInCommand);
-        //}
-
         internal CommandPath CommandPath
         {
             get { return stateMachine.CommandPath; }

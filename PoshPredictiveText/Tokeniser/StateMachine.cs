@@ -107,6 +107,14 @@ namespace PoshPredictiveText
         }
 
         /// <summary>
+        /// Current state of the state machine.
+        /// </summary>
+        internal State CurrentState
+        {
+            get { return state; }
+        }
+
+        /// <summary>
         /// Reset the state machine to the initial state.
         /// </summary>
         internal void Reset()
@@ -114,7 +122,7 @@ namespace PoshPredictiveText
             state = State.NoCommand;
             syntaxTreeName = null;
             syntaxTree = null;
-            StateMachineStateCache.Reset();
+            StateMachineItemCache.Reset();
         }
 
         // ******** STATE MACHINE ********
@@ -133,7 +141,7 @@ namespace PoshPredictiveText
 
             string cacheKey = commandPath + "+" + token.Value;
             bool doNotCache = syntaxTree is null;
-            StateMachineState? stateMachineState = StateMachineStateCache.Get(cacheKey);
+            StateMachineState? stateMachineState = StateMachineItemCache.Get(cacheKey);
 
             // If we have already processed and cached this argument use the cached version.
             if (stateMachineState is not null)
@@ -175,7 +183,7 @@ namespace PoshPredictiveText
                                 ReturnTokens = returnTokens
                             };
 
-                            StateMachineStateCache.Add(cacheKey, newCacheItem);
+                            StateMachineItemCache.Add(cacheKey, newCacheItem);
                             break;
                     }
                 }

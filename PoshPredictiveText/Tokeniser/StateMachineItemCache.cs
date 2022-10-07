@@ -2,6 +2,7 @@
 namespace PoshPredictiveText
 {
     using System.Collections.Concurrent;
+
     /// <summary>
     /// A simple cache to store processed items between scans of the command line.
     /// 
@@ -12,12 +13,14 @@ namespace PoshPredictiveText
     /// The cache is reset once the command line is exectuted so that cached items do
     /// not influence subsequent command lines entries.
     /// </summary>
-    internal static class StateMachineStateCache
+    internal static class StateMachineItemCache
     {
         /// <summary>
         /// Dictionary of cached entries.
         /// </summary>
         private static readonly ConcurrentDictionary<string, StateMachineState> cache = new();
+
+        private static readonly Mutex available = new();
 
         /// <summary>
         /// Add an item to the cache.
@@ -26,8 +29,12 @@ namespace PoshPredictiveText
         /// <param name="stateMachineState">Cached item.</param>
         internal static void Add(string key, StateMachineState stateMachineState)
         {
-            LOGGER.Write($"CACHE: Add key: {key}");
-            cache.TryAdd(key, stateMachineState);
+            if (available.WaitOne(30))
+            {
+                LOGGER.Write($"CACHE: Add key: {key}");
+                cache.TryAdd(key, stateMachineState);
+                available.ReleaseMutex();
+            }
         }
 
         /// <summary>
@@ -37,9 +44,15 @@ namespace PoshPredictiveText
         /// <returns>Cached item. Null if no cached item.</returns>
         internal static StateMachineState? Get(string key)
         {
-            cache.TryGetValue(key, out StateMachineState? stateMachineState);
-            if (stateMachineState is not null){
-                LOGGER.Write($"CACHE: Fetching key: {key}");
+            StateMachineState? stateMachineState = null;
+            if (available.WaitOne(30))
+            {
+                cache.TryGetValue(key, out stateMachineState);
+                if (stateMachineState is not null)
+                {
+                    LOGGER.Write($"CACHE: Fetching key: {key}");
+                }
+                available.ReleaseMutex();
             }
             return stateMachineState;
         }
