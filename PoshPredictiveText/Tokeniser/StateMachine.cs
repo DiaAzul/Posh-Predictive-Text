@@ -57,7 +57,6 @@ namespace PoshPredictiveText
         /// </summary>
         private SyntaxItem? parameterSyntaxItem = null;
 
-
         /// <summary>
         /// StateMachine adds semantic information to command line tokens.
         /// </summary>
@@ -144,11 +143,11 @@ namespace PoshPredictiveText
             StateMachineState? stateMachineState = StateMachineItemCache.Get(cacheKey);
 
             // If we have already processed and cached this argument use the cached version.
-            if (stateMachineState is not null) // && cacheKey != "conda+env")
+            if (stateMachineState is not null)
             {
-                // throw new Exception("Bingo");
                 state = stateMachineState.State;
-                commandPath = stateMachineState.CommandPath;
+                // Clone CommandPath as the contained list is not immutable.
+                commandPath = new(stateMachineState.CommandPath); 
                 parameterValues = stateMachineState.ParameterValues;
                 parameterSyntaxItem = stateMachineState.ParameterSyntaxItem;
                 returnTokens = stateMachineState.ReturnTokens;
@@ -178,7 +177,7 @@ namespace PoshPredictiveText
                             StateMachineState newCacheItem = new()
                             {
                                 State = state,
-                                CommandPath = new(commandPath),
+                                CommandPath = commandPath,
                                 ParameterValues = parameterValues,
                                 ParameterSyntaxItem = parameterSyntaxItem,
                                 ReturnTokens = returnTokens

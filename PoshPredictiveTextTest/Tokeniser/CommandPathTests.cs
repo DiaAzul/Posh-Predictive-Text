@@ -50,12 +50,14 @@ namespace PoshPredictiveText.Test
             // Act
             CommandPath commandPath = new(command1);
             commandPath.Add(command2);
-            commandPath.Add(command3);
             CommandPath commandPath2 = new(commandPath);
+            commandPath.Add(command3);
 
             // Assert
-            Assert.Equal(3, commandPath2.Count);
-            Assert.Equal(result, commandPath2.ToString());
+            Assert.Equal("conda.env", commandPath2.ToString());
+            Assert.Equal(2, commandPath2.Count);
+            Assert.Equal(result, commandPath.ToString());
+            Assert.Equal(3, commandPath.Count);
         }
     }
 }

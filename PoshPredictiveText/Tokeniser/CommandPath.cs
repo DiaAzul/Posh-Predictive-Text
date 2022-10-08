@@ -6,12 +6,15 @@ namespace PoshPredictiveText
     /// </summary>
     internal class CommandPath
     {
-        private readonly List<string> commands = new();
+        internal readonly List<string> commands;
 
         /// <summary>
         /// Initialise an empty command path.
         /// </summary>
-        internal CommandPath() { }
+        internal CommandPath() 
+        {
+            commands = new List<string>();
+        }
 
         /// <summary>
         /// Initialise a command path and add the first command.
@@ -19,12 +22,15 @@ namespace PoshPredictiveText
         /// <param name="command"></param>
         internal CommandPath(string command)
         {
-            commands.Add(command.ToLower());
+            commands = new List<string>
+            {
+                command.ToLower()
+            };
         }
 
-        internal CommandPath(CommandPath cp)
+        internal CommandPath(CommandPath commandPath)
         {
-            commands = new List<string>(cp.commands);
+            commands = new List<string>(commandPath.commands);
         }
 
         /// <summary>
