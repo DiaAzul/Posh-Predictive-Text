@@ -34,5 +34,28 @@ namespace PoshPredictiveText.Test
             Assert.Equal(3, commandPath.Count);
             Assert.Equal(result, commandPath.ToString());
         }
+
+        /// <summary>
+        /// Test ability to clone command path.
+        /// </summary>
+        [Fact]
+        public void CloneCommandPathTest()
+        {
+            // Arrange
+            string command1 = "conda";
+            string command2 = "env";
+            string command3 = "list";
+            string result = command1 + "." + command2 + "." + command3;
+
+            // Act
+            CommandPath commandPath = new(command1);
+            commandPath.Add(command2);
+            commandPath.Add(command3);
+            CommandPath commandPath2 = new(commandPath);
+
+            // Assert
+            Assert.Equal(3, commandPath2.Count);
+            Assert.Equal(result, commandPath2.ToString());
+        }
     }
 }

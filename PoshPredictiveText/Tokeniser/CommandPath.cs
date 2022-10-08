@@ -22,6 +22,11 @@ namespace PoshPredictiveText
             commands.Add(command.ToLower());
         }
 
+        internal CommandPath(CommandPath cp)
+        {
+            commands = new List<string>(cp.commands);
+        }
+
         /// <summary>
         /// Add a command to the command path.
         /// </summary>
@@ -34,7 +39,7 @@ namespace PoshPredictiveText
         /// <summary>
         /// Return the number of commands in the command path.
         /// </summary>
-        internal int Count { get { return commands.Count; } }
+        internal int Count => commands.Count;
 
         /// <summary>
         /// Return a string representation of the command path.

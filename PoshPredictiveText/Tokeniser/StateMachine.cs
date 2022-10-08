@@ -144,8 +144,9 @@ namespace PoshPredictiveText
             StateMachineState? stateMachineState = StateMachineItemCache.Get(cacheKey);
 
             // If we have already processed and cached this argument use the cached version.
-            if (stateMachineState is not null)
+            if (stateMachineState is not null) // && cacheKey != "conda+env")
             {
+                // throw new Exception("Bingo");
                 state = stateMachineState.State;
                 commandPath = stateMachineState.CommandPath;
                 parameterValues = stateMachineState.ParameterValues;
@@ -165,9 +166,9 @@ namespace PoshPredictiveText
                 };
 
                 // Cache the result if the argument is complete.
-                if (!doNotCache && returnTokens.Count > 0 && returnTokens[0].IsComplete)
+                if (!doNotCache && returnTokens.Count > 0 && returnTokens.First().IsComplete)
                 {
-                    switch (returnTokens[0].SemanticType)
+                    switch (returnTokens.First().SemanticType)
                     {
                         // Do not cache parameter and positional values.
                         case Token.TokenType.ParameterValue:
@@ -177,7 +178,7 @@ namespace PoshPredictiveText
                             StateMachineState newCacheItem = new()
                             {
                                 State = state,
-                                CommandPath = commandPath,
+                                CommandPath = new(commandPath),
                                 ParameterValues = parameterValues,
                                 ParameterSyntaxItem = parameterSyntaxItem,
                                 ReturnTokens = returnTokens

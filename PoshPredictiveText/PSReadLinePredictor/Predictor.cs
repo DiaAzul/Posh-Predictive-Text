@@ -81,7 +81,7 @@ namespace PoshPredictiveText
                     Visitor visitor = new();
                     context.InputAst.Visit(visitor);
                     Tokeniser enteredTokens = visitor.Tokeniser;
-                    TokeniserCache.Stash(visitor.Tokeniser, _guid);
+                    TokeniserCache.Stash(visitor.Tokeniser, context.InputAst.ToString());
 
                     // If there is no base command, or the base command is not supported then return.
                     if (enteredTokens.BaseCommand is null) return default;
@@ -166,7 +166,7 @@ namespace PoshPredictiveText
             using TokeniserCache cachedTokeniser = new();
             if (cachedTokeniser.Acquired)
             {
-                TokeniserCache.Remove(_guid);
+                TokeniserCache.Clear();
             }
         }
 

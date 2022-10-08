@@ -16,8 +16,6 @@ namespace PoshPredictiveText
     [OutputType(typeof(CompletionResult))]
     public class GetPredictiveText : PSCmdlet
     {
-        private readonly Guid guid = new("55c982c1-00c3-4005-90fb-010d008fd3bd");
-
         /// <summary>
         /// Gets or sets the partial word provided before the user pressed Tab.
         /// </summary>
@@ -64,7 +62,7 @@ namespace PoshPredictiveText
                     if (cachedTokeniser.Acquired)
                     {
                         LOGGER.Write("Cmdlet acquired cached tokeniser.");
-                        Tokeniser? enteredTokens = TokeniserCache.Get(guid);
+                        Tokeniser? enteredTokens = TokeniserCache.Get(CommandAst.ToString());
                         if (enteredTokens is null)
                         {
                             LOGGER.Write("Creating tokeniser from cmdlet CommandAst");

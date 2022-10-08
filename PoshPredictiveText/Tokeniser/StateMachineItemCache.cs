@@ -19,7 +19,6 @@ namespace PoshPredictiveText
         /// Dictionary of cached entries.
         /// </summary>
         private static readonly ConcurrentDictionary<string, StateMachineState> cache = new();
-
         private static readonly Mutex available = new();
 
         /// <summary>
@@ -31,8 +30,8 @@ namespace PoshPredictiveText
         {
             if (available.WaitOne(30))
             {
-                LOGGER.Write($"CACHE: Add key: {key}");
-                cache.TryAdd(key, stateMachineState);
+                if (cache.TryAdd(key, stateMachineState))
+                    LOGGER.Write($"CACHE: Added key: {key}");
                 available.ReleaseMutex();
             }
         }
@@ -44,17 +43,14 @@ namespace PoshPredictiveText
         /// <returns>Cached item. Null if no cached item.</returns>
         internal static StateMachineState? Get(string key)
         {
-            StateMachineState? stateMachineState = null;
             if (available.WaitOne(30))
             {
-                cache.TryGetValue(key, out stateMachineState);
-                if (stateMachineState is not null)
-                {
-                    LOGGER.Write($"CACHE: Fetching key: {key}");
-                }
+                if (cache.TryGetValue(key, out var stateMachineState))
+                    LOGGER.Write($"CACHE: Got key: {key}");
                 available.ReleaseMutex();
+                return stateMachineState;
             }
-            return stateMachineState;
+            return null;
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿
-
 namespace PoshPredictiveText
 {
+    using System.Collections.Concurrent;
     /// <summary>
     /// Caches tokenisers to reduce the number of times that the command line
     /// needs parsing. Assumption is that the Predictor will perform have
@@ -16,7 +16,7 @@ namespace PoshPredictiveText
     /// </summary>
     internal class TokeniserCache : IDisposable
     {
-        private static readonly Dictionary<Guid, Tokeniser> tokenisers = new();
+        private static readonly ConcurrentDictionary<string, Tokeniser> tokenisers = new();
         private static readonly Mutex available = new();
 
         internal bool Acquired {get; set;} = false;
@@ -41,9 +41,9 @@ namespace PoshPredictiveText
         /// </summary>
         /// <param name="newTokeniser">Tokeniser to stash.</param>
         /// <param name="guid">Guid of the application stashing the tokeniser.</param>
-        internal static void Stash(Tokeniser newTokeniser, Guid guid)
+        internal static void Stash(Tokeniser tokeniser, string key)
         {
-            tokenisers[guid] = newTokeniser;
+            tokenisers[key] = tokeniser;
         }
 
         /// <summary>
@@ -51,18 +51,23 @@ namespace PoshPredictiveText
         /// </summary>
         /// <param name="guid">guid of tokeniser to get.</param>
         /// <returns>Tokeniser</returns>
-        internal static Tokeniser? Get(Guid guid)
+        internal static Tokeniser? Get(string key)
         {
-            _ = tokenisers.TryGetValue(guid, out var tokeniser);
+            _ = tokenisers.TryGetValue(key, out var tokeniser);
             return tokeniser;
         }
 
         /// <summary>
         /// Clear the cache of all entries.
         /// </summary>
-        internal static void Remove(Guid guid)
+        internal static void Remove(string key)
         {
-            if (tokenisers.ContainsKey(guid)) tokenisers.Remove(guid);
+            _ = tokenisers.TryRemove(key, out Tokeniser _);
+        }
+
+        internal static void Clear()
+        {
+            tokenisers.Clear();
         }
 
         /// <summary>

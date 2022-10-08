@@ -124,11 +124,13 @@ namespace PoshPredictiveText.StateMachine.Test
             Assert.Single(result1);
             Assert.True(result1.First().IsComplete);
             Assert.True(result1.First().IsCommand);
+            Assert.Equal("conda", result1.First().Value);
             Assert.Single(result2);
             Assert.True(result2.First().IsComplete);
             Assert.True(result2.First().IsCommand);
-            Assert.Equal(2, stateMachine.CommandPath.Count);
+            Assert.Equal("env", result2.First().Value);
             Assert.Equal("conda.env", stateMachine.CommandPath.ToString());
+            Assert.Equal(2, stateMachine.CommandPath.Count);
             Assert.Equal("conda", stateMachine.SyntaxTreeName);
             Assert.NotNull(stateMachine.SyntaxTree);
         }

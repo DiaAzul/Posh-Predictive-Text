@@ -56,7 +56,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
             {"conda",  new ConfigItem {
                 Definition = "CondaSyntaxTree.xml",
                 ToolTips = "CondaToolTips",
-                ParseMode = SyntaxTreeSpecs.ParseMode.Windows } },
+                ParseMode = SyntaxTreeSpecs.ParseMode.Posix } },
         };
 
         /// <summary>
