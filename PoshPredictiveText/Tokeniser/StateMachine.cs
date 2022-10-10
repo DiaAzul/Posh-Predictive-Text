@@ -146,7 +146,8 @@ namespace PoshPredictiveText
             if (stateMachineState is not null)
             {
                 state = stateMachineState.State;
-                // Clone CommandPath as the contained list is not immutable.
+                // Clone command path on way out of the cache to mitigate side-effects
+                // which arise when additional items are added to the mutable list.
                 commandPath = new(stateMachineState.CommandPath); 
                 parameterValues = stateMachineState.ParameterValues;
                 parameterSyntaxItem = stateMachineState.ParameterSyntaxItem;
@@ -177,7 +178,9 @@ namespace PoshPredictiveText
                             StateMachineState newCacheItem = new()
                             {
                                 State = state,
-                                CommandPath = commandPath,
+                                // Clone command path on way into the cache to mitigate side-effects
+                                // which arise when additional items are added to the mutable list.
+                                CommandPath = new(commandPath),
                                 ParameterValues = parameterValues,
                                 ParameterSyntaxItem = parameterSyntaxItem,
                                 ReturnTokens = returnTokens
