@@ -232,6 +232,65 @@ namespace PoshPredictiveText.StateMachine.Test
             Assert.Equal(StateMachine.State.Item, stateAfterParameter);
         }
 
+
+        /// <summary>
+        /// Test that a partial parameter is identified and that
+        /// appropriate suggestions are made.
+        /// 
+        /// Test string => conda --
+        /// 
+        /// Expect:
+        /// Two suggestions --help, --version
+        /// 
+        /// </summary>
+        [Fact]
+        public void AddPartialParameterOption()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            Token commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = 5,
+                SemanticType = TokenType.StringConstant,
+            };
+            string secondCommandToAdd = "--";
+            Token secondCommandToken = new()
+            {
+                Value = secondCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
+                LowerExtent = 14,
+                UpperExtent = 19,
+                SemanticType = TokenType.Parameter,
+            };
+
+            // Act
+            var result1 = stateMachine.Evaluate(commandToken);
+            var result2 = stateMachine.Evaluate(secondCommandToken);
+            var stateAfterParameter = stateMachine.CurrentState;
+
+            // Assert
+            Assert.Single(result2);
+            var firstItem = result2.First();
+            Assert.True(firstItem.IsParameter);
+            Assert.False(firstItem.IsComplete);
+            Assert.Equal(TokenType.Parameter, firstItem.SemanticType);
+            Assert.Equal(StateMachine.State.Item, stateAfterParameter);
+            Assert.NotNull(firstItem.SuggestedSyntaxItems);
+            List<SyntaxItem> syntaxItems = firstItem.SuggestedSyntaxItems;
+            Assert.Equal(2, syntaxItems.Count);
+            List<string> suggestions = new();
+            foreach (SyntaxItem item in syntaxItems)
+            {
+                suggestions.Add(item.Argument!);
+            }
+            Assert.Contains("--help", suggestions);
+            Assert.Contains("--version", suggestions);
+        }
+
         /// <summary>
         /// Test that a parameter expects a value and then
         /// expects more parameters after the parameter value
@@ -245,7 +304,7 @@ namespace PoshPredictiveText.StateMachine.Test
         /// 
         /// </summary>
         [Fact]
-        public void AddParameterExpecingValue()
+        public void AddParameterExpectingValue()
         {
             // Arrange
             StateMachine stateMachine = new();
