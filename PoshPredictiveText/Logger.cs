@@ -28,6 +28,12 @@ namespace PoshPredictiveText
         internal static LOGLEVEL logLevel = LOGLEVEL.ERROR;
         internal static string? logFile = null;
 
+        // During testing multiple tests may try and access the logfile at the same time.
+        // This creates problems if the logfile is already opened by another thread.
+        // Using a lock mitigates threading issues, however, during production this issue
+        // should not arise.
+        private static object locker = new();
+
         /// <summary>
         /// Initialises and enables the logfile for reporting information and errors.
         /// </summary>
@@ -106,51 +112,54 @@ namespace PoshPredictiveText
 
         internal static void Write(string text, LOGLEVEL level = LOGLEVEL.INFO)
         {
-            if (logFile is not null && (int)level >= (int)logLevel)
+            lock (locker)
             {
-                string timestamp = DateTime.Now.ToString("s");
-                string outputText = $"[{timestamp}] {text}";
-
-                if (!File.Exists(logFile))
+                if (logFile is not null && (int)level >= (int)logLevel)
                 {
-                    if (Directory.Exists(logFile))
+                    string timestamp = DateTime.Now.ToString("s");
+                    string outputText = $"[{timestamp}] {text}";
+
+                    if (!File.Exists(logFile))
+                    {
+                        if (Directory.Exists(logFile))
+                        {
+                            try
+                            {
+                                using StreamWriter sw = File.CreateText(logFile);
+                                sw.WriteLine(outputText);
+
+                            }
+                            catch (IOException) { }
+                        }
+                    }
+                    else
                     {
                         try
                         {
-                            using StreamWriter sw = File.CreateText(logFile);
+                            using StreamWriter sw = File.AppendText(logFile);
                             sw.WriteLine(outputText);
                         }
-                        // IOException is thrown when the command line application throws an error and the callback
-                        // into Predictor.OnCommandLineExecuted comes from PSReadLine originates from a second process
-                        // which tries to write to the logfile whilst it is still open in the first.
-                        // TODO [LOW][LOGGER] Write thread safe logger implementation.
                         catch (IOException) { }
                     }
-                }
-                else
-                {
-                    try
-                    {
-                        using StreamWriter sw = File.AppendText(logFile);
-                        sw.WriteLine(outputText);
-                    }
-                    catch (IOException) { }
                 }
             }
         }
 
         internal static void DeleteLogFile()
         {
-            if (File.Exists(logFile))
+            lock (locker)
             {
-                try
+                if (File.Exists(logFile))
                 {
-                    File.Delete(logFile);
+                    try
+                    {
+                        File.Delete(logFile);
+                    }
+                    catch { }
                 }
-                catch { }
+                logFile = null;
+                logLevel = LOGLEVEL.ERROR;
             }
-            logFile = null;
-            logLevel = LOGLEVEL.ERROR;
         }
     }
 }
