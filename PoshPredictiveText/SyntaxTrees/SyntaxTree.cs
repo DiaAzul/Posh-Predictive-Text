@@ -206,12 +206,21 @@ namespace PoshPredictiveText
             return toolTip;
         }
 
+
+        /// <summary>
+        /// Loads the syntax tree for a named command into the dictionary of syntax trees
+        /// from a Parquet file.
+        /// </summary>
+        private void LoadParquet()
+        {
+            // TODO [HIGH][SYNTAXTREE] Add load parquet file.
+        }
+
         /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees.
         /// 
         /// The method reads the XML file embeded within the application, parses it
         /// </summary>
-        /// <param name="syntaxTreeName">Name of syntax tree to load.</param>
         private void Load()
         {
             XDocument? syntaxTreeInputFile = null;
