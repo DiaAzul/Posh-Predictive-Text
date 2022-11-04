@@ -283,9 +283,9 @@ namespace PoshPredictiveText.StateMachine.Test
             List<SyntaxItem> syntaxItems = firstItem.SuggestedSyntaxItems;
             Assert.Equal(2, syntaxItems.Count);
             List<string> suggestions = new();
-            foreach (SyntaxItem item in syntaxItems)
+            foreach (SyntaxItem syntaxItem in syntaxItems)
             {
-                suggestions.Add(item.Argument!);
+                suggestions.Add(syntaxItem.Name!);
             }
             Assert.Contains("--help", suggestions);
             Assert.Contains("--version", suggestions);

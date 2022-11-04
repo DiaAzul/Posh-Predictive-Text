@@ -241,31 +241,31 @@ namespace PoshPredictiveText.Test
             SyntaxItem singleUseDoesExist = new()
             {
                 Command = "env",
-                CommandPath = "conda.env",
+                Path = "conda.env",
                 Type = "OPT",
-                Argument = "-parameter1",
+                Name = "-parameter1",
                 Alias = null,
-                MultipleUse = false,
+                MaxUses = 1,
             };
 
             SyntaxItem singleUseDoesNotExist = new()
             {
                 Command = "env",
-                CommandPath = "conda.env",
+                Path = "conda.env",
                 Type = "OPT",
-                Argument = "-parameter3",
+                Name = "-parameter3",
                 Alias = null,
-                MultipleUse = false,
+                MaxUses = 1,
             };
 
             SyntaxItem multipleUseExists = new()
             {
                 Command = "env",
-                CommandPath = "conda.env",
+                Path = "conda.env",
                 Type = "OPT",
-                Argument = "-parameter3",
+                Name = "-parameter3",
                 Alias = null,
-                MultipleUse = false,
+                MaxUses = 1,
             };
 
             // Act

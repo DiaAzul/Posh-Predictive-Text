@@ -278,7 +278,7 @@ namespace PoshPredictiveText
             List<SyntaxItem> parameters = syntaxTree!.ParametersAndOptions(commandPath.ToString());
 
             List<SyntaxItem> suggestedParameters = parameters
-                .Where(syntaxItem => (syntaxItem.Argument?.StartsWith(enteredParameter) ?? false) ||
+                .Where(syntaxItem => (syntaxItem.Name?.StartsWith(enteredParameter) ?? false) ||
                                         (syntaxItem.Alias?.StartsWith(enteredParameter) ?? false))
                 .ToList();
 
@@ -294,11 +294,12 @@ namespace PoshPredictiveText
                 case 1:
                     SyntaxItem parameter = suggestedParameters.First();
 
-                    if (enteredParameter == parameter.Argument || enteredParameter == parameter.Alias)
+                    if (enteredParameter == parameter.Name || enteredParameter == parameter.Alias)
                     {
                         if (parameter.IsParameter)
                         {
-                            parameterValues = parameter.MultipleParameterValues ?? false ? -1 : 1;
+                            // TODO [HIGH][STATEMACHINE] Calculate how many more parameter values can be entered.
+                            parameterValues = parameter.MaxCount ?? -1;
                             parameterSyntaxItem = parameter;
                             state = State.Value;
                         }
@@ -354,7 +355,7 @@ namespace PoshPredictiveText
             };
 
             parameterValues = 1;
-            parameterSyntaxItem = new SyntaxItem() { Type = "RED" , Parameter="PATH"};
+            parameterSyntaxItem = new SyntaxItem() { Type = "RED" , Name="PATH"};
             state = State.Value;
             return new List<Token> { redirectionToken };
         }
@@ -371,7 +372,7 @@ namespace PoshPredictiveText
             List<SyntaxItem> subCommands = syntaxTree!.SubCommands(commandPath.ToString());
 
             List<SyntaxItem> suggestedCommands = subCommands
-                .Where(syntaxItem => syntaxItem.Argument?.StartsWith(enteredValue) ?? false)
+                .Where(syntaxItem => syntaxItem.Name?.StartsWith(enteredValue) ?? false)
                 .ToList();
 
             List<Token> resultTokens;
@@ -384,7 +385,7 @@ namespace PoshPredictiveText
                     resultTokens = EvaluateValue(token);
                     break;
                 // When there is one suggestion and it is an exact match.
-                case 1 when enteredValue == suggestedCommands.First().Argument:
+                case 1 when enteredValue == suggestedCommands.First().Name:
                     commandPath.Add(enteredValue);
                     token.IsComplete = true;
                     token.SemanticType = Token.TokenType.Command;
@@ -417,7 +418,7 @@ namespace PoshPredictiveText
             if (parameterSyntaxItem is not null && parameterValues != 0)
             {
                 token.SemanticType = Token.TokenType.ParameterValue;
-                token.ParameterValueName = parameterSyntaxItem.Parameter;
+                token.ParameterValueName = parameterSyntaxItem.Value;
                 if (parameterValues > 0) parameterValues--;
 
                 switch (parameterValues)

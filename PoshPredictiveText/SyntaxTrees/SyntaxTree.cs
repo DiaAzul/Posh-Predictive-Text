@@ -1,10 +1,14 @@
 ﻿
 namespace PoshPredictiveText
 {
-
+    using Parquet;
+    using Parquet.Data.Rows;
     using PoshPredictiveText.SyntaxTreeSpecs;
+    using System.Collections;
+    using System.IO;
     using System.Reflection;
     using System.Resources;
+    using System.Threading.Tasks;
     using System.Xml.Linq;
     /// <summary>
     /// Each command has a syntax tree which sets out the possible combination of tokens
@@ -28,7 +32,7 @@ namespace PoshPredictiveText
         internal SyntaxTree(string name)
         {
             syntaxTreeName = name;
-            Load();
+            var result = Task.Run(LoadAsync);
         }
 
         /// <summary>
@@ -82,7 +86,7 @@ namespace PoshPredictiveText
 
             cachedCommandPath = commandPath;
             cachedFilteredItems = syntaxItems
-                                    .Where(syntaxItem => syntaxItem.CommandPath == commandPath)
+                                    .Where(syntaxItem => syntaxItem.Path == commandPath)
                                     .ToList();
 
             return cachedFilteredItems;
@@ -96,7 +100,7 @@ namespace PoshPredictiveText
         internal List<SyntaxItem> SubCommands(string commandPath)
         {
             return syntaxItems
-                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath)
+                .Where(syntaxItem => (syntaxItem.Path == commandPath)
                                         && syntaxItem.IsCommand)
                 .ToList();
         }
@@ -109,7 +113,7 @@ namespace PoshPredictiveText
         internal int CountOfSubCommands(string commandPath)
         {
             return syntaxItems
-                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath)
+                .Where(syntaxItem => (syntaxItem.Path == commandPath)
                                         && syntaxItem.IsCommand)
                 .Count();
         }
@@ -117,7 +121,7 @@ namespace PoshPredictiveText
         internal List<SyntaxItem> ParametersAndOptions(string commandPath)
         {
             return syntaxItems
-                .Where(syntaxItem => (syntaxItem.CommandPath == commandPath)
+                .Where(syntaxItem => (syntaxItem.Path == commandPath)
                                         && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter))
                 .ToList();
         }
@@ -136,7 +140,7 @@ namespace PoshPredictiveText
                                                 string lastParameter)
         {
             return FilteredByCommandPath(commandPath)
-                .Where(syntaxItem => syntaxItem.Argument == lastParameter
+                .Where(syntaxItem => syntaxItem.Name == lastParameter
                         | (syntaxItem.HasAlias && syntaxItem.Alias == lastParameter))
                 .ToList();
         }
@@ -171,8 +175,8 @@ namespace PoshPredictiveText
             return FilteredByCommandPath(commandPath)
                      .Where(syntaxItem =>
                              !(syntaxItem.IsCommand && commandComplete)
-                             && syntaxItem.Argument is not null
-                             && syntaxItem.Argument.StartsWith(wordToComplete)
+                             && syntaxItem.Name is not null
+                             && syntaxItem.Name.StartsWith(wordToComplete)
                              && enteredTokens.CanUse(syntaxItem))
                      .ToList();
         }
@@ -211,34 +215,21 @@ namespace PoshPredictiveText
         /// Loads the syntax tree for a named command into the dictionary of syntax trees
         /// from a Parquet file.
         /// </summary>
-        private void LoadParquet()
+        private async Task LoadAsync()
         {
-            // TODO [HIGH][SYNTAXTREE] Add load parquet file.
-        }
-
-        /// <summary>
-        /// Loads the syntax tree for a named command into the dictionary of syntax trees.
-        /// 
-        /// The method reads the XML file embeded within the application, parses it
-        /// </summary>
-        private void Load()
-        {
-            XDocument? syntaxTreeInputFile = null;
-
-            // Load XML File from assembly into XDocument.
+            Table? syntaxTreeParquetTable;
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                var resourcePath = SyntaxTreesConfig.Definition(syntaxTreeName);
+                string? resourcePath = SyntaxTreesConfig.Definition(syntaxTreeName);
                 if (resourcePath is null)
                     throw new SyntaxTreeException($"Definition file not found for {syntaxTreeName}.");
-                var resourceStream = assembly.GetManifestResourceStream(resourcePath);
 
+                Stream? resourceStream = assembly.GetManifestResourceStream(resourcePath);
                 if (resourceStream is null) throw new SyntaxTreeException($"File stream could not be opened {syntaxTreeName}.");
 
-                using StreamReader reader = new(resourceStream);
-                var xmlDoc = reader.ReadToEnd();
-                syntaxTreeInputFile = XDocument.Parse(xmlDoc);
+                using ParquetReader parquetReader = await ParquetReader.CreateAsync(resourceStream);
+                syntaxTreeParquetTable = await parquetReader.ReadAsTableAsync();
             }
             catch (FileNotFoundException ex)
             {
@@ -257,91 +248,65 @@ namespace PoshPredictiveText
                 throw new SyntaxTreeException($"Definition file stream could not be opened {syntaxTreeName}.", ex);
             }
 
-            // Parse the XML document into a List.
-            XElement? root = syntaxTreeInputFile?.Root;
+            if (syntaxTreeParquetTable is null) throw new SyntaxTreeException($"Unable to load Parquet to table: {syntaxTreeName}.");
+
+            // Check contents of the table (format should be tested in testing).
+            // Need to convert to list, with 
             try
             {
-                if (root is not null)
+                foreach (var row in syntaxTreeParquetTable)
                 {
-                    var syntaxTreeQuery = from item in root.Elements("item")
-                                          select new SyntaxItem
-                                          {
-                                              Command = AsString(item.Element("CMD")),
-                                              CommandPath = AsString(item.Element("PATH")),
-                                              Type = AsString(item.Element("TYP")),
-                                              Argument = AsNullableString(item.Element("ARG")),
-                                              Alias = AsNullableString(item.Element("AL")),
-                                              MultipleUse = AsBool(item.Element("MU")),
-                                              Parameter = AsNullableString(item.Element("PRM")),
-                                              MultipleParameterValues = AsNullableBool(item.Element("MP")),
-                                              ToolTip = AsNullableString(item.Element("TT"))
-                                          };
-                    if (syntaxTreeQuery is not null)
+                    List<string> sets = new();
+                    if (!row.IsNullAt(5))
                     {
+                        var set_object = row[5];
+                        if (set_object is IEnumerable enumerable)
+                        {
+                            var enumerator = enumerable.GetEnumerator();
+                            while (enumerator.MoveNext())
+                            {
+                                sets.Add((string)enumerator.Current);
+                            }
+                        }
+                    };
 
-                        syntaxItems = syntaxTreeQuery.ToList();
-                    }
+                    List<string> choices = new();
+                    if (!row.IsNullAt(8))
+                    {
+                        var choice_object = row[8];
+                        if (choice_object is IEnumerable enumerable)
+                        {
+                            var enumerator = enumerable.GetEnumerator();
+                            while (enumerator.MoveNext())
+                            {
+                                choices.Add((string)enumerator.Current);
+                            }
+                        }
+                    };
+
+                    // Build list for Set, Choices (if choices exists).
+                    SyntaxItem syntaxItem = new()
+                    {
+                        Command = (string)row[0],
+                        Path = (string)row[1],
+                        Type = (string)row[2],
+                        Name = (string)row[3],
+                        Alias = (string?)row[4],
+                        Sets = sets,
+                        MaxUses = (int?)row[6],
+                        Value = (string?)row[7],
+                        Choices = choices,
+                        MinCount = (int?)row[9],
+                        MaxCount = (int?)row[10],
+                        ToolTip = (string?)row[11],
+                    };
+                    syntaxItems.Add(syntaxItem);
                 }
             }
             catch (Exception ex)
             {
                 throw new SyntaxTreeException($"Unable to parse {syntaxTreeName}.", ex);
             }
-        }
-
-        /// <summary>
-        /// Convert nullable <c>XElement</c> node in an XML tree to a <c>string</c>.
-        /// 
-        /// Null values are converted to an empty string.
-        /// </summary>
-        /// <param name="element">Node in XML tree.</param>
-        /// <returns>Contents of node as string.</returns>
-        private static string AsString(XElement? element)
-        {
-            return element?.Value.ToString() ?? "";
-        }
-
-        /// <summary>
-        /// Convert nullable <c>XElement</c> node in an XML tree to a nullable <c>string</c>.
-        /// 
-        /// </summary>
-        /// <param name="element">Node in XML tree.</param>
-        /// <returns>Contents of node as string.</returns>
-        private static string? AsNullableString(XElement? element)
-        {
-            return element?.Value.ToString();
-        }
-
-        /// <summary>
-        /// Convert nullable <c>XElement</c> node in an XML tree to a <c>bool</c>.
-        /// 
-        /// <para>The method returns true if the content of the node matches the test pattern. The
-        /// default matching pattern is <c>TRUE</c>.</para>
-        /// 
-        /// <para>If the node is null then the method return the <c>false </c> value.</para>
-        /// </summary>
-        /// <param name="element">Node in XML tree.</param>
-        /// <param name="trueValue">Test pattern for true value. Default <c>TRUE</c>.</param>
-        /// <returns>True when the contents of the node match the test pattern. <c>false</c> if the node is null.</returns>
-        private static bool AsBool(XElement? element, string trueValue = "TRUE")
-        {
-            return element is not null && (element?.Value.ToString() ?? "") == trueValue;
-        }
-
-        /// <summary>
-        /// Convert nullable <c>XElement</c> node in an XML tree to a nullable <c>bool</c>.
-        /// 
-        /// <para>The method returns true if the content of the node matches the test pattern. The
-        /// default matching pattern is <c>TRUE</c>.</para>
-        /// 
-        /// <para>If the node is null then the method returns a null bool.</para>
-        /// </summary>
-        /// <param name="element">Node in XML tree.</param>
-        /// <param name="trueValue">Test pattern for true value. Default <c>TRUE</c>.</param>
-        /// <returns>True when the contents of the node match the test pattern. Null if the node is null.</returns>
-        private static bool? AsNullableBool(XElement? element, string trueValue = "TRUE")
-        {
-            return element is not null ? (element?.Value.ToString() ?? "") == trueValue : null;
         }
     }
 }

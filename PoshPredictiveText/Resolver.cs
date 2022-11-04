@@ -119,12 +119,12 @@ namespace PoshPredictiveText
                 {
                     SyntaxItem syntaxItem = parameterSyntaxItems.First();
                     bool acceptsMultipleParameterValues
-                        = syntaxItem?.MultipleParameterValues ?? false;
+                        = syntaxItem.AcceptsMultipleParameterValues;
                     bool isParameter = syntaxItem?.IsParameter ?? false;
                     if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
                     {
                         List<Suggestion> parameterValueOptions
-                            = CondaHelpers.GetParamaterValues(syntaxItem?.Parameter ?? "",
+                            = CondaHelpers.GetParamaterValues(syntaxItem?.Value ?? "",
                                                               wordToComplete);
                         suggestions.AddRange(parameterValueOptions);
                         // If the parameter value is mandatory then don't provide
@@ -144,9 +144,9 @@ namespace PoshPredictiveText
                 if (positionalValues.Count > 0)
                 {
                     SyntaxItem positionalSyntaxItem = positionalValues.First();
-                    LOGGER.Write(positionalSyntaxItem.Parameter ?? "");
+                    LOGGER.Write(positionalSyntaxItem.Value ?? "");
                     List<Suggestion> positionalValueSuggestions
-                        = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Parameter ?? "",
+                        = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Value ?? "",
                                                           wordToComplete);
 
                     suggestions.AddRange(positionalValueSuggestions);
@@ -168,8 +168,8 @@ namespace PoshPredictiveText
                 {
                     Suggestion suggestion = new()
                     {
-                        CompletionText = syntaxItem.Argument??"",
-                        ListText = syntaxItem.Argument??"",
+                        CompletionText = syntaxItem.Name??"",
+                        ListText = syntaxItem.Name??"",
                         Type = syntaxItem.ResultType,
                         ToolTip = syntaxTree.Tooltip(syntaxItem.ToolTip) ?? "Tooltip was null."
                     };

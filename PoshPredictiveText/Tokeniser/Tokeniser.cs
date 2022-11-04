@@ -216,12 +216,13 @@ namespace PoshPredictiveText
         {
             // If item can be used multiple times then we do not need to
             // check that it has been used on the command line already.
-            if (syntaxItem.MultipleUse) return true;
+            // TODO [HIGH[TOKENISER] Calculate how many times used and whether still can do
+            if (syntaxItem.MaxCount is null) return true;
 
             bool match = true;
             foreach (Token token in this.tokens.Values)
             {
-                if (syntaxItem.Argument is not null && token.Value == syntaxItem.Argument)
+                if (syntaxItem.Name is not null && token.Value == syntaxItem.Name)
                 {
                     match = false;
                     break;

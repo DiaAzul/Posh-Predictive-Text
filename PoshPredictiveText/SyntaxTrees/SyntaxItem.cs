@@ -10,22 +10,25 @@ namespace PoshPredictiveText
     /// </summary>
     internal record SyntaxItem
     {
-        internal string Command { get; init; } = default!;
-        internal string CommandPath { get; init; } = default!;
-        internal string Type { get; init; } = default!;
-        internal string? Argument { get; init; }
-        internal string? Alias { get; init; }
-        internal bool MultipleUse { get; init; } = default!;
-        internal string? Parameter { get; init; }
-        internal bool? MultipleParameterValues { get; init; }
-        internal string? ToolTip { get; init; }
+        public string Command { get; init; } = default!;
+        public string Path { get; init; } = default!;
+        public string Type { get; init; } = default!;
+        public string Name { get; init; } = default!;
+        public string? Alias { get; init; }
+        public List<string> Sets { get; init; } = default!;
+        public int? MaxUses { get; init; }
+        public string? Value { get; init; }
+        public List<string>? Choices { get; init; }
+        public int? MinCount { get; init; }
+        public int? MaxCount { get; init; }
+        public string? ToolTip { get; init; }
 
         /// <summary>
         /// Returns true if the syntax item is a command.
         /// </summary>
         internal bool IsCommand
         {
-            get { return Type == "CMD"; }
+            get { return Type == "COMMAND"; }
         }
 
         /// <summary>
@@ -33,7 +36,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsOptionParameter
         {
-            get { return Type == "OPT"; }
+            get { return Type == "PARAMETER" && Value is null; }
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsParameter
         {
-            get { return Type == "PRM"; }
+            get { return Type == "PARAMETER" && Value is not null; }
         }
 
         /// <summary>
@@ -49,12 +52,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsPositionalParameter
         {
-            get { return Type == "POS"; }
-        }
-
-        internal bool isRedirection
-        {
-            get { return Type == "RED";  }
+            get { return Type.StartsWith("POSITIONAL"); }
         }
 
         /// <summary>
@@ -72,15 +70,23 @@ namespace PoshPredictiveText
         {
             get
             {
-                return Type switch
+                return Type[..3] switch
                 {
-                    "CMD" => CompletionResultType.Command,
-                    "OPT" => CompletionResultType.ParameterName,
-                    "PRM" => CompletionResultType.ParameterName,
-                    "POS" => CompletionResultType.ParameterValue,
+                    "COM" => CompletionResultType.Command,
+                    "PAR" => CompletionResultType.ParameterName,
                     "RED" => CompletionResultType.ParameterName,
+                    "POS" => CompletionResultType.ParameterValue,
                     _ => CompletionResultType.ParameterValue,
                 };
+            }
+        }
+
+        internal bool AcceptsMultipleParameterValues
+        {
+            get
+            {
+                if (MinCount is null) return false;
+                return MinCount > 1;
             }
         }
     }

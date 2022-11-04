@@ -5,19 +5,19 @@ namespace PoshPredictiveText.Test
     using Xunit;
 
     /// <summary>
-    /// Test CommandPath class.
+    /// Test Path class.
     /// </summary>
-    public class CommandPathTests
+    public class PathTests
     {
         /// <summary>
-        /// Test CommandPath class.
+        /// Test Path class.
         /// 
         /// Add commands to the class and test that the correct
         /// number of commands are recorded and the string output
         /// is correct.
         /// </summary>
         [Fact]
-        public void CommandPathTest()
+        public void PathTest()
         {
             // Arrange
             string command1 = "conda";

@@ -31,13 +31,15 @@ namespace PoshPredictiveText.Test
             syntaxItem = new SyntaxItem()
             {
                 Command = "env",
-                CommandPath = "conda.env",
-                Type = "PRM",
-                Argument = "--parameter",
+                Path = "conda.env",
+                Type = "PARAMETER",
+                Name = "--parameter",
                 Alias = "-p",
-                MultipleUse = false,
-                Parameter = "ENVIRONMENT",
-                MultipleParameterValues = false,
+                Sets = new List<string> { "1" },
+                MaxUses = 1,
+                Value = "ENVIRONMENT",
+                MinCount = 1,
+                MaxCount = 1,
                 ToolTip = "TT0001"
             };
         }

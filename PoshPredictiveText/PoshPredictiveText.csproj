@@ -35,7 +35,9 @@
 
   <ItemGroup>
     <None Remove="CondaCompletes.xml" />
+    <None Remove="SyntaxTreeSpecs\condaSyntaxTree.parquet" />
     <None Remove="SyntaxTreeSpecs\CondaSyntaxTree.xml" />
+    <None Remove="SyntaxTreeSpecs\condaToolTips.parquet" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="SyntaxTreeSpecs\condaSyntaxTree.parquet" />
     <EmbeddedResource Include="SyntaxTreeSpecs\CondaSyntaxTree.xml" />
+    <EmbeddedResource Include="SyntaxTreeSpecs\condaToolTips.parquet" />
   </ItemGroup>
 
   <ItemGroup>
