@@ -19,7 +19,7 @@ namespace PoshPredictiveText
     internal class SyntaxTree
     {
 
-        private List<SyntaxItem> syntaxItems = new();
+        private readonly List<SyntaxItem> syntaxItems = new();
 
         private readonly string syntaxTreeName;
 
@@ -286,22 +286,29 @@ namespace PoshPredictiveText
                     };
 
                     // Build list for Set, Choices (if choices exists).
-                    SyntaxItem syntaxItem = new()
+                    if (Enum.TryParse((string)row[2], out SyntaxItemType type))
                     {
-                        Command = (string)row[0],
-                        Path = (string)row[1],
-                        Type = (string)row[2],
-                        Name = (string)row[3],
-                        Alias = (string?)row[4],
-                        Sets = sets,
-                        MaxUses = (int?)row[6],
-                        Value = (string?)row[7],
-                        Choices = choices,
-                        MinCount = (int?)row[9],
-                        MaxCount = (int?)row[10],
-                        ToolTip = (string?)row[11],
-                    };
-                    syntaxItems.Add(syntaxItem);
+                        SyntaxItem syntaxItem = new()
+                        {
+                            Command = (string)row[0],
+                            Path = (string)row[1],
+                            Type = type,
+                            Name = (string)row[3],
+                            Alias = (string?)row[4],
+                            Sets = sets,
+                            MaxUses = (int?)row[6],
+                            Value = (string?)row[7],
+                            Choices = choices,
+                            MinCount = (int?)row[9],
+                            MaxCount = (int?)row[10],
+                            ToolTip = (string?)row[11],
+                        };
+                        syntaxItems.Add(syntaxItem);
+                    }
+                    else
+                    {
+                        throw new SyntaxTreeException("Error parsing type in Syntax Tree");
+                    }
                 }
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@ namespace PoshPredictiveText.Test
                 Value = null,
                 MinCount = null,
                 MaxCount = null,
-                Type = "COMMAND",
+                Type = SyntaxItemType.COMMAND,
                 ToolTip = "TT0001"
             },
             new SyntaxItem {
@@ -36,7 +36,7 @@ namespace PoshPredictiveText.Test
                 Value  = null,
                 MinCount = null,
                 MaxCount = null,
-                Type = "COMMAND",
+                Type = SyntaxItemType.COMMAND,
                 ToolTip = "TT0059"
             },
             new SyntaxItem {
@@ -48,7 +48,7 @@ namespace PoshPredictiveText.Test
                 Value = null,
                 MinCount = 0,
                 MaxCount = 0,
-                Type = "PARAMETER",
+                Type = SyntaxItemType.PARAMETER,
                 ToolTip = "TT0115"
             }
         };

@@ -17,7 +17,7 @@ namespace PoshPredictiveText.Test
             {
                 Command  = "conda",
                 Path = "conda",
-                Type = "COMMAND",
+                Type = SyntaxItemType.COMMAND,
                 Name = "activate",
                 Alias = null,
                 Sets = new List<string>() {"1"},
@@ -30,7 +30,7 @@ namespace PoshPredictiveText.Test
             new SyntaxItem {
                 Command = "conda",
                 Path = "conda" ,
-                Type = "COMMAND",
+                Type = SyntaxItemType.COMMAND,
                 Name = "install",
                 Alias = null,
                 Sets = new List<string>() { "1" },
@@ -44,7 +44,7 @@ namespace PoshPredictiveText.Test
             new SyntaxItem {
                 Command = "activate",
                 Path = "conda.activate",
-                Type = "PARAMETER",
+                Type = SyntaxItemType.PARAMETER,
                 Name = "--help",
                 Alias = "-h",
                 MaxUses = 1,
@@ -117,6 +117,9 @@ namespace PoshPredictiveText.Test
             Assert.Empty(tooltip);
         }
 
+        /// <summary>
+        /// Test count of sub commands.
+        /// </summary>
         [Fact]
         public void CountOfSubCommandsTest()
         {

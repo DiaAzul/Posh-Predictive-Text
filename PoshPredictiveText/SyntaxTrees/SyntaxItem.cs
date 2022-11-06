@@ -14,7 +14,6 @@ namespace PoshPredictiveText
         COMMAND,
         POSITIONAL,
         PARAMETER,
-        CHOICE,
         REDIRECTION,
     }
 
@@ -27,7 +26,7 @@ namespace PoshPredictiveText
     {
         public string Command { get; init; } = default!;
         public string Path { get; init; } = default!;
-        public string Type { get; init; } = default!;
+        public SyntaxItemType Type { get; init; } = default!;
         public string Name { get; init; } = default!;
         public string? Alias { get; init; }
         public List<string> Sets { get; init; } = default!;
@@ -43,7 +42,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsCommand
         {
-            get { return Type == "COMMAND"; }
+            get { return Type == SyntaxItemType.COMMAND; }
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsOptionParameter
         {
-            get { return Type == "PARAMETER" && Value is null; }
+            get { return Type == SyntaxItemType.PARAMETER && Value is null; }
         }
 
         /// <summary>
@@ -59,7 +58,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsParameter
         {
-            get { return Type == "PARAMETER" && Value is not null; }
+            get { return Type == SyntaxItemType.PARAMETER && Value is not null; }
         }
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace PoshPredictiveText
         /// </summary>
         internal bool IsPositionalParameter
         {
-            get { return Type.StartsWith("POSITIONAL"); }
+            get { return Type == SyntaxItemType.POSITIONAL && Value is not null; }
         }
 
         /// <summary>
@@ -85,12 +84,12 @@ namespace PoshPredictiveText
         {
             get
             {
-                return Type[..3] switch
+                return Type switch
                 {
-                    "COM" => CompletionResultType.Command,
-                    "PAR" => CompletionResultType.ParameterName,
-                    "RED" => CompletionResultType.ParameterName,
-                    "POS" => CompletionResultType.ParameterValue,
+                    SyntaxItemType.COMMAND => CompletionResultType.Command,
+                    SyntaxItemType.PARAMETER => CompletionResultType.ParameterName,
+                    SyntaxItemType.REDIRECTION => CompletionResultType.ParameterName,
+                    SyntaxItemType.POSITIONAL => CompletionResultType.ParameterValue,
                     _ => CompletionResultType.ParameterValue,
                 };
             }

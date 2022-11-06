@@ -32,7 +32,7 @@ namespace PoshPredictiveText.Test
             {
                 Command = "env",
                 Path = "conda.env",
-                Type = "PARAMETER",
+                Type = SyntaxItemType.PARAMETER,
                 Name = "--parameter",
                 Alias = "-p",
                 Sets = new List<string> { "1" },

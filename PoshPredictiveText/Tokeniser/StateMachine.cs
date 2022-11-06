@@ -355,7 +355,7 @@ namespace PoshPredictiveText
             };
 
             parameterValues = 1;
-            parameterSyntaxItem = new SyntaxItem() { Type = "RED" , Name="PATH"};
+            parameterSyntaxItem = new SyntaxItem() { Type = SyntaxItemType.REDIRECTION , Name="PATH"};
             state = State.Value;
             return new List<Token> { redirectionToken };
         }

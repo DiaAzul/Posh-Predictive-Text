@@ -242,7 +242,7 @@ namespace PoshPredictiveText.Test
             {
                 Command = "env",
                 Path = "conda.env",
-                Type = "PARAMETER",
+                Type = SyntaxItemType.PARAMETER,
                 Name = "-parameter1",
                 Alias = null,
                 MaxUses = 1,
@@ -255,7 +255,7 @@ namespace PoshPredictiveText.Test
             {
                 Command = "env",
                 Path = "conda.env",
-                Type = "PARAMETER",
+                Type = SyntaxItemType.PARAMETER,
                 Name = "-parameter3",
                 Alias = null,
                 MaxUses = 1,
@@ -267,7 +267,7 @@ namespace PoshPredictiveText.Test
             {
                 Command = "env",
                 Path = "conda.env",
-                Type = "PARAMETER",
+                Type = SyntaxItemType.PARAMETER,
                 Name = "-parameter3",
                 Alias = null,
                 MaxUses = null,
