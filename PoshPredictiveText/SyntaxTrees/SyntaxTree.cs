@@ -33,6 +33,7 @@ namespace PoshPredictiveText
         {
             syntaxTreeName = name;
             var result = Task.Run(LoadAsync);
+            result.Wait();
         }
 
         /// <summary>
@@ -221,7 +222,7 @@ namespace PoshPredictiveText
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
-                string? resourcePath = SyntaxTreesConfig.Definition(syntaxTreeName);
+                string? resourcePath = SyntaxTreesConfig.ParquetDefinition(syntaxTreeName);
                 if (resourcePath is null)
                     throw new SyntaxTreeException($"Definition file not found for {syntaxTreeName}.");
 

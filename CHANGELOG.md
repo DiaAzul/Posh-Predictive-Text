@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 + Implement version 2.0 of language definition sepcification.
 
 ### Conda language specification changes
-+ Add `--solver` keep `--experimental-solver` deprecated though still an option. 
++ Add `--solver`; keep deprecated `--experimental-solver` until removed as an option. 
 + Add `conda notices` (conda version 4.14.0)
 + Add `conda rename` (conda version 4.14.0)
 + Add undocumented `conda init` flags (conda issue #11574)

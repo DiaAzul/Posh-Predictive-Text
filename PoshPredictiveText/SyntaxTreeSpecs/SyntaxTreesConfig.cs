@@ -23,6 +23,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
     internal record ConfigItem
     {
         internal string? Definition { get; init; }
+        internal string? ParquetDefinition { get; init; }
         internal string? ToolTips { get; init; }
         internal ParseMode ParseMode { get; init; }
     }
@@ -55,6 +56,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         private static readonly Dictionary<string, ConfigItem> COMMAND_CONFIGS = new() {
             {"conda",  new ConfigItem {
                 Definition = "CondaSyntaxTree.xml",
+                ParquetDefinition = "CondaSyntaxTree.parquet",
                 ToolTips = "CondaToolTips",
                 ParseMode = SyntaxTreeSpecs.ParseMode.Posix } },
         };
@@ -171,6 +173,20 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
             try
             {
                 returnValue = RESOURCE_ROOT + COMMAND_CONFIGS[syntaxTreeName].Definition;
+            }
+            catch (KeyNotFoundException)
+            {
+                LOGGER.Write($"No config for {syntaxTreeName}");
+            }
+            return returnValue;
+        }
+
+        internal static string? ParquetDefinition(string syntaxTreeName)
+        {
+            string? returnValue = null;
+            try
+            {
+                returnValue = RESOURCE_ROOT + COMMAND_CONFIGS[syntaxTreeName].ParquetDefinition;
             }
             catch (KeyNotFoundException)
             {

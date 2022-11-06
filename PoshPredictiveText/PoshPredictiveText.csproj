@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="SyntaxTreeSpecs\condaSyntaxTree.parquet" />
+    <EmbeddedResource Include="SyntaxTreeSpecs\CondaSyntaxTree.parquet" />
     <EmbeddedResource Include="SyntaxTreeSpecs\CondaSyntaxTree.xml" />
     <EmbeddedResource Include="SyntaxTreeSpecs\condaToolTips.parquet" />
   </ItemGroup>

@@ -362,7 +362,7 @@ namespace PoshPredictiveText.StateMachine.Test
             Assert.Single(result4);
             Assert.True(result4.First().IsComplete);
             Assert.Equal(TokenType.ParameterValue, result4.First().SemanticType);
-            Assert.Equal("ENVIRONMENT", result4.First().ParameterValueName);
+            Assert.Equal("NEWENVIRONMENT", result4.First().ParameterValueName);
             Assert.Equal(StateMachine.State.Item, stateAfterParameterValue);
         }
 

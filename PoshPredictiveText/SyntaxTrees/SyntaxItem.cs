@@ -3,6 +3,16 @@ namespace PoshPredictiveText
 {
     using System.Management.Automation;
 
+
+    enum SyntaxItemType
+    {
+        COMMAND,
+        POSITIONAL,
+        PARAMETER,
+        CHOICE,
+        REDIRECTION,
+    }
+
     /// <summary>
     /// Record within the command syntax tree.
     /// 

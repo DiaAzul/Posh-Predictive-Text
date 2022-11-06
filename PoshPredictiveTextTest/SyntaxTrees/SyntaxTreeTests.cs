@@ -13,10 +13,11 @@ namespace PoshPredictiveText.Test
 
         private static readonly List<SyntaxItem> syntaxItems = new()
         {
-            new SyntaxItem
+        new SyntaxItem
             {
                 Command  = "conda",
                 Path = "conda",
+                Type = "COMMAND",
                 Name = "activate",
                 Alias = null,
                 Sets = new List<string>() {"1"},
@@ -24,12 +25,12 @@ namespace PoshPredictiveText.Test
                 Value = null,
                 MinCount = null,
                 MaxCount = null,
-                Type = "COMMAND",
                 ToolTip = "TT0001"
             },
             new SyntaxItem {
                 Command = "conda",
                 Path = "conda" ,
+                Type = "COMMAND",
                 Name = "install",
                 Alias = null,
                 Sets = new List<string>() { "1" },
@@ -37,26 +38,24 @@ namespace PoshPredictiveText.Test
                 Value  = null,
                 MinCount = null,
                 MaxCount =null,
-                Type = "COMMAND",
+
                 ToolTip = "TT0059"
             },
             new SyntaxItem {
                 Command = "activate",
                 Path = "conda.activate",
+                Type = "PARAMETER",
                 Name = "--help",
                 Alias = "-h",
                 MaxUses = 1,
                 Value = null,
                 MinCount = 0,
                 MaxCount = 0,
-                Type = "PARAMETER",
                 ToolTip = "TT0115"
             }
         };
 
         readonly SyntaxTree syntaxTree = new(syntaxTreeName, syntaxItems);
-
-
 
         /// <summary>
         /// Test count of items in the syntax tree.
@@ -116,6 +115,17 @@ namespace PoshPredictiveText.Test
             var tooltip = syntaxTree.Tooltip(syntaxTree.GetItems[2].ToolTip);
             // Assert
             Assert.Empty(tooltip);
+        }
+
+        [Fact]
+        public void CountOfSubCommandsTest()
+        {
+            // Arrange
+            // Act
+            var countOfSubCommands = syntaxTree.CountOfSubCommands("conda");
+
+            // Assert
+            Assert.Equal(2, countOfSubCommands);
         }
     }
 }
