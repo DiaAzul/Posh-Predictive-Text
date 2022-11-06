@@ -3,7 +3,12 @@ namespace PoshPredictiveText
 {
     using System.Management.Automation;
 
-
+    /// <summary>
+    /// The categorical type of a syntax item. 
+    /// </summary>
+    // TODO [HIGH][SYNTAXITEM] Refactor to replace string with enum throughout the code.
+    // TODO [HIGH][SYNTAXITEM] Need to identify how to identify multiple positional parameters.
+    // TODO [HIGH][SYNTAXITEM] Remove CHOICE and use presence of choices to indicate choice.
     enum SyntaxItemType
     {
         COMMAND,

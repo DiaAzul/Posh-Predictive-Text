@@ -104,7 +104,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs.Test
             {
                 environments.Add(suggestion.CompletionText);
             }
-            // TODO [ ][APPVEYOR] Test Conda environments in appveyor.
+            // TODO [LOW][APPVEYOR] Test Conda environments in appveyor.
             string? appveyor = Environment.GetEnvironmentVariable("APPVEYOR", EnvironmentVariableTarget.Process) ?? "false";
             bool isAppveyor = appveyor == "true";
             if (!isAppveyor)
