@@ -1,6 +1,6 @@
 ﻿
 
-namespace PoshPredictiveText.Test.Tokenizer
+namespace PoshPredictiveText.Test.Tokeniser
 {
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTrees;

@@ -14,23 +14,36 @@ namespace PoshPredictiveText.Test.Cmdlets
         /// <summary>
         /// Get predictive text suggestions using the cmdlet.
         /// </summary>
-        [Fact]
-        public void CondaSuggestionsTest()
+        [Theory]
+        [InlineData("conda ", 19)]
+        [InlineData("conda env remove ", 10)]
+        [InlineData("conda i", 3)]
+        [InlineData("conda list --name --md5 ", 13)]
+        [InlineData("conda activate -", 3)]
+        public void CondaSuggestionsTest(string inputString, int expectedSuggestions)
         {
+            // Arrange
+            string wordToComplete = "";
+            if (inputString[^1] != ' ')
+                wordToComplete = inputString.Split(' ').ToList().Last();
+
             using var powerShell = PowerShellMock.GetConfiguredShell();
-            var commandAst = PowerShellMock.CreateCommandAst("conda");
+            var commandAst = PowerShellMock.CreateCommandAst(inputString);
+
+            // Act
             powerShell.AddCommand("Get-PredictiveText")
-                .AddParameter("WordToComplete", "")
+                .AddParameter("WordToComplete", wordToComplete)
                 .AddParameter("CommandAst", commandAst)
                 .AddParameter("CursorPosition", commandAst.Extent.EndColumnNumber);
 
             var results = powerShell.Invoke();
 
+            // Assert
             Assert.False(powerShell.HadErrors);
             Assert.Single(results);
             Assert.IsType<List<CompletionResult>>(results[0].BaseObject);
             var baseObject = (List<CompletionResult>)results[0].BaseObject;
-            Assert.Equal(19, baseObject.Count);
+            Assert.Equal(expectedSuggestions, baseObject.Count);
         }
 
         /// <summary>

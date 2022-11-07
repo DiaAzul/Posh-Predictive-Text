@@ -57,7 +57,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             // Arrange
             // WordToComplete. CommandAstVisitor. CursorPosition.
             string wordToComplete = "";
-            if (inputString[inputString.Length - 1] != ' ')
+            if (inputString[^1] != ' ')
                 wordToComplete = inputString.Split(' ').ToList().Last();
 
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
