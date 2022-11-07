@@ -1,6 +1,8 @@
 ﻿
-namespace PoshPredictiveText.SyntaxTreeSpecs.Test
+namespace PoshPredictiveText.Test.SyntaxTreeSpecs
 {
+    using PoshPredictiveText;
+    using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.Test;
     using Xunit;
 

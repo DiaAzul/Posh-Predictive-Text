@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SyntaxTrees
 {
     /// <summary>
     /// An exception raised if the syntax tree cannot be loaded.

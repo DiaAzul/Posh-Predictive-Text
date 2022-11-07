@@ -1,6 +1,8 @@
 ﻿
-namespace PoshPredictiveText
+
+namespace PoshPredictiveText.SemanticParser
 {
+    using PoshPredictiveText.SyntaxTrees;
     /// <summary>
     /// Cached information for command line arguments which have already been parsed.
     /// </summary>

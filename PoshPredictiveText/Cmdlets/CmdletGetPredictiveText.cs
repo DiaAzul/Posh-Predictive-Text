@@ -1,6 +1,8 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.Cmdlets
 {
+    using PoshPredictiveText.SemanticParser;
+    using PoshPredictiveText.SyntaxTrees;
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using static PoshPredictiveText.LOGGER;

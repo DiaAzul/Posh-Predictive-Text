@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SemanticParser
 {
     /// <summary>
     /// Holds individual commands which define the command path.

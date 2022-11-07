@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText.Test
+namespace PoshPredictiveText.Test.SyntaxTreeSpecs
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
     using Xunit;

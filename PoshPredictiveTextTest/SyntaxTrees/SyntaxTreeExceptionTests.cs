@@ -1,12 +1,13 @@
 ﻿
-namespace PoshPredictiveText.Test
+namespace PoshPredictiveText.Test.SyntaxTrees
 {
+    using PoshPredictiveText.SyntaxTrees;
     using Xunit;
 
     /// <summary>
     /// Test Syntax Tree Exception
     /// </summary>
-    public class SyntaxTreeExceptionTest
+    public class SyntaxTreeExceptionTests
     {
         /// <summary>
         /// Test with no argument

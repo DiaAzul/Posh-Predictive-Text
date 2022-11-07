@@ -3,6 +3,7 @@
 namespace PoshPredictiveText.Helpers
 {
     using PoshPredictiveText;
+    using PoshPredictiveText.SyntaxTrees;
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;

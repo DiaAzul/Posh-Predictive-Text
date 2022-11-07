@@ -2,6 +2,8 @@
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.Helpers;
+    using PoshPredictiveText.SemanticParser;
+    using PoshPredictiveText.SyntaxTrees;
     using System.Linq;
     using System.Management.Automation;
 

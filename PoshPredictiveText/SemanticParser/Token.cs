@@ -1,4 +1,6 @@
-﻿namespace PoshPredictiveText
+﻿using PoshPredictiveText.SyntaxTrees;
+
+namespace PoshPredictiveText.SemanticParser
 {
     /// <summary>
     /// The token holds semantic information for items entered

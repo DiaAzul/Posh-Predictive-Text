@@ -1,7 +1,7 @@
 ﻿
 using PoshPredictiveText.SyntaxTreeSpecs;
 
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SyntaxTrees
 {
     /// <summary>
     /// Maintains a database of syntax trees for predicting text completion

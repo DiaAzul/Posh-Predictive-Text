@@ -1,6 +1,7 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SemanticParser
 {
+    using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
     /// <summary>
     /// The tokeniser provides semantic analysis of the text

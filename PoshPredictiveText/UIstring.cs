@@ -1,7 +1,7 @@
 ﻿
-
 namespace PoshPredictiveText
 {
+    using PoshPredictiveText.SyntaxTrees;
     using System.Reflection;
     using System.Resources;
 

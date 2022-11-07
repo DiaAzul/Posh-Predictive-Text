@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.Cmdlets
 {
     using System.Management.Automation;
     using static PoshPredictiveText.LOGGER;

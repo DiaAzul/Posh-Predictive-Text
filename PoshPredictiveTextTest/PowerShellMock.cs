@@ -1,6 +1,7 @@
 ﻿
 namespace PoshPredictiveText.Test
 {
+    using PoshPredictiveText.Cmdlets;
     using System.Management.Automation;
     using System.Management.Automation.Language;
     using System.Management.Automation.Runspaces;

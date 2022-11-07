@@ -2,6 +2,7 @@
 namespace PoshPredictiveText.Test.Helpers
 {
     using PoshPredictiveText.Helpers;
+    using PoshPredictiveText.SyntaxTrees;
     using Xunit;
 
     /// <summary>

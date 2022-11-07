@@ -1,11 +1,11 @@
 ﻿
 
-namespace PoshPredictiveText.StateMachine.Test
+namespace PoshPredictiveText.Test.Tokenizer
 {
-    using PoshPredictiveText;
-    using PoshPredictiveText.Test;
+    using PoshPredictiveText.SyntaxTrees;
+    using PoshPredictiveText.SemanticParser;
+    using static PoshPredictiveText.SemanticParser.Token;
     using Xunit;
-    using static PoshPredictiveText.Token;
 
     /// <summary>
     /// StateMachine tests.
@@ -378,7 +378,7 @@ namespace PoshPredictiveText.StateMachine.Test
                 StateMachine.State.Item,
                 "conda",
                 new SyntaxTree("conda"),
-                SyntaxTreeSpecs.ParseMode.Posix,
+                PoshPredictiveText.SyntaxTreeSpecs.ParseMode.Posix,
                 new CommandPath("conda")
                 );
 

@@ -1,10 +1,11 @@
 ﻿
-
-namespace PoshPredictiveText.Test
+namespace PoshPredictiveText.Test.Tokeniser
 {
     using System.Management.Automation.Language;
+    using PoshPredictiveText.SemanticParser;
+    using static PoshPredictiveText.SemanticParser.Token;
     using Xunit;
-    using static PoshPredictiveText.Token;
+    using PoshPredictiveText.SyntaxTrees;
 
     /// <summary>
     /// Test Visitor records
@@ -26,7 +27,7 @@ namespace PoshPredictiveText.Test
         public void CommandTokenTest()
         {
             // Arrange
-            PoshPredictiveText.Token testToken = new()
+            SemanticParser.Token testToken = new()
             {
                 Value = "TestValue",
                 SemanticType = TokenType.Command
@@ -145,7 +146,7 @@ namespace PoshPredictiveText.Test
         public void LastTokenTest()
         {
             // Act
-            PoshPredictiveText.Token? token = tokenisedInput.LastToken;
+            SemanticParser.Token? token = tokenisedInput.LastToken;
             // Assert
             Assert.NotNull(token);
             Assert.Equal("12", token.Value);
@@ -158,7 +159,7 @@ namespace PoshPredictiveText.Test
         public void PriorTokenTest()
         {
             // Act
-            PoshPredictiveText.Token? token = tokenisedInput.PriorToken;
+            SemanticParser.Token? token = tokenisedInput.PriorToken;
             // Assert
             Assert.NotNull(token);
             Assert.Equal("value1", token.Value);
@@ -173,7 +174,7 @@ namespace PoshPredictiveText.Test
             // Note: This test is already covered in TestCommandAstVisitorVisitTest
             // So just do a quick test of count and one token.
             // Act
-            Dictionary<int, PoshPredictiveText.Token> tokens = tokenisedInput.All;
+            Dictionary<int, SemanticParser.Token> tokens = tokenisedInput.All;
             // Assert
             Assert.Equal(6, tokens.Count);
             Assert.Equal("12", tokens[5].Value);
@@ -199,7 +200,7 @@ namespace PoshPredictiveText.Test
         public void CommandParametersTest()
         {
             // Act
-            Dictionary<int, PoshPredictiveText.Token> commandTokens = tokenisedInput.CommandParameters;
+            Dictionary<int, SemanticParser.Token> commandTokens = tokenisedInput.CommandParameters;
             // Assert
             Assert.Equal(2, commandTokens.Count);
 
@@ -218,9 +219,9 @@ namespace PoshPredictiveText.Test
         public void IndexTest()
         {
             // Act
-            PoshPredictiveText.Token? secondToken = tokenisedInput.Index(1);
-            PoshPredictiveText.Token? negativeIndex = tokenisedInput.Index(-1);
-            PoshPredictiveText.Token? outOfBounds = tokenisedInput.Index(10);
+            SemanticParser.Token? secondToken = tokenisedInput.Index(1);
+            SemanticParser.Token? negativeIndex = tokenisedInput.Index(-1);
+            SemanticParser.Token? outOfBounds = tokenisedInput.Index(10);
             // Assert
             Assert.NotNull(secondToken);
             Assert.Equal("env", secondToken.Value);

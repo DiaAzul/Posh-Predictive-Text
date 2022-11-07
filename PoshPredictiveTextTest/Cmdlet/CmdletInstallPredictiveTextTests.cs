@@ -1,8 +1,7 @@
 ﻿
 
-namespace PoshPredictiveText.Cmdlet.Test
+namespace PoshPredictiveText.Test.Cmdlets
 {
-    using PoshPredictiveText.Test;
     using System.Collections.ObjectModel;
     using System.Management.Automation;
     using Xunit;

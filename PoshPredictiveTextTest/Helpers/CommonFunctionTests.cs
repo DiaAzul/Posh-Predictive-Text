@@ -1,12 +1,13 @@
 ﻿
 namespace PoshPredictiveText.Test.Helpers
 {
+    using PoshPredictiveText;
     using Xunit;
 
     /// <summary>
     /// Test common functions.
     /// </summary>
-    public class CommonTest
+    public class CommonFunctionTests
     {
         /// <summary>
         /// Test encapsulating a string in quotation marks

@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SemanticParser
 {
     using System.Collections.Concurrent;
     /// <summary>

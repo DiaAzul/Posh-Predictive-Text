@@ -1,19 +1,13 @@
 ﻿
-namespace PoshPredictiveText.Test
+namespace PoshPredictiveText.Test.SyntaxTrees
 {
     using System.Management.Automation;
+    using PoshPredictiveText;
+    using PoshPredictiveText.SyntaxTrees;
     using Xunit;
 
     /// <summary>
-    /// Test the SyntaxItem records.
-    /// 
-    /// Perform basic testing of the syntaxItem record to
-    /// ensure that it can be created and the various
-    /// properties function as expected.
-    /// 
-    /// Risks:
-    /// 1.[Low] Only one configuration is tested. This may not
-    /// catch all issues that could arise.
+    /// Test the Syntax Tree.
     /// </summary>
     public class SyntaxItemTests
     {

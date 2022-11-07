@@ -1,7 +1,8 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.PSReadLinePredictor
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
+    using PoshPredictiveText.SemanticParser;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

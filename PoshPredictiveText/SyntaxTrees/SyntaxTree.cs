@@ -1,15 +1,15 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SyntaxTrees
 {
     using Parquet;
     using Parquet.Data.Rows;
+    using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Collections;
     using System.IO;
     using System.Reflection;
     using System.Resources;
     using System.Threading.Tasks;
-    using System.Xml.Linq;
     /// <summary>
     /// Each command has a syntax tree which sets out the possible combination of tokens
     /// on the command line. The trees are strored as XML resource files embeded within
@@ -18,7 +18,6 @@ namespace PoshPredictiveText
     /// </summary>
     internal class SyntaxTree
     {
-
         private readonly List<SyntaxItem> syntaxItems = new();
 
         private readonly string syntaxTreeName;

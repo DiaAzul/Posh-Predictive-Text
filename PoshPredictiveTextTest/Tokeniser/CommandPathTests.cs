@@ -1,13 +1,14 @@
 ﻿
 
-namespace PoshPredictiveText.Test
+namespace PoshPredictiveText.Test.Tokeniser
 {
+    using PoshPredictiveText.SemanticParser;
     using Xunit;
 
     /// <summary>
     /// Test Path class.
     /// </summary>
-    public class PathTests
+    public class CommandPathTests
     {
         /// <summary>
         /// Test Path class.

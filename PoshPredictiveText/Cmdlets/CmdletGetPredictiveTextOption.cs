@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.Cmdlets
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation;

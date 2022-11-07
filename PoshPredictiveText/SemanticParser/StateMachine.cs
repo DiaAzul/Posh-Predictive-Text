@@ -1,6 +1,7 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SemanticParser
 {
+    using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System.Management.Automation.Language;
 
