@@ -151,7 +151,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Compare packages between conda environments..
+        ///   Looks up a localized string similar to Choose which solver backend to use..
         /// </summary>
         public static string TT0011 {
             get {
@@ -160,7 +160,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configure a conda environment..
+        ///   Looks up a localized string similar to Compare packages between conda environments..
         /// </summary>
         public static string TT0012 {
             get {
@@ -169,7 +169,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a new conda environment from a list of specified packages..
+        ///   Looks up a localized string similar to Configure a conda environment..
         /// </summary>
         public static string TT0013 {
             get {
@@ -178,7 +178,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create an environment based on an environment file..
+        ///   Looks up a localized string similar to Create a new conda environment from a list of specified packages..
         /// </summary>
         public static string TT0014 {
             get {
@@ -187,7 +187,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create the environment directory if necessary..
+        ///   Looks up a localized string similar to Create an environment based on an environment file..
         /// </summary>
         public static string TT0015 {
             get {
@@ -196,7 +196,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current working directory in which to run command..
+        ///   Looks up a localized string similar to Create the environment directory if necessary..
         /// </summary>
         public static string TT0016 {
             get {
@@ -205,7 +205,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deactivate a conda environment..
+        ///   Looks up a localized string similar to Current working directory in which to run command..
         /// </summary>
         public static string TT0017 {
             get {
@@ -214,7 +214,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Describe given configuration parameters..
+        ///   Looks up a localized string similar to DEPRECATED. Choose which solver backend to use..
         /// </summary>
         public static string TT0018 {
             get {
@@ -223,7 +223,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display all identified configuration sources..
+        ///   Looks up a localized string similar to Deactivate a conda environment..
         /// </summary>
         public static string TT0019 {
             get {
@@ -232,7 +232,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display all untracked files and exit..
+        ///   Looks up a localized string similar to Describe given configuration parameters..
         /// </summary>
         public static string TT0020 {
             get {
@@ -241,7 +241,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display base environment path..
+        ///   Looks up a localized string similar to Display all identified configuration sources..
         /// </summary>
         public static string TT0021 {
             get {
@@ -250,7 +250,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display configuration values as calculated and compiled..
+        ///   Looks up a localized string similar to Display all untracked files and exit..
         /// </summary>
         public static string TT0022 {
             get {
@@ -259,7 +259,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display information about current conda install..
+        ///   Looks up a localized string similar to Display base environment path..
         /// </summary>
         public static string TT0023 {
             get {
@@ -268,7 +268,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display list of channels with tokens exposed..
+        ///   Looks up a localized string similar to Display configuration values as calculated and compiled..
         /// </summary>
         public static string TT0024 {
             get {
@@ -277,7 +277,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display the output in real time..
+        ///   Looks up a localized string similar to Display information about current conda install..
         /// </summary>
         public static string TT0025 {
             get {
@@ -286,7 +286,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Displays a list of available conda commands and their help strings..
+        ///   Looks up a localized string similar to Display list of channels with tokens exposed..
         /// </summary>
         public static string TT0026 {
             get {
@@ -295,7 +295,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not ask for confirmation..
+        ///   Looks up a localized string similar to Display the output in real time..
         /// </summary>
         public static string TT0027 {
             get {
@@ -304,7 +304,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not capture stdout/stderr..
+        ///   Looks up a localized string similar to Displays a list of available conda commands and their help strings..
         /// </summary>
         public static string TT0028 {
             get {
@@ -313,7 +313,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not display progress bar..
+        ///   Looks up a localized string similar to Do not ask for confirmation..
         /// </summary>
         public static string TT0029 {
             get {
@@ -322,7 +322,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not include channel names with package names..
+        ///   Looks up a localized string similar to Do not capture stdout/stderr..
         /// </summary>
         public static string TT0030 {
             get {
@@ -331,7 +331,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not include pip-only installed packages..
+        ///   Looks up a localized string similar to Do not display progress bar..
         /// </summary>
         public static string TT0031 {
             get {
@@ -340,7 +340,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not install start menu shortcuts..
+        ///   Looks up a localized string similar to Do not include channel names with package names..
         /// </summary>
         public static string TT0032 {
             get {
@@ -349,7 +349,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not install, update, remove, or change dependencies..
+        ///   Looks up a localized string similar to Do not include pip-only installed packages..
         /// </summary>
         public static string TT0033 {
             get {
@@ -358,7 +358,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not search default or .condarc channels..
+        ///   Looks up a localized string similar to Do not initialize conda for the current user.
         /// </summary>
         public static string TT0034 {
             get {
@@ -367,7 +367,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not stack the environment..
+        ///   Looks up a localized string similar to Do not install start menu shortcuts..
         /// </summary>
         public static string TT0035 {
             get {
@@ -376,7 +376,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not update or change already-installed dependencies..
+        ///   Looks up a localized string similar to Do not install, update, remove, or change dependencies..
         /// </summary>
         public static string TT0036 {
             get {
@@ -385,7 +385,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL. Choose which solver backend to use..
+        ///   Looks up a localized string similar to Do not search default or .condarc channels..
         /// </summary>
         public static string TT0037 {
             get {
@@ -394,7 +394,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL. Initialize conda for shell interaction..
+        ///   Looks up a localized string similar to Do not stack the environment..
         /// </summary>
         public static string TT0038 {
             get {
@@ -403,7 +403,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXPERIMENTAL. Low-level conda package utility..
+        ///   Looks up a localized string similar to Do not update or change already-installed dependencies..
         /// </summary>
         public static string TT0039 {
             get {
@@ -574,7 +574,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install all packages using copies instead of hard- or soft-linking..
+        ///   Looks up a localized string similar to Initialize conda for all users on the system..
         /// </summary>
         public static string TT0058 {
             get {
@@ -583,7 +583,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installs a list of packages into a specified conda environment..
+        ///   Looks up a localized string similar to Initialize conda for shell interaction..
         /// </summary>
         public static string TT0059 {
             get {
@@ -592,7 +592,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interact with environment variables associated with Conda environments..
+        ///   Looks up a localized string similar to Initialize conda for the current user..
         /// </summary>
         public static string TT0060 {
             get {
@@ -601,7 +601,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List all known conda environments..
+        ///   Looks up a localized string similar to Install all packages using copies instead of hard- or soft-linking..
         /// </summary>
         public static string TT0061 {
             get {
@@ -610,7 +610,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List environment variables for a conda environment..
+        ///   Looks up a localized string similar to Installs a list of packages into a specified conda environment..
         /// </summary>
         public static string TT0062 {
             get {
@@ -619,7 +619,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List linked packages in a conda environment..
+        ///   Looks up a localized string similar to Interact with environment variables associated with Conda environments..
         /// </summary>
         public static string TT0063 {
             get {
@@ -628,7 +628,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List only packages matching this regular expression..
+        ///   Looks up a localized string similar to List all known conda environments..
         /// </summary>
         public static string TT0064 {
             get {
@@ -637,7 +637,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List the Conda environments..
+        ///   Looks up a localized string similar to List environment variables for a conda environment..
         /// </summary>
         public static string TT0065 {
             get {
@@ -646,7 +646,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List the revision history and exit..
+        ///   Looks up a localized string similar to List linked packages in a conda environment..
         /// </summary>
         public static string TT0066 {
             get {
@@ -655,7 +655,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage environments..
+        ///   Looks up a localized string similar to List only packages matching this regular expression..
         /// </summary>
         public static string TT0067 {
             get {
@@ -664,7 +664,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modify configuration values in .condarc..
+        ///   Looks up a localized string similar to List the Conda environments..
         /// </summary>
         public static string TT0068 {
             get {
@@ -673,7 +673,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name of environment..
+        ///   Looks up a localized string similar to List the revision history and exit..
         /// </summary>
         public static string TT0069 {
             get {
@@ -682,7 +682,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Offline mode. Do not connect to the Internet..
+        ///   Looks up a localized string similar to Low-level conda package utility..
         /// </summary>
         public static string TT0070 {
             get {
@@ -691,7 +691,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One or more shells to be initialized..
+        ///   Looks up a localized string similar to Manage environments..
         /// </summary>
         public static string TT0071 {
             get {
@@ -700,7 +700,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only display what would have been done..
+        ///   Looks up a localized string similar to Modify configuration values in .condarc..
         /// </summary>
         public static string TT0072 {
             get {
@@ -709,7 +709,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only install dependencies..
+        ///   Looks up a localized string similar to Name of environment or prefix..
         /// </summary>
         public static string TT0073 {
             get {
@@ -718,7 +718,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only search for full names..
+        ///   Looks up a localized string similar to Name of environment..
         /// </summary>
         public static string TT0074 {
             get {
@@ -727,7 +727,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Output canonical names of packages only..
+        ///   Looks up a localized string similar to New name for the conda environment.
         /// </summary>
         public static string TT0075 {
             get {
@@ -736,7 +736,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Output requirement string only..
+        ///   Looks up a localized string similar to Offline mode. Do not connect to the Internet..
         /// </summary>
         public static string TT0076 {
             get {
@@ -745,7 +745,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Package build number of the created package..
+        ///   Looks up a localized string similar to One or more shells to be initialized..
         /// </summary>
         public static string TT0077 {
             get {
@@ -754,7 +754,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Package name of the created package..
+        ///   Looks up a localized string similar to Only display what would have been done..
         /// </summary>
         public static string TT0078 {
             get {
@@ -763,7 +763,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Package names to remove from the environment..
+        ///   Looks up a localized string similar to Only install dependencies..
         /// </summary>
         public static string TT0079 {
             get {
@@ -772,7 +772,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Package version of the created package..
+        ///   Looks up a localized string similar to Only search for full names..
         /// </summary>
         public static string TT0080 {
             get {
@@ -781,7 +781,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Package version takes precedence over channel priority..
+        ///   Looks up a localized string similar to Output canonical names of packages only..
         /// </summary>
         public static string TT0081 {
             get {
@@ -790,7 +790,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Packages to install or update in the conda environment..
+        ///   Looks up a localized string similar to Output requirement string only..
         /// </summary>
         public static string TT0082 {
             get {
@@ -799,7 +799,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Path to (or name of) existing local environment..
+        ///   Looks up a localized string similar to Package build number of the created package..
         /// </summary>
         public static string TT0083 {
             get {
@@ -808,7 +808,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Path to the environment file that is to be compared against..
+        ///   Looks up a localized string similar to Package name of the created package..
         /// </summary>
         public static string TT0084 {
             get {
@@ -817,7 +817,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide detailed information about each package..
+        ///   Looks up a localized string similar to Package names to remove from the environment..
         /// </summary>
         public static string TT0085 {
             get {
@@ -826,7 +826,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Read package versions from the given file..
+        ///   Looks up a localized string similar to Package version of the created package..
         /// </summary>
         public static string TT0086 {
             get {
@@ -835,7 +835,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remote environment definition..
+        ///   Looks up a localized string similar to Package version takes precedence over channel priority..
         /// </summary>
         public static string TT0087 {
             get {
@@ -844,7 +844,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove a configuration key (and all its values)..
+        ///   Looks up a localized string similar to Packages to install or update in the conda environment..
         /// </summary>
         public static string TT0088 {
             get {
@@ -853,7 +853,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove a configuration value from a list key..
+        ///   Looks up a localized string similar to Path to (or name of) existing local environment..
         /// </summary>
         public static string TT0089 {
             get {
@@ -862,7 +862,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove a list of packages from a specified conda environment..
+        ///   Looks up a localized string similar to Path to the environment file that is to be compared against..
         /// </summary>
         public static string TT0090 {
             get {
@@ -871,7 +871,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove all packages..
+        ///   Looks up a localized string similar to Provide detailed information about each package..
         /// </summary>
         public static string TT0091 {
             get {
@@ -880,7 +880,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove all untracked files and exit..
+        ///   Looks up a localized string similar to Read package versions from the given file..
         /// </summary>
         public static string TT0092 {
             get {
@@ -889,7 +889,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove all writable package caches..
+        ///   Looks up a localized string similar to Remote environment definition..
         /// </summary>
         public static string TT0093 {
             get {
@@ -898,7 +898,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove an environment..
+        ///   Looks up a localized string similar to Remove a configuration key (and all its values)..
         /// </summary>
         public static string TT0094 {
             get {
@@ -907,7 +907,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove build specification from dependencies..
+        ///   Looks up a localized string similar to Remove a configuration value from a list key..
         /// </summary>
         public static string TT0095 {
             get {
@@ -916,7 +916,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove cached package tarballs..
+        ///   Looks up a localized string similar to Remove a list of packages from a specified conda environment..
         /// </summary>
         public static string TT0096 {
             get {
@@ -925,7 +925,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove features (instead of packages)..
+        ///   Looks up a localized string similar to Remove all packages..
         /// </summary>
         public static string TT0097 {
             get {
@@ -934,7 +934,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove index cache, lock files, unused cache packages, and tarballs..
+        ///   Looks up a localized string similar to Remove all untracked files and exit..
         /// </summary>
         public static string TT0098 {
             get {
@@ -943,7 +943,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove index cache..
+        ///   Looks up a localized string similar to Remove all writable package caches..
         /// </summary>
         public static string TT0099 {
             get {
@@ -952,7 +952,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove installed packages not defined in definition file..
+        ///   Looks up a localized string similar to Remove an environment..
         /// </summary>
         public static string TT0100 {
             get {
@@ -961,7 +961,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove temporary files that could not be deleted earlier due to being in-use..
+        ///   Looks up a localized string similar to Remove build specification from dependencies..
         /// </summary>
         public static string TT0101 {
             get {
@@ -970,7 +970,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove unused packages and caches..
+        ///   Looks up a localized string similar to Remove cached package tarballs..
         /// </summary>
         public static string TT0102 {
             get {
@@ -979,7 +979,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove unused packages from writable package caches..
+        ///   Looks up a localized string similar to Remove features (instead of packages)..
         /// </summary>
         public static string TT0103 {
             get {
@@ -988,7 +988,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report all output as json..
+        ///   Looks up a localized string similar to Remove index cache, lock files, unused cache packages, and tarballs..
         /// </summary>
         public static string TT0104 {
             get {
@@ -997,7 +997,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Revert to the specified REVISION..
+        ///   Looks up a localized string similar to Remove index cache..
         /// </summary>
         public static string TT0105 {
             get {
@@ -1006,7 +1006,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Run an executable in a conda environment..
+        ///   Looks up a localized string similar to Remove installed packages not defined in definition file..
         /// </summary>
         public static string TT0106 {
             get {
@@ -1015,7 +1015,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search all of the current user&apos;s environments..
+        ///   Looks up a localized string similar to Remove log files..
         /// </summary>
         public static string TT0107 {
             get {
@@ -1024,7 +1024,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search for packages and display associated information..
+        ///   Looks up a localized string similar to Remove temporary files that could not be deleted earlier due to being in-use..
         /// </summary>
         public static string TT0108 {
             get {
@@ -1033,7 +1033,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search the given sub-directory..
+        ///   Looks up a localized string similar to Remove unused packages and caches..
         /// </summary>
         public static string TT0109 {
             get {
@@ -1042,7 +1042,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set a boolean or string key..
+        ///   Looks up a localized string similar to Remove unused packages from writable package caches..
         /// </summary>
         public static string TT0110 {
             get {
@@ -1051,7 +1051,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set environment variables for a conda environment..
+        ///   Looks up a localized string similar to Renames an existing environment..
         /// </summary>
         public static string TT0111 {
             get {
@@ -1060,7 +1060,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sets `CONDA_EXE` to `python -m conda`..
+        ///   Looks up a localized string similar to Report all output as json..
         /// </summary>
         public static string TT0112 {
             get {
@@ -1069,7 +1069,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show all information..
+        ///   Looks up a localized string similar to Retrieves latest channel notifications..
         /// </summary>
         public static string TT0113 {
             get {
@@ -1078,7 +1078,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show channel urls..
+        ///   Looks up a localized string similar to Revert to the specified REVISION..
         /// </summary>
         public static string TT0114 {
             get {
@@ -1087,7 +1087,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show help message and exit..
+        ///   Looks up a localized string similar to Run an executable in a conda environment..
         /// </summary>
         public static string TT0115 {
             get {
@@ -1096,7 +1096,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show the conda version number and exit..
+        ///   Looks up a localized string similar to Search all of the current user&apos;s environments..
         /// </summary>
         public static string TT0116 {
             get {
@@ -1105,7 +1105,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Solve environment, population caches, exit prior to linking..
+        ///   Looks up a localized string similar to Search for packages and display associated information..
         /// </summary>
         public static string TT0117 {
             get {
@@ -1114,7 +1114,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specify name of repodata on remote server..
+        ///   Looks up a localized string similar to Search the given sub-directory..
         /// </summary>
         public static string TT0118 {
             get {
@@ -1123,7 +1123,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stack the environment on previous active environment..
+        ///   Looks up a localized string similar to Set a boolean or string key..
         /// </summary>
         public static string TT0119 {
             get {
@@ -1132,7 +1132,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Take packages from highest priority channel..
+        ///   Looks up a localized string similar to Set environment variables for a conda environment..
         /// </summary>
         public static string TT0120 {
             get {
@@ -1141,7 +1141,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Undo past effects of conda init..
+        ///   Looks up a localized string similar to Sets `CONDA_EXE` to `python -m conda`..
         /// </summary>
         public static string TT0121 {
             get {
@@ -1150,7 +1150,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unset environment variables for a conda environment..
+        ///   Looks up a localized string similar to Show all information..
         /// </summary>
         public static string TT0122 {
             get {
@@ -1159,7 +1159,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update all installed packages in the environment..
+        ///   Looks up a localized string similar to Show channel urls..
         /// </summary>
         public static string TT0123 {
             get {
@@ -1168,7 +1168,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update based on provided specifications..
+        ///   Looks up a localized string similar to Show help message and exit..
         /// </summary>
         public static string TT0124 {
             get {
@@ -1177,7 +1177,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update dependencies..
+        ///   Looks up a localized string similar to Show the conda version number and exit..
         /// </summary>
         public static string TT0125 {
             get {
@@ -1186,7 +1186,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update the current environment based on environment file..
+        ///   Looks up a localized string similar to Solve environment, population caches, exit prior to linking..
         /// </summary>
         public static string TT0126 {
             get {
@@ -1195,7 +1195,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updates conda packages to the latest compatible version..
+        ///   Looks up a localized string similar to Specify name of repodata on remote server..
         /// </summary>
         public static string TT0127 {
             get {
@@ -1204,7 +1204,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use `sys.executable -m conda` in wrapper scripts..
+        ///   Looks up a localized string similar to Stack the environment on previous active environment..
         /// </summary>
         public static string TT0128 {
             get {
@@ -1213,7 +1213,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use cache of channel index files, even if it has expired..
+        ///   Looks up a localized string similar to Take packages from highest priority channel..
         /// </summary>
         public static string TT0129 {
             get {
@@ -1222,7 +1222,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use locally built packages..
+        ///   Looks up a localized string similar to Undo effects of last conda init..
         /// </summary>
         public static string TT0130 {
             get {
@@ -1231,7 +1231,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use once for INFO, twice for DEBUG, three times for TRACE..
+        ///   Looks up a localized string similar to Unset environment variables for a conda environment..
         /// </summary>
         public static string TT0131 {
             get {
@@ -1240,7 +1240,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validate all configuration sources..
+        ///   Looks up a localized string similar to Update all installed packages in the environment..
         /// </summary>
         public static string TT0132 {
             get {
@@ -1249,7 +1249,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write the default configuration to a file..
+        ///   Looks up a localized string similar to Update based on provided specifications..
         /// </summary>
         public static string TT0133 {
             get {
@@ -1258,7 +1258,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write to the active conda environment .condarc file..
+        ///   Looks up a localized string similar to Update dependencies..
         /// </summary>
         public static string TT0134 {
             get {
@@ -1267,7 +1267,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write to the given file..
+        ///   Looks up a localized string similar to Update the current environment based on environment file..
         /// </summary>
         public static string TT0135 {
             get {
@@ -1276,11 +1276,92 @@ namespace PoshPredictiveText.SyntaxTreeSpecs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write to the system .condarc file..
+        ///   Looks up a localized string similar to Updates conda packages to the latest compatible version..
         /// </summary>
         public static string TT0136 {
             get {
                 return ResourceManager.GetString("TT0136", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use `sys.executable -m conda` in wrapper scripts..
+        /// </summary>
+        public static string TT0137 {
+            get {
+                return ResourceManager.GetString("TT0137", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use cache of channel index files, even if it has expired..
+        /// </summary>
+        public static string TT0138 {
+            get {
+                return ResourceManager.GetString("TT0138", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use locally built packages..
+        /// </summary>
+        public static string TT0139 {
+            get {
+                return ResourceManager.GetString("TT0139", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use once for INFO, twice for DEBUG, three times for TRACE..
+        /// </summary>
+        public static string TT0140 {
+            get {
+                return ResourceManager.GetString("TT0140", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate all configuration sources..
+        /// </summary>
+        public static string TT0141 {
+            get {
+                return ResourceManager.GetString("TT0141", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write the default configuration to a file..
+        /// </summary>
+        public static string TT0142 {
+            get {
+                return ResourceManager.GetString("TT0142", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write to the active conda environment .condarc file..
+        /// </summary>
+        public static string TT0143 {
+            get {
+                return ResourceManager.GetString("TT0143", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write to the given file..
+        /// </summary>
+        public static string TT0144 {
+            get {
+                return ResourceManager.GetString("TT0144", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write to the system .condarc file..
+        /// </summary>
+        public static string TT0145 {
+            get {
+                return ResourceManager.GetString("TT0145", resourceCulture);
             }
         }
     }
