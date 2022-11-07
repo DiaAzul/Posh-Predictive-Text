@@ -1,4 +1,6 @@
-﻿
+﻿// TODO [HIGH][RESOLVER] Implement parameter sets.
+// TODO [HIGH][RESOLVER] Implement selection from choice.
+
 namespace PoshPredictiveText
 {
     using PoshPredictiveText.Helpers;
@@ -139,6 +141,7 @@ namespace PoshPredictiveText
             // ----- POSITIONAL VALUES -----
             // If we have a helper for positional parameters then return the suggestions.
             // BUG [HIGH][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.
+            // TODO [HIGH][RESOLVER] Check for sequencing of positional parameters.
             if (!listOnlyParameterValues && commandComplete)
             {
                 LOGGER.Write("RESOLVER: Listing positional parameters.");
