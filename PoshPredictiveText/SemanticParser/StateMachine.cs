@@ -6,8 +6,11 @@ namespace PoshPredictiveText.SemanticParser
     using System.Management.Automation.Language;
 
     /// <summary>
-    /// The state machine evaluates tokenised command line input and adds
-    /// semantic information.
+    /// The state machine evaluates the command line input and appends
+    /// semantic information to each token.
+    /// 
+    /// The semantic information is sourced from the syntax tree and used
+    /// to determine the token type.
     /// </summary>
     internal class StateMachine
     {
@@ -60,13 +63,15 @@ namespace PoshPredictiveText.SemanticParser
 
         /// <summary>
         /// StateMachine adds semantic information to command line tokens.
+        /// 
+        /// Initialise an empty state machine.
         /// </summary>
         internal StateMachine() { }
 
         /// <summary>
         /// StateMachine adds semantic information to command line tokens. 
         /// 
-        /// This constructor allows the initial state to be defined during testing.
+        /// Initialise a state machine with a given state (used in testing).
         /// </summary>
         /// <param name="state">State of the machine</param>
         /// <param name="syntaxTreeName">Name of syntax tree</param>
@@ -91,7 +96,7 @@ namespace PoshPredictiveText.SemanticParser
         }
 
         /// <summary>
-        /// SyntaxTree used to tokenise the command line.
+        /// Get the SyntaxTree used to tokenise the command line.
         /// </summary>
         internal SyntaxTree? SyntaxTree
         {
@@ -99,7 +104,7 @@ namespace PoshPredictiveText.SemanticParser
         }
 
         /// <summary>
-        /// Command Path for command tokens entered on the command line.
+        /// Get the Command Path for command tokens entered on the command line.
         /// </summary>
         internal CommandPath CommandPath
         {
@@ -107,7 +112,7 @@ namespace PoshPredictiveText.SemanticParser
         }
 
         /// <summary>
-        /// Current state of the state machine.
+        /// Get the current state of the state machine.
         /// </summary>
         internal State CurrentState
         {
@@ -129,11 +134,14 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Main entry point to the state machine.
         /// 
-        /// Routing function passing token to evaluation method
-        /// dependent upon the state of the state machine.
+        /// The routing function evaluates tokens depending upon the state
+        /// of the machine and the token value.
+        /// 
+        /// The machine may split tokens and return multiple semantically enhanced
+        /// tokens for a given input token.
         /// </summary>
-        /// <param name="tokens">Input tokens for enhancement</param>
-        /// <returns>Enhanced tokens</returns>
+        /// <param name="tokens">Input tokens to which semantic information will be added</param>
+        /// <returns>Tokens with semantic information added.</returns>
         internal List<Token> Evaluate(Token token)
         {
             LOGGER.Write("Enter evaluate.");
