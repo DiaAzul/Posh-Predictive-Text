@@ -1,8 +1,8 @@
 ﻿
 namespace PoshPredictiveText.Test.SyntaxTree
 {
-    using Xunit;
     using PoshPredictiveText.SyntaxTrees;
+    using Xunit;
 
     /// <summary>
     /// Syntax tree tests using a mock syntax tree.

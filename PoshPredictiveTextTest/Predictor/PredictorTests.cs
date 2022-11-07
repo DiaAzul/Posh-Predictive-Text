@@ -1,8 +1,8 @@
 ﻿
 namespace PoshPredictiveText.Test.Predictor
 {
-    using System.Management.Automation.Subsystem.Prediction;
     using PoshPredictiveText.PSReadLinePredictor;
+    using System.Management.Automation.Subsystem.Prediction;
     using System.Threading;
     using Xunit;
 

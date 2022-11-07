@@ -149,7 +149,7 @@ namespace PoshPredictiveText.SemanticParser
                 state = stateMachineState.State;
                 // Clone command path on way out of the cache to mitigate side-effects
                 // which arise when additional items are added to the mutable list.
-                commandPath = new(stateMachineState.CommandPath); 
+                commandPath = new(stateMachineState.CommandPath);
                 parameterValues = stateMachineState.ParameterValues;
                 parameterSyntaxItem = stateMachineState.ParameterSyntaxItem;
                 returnTokens = stateMachineState.ReturnTokens;
@@ -230,7 +230,7 @@ namespace PoshPredictiveText.SemanticParser
                     suggestions.Add(suggestion);
                 }
                 token.SuggestedSyntaxItems = suggestions;
-            }         
+            }
             return new List<Token> { token };
         }
 
@@ -318,7 +318,7 @@ namespace PoshPredictiveText.SemanticParser
                         token.IsComplete = false;
                         state = State.Item;
                     }
-                    
+
                     break;
                 default:
                     token.SuggestedSyntaxItems = suggestedParameters;
@@ -356,7 +356,7 @@ namespace PoshPredictiveText.SemanticParser
             };
 
             parameterValues = 1;
-            parameterSyntaxItem = new SyntaxItem() { Type = SyntaxItemType.REDIRECTION , Name="PATH"};
+            parameterSyntaxItem = new SyntaxItem() { Type = SyntaxItemType.REDIRECTION, Name="PATH" };
             state = State.Value;
             return new List<Token> { redirectionToken };
         }
@@ -436,7 +436,7 @@ namespace PoshPredictiveText.SemanticParser
                             break;
                         }
                 }
-            } 
+            }
             else
             {
                 token.SemanticType = Token.TokenType.PositionalValue;

@@ -59,7 +59,7 @@ namespace PoshPredictiveText.SemanticParser
             foreach (Token returnedToken in returnedTokens)
             {
                 this.tokens.Add(this.TokenPosition, returnedToken);
-            }           
+            }
         }
 
         /// <summary>

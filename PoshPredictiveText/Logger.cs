@@ -1,7 +1,4 @@
-﻿
-using static PoshPredictiveText.LOGGER;
-
-namespace PoshPredictiveText
+﻿namespace PoshPredictiveText
 {
     /// <summary>
     /// Custom logger exception propagated up to the root of the cmdlet for outputing

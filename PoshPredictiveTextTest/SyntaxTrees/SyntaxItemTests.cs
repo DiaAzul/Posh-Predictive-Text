@@ -1,9 +1,8 @@
 ﻿
 namespace PoshPredictiveText.Test.SyntaxTrees
 {
-    using System.Management.Automation;
-    using PoshPredictiveText;
     using PoshPredictiveText.SyntaxTrees;
+    using System.Management.Automation;
     using Xunit;
 
     /// <summary>

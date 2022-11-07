@@ -1,11 +1,11 @@
 ﻿
 namespace PoshPredictiveText.Test.Tokeniser
 {
-    using System.Management.Automation.Language;
     using PoshPredictiveText.SemanticParser;
-    using static PoshPredictiveText.SemanticParser.Token;
-    using Xunit;
     using PoshPredictiveText.SyntaxTrees;
+    using System.Management.Automation.Language;
+    using Xunit;
+    using static PoshPredictiveText.SemanticParser.Token;
 
     /// <summary>
     /// Test Visitor records

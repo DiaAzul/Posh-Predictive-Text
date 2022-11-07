@@ -76,10 +76,10 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         /// </summary>
         /// <param name="partialCommand">Partial command name.</param>
         /// <returns>List of potential commands.</returns>
-        internal static List<string>SuggestedCommands(string partialCommand)
+        internal static List<string> SuggestedCommands(string partialCommand)
         {
             return COMMAND_CONFIGS.Keys
-                                    .Where( key => key.StartsWith(partialCommand))
+                                    .Where(key => key.StartsWith(partialCommand))
                                     .ToList();
         }
 

@@ -2,10 +2,10 @@
 
 namespace PoshPredictiveText.Test.Tokenizer
 {
-    using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SemanticParser;
-    using static PoshPredictiveText.SemanticParser.Token;
+    using PoshPredictiveText.SyntaxTrees;
     using Xunit;
+    using static PoshPredictiveText.SemanticParser.Token;
 
     /// <summary>
     /// StateMachine tests.

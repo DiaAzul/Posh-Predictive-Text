@@ -11,7 +11,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Initialise an empty command path.
         /// </summary>
-        internal CommandPath() 
+        internal CommandPath()
         {
             commands = new List<string>();
         }

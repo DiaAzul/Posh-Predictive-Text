@@ -19,7 +19,7 @@ namespace PoshPredictiveText.SemanticParser
         private static readonly ConcurrentDictionary<string, Tokeniser> tokenisers = new();
         private static readonly Mutex available = new();
 
-        internal bool Acquired {get; set;} = false;
+        internal bool Acquired { get; set; } = false;
 
         /// <summary>
         /// Acquire unique access to the cache.
