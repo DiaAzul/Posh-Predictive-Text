@@ -77,9 +77,9 @@ namespace PoshPredictiveText.Cmdlets
                             LOGGER.Write("Cmdlet using cached tokeniser.");
                         }
 
-                        Write("Resolving word: " + WordToComplete??"");
-                        Write("Resolving AST: " + CommandAst);
-                        Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
+                        LOGGER.Write("Resolving word: " + WordToComplete??"");
+                        LOGGER.Write("Resolving AST: " + CommandAst);
+                        LOGGER.Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
 
                         // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
 
@@ -97,7 +97,7 @@ namespace PoshPredictiveText.Cmdlets
                         // the problem).
                         catch (Exception ex)
                         {
-                            Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
+                            LOGGER.Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
 #if DEBUG
                             switch (ex)
                             {
