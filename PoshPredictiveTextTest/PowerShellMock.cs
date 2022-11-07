@@ -68,9 +68,7 @@ namespace PoshPredictiveText.Test
         public static CommandAst CreateCommandAst(string promptText)
         {
             // Generate a script block abstract syntax tree from the provided prompt text.
-            Token[] tokens = Array.Empty<Token>();
-            ParseError[] errors = Array.Empty<ParseError>();
-            ScriptBlockAst scriptBlock = Parser.ParseInput(promptText, out tokens, out errors);
+            ScriptBlockAst scriptBlock = Parser.ParseInput(promptText, out _, out ParseError[] errors);
             Assert.Empty(errors);
 
             // Extract the command abstract syntax tree from the script block abstract syntax tree.
