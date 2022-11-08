@@ -45,7 +45,7 @@ namespace PoshPredictiveText.SemanticParser
             // ast structure changes and we need to find out what types we are NOT
             // explicitly capturing.
 #if DEBUG
-            // LOGGER.Write($"Default (not tokenised): {ast.ToString()}, {ast.GetType()}");
+            LOGGER.Write($"VISITOR: Caught in default, no handler for: {ast}, {ast.GetType()}");
 #endif
             return AstVisitAction.Continue;
         }
