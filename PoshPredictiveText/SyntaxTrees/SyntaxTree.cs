@@ -36,8 +36,10 @@ namespace PoshPredictiveText.SyntaxTrees
             syntaxTreeName = name;
             //var result = Task.Run(LoadAsync);
             //result.GetAwaiter().GetResult();
-            var syncTask = new Task( action: () => LoadAsync());
-            syncTask.RunSynchronously();
+            //var syncTask = new Task( action: () => LoadAsync());
+            //syncTask.RunSynchronously();
+            //syncTask.Wait();
+            var syncTask = Task.Run(async () => await LoadAsync()); //.RunSynchronously();
             syncTask.Wait();
             //syncTask.GetAwaiter().GetResult(); //  RunSynchronously();
             LOGGER.Write($"SYNTAX TREE: Loaded {name}. Items={syntaxItems.Count}.");
