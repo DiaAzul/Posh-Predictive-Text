@@ -27,10 +27,12 @@ namespace PoshPredictiveText.SyntaxTrees
             if (syntaxTreeName is null) return null;
             if (syntaxTrees.ContainsKey(syntaxTreeName))
             {
+                LOGGER.Write($"SYNTAX TREES: Returning existing {syntaxTreeName} syntax tree.");
                 return syntaxTrees[syntaxTreeName];
             }
             if (SyntaxTreesConfig.IsSupportedCommand(syntaxTreeName))
             {
+                LOGGER.Write($"SYNTAX TREES: Adding {syntaxTreeName} to parsed syntax trees.");
                 Add(syntaxTreeName);
                 return syntaxTrees[syntaxTreeName];
             }
@@ -55,6 +57,7 @@ namespace PoshPredictiveText.SyntaxTrees
             }
             catch (SyntaxTreeException ex)
             {
+                LOGGER.Write($"SYNTAX TREES: Unable to add {syntaxTreeName} to syntax tree database.");
                 throw new SyntaxTreeException($"Unable to add {syntaxTreeName} to syntax tree database.", ex);
             }
         }

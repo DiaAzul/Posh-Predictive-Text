@@ -53,7 +53,7 @@ namespace PoshPredictiveText.Cmdlets
         {
             // The algorithm uses the command abstract syntrax tree to tokenise the input text. 
             // If it is not available then return no values.
-            Write("Processing...");
+            Write("CMDLET: Processing...");
             if (CommandAst is not null)
             {
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
@@ -63,23 +63,24 @@ namespace PoshPredictiveText.Cmdlets
                 {
                     if (cachedTokeniser.Acquired)
                     {
-                        LOGGER.Write("Cmdlet acquired cached tokeniser.");
+                        LOGGER.Write("CMDLET: Acquired cached tokeniser.");
                         Tokeniser? enteredTokens = TokeniserCache.Get(CommandAst.ToString());
                         if (enteredTokens is null)
                         {
-                            LOGGER.Write("Creating tokeniser from cmdlet CommandAst");
+                            LOGGER.Write("CMDLET: Creating tokeniser from cmdlet CommandAst");
                             Visitor visitor = new();
                             CommandAst.Visit(visitor);
                             enteredTokens = visitor.Tokeniser;
+                            LOGGER.Write($"CMDLET: Finished visiting CommandAst. {enteredTokens.Count} tokens.");
                         }
                         else
                         {
-                            LOGGER.Write("Cmdlet using cached tokeniser.");
+                            LOGGER.Write("CMDLET: Cmdlet using cached tokeniser.");
                         }
 
-                        LOGGER.Write("Resolving word: " + WordToComplete??"");
-                        LOGGER.Write("Resolving AST: " + CommandAst);
-                        LOGGER.Write($"Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
+                        LOGGER.Write("CMDLET: Resolving word: " + WordToComplete??"");
+                        LOGGER.Write("CMDLET: Resolving AST: " + CommandAst);
+                        LOGGER.Write($"CMDLET: Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
 
                         // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
 
@@ -134,7 +135,7 @@ namespace PoshPredictiveText.Cmdlets
 
                     cmdletSuggestions.Add(cmdletSuggestion);
                 };
-
+                LOGGER.Write($"CMDLET: Writing {cmdletSuggestions.Count} suggestions.");
                 WriteObject(cmdletSuggestions);
             }
             base.EndProcessing();

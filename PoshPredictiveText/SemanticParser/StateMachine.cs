@@ -144,7 +144,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Tokens with semantic information added.</returns>
         internal List<Token> Evaluate(Token token)
         {
-            LOGGER.Write("Enter evaluate.");
+            LOGGER.Write($"STATE MACHINE: Evaluate {token.Value}.");
             List<Token> returnTokens;
 
             string cacheKey = commandPath + "+" + token.Value;
@@ -154,6 +154,7 @@ namespace PoshPredictiveText.SemanticParser
             // If we have already processed and cached this argument use the cached version.
             if (stateMachineState is not null)
             {
+                LOGGER.Write("STATE MACHINE: Use cached token results.");
                 state = stateMachineState.State;
                 // Clone command path on way out of the cache to mitigate side-effects
                 // which arise when additional items are added to the mutable list.
@@ -165,6 +166,7 @@ namespace PoshPredictiveText.SemanticParser
             // Otherwise parse the argument and add semantic information.
             else
             {
+                LOGGER.Write("STATE MACHINE: Parse argument.");
                 returnTokens = state switch
                 {
                     State.NoCommand => NoCommand(token),
@@ -184,6 +186,7 @@ namespace PoshPredictiveText.SemanticParser
                         case Token.TokenType.PositionalValue:
                             break;
                         default:
+                            LOGGER.Write("STATE MACHINE: Cache parsed token results.");
                             StateMachineState newCacheItem = new()
                             {
                                 State = state,
@@ -200,7 +203,7 @@ namespace PoshPredictiveText.SemanticParser
                     }
                 }
             }
-            LOGGER.Write("Exit Evaluate.");
+            LOGGER.Write($"STATE MACHINE: Complete {token.Value} evaluation.");
             return returnTokens;
         }
 
@@ -215,9 +218,26 @@ namespace PoshPredictiveText.SemanticParser
                 LOGGER.Write($"STATE MACHINE: Supported command: {command}");
                 syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
                 LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {syntaxTreeName}");
-                syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+                try
+                {
+                    syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+                    if (syntaxTree != null)
+                    {
+                        LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
+                    }
+                    else
+                    {
+                        LOGGER.Write("STATE MACHINE: SYNTAX TREE NOT LOADED!");
+                    }
+                }
+                catch (SyntaxTreeException)
+                {
+                    LOGGER.Write("STATE MACHINE: ERROR LOADING SYNTAX TREE!");
+                }
+
                 parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
                 commandPath = new(SyntaxTreeName!);
+                LOGGER.Write($"STATE MACHINE: Command path={commandPath}");
                 token.SemanticType = Token.TokenType.Command;
                 token.IsComplete = true;
                 state = State.Item;

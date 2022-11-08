@@ -9,6 +9,8 @@ namespace PoshPredictiveText.SyntaxTrees
     using System.IO;
     using System.Reflection;
     using System.Resources;
+    using System.Runtime.CompilerServices;
+    using System.Threading;
     using System.Threading.Tasks;
     /// <summary>
     /// Each command has a syntax tree which sets out the possible combination of tokens
@@ -30,9 +32,15 @@ namespace PoshPredictiveText.SyntaxTrees
         /// <param name="name">Syntax tree name.</param>
         internal SyntaxTree(string name)
         {
+            LOGGER.Write($"SYNTAX TREE: Loading {name}. Items={syntaxItems.Count}.");
             syntaxTreeName = name;
-            var result = Task.Run(LoadAsync);
-            result.Wait();
+            //var result = Task.Run(LoadAsync);
+            //result.GetAwaiter().GetResult();
+            var syncTask = new Task( action: () => LoadAsync());
+            syncTask.RunSynchronously();
+            syncTask.Wait();
+            //syncTask.GetAwaiter().GetResult(); //  RunSynchronously();
+            LOGGER.Write($"SYNTAX TREE: Loaded {name}. Items={syntaxItems.Count}.");
         }
 
         /// <summary>
@@ -217,11 +225,13 @@ namespace PoshPredictiveText.SyntaxTrees
         /// </summary>
         private async Task LoadAsync()
         {
+            LOGGER.Write("SYNTAX TREE: Async loading start.");
             Table? syntaxTreeParquetTable;
             Assembly assembly = Assembly.GetExecutingAssembly();
             try
             {
                 string? resourcePath = SyntaxTreesConfig.ParquetDefinition(syntaxTreeName);
+                LOGGER.Write($"SYNTAX TREE: Resource path: {resourcePath}");
                 if (resourcePath is null)
                     throw new SyntaxTreeException($"Definition file not found for {syntaxTreeName}.");
 
