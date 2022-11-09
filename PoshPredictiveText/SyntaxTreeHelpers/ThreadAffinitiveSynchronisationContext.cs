@@ -17,8 +17,7 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
         /// <summary>
         ///		A blocking collection (effectively a queue) of work items to execute, consisting of callback delegates and their callback state (if any).
         /// </summary>
-        BlockingCollection<KeyValuePair<SendOrPostCallback, object>> _workItemQueue = new BlockingCollection<KeyValuePair<SendOrPostCallback, object>>();
-
+        BlockingCollection<KeyValuePair<SendOrPostCallback, object>>? _workItemQueue = new();
 
         /// <summary>
         ///		Create a new thread-affinitive synchronisation context.
@@ -27,29 +26,26 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
         {
         }
 
-
         /// <summary>
         ///		Dispose of resources being used by the synchronisation context.
         /// </summary>
         void IDisposable.Dispose()
         {
-            if (_workItemQueue != null)
+            if (_workItemQueue is not null)
             {
                 _workItemQueue.Dispose();
                 _workItemQueue = null;
             }
         }
 
-
         /// <summary>
         ///		Check if the synchronisation context has been disposed.
         /// </summary>
         void CheckDisposed()
         {
-            if (_workItemQueue == null)
+            if (_workItemQueue is null)
                 throw new ObjectDisposedException(GetType().Name);
         }
-
 
         /// <summary>
         ///		Run the message pump for the callback queue on the current thread.
@@ -58,19 +54,14 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
         {
             CheckDisposed();
 
-
-            KeyValuePair<SendOrPostCallback, object> workItem;
-            while (_workItemQueue.TryTake(out workItem, Timeout.InfiniteTimeSpan))
+            while (_workItemQueue?.TryTake(out KeyValuePair<SendOrPostCallback, object> workItem, Timeout.InfiniteTimeSpan) ?? false)
             {
                 workItem.Key(workItem.Value);
-
-
                 // Has the synchronisation context been disposed?
-                if (_workItemQueue == null)
+                if (_workItemQueue is null)
                     break;
             }
         }
-
 
         /// <summary>
         ///		Terminate the message pump once all callbacks have completed.
@@ -78,11 +69,8 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
         void TerminateMessagePump()
         {
             CheckDisposed();
-
-
-            _workItemQueue.CompleteAdding();
+            _workItemQueue?.CompleteAdding();
         }
-
 
         /// <summary>
         ///		Dispatch an asynchronous message to the synchronization context.
@@ -96,21 +84,19 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
         /// <exception cref="InvalidOperationException">
         ///		The message pump has already been started, and then terminated by calling <see cref="TerminateMessagePump"/>.
         /// </exception>
-        public override void Post(SendOrPostCallback callback, object callbackState)
+        public override void Post(SendOrPostCallback callback, object? callbackState)
         {
-            if (callback == null)
+            if (callback is null)
                 throw new ArgumentNullException(nameof(callback));
-
 
             CheckDisposed();
 
-
             try
             {
-                _workItemQueue.Add(
+                _workItemQueue?.Add(
                     new KeyValuePair<SendOrPostCallback, object>(
                         key: callback,
-                        value: callbackState
+                        value: callbackState ?? default!
                     )
                 );
             }
@@ -123,7 +109,6 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
             }
         }
 
-
         /// <summary>
         ///		Run an asynchronous operation using the current thread as its synchronisation context.
         /// </summary>
@@ -135,8 +120,7 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
             if (asyncOperation == null)
                 throw new ArgumentNullException(nameof(asyncOperation));
 
-
-            SynchronizationContext savedContext = Current;
+            SynchronizationContext savedContext = Current!;
             try
             {
                 using ThreadAffinitiveSynchronizationContext synchronizationContext = new();
@@ -202,57 +186,50 @@ namespace PoshPredictiveText.SyntaxTreeHelpers
             if (asyncOperation == null)
                 throw new ArgumentNullException(nameof(asyncOperation));
 
-
-            SynchronizationContext savedContext = Current;
+            SynchronizationContext savedContext = Current!;
             try
             {
-                using (ThreadAffinitiveSynchronizationContext synchronizationContext = new ThreadAffinitiveSynchronizationContext())
+                using ThreadAffinitiveSynchronizationContext synchronizationContext = new();
+                SetSynchronizationContext(synchronizationContext);
+
+
+                Task<TResult> rootOperationTask = asyncOperation();
+                if (rootOperationTask == null)
+                    throw new InvalidOperationException("The asynchronous operation delegate cannot return null.");
+
+
+                rootOperationTask.ContinueWith(
+                    operationTask =>
+                        synchronizationContext.TerminateMessagePump(),
+                    scheduler:
+                        TaskScheduler.Default
+                );
+
+                synchronizationContext.RunMessagePump();
+
+                try
                 {
-                    SetSynchronizationContext(synchronizationContext);
+                    return
+                        rootOperationTask
+                            .GetAwaiter()
+                            .GetResult();
+                }
+                catch (AggregateException eWaitForTask) // The TPL will almost always wrap an AggregateException around any exception thrown by the async operation.
+                {
+                    // Is this just a wrapped exception?
+                    AggregateException flattenedAggregate = eWaitForTask.Flatten();
+                    if (flattenedAggregate.InnerExceptions.Count != 1)
+                        throw; // Nope, genuine aggregate.
 
+                    // Yep, so rethrow (preserving original stack-trace).
+                    ExceptionDispatchInfo
+                        .Capture(
+                            flattenedAggregate
+                                .InnerExceptions[0]
+                        )
+                        .Throw();
 
-                    Task<TResult> rootOperationTask = asyncOperation();
-                    if (rootOperationTask == null)
-                        throw new InvalidOperationException("The asynchronous operation delegate cannot return null.");
-
-
-                    rootOperationTask.ContinueWith(
-                        operationTask =>
-                            synchronizationContext.TerminateMessagePump(),
-                        scheduler:
-                            TaskScheduler.Default
-                    );
-
-
-                    synchronizationContext.RunMessagePump();
-
-
-                    try
-                    {
-                        return
-                            rootOperationTask
-                                .GetAwaiter()
-                                .GetResult();
-                    }
-                    catch (AggregateException eWaitForTask) // The TPL will almost always wrap an AggregateException around any exception thrown by the async operation.
-                    {
-                        // Is this just a wrapped exception?
-                        AggregateException flattenedAggregate = eWaitForTask.Flatten();
-                        if (flattenedAggregate.InnerExceptions.Count != 1)
-                            throw; // Nope, genuine aggregate.
-
-
-                        // Yep, so rethrow (preserving original stack-trace).
-                        ExceptionDispatchInfo
-                            .Capture(
-                                flattenedAggregate
-                                    .InnerExceptions[0]
-                            )
-                            .Throw();
-
-
-                        throw; // Never reached.
-                    }
+                    throw; // Never reached.
                 }
             }
             finally
