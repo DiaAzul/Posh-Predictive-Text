@@ -1,13 +1,15 @@
 ﻿
-namespace PoshPredictiveText
+namespace PoshPredictiveText.SyntaxTreeHelpers
 {
     using System.Collections.Concurrent;
     using System.Runtime.ExceptionServices;
+
     /// <summary>
     ///		A synchronisation context that runs all calls scheduled on it (via <see cref="SynchronizationContext.Post"/>) on a single thread.
     /// </summary>
     /// <remarks>
-    ///		With thanks to Stephen Toub.
+    ///     Original code copied from PSKubectl (License: MIT)
+    ///     https://github.com/felixfbecker/PSKubectl/blob/70356d1ece3bda420d4ca87d5b8f9b538d2668c5/src/ThreadAffinitiveSynchronizationContext.cs
     /// </remarks>
     public sealed class ThreadAffinitiveSynchronizationContext
         : SynchronizationContext, IDisposable

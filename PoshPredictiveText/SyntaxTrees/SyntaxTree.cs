@@ -5,12 +5,11 @@ namespace PoshPredictiveText.SyntaxTrees
     using Parquet.Data.Rows;
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTreeSpecs;
+    using PoshPredictiveText.SyntaxTreeHelpers;
     using System.Collections;
     using System.IO;
     using System.Reflection;
     using System.Resources;
-    using System.Runtime.CompilerServices;
-    using System.Threading;
     using System.Threading.Tasks;
     /// <summary>
     /// Each command has a syntax tree which sets out the possible combination of tokens
@@ -34,15 +33,16 @@ namespace PoshPredictiveText.SyntaxTrees
         {
             LOGGER.Write($"SYNTAX TREE: Loading {name}. Items={syntaxItems.Count}.");
             syntaxTreeName = name;
-            //var result = Task.Run(LoadAsync);
-            //result.GetAwaiter().GetResult();
-            //var syncTask = new Task( action: () => LoadAsync());
-            //syncTask.RunSynchronously();
-            //syncTask.Wait();
-            var syncTask = Task.Run(async () => await LoadAsync()); //.RunSynchronously();
-            syncTask.Wait();
-            //syncTask.GetAwaiter().GetResult(); //  RunSynchronously();
-            LOGGER.Write($"SYNTAX TREE: Loaded {name}. Items={syntaxItems.Count}.");
+            try
+            {
+                ThreadAffinitiveSynchronizationContext.RunSynchronized(LoadAsync);
+                LOGGER.Write($"SYNTAX TREE: Loaded {name}. Items={syntaxItems.Count}.");
+            }
+            catch (Exception ex)
+            {
+                LOGGER.Write("SYNTAX TREE: Error running LoadAsync synchronously.");
+                LOGGER.Write(ex.Message);
+            }
         }
 
         /// <summary>

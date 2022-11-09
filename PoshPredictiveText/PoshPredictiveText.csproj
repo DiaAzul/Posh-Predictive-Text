@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>PoshPredictiveText</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
