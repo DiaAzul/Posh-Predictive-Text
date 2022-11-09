@@ -173,7 +173,7 @@ namespace PoshPredictiveText {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.1.0.
+        ///   Looks up a localized string similar to 0.2.0.
         /// </summary>
         public static string VERSION {
             get {
