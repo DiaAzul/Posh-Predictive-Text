@@ -44,6 +44,9 @@ namespace PoshPredictiveText.SemanticParser
         // List of suggestions for this token (if partial word).
         internal List<SyntaxItem>? SuggestedSyntaxItems { get; set; } = null;
 
+        // Parameter sets membership of the token.
+        internal List<string>? ParameterSet { get; set; } = null;
+
         /// <summary>
         /// True if the token is a command.
         /// </summary>

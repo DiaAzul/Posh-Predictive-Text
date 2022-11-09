@@ -61,6 +61,10 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         private SyntaxItem? parameterSyntaxItem = null;
 
+        // Parameter sets that are permissible for this command path.
+        // Null indicates that all parameter sets are permissible.
+        private List<string>? parameterSets = null;
+
         /// <summary>
         /// StateMachine adds semantic information to command line tokens.
         /// 
@@ -117,6 +121,15 @@ namespace PoshPredictiveText.SemanticParser
         internal State CurrentState
         {
             get { return state; }
+        }
+
+        /// <summary>
+        /// Get the Parameter sets available for this command path
+        /// at this point in the command line.
+        /// </summary>
+        internal List<string>? ParameterSets
+        {
+            get { return parameterSets; } 
         }
 
         /// <summary>
@@ -195,7 +208,8 @@ namespace PoshPredictiveText.SemanticParser
                                 CommandPath = new(commandPath),
                                 ParameterValues = parameterValues,
                                 ParameterSyntaxItem = parameterSyntaxItem,
-                                ReturnTokens = returnTokens
+                                ReturnTokens = returnTokens,
+                                ParameterSets = parameterSets
                             };
 
                             StateMachineItemCache.Add(cacheKey, newCacheItem);
