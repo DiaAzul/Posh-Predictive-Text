@@ -3,7 +3,6 @@
 namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
-    using System.Management.Automation;
 
     /// <summary>
     /// Cached information for command line arguments which have already been parsed.
@@ -34,7 +33,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// The list of tokens to be returned following parsing the argument.
         /// </summary>
-        internal List<Token> ReturnTokens { get; init; } = new List<Token>();
+        internal List<SemanticToken> ReturnTokens { get; init; } = new List<SemanticToken>();
 
         /// <summary>
         /// Parameter sets the are in force for this command path.

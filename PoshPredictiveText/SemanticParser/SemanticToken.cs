@@ -6,7 +6,7 @@ namespace PoshPredictiveText.SemanticParser
     /// The token holds semantic information for items entered
     /// on the command line.
     /// </summary>
-    internal record Token
+    internal record SemanticToken
     {
         /// <summary>
         /// Identifies the type of the token.

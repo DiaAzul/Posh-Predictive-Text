@@ -32,7 +32,7 @@ namespace PoshPredictiveText
         /// Processes the command line tokens and suggests completions for the wordToComplete.
         /// </summary>
         /// <param name="wordToComplete">Word for which suggested comlpetions required.</param>
-        /// <param name="enteredTokens">Tokenised text on the command line.</param>
+        /// <param name="semanticCLI">Tokenised text on the command line.</param>
         /// <param name="cursorPosition">Position of the cursor on the command line.</param>
         /// <returns>Suggested list of completions for the word to complete.</returns>
         /// <remarks>
@@ -46,7 +46,7 @@ namespace PoshPredictiveText
         /// </remarks>
         internal static List<Suggestion> Suggestions(
             string wordToComplete,
-            Tokeniser enteredTokens,
+            SemanticCLI semanticCLI,
             int cursorPosition)
         {
             // ----- INITIALISE -----
@@ -54,13 +54,13 @@ namespace PoshPredictiveText
             // If we can't load a syntax tree then return early with empty suggestion list.
             List<Suggestion> suggestions = new();
 
-            string? syntaxTreeName = enteredTokens.SyntaxTreeName;
-            SyntaxTree? syntaxTree = enteredTokens.SyntaxTree;
+            string? syntaxTreeName = semanticCLI.SyntaxTreeName;
+            SyntaxTree? syntaxTree = semanticCLI.SyntaxTree;
             if (syntaxTree is null)
             {
                 LOGGER.Write($"RESOLVER: Syntax Tree {syntaxTreeName} null, suggesting command names.");
                 // The syntax tree may be empty, but we may have suggestions for completing the command name.
-                Token? firstToken = enteredTokens.FirstToken;
+                SemanticToken? firstToken = semanticCLI.FirstToken;
                 if (firstToken is null) return suggestions;
                 List<SyntaxItem>? commandSuggestions = firstToken.SuggestedSyntaxItems;
                 if (commandSuggestions is null || commandSuggestions.Count == 0) return suggestions;
@@ -93,12 +93,12 @@ namespace PoshPredictiveText
             // that we don't offer sub-commands as an option. Also, if the command is
             // complete we may offer positional parameters.
             List<string> uniqueCommands = syntaxTree.UniqueCommands;
-            string commandPath = enteredTokens.CommandPath.ToString();
-            int tokensInPath = enteredTokens.CommandPath.Count;
+            string commandPath = semanticCLI.CommandPath.ToString();
+            int tokensInPath = semanticCLI.CommandPath.Count;
             LOGGER.Write($"RESOLVER: Command path [{commandPath}], tokens in path: {tokensInPath}");
-            //var (commandPath, tokensInPath) = enteredTokens.CommandPath(uniqueCommands);
+            //var (commandPath, tokensInPath) = semanticCLI.CommandPath(uniqueCommands);
 
-            int countOfEnteredTokens = enteredTokens.Count + (wordToComplete == "" ? 1 : 0);
+            int countOfEnteredTokens = semanticCLI.Count + (wordToComplete == "" ? 1 : 0);
             int expectedCommandTokens = tokensInPath + (syntaxTree.CountOfSubCommands(commandPath) > 0 ? 1 : 0);
             bool commandComplete = countOfEnteredTokens > expectedCommandTokens;
 
@@ -109,11 +109,11 @@ namespace PoshPredictiveText
             // suggestions once more than one value is entered. If the parameter value has a
             // helper then the results of the helper should be suggested.
             bool listOnlyParameterValues = false;
-            Dictionary<int, Token> enteredCommandParameters = enteredTokens.CommandParameters;
+            Dictionary<int, SemanticToken> enteredCommandParameters = semanticCLI.CommandParameters;
             if (enteredCommandParameters.Count > 0)
             {
                 int lastCommandPosition = enteredCommandParameters.Keys.Max();
-                int enteredValues = enteredTokens.Count - lastCommandPosition - 1;
+                int enteredValues = semanticCLI.Count - lastCommandPosition - 1;
                 // Can we enter more than one value?
                 string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
                 // Search prior parameters for both parameter AND aliases.
@@ -166,7 +166,7 @@ namespace PoshPredictiveText
                 List<SyntaxItem> availableOptions = syntaxTree.AvailableOptions(
                                                                     commandPath,
                                                                     commandComplete,
-                                                                    enteredTokens,
+                                                                    semanticCLI,
                                                                     wordToComplete);
 
                 foreach (var syntaxItem in availableOptions)

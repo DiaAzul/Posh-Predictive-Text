@@ -11,25 +11,25 @@ namespace PoshPredictiveText.SemanticParser
     internal class Visitor : AstVisitor
     {
         /// <summary>
-        /// The tokeniser holds the list of items on the command line
+        /// The semanticCLI holds the list of items on the command line
         /// with semantic data for each item.
         /// </summary>
-        private readonly Tokeniser tokeniser;
+        private readonly SemanticCLI semanticCLI;
 
         /// <summary>
         /// Class construtor initialising the token dictionary
         /// </summary>
         internal Visitor()
         {
-            this.tokeniser = new();
+            this.semanticCLI = new();
         }
 
         /// <summary>
         /// Tokenised command line.
         /// </summary>
-        internal Tokeniser Tokeniser
+        internal SemanticCLI Tokeniser
         {
-            get { return this.tokeniser; }
+            get { return this.semanticCLI; }
         }
 
         /// <summary>
@@ -70,15 +70,15 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Continue to next node</returns>
         public override AstVisitAction VisitCommandExpression(CommandExpressionAst commandExpressionAst)
         {
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = commandExpressionAst.ToString(),
                 AstType = commandExpressionAst.GetType(),
                 LowerExtent = commandExpressionAst.Extent.StartOffset,
                 UpperExtent = commandExpressionAst.Extent.EndOffset,
-                SemanticType = Token.TokenType.Command,
+                SemanticType = SemanticToken.TokenType.Command,
             };
-            this.tokeniser.Add(token);
+            this.semanticCLI.AddToken(token);
             return AstVisitAction.Continue;
         }
 
@@ -90,15 +90,15 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitCommandParameter(CommandParameterAst commandParameterAst)
         {
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = commandParameterAst.ToString(),
                 AstType = commandParameterAst.GetType(),
                 LowerExtent = commandParameterAst.Extent.StartOffset,
                 UpperExtent = commandParameterAst.Extent.EndOffset,
-                SemanticType = Token.TokenType.Parameter,
+                SemanticType = SemanticToken.TokenType.Parameter,
             };
-            this.tokeniser.Add(token);
+            this.semanticCLI.AddToken(token);
             return AstVisitAction.Continue;
         }
 
@@ -110,15 +110,15 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitConstantExpression(ConstantExpressionAst constantExpressionAst)
         {
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = constantExpressionAst.ToString(),
                 AstType = constantExpressionAst.GetType(),
                 LowerExtent = constantExpressionAst.Extent.StartOffset,
                 UpperExtent = constantExpressionAst.Extent.EndOffset,
-                SemanticType = Token.TokenType.Constant,
+                SemanticType = SemanticToken.TokenType.Constant,
             };
-            this.tokeniser.Add(token);
+            this.semanticCLI.AddToken(token);
             return AstVisitAction.Continue;
         }
 
@@ -136,18 +136,18 @@ namespace PoshPredictiveText.SemanticParser
         {
             string Value = stringConstantExpressionAst.ToString();
             Type astType = stringConstantExpressionAst.StaticType;
-            Token.TokenType semanticType = Token.TokenType.StringConstant;
+            SemanticToken.TokenType semanticType = SemanticToken.TokenType.StringConstant;
             // Record strings starting with double-dash (--) as parameters.
             try
             {
                 if (Value[..2] == "--")
                 {
                     astType = typeof(CommandParameterAst);
-                    semanticType = Token.TokenType.Parameter;
+                    semanticType = SemanticToken.TokenType.Parameter;
                 }
             }
             catch (ArgumentOutOfRangeException) { }
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = CommonTasks.Decapsulate(Value),
                 AstType = astType,
@@ -155,7 +155,7 @@ namespace PoshPredictiveText.SemanticParser
                 UpperExtent = stringConstantExpressionAst.Extent.EndOffset,
                 SemanticType = semanticType,
             };
-            this.tokeniser.Add(token);
+            this.semanticCLI.AddToken(token);
             return AstVisitAction.Continue;
         }
 
@@ -166,15 +166,15 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitFileRedirection(FileRedirectionAst redirectionAst)
         {
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = redirectionAst.ToString(),
                 AstType = redirectionAst.GetType(),
                 LowerExtent = redirectionAst.Extent.StartOffset,
                 UpperExtent = redirectionAst.Extent.EndOffset,
-                SemanticType = Token.TokenType.Redirection,
+                SemanticType = SemanticToken.TokenType.Redirection,
             };
-            this.tokeniser.Add(token);
+            this.semanticCLI.AddToken(token);
             return AstVisitAction.Continue;
         }
 
@@ -185,15 +185,15 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Continue to next node.</returns>
         public override AstVisitAction VisitMergingRedirection(MergingRedirectionAst redirectionAst)
         {
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = redirectionAst.ToString(),
                 AstType = redirectionAst.GetType(),
                 LowerExtent = redirectionAst.Extent.StartOffset,
                 UpperExtent = redirectionAst.Extent.EndOffset,
-                SemanticType = Token.TokenType.Redirection,
+                SemanticType = SemanticToken.TokenType.Redirection,
             };
-            this.tokeniser.Add(token);
+            this.semanticCLI.AddToken(token);
             return AstVisitAction.Continue;
         }
     }

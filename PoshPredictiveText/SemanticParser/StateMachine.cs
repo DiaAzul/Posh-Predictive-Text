@@ -155,10 +155,10 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="tokens">Input tokens to which semantic information will be added</param>
         /// <returns>Tokens with semantic information added.</returns>
-        internal List<Token> Evaluate(Token token)
+        internal List<SemanticToken> Evaluate(SemanticToken token)
         {
             LOGGER.Write($"STATE MACHINE: Evaluate {token.Value}.");
-            List<Token> returnTokens;
+            List<SemanticToken> returnTokens;
 
             string cacheKey = commandPath + "+" + token.Value;
             bool doNotCache = syntaxTree is null;
@@ -185,8 +185,8 @@ namespace PoshPredictiveText.SemanticParser
                     State.NoCommand => NoCommand(token),
                     State.Item => EvaluateItem(token),
                     State.Value => EvaluateValue(token),
-                    State.Inert => new List<Token> { token },
-                    _ => new List<Token> { token },
+                    State.Inert => new List<SemanticToken> { token },
+                    _ => new List<SemanticToken> { token },
                 };
 
                 // Cache the result if the argument is complete.
@@ -195,8 +195,8 @@ namespace PoshPredictiveText.SemanticParser
                     switch (returnTokens.First().SemanticType)
                     {
                         // Do not cache parameter and positional values.
-                        case Token.TokenType.ParameterValue:
-                        case Token.TokenType.PositionalValue:
+                        case SemanticToken.TokenType.ParameterValue:
+                        case SemanticToken.TokenType.PositionalValue:
                             break;
                         default:
                             LOGGER.Write("STATE MACHINE: Cache parsed token results.");
@@ -222,7 +222,7 @@ namespace PoshPredictiveText.SemanticParser
         }
 
         // ******** STATE 0 ********
-        internal List<Token> NoCommand(Token token)
+        internal List<SemanticToken> NoCommand(SemanticToken token)
         {
             string command = token.Value.ToLower();
 
@@ -252,7 +252,7 @@ namespace PoshPredictiveText.SemanticParser
                 parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
                 commandPath = new(SyntaxTreeName!);
                 LOGGER.Write($"STATE MACHINE: Command path={commandPath}");
-                token.SemanticType = Token.TokenType.Command;
+                token.SemanticType = SemanticToken.TokenType.Command;
                 token.IsComplete = true;
                 state = State.Item;
             }
@@ -260,7 +260,7 @@ namespace PoshPredictiveText.SemanticParser
             {
                 // See if this is a partial command and add suggested completion.
                 List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
-                if (suggestedCommands.Count == 0) return new List<Token> { token };
+                if (suggestedCommands.Count == 0) return new List<SemanticToken> { token };
 
                 List<SyntaxItem> suggestions = new();
                 foreach (string suggestedCommand in suggestedCommands)
@@ -273,7 +273,7 @@ namespace PoshPredictiveText.SemanticParser
                 }
                 token.SuggestedSyntaxItems = suggestions;
             }
-            return new List<Token> { token };
+            return new List<SemanticToken> { token };
         }
 
         // ******** STATE 1 ********
@@ -287,14 +287,14 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="tokens"></param>
         /// <returns></returns>
-        internal List<Token> EvaluateItem(Token token)
+        internal List<SemanticToken> EvaluateItem(SemanticToken token)
         {
             return token.SemanticType switch
             {
-                Token.TokenType.Parameter => EvaluateParameter(token),
-                Token.TokenType.Redirection => EvaluateRedirection(token),
-                Token.TokenType.StringConstant => EvaluateStringConstant(token),
-                _ => new List<Token> { token },
+                SemanticToken.TokenType.Parameter => EvaluateParameter(token),
+                SemanticToken.TokenType.Redirection => EvaluateRedirection(token),
+                SemanticToken.TokenType.StringConstant => EvaluateStringConstant(token),
+                _ => new List<SemanticToken> { token },
             };
         }
 
@@ -310,7 +310,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        internal List<Token> EvaluateParameter(Token token)
+        internal List<SemanticToken> EvaluateParameter(SemanticToken token)
         {
             // POSIX single-hyphen has a complex set of rules.
             if (parseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
@@ -369,7 +369,7 @@ namespace PoshPredictiveText.SemanticParser
                     break;
             }
 
-            return new List<Token> { token };
+            return new List<SemanticToken> { token };
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="token">Token to enhance.</param>
         /// <returns>Enhanced token.</returns>
-        internal List<Token> EvaluateRedirection(Token token)
+        internal List<SemanticToken> EvaluateRedirection(SemanticToken token)
         {
             // Remove any text after the symbols. Note the Ast extracts the path and provides
             // it as a value in the next token.
@@ -387,20 +387,20 @@ namespace PoshPredictiveText.SemanticParser
             if (token.AstType == typeof(FileRedirectionAst)) redirectSymbol = ">";
             if (token.AstType == typeof(MergingRedirectionAst)) redirectSymbol = ">>";
 
-            Token redirectionToken = new()
+            SemanticToken redirectionToken = new()
             {
                 Value = redirectSymbol,
                 AstType = token.AstType,
                 LowerExtent = token.LowerExtent,
                 UpperExtent = token.LowerExtent + redirectSymbol.Length - 1,
-                SemanticType = Token.TokenType.Redirection,
+                SemanticType = SemanticToken.TokenType.Redirection,
                 IsComplete = true,
             };
 
             parameterValues = 1;
             parameterSyntaxItem = new SyntaxItem() { Type = SyntaxItemType.REDIRECTION, Name="PATH" };
             state = State.Value;
-            return new List<Token> { redirectionToken };
+            return new List<SemanticToken> { redirectionToken };
         }
 
         /// <summary>
@@ -409,7 +409,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="token">Token to evaluate.</param>
         /// <returns>Enhanced token.</returns>
-        internal List<Token> EvaluateStringConstant(Token token)
+        internal List<SemanticToken> EvaluateStringConstant(SemanticToken token)
         {
             string enteredValue = token.Value.ToLower();
             List<SyntaxItem> subCommands = syntaxTree!.SubCommands(commandPath.ToString());
@@ -418,20 +418,20 @@ namespace PoshPredictiveText.SemanticParser
                 .Where(syntaxItem => syntaxItem.Name?.StartsWith(enteredValue) ?? false)
                 .ToList();
 
-            List<Token> resultTokens;
+            List<SemanticToken> resultTokens;
             switch (suggestedCommands.Count)
             {
                 // If we don't recognise a command or partial command perhaps this is a positional value.
                 case 0:
                     state = State.Value;
-                    token.SemanticType = Token.TokenType.PositionalValue;
+                    token.SemanticType = SemanticToken.TokenType.PositionalValue;
                     resultTokens = EvaluateValue(token);
                     break;
                 // When there is one suggestion and it is an exact match.
                 case 1 when enteredValue == suggestedCommands.First().Name:
                     commandPath.Add(enteredValue);
                     token.IsComplete = true;
-                    token.SemanticType = Token.TokenType.Command;
+                    token.SemanticType = SemanticToken.TokenType.Command;
                     state = State.Item;
                     resultTokens = new() { token };
                     break;
@@ -448,19 +448,19 @@ namespace PoshPredictiveText.SemanticParser
 
 
         // ******** STATE 2 ********
-        internal List<Token> EvaluatePosixOption(Token token)
+        internal List<SemanticToken> EvaluatePosixOption(SemanticToken token)
         {
             // TODO [HIGH][STATEMACHINE] Implement evaluate posix options.
-            return new List<Token> { token };
+            return new List<SemanticToken> { token };
         }
 
         // ******** STATE 3 ********
 
-        internal List<Token> EvaluateValue(Token token)
+        internal List<SemanticToken> EvaluateValue(SemanticToken token)
         {
             if (parameterSyntaxItem is not null && parameterValues != 0)
             {
-                token.SemanticType = Token.TokenType.ParameterValue;
+                token.SemanticType = SemanticToken.TokenType.ParameterValue;
                 token.ParameterValueName = parameterSyntaxItem.Value;
                 if (parameterValues > 0) parameterValues--;
 
@@ -481,12 +481,12 @@ namespace PoshPredictiveText.SemanticParser
             }
             else
             {
-                token.SemanticType = Token.TokenType.PositionalValue;
+                token.SemanticType = SemanticToken.TokenType.PositionalValue;
                 state = State.Value;
             }
 
             token.IsComplete = true;
-            return new List<Token> { token };
+            return new List<SemanticToken> { token };
         }
     }
 }

@@ -173,13 +173,13 @@ namespace PoshPredictiveText.SyntaxTrees
         /// </summary>
         /// <param name="commandPath">Command path</param>
         /// <param name="commandComplete">True if the command is complete.</param>
-        /// <param name="enteredTokens">Tokens entered on the command line.</param>
+        /// <param name="semanticCLI">Tokens entered on the command line.</param>
         /// <param name="wordToComplete">Word to complete.</param>
         /// <returns></returns>
         internal List<SyntaxItem> AvailableOptions(
             string commandPath,
             bool commandComplete,
-            Tokeniser enteredTokens,
+            SemanticCLI semanticCLI,
             string wordToComplete)
         {
             return FilteredByCommandPath(commandPath)
@@ -187,7 +187,7 @@ namespace PoshPredictiveText.SyntaxTrees
                              !(syntaxItem.IsCommand && commandComplete)
                              && syntaxItem.Name is not null
                              && syntaxItem.Name.StartsWith(wordToComplete)
-                             && enteredTokens.CanUse(syntaxItem))
+                             && semanticCLI.CanUse(syntaxItem))
                      .ToList();
         }
 

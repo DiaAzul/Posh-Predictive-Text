@@ -4,19 +4,22 @@ namespace PoshPredictiveText.SemanticParser
     using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
     /// <summary>
-    /// The tokeniser provides semantic analysis of the text
-    /// entered on the command line. The meaning of text is
-    /// dependent upon the command as defined within the 
-    /// syntax tree.
+    /// The Semantic CLI analyses text entered on the command line
+    /// and generates a sequence of parsed tokens expressing its meaning. 
+    /// The meaning of the text is defined in the command's syntax tree.
     /// </summary>
-    internal class Tokeniser
+    internal class SemanticCLI
     {
         /// <summary>
         /// List of tokens, the key represents the order of the token
         /// on the command line.
         /// </summary>
-        private readonly Dictionary<int, Token> tokens = new();
+        private readonly Dictionary<int, SemanticToken> tokens = new();
 
+        /// <summary>
+        /// The state machine retains the state of the command line as each
+        /// token is added.
+        /// </summary>
         private readonly StateMachine stateMachine = new();
 
         /// <summary>
@@ -49,14 +52,14 @@ namespace PoshPredictiveText.SemanticParser
         /// Add token to the list.
         /// </summary>
         /// <param name="token">Token to add to the tokeniser</param>
-        internal void Add(Token token)
+        internal void AddToken(SemanticToken token)
         {
 #if DEBUG
             LOGGER.Write($"PARSE TOKEN: {token.Value}, {token.SemanticType}");
 #endif
-            List<Token> returnedTokens = stateMachine.Evaluate(token);
+            List<SemanticToken> returnedTokens = stateMachine.Evaluate(token);
 
-            foreach (Token returnedToken in returnedTokens)
+            foreach (SemanticToken returnedToken in returnedTokens)
             {
                 this.tokens.Add(this.TokenPosition, returnedToken);
             }
@@ -67,12 +70,12 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal void Add()
         {
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = "",
                 SemanticType = null
             };
-            this.Add(token);
+            this.AddToken(token);
         }
 
         /// <summary>
@@ -123,7 +126,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Returns the first token if it exists.
         /// </summary>
-        internal Token? FirstToken
+        internal SemanticToken? FirstToken
         {
             get { return this.Index(0); }
         }
@@ -131,7 +134,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Returns the last token in the command list.
         /// </summary>
-        internal Token? LastToken
+        internal SemanticToken? LastToken
         {
             get { return this.Index(this.tokens.Count - 1); }
         }
@@ -139,7 +142,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Returns the second to last token in the command list.
         /// </summary>
-        internal Token? PriorToken
+        internal SemanticToken? PriorToken
         {
             get { return this.Index(this.tokens.Count - 2); }
         }
@@ -147,7 +150,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Returns a list of all tokens.
         /// </summary>
-        internal Dictionary<int, Token> All
+        internal Dictionary<int, SemanticToken> All
         {
             get { return this.tokens; }
         }
@@ -165,13 +168,13 @@ namespace PoshPredictiveText.SemanticParser
         /// location on the command line. If there are no command parameters
         /// returns an empty dictionary.
         /// </summary>
-        internal Dictionary<int, Token> CommandParameters
+        internal Dictionary<int, SemanticToken> CommandParameters
         {
             get
             {
                 return this.tokens?.Where(item => item.Value.IsParameter)
                             .ToDictionary(item => item.Key, item => item.Value)
-                            ?? new Dictionary<int, Token>();
+                            ?? new Dictionary<int, SemanticToken>();
             }
         }
 
@@ -180,9 +183,9 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="index">Index position of required token.</param>
         /// <returns>Token at the position in the list, null if index outside of scope of list.</returns>
-        internal Token? Index(int index)
+        internal SemanticToken? Index(int index)
         {
-            Token? token;
+            SemanticToken? token;
             try
             {
                 token = this.tokens[index];
@@ -221,7 +224,7 @@ namespace PoshPredictiveText.SemanticParser
             if (syntaxItem.MaxCount is null) return true;
 
             bool match = true;
-            foreach (Token token in this.tokens.Values)
+            foreach (SemanticToken token in this.tokens.Values)
             {
                 if (syntaxItem.Name is not null && token.Value == syntaxItem.Name)
                 {

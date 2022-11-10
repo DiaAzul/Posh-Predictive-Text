@@ -5,7 +5,7 @@ namespace PoshPredictiveText.Test.Tokeniser
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTrees;
     using Xunit;
-    using static PoshPredictiveText.SemanticParser.Token;
+    using static PoshPredictiveText.SemanticParser.SemanticToken;
 
     /// <summary>
     /// StateMachine tests.
@@ -25,7 +25,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "conda";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -59,7 +59,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "con";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -98,7 +98,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "conda";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -107,7 +107,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.StringConstant,
             };
             string secondCommandToAdd = "env";
-            Token secondCommandToken = new()
+            SemanticToken secondCommandToken = new()
             {
                 Value = secondCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -146,7 +146,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "conda";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -155,7 +155,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.StringConstant,
             };
             string secondCommandToAdd = "i";
-            Token secondCommandToken = new()
+            SemanticToken secondCommandToken = new()
             {
                 Value = secondCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -201,7 +201,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "conda";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -210,7 +210,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.StringConstant,
             };
             string thirdCommandToAdd = "--help";
-            Token thirdCommandToken = new()
+            SemanticToken thirdCommandToken = new()
             {
                 Value = thirdCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
@@ -249,7 +249,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "conda";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -258,7 +258,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.StringConstant,
             };
             string secondCommandToAdd = "--";
-            Token secondCommandToken = new()
+            SemanticToken secondCommandToken = new()
             {
                 Value = secondCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
@@ -309,7 +309,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             // Arrange
             StateMachine stateMachine = new();
             string commandToAdd = "conda";
-            Token commandToken = new()
+            SemanticToken commandToken = new()
             {
                 Value = commandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -318,7 +318,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.StringConstant,
             };
             string secondCommandToAdd = "create";
-            Token secondCommandToken = new()
+            SemanticToken secondCommandToken = new()
             {
                 Value = secondCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -327,7 +327,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.StringConstant,
             };
             string thirdCommandToAdd = "--name";
-            Token thirdCommandToken = new()
+            SemanticToken thirdCommandToken = new()
             {
                 Value = thirdCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
@@ -336,7 +336,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.Parameter,
             };
             string fourthCommandToAdd = "pyEnv";
-            Token fourthCommandToken = new()
+            SemanticToken fourthCommandToken = new()
             {
                 Value = fourthCommandToAdd,
                 AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
@@ -382,7 +382,7 @@ namespace PoshPredictiveText.Test.Tokeniser
                 new CommandPath("conda")
                 );
 
-            Token token = new()
+            SemanticToken token = new()
             {
                 Value = "--",
                 AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
@@ -391,11 +391,11 @@ namespace PoshPredictiveText.Test.Tokeniser
                 SemanticType = TokenType.Parameter,
             };
             // Act
-            List<Token> result = stateMachine.EvaluateParameter(token);
+            List<SemanticToken> result = stateMachine.EvaluateParameter(token);
 
             // Assert
             Assert.Single(result);
-            Token resultToken = result.First();
+            SemanticToken resultToken = result.First();
             Assert.NotNull(resultToken.SuggestedSyntaxItems);
             Assert.Equal(2, resultToken.SuggestedSyntaxItems.Count);
         }
@@ -429,7 +429,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            Tokeniser enteredTokens = visitor.Tokeniser;
+            SemanticCLI enteredTokens = visitor.Tokeniser;
             var returnedTokens = enteredTokens.All;
 
             // Assert
@@ -471,7 +471,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            Tokeniser enteredTokens = visitor.Tokeniser;
+            SemanticCLI enteredTokens = visitor.Tokeniser;
             var returnedTokens = enteredTokens.All;
 
             // Assert

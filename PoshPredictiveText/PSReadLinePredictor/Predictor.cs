@@ -75,28 +75,28 @@ namespace PoshPredictiveText.PSReadLinePredictor
 
             // Tokenise the syntax tree.
             List<PredictiveSuggestion> predictiveSuggestions = new();
-            using (TokeniserCache cachedTokeniser = new())
+            using (SemanticCLICache cachedTokeniser = new())
             {
                 if (cachedTokeniser.Acquired)
                 {
                     Visitor visitor = new();
                     context.InputAst.Visit(visitor);
-                    Tokeniser enteredTokens = visitor.Tokeniser;
-                    TokeniserCache.Stash(visitor.Tokeniser, context.InputAst.ToString());
+                    SemanticCLI semanticCLI = visitor.Tokeniser;
+                    SemanticCLICache.Stash(visitor.Tokeniser, context.InputAst.ToString());
 
                     // If there is no base command, or the base command is not supported then return.
-                    if (enteredTokens.BaseCommand is null) return default;
-                    baseCommand = enteredTokens.BaseCommand;
-                    if (!SyntaxTreesConfig.IsSupportedCommand(enteredTokens.BaseCommand)) return default;
+                    if (semanticCLI.BaseCommand is null) return default;
+                    baseCommand = semanticCLI.BaseCommand;
+                    if (!SyntaxTreesConfig.IsSupportedCommand(semanticCLI.BaseCommand)) return default;
 
-                    string wordToComplete = enteredTokens.LastToken?.Value ?? "";
+                    string wordToComplete = semanticCLI.LastToken?.Value ?? "";
                     if (inputText[^1] == ' ')
                     {
                         wordToComplete = "";
                     }
                     string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
 
-                    var results = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
+                    var results = Resolver.Suggestions(wordToComplete, semanticCLI, cursorPosition);
                     if (results.Count == 0) return default;
 
                     foreach (Suggestion result in results)
@@ -163,11 +163,11 @@ namespace PoshPredictiveText.PSReadLinePredictor
         public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success)
         {
             // Reset the cache once the command is executed.
-            StateMachineItemCache.Reset();
-            using TokeniserCache cachedTokeniser = new();
+            StateMachineStateCache.Reset();
+            using SemanticCLICache cachedTokeniser = new();
             if (cachedTokeniser.Acquired)
             {
-                TokeniserCache.Clear();
+                SemanticCLICache.Clear();
             }
         }
 

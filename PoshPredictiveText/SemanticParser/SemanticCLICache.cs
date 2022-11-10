@@ -3,7 +3,7 @@ namespace PoshPredictiveText.SemanticParser
 {
     using System.Collections.Concurrent;
     /// <summary>
-    /// Caches tokenisers to reduce the number of times that the command line
+    /// Caches semanticCLIs to reduce the number of times that the command line
     /// needs parsing. Assumption is that the Predictor will perform have
     /// parsed the command line prior to tab-expansion call to parse exactly
     /// the same command line.
@@ -14,9 +14,9 @@ namespace PoshPredictiveText.SemanticParser
     /// that specific test in the cache. Tab-expansion will only use the cached
     /// tokeniser when it matches the expected guid for the production predictor.
     /// </summary>
-    internal class TokeniserCache : IDisposable
+    internal class SemanticCLICache : IDisposable
     {
-        private static readonly ConcurrentDictionary<string, Tokeniser> tokenisers = new();
+        private static readonly ConcurrentDictionary<string, SemanticCLI> cache = new();
         private static readonly Mutex available = new();
 
         internal bool Acquired { get; set; } = false;
@@ -24,7 +24,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Acquire unique access to the cache.
         /// </summary>
-        internal TokeniserCache()
+        internal SemanticCLICache()
         {
             if (available.WaitOne(30))
             {
@@ -41,9 +41,9 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="newTokeniser">Tokeniser to stash.</param>
         /// <param name="guid">Guid of the application stashing the tokeniser.</param>
-        internal static void Stash(Tokeniser tokeniser, string key)
+        internal static void Stash(SemanticCLI semanticCLI, string key)
         {
-            tokenisers[key] = tokeniser;
+            cache[key] = semanticCLI;
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="guid">guid of tokeniser to get.</param>
         /// <returns>Tokeniser</returns>
-        internal static Tokeniser? Get(string key)
+        internal static SemanticCLI? Get(string key)
         {
-            _ = tokenisers.TryGetValue(key, out var tokeniser);
-            return tokeniser;
+            _ = cache.TryGetValue(key, out SemanticCLI? semanticCLI);
+            return semanticCLI;
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal static void Remove(string key)
         {
-            _ = tokenisers.TryRemove(key, out Tokeniser _);
+            _ = cache.TryRemove(key, out SemanticCLI _);
         }
 
         internal static void Clear()
         {
-            tokenisers.Clear();
+            cache.Clear();
         }
 
         /// <summary>

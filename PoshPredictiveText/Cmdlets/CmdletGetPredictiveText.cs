@@ -59,19 +59,19 @@ namespace PoshPredictiveText.Cmdlets
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
                 // which options are avaialble for the next parameter.
                 List<Suggestion> suggestions = new();
-                using (TokeniserCache cachedTokeniser = new())
+                using (SemanticCLICache cachedTokeniser = new())
                 {
                     if (cachedTokeniser.Acquired)
                     {
                         LOGGER.Write("CMDLET: Acquired cached tokeniser.");
-                        Tokeniser? enteredTokens = TokeniserCache.Get(CommandAst.ToString());
-                        if (enteredTokens is null)
+                        SemanticCLI? semanticCLI = SemanticCLICache.Get(CommandAst.ToString());
+                        if (semanticCLI is null)
                         {
                             LOGGER.Write("CMDLET: Creating tokeniser from cmdlet CommandAst");
                             Visitor visitor = new();
                             CommandAst.Visit(visitor);
-                            enteredTokens = visitor.Tokeniser;
-                            LOGGER.Write($"CMDLET: Finished visiting CommandAst. {enteredTokens.Count} tokens.");
+                            semanticCLI = visitor.Tokeniser;
+                            LOGGER.Write($"CMDLET: Finished visiting CommandAst. {semanticCLI.Count} tokens.");
                         }
                         else
                         {
@@ -80,7 +80,7 @@ namespace PoshPredictiveText.Cmdlets
 
                         LOGGER.Write("CMDLET: Resolving word: " + WordToComplete??"");
                         LOGGER.Write("CMDLET: Resolving AST: " + CommandAst);
-                        LOGGER.Write($"CMDLET: Base Command: {enteredTokens.BaseCommand ?? "Caught null"}");
+                        LOGGER.Write($"CMDLET: Base Command: {semanticCLI.BaseCommand ?? "Caught null"}");
 
                         // Get suggested tab-completions. Not input parameters use null coalescing operator to gate nulls.
 
@@ -88,7 +88,7 @@ namespace PoshPredictiveText.Cmdlets
                         {
                             suggestions = Resolver.Suggestions(
                                 wordToComplete: WordToComplete ?? "",
-                                enteredTokens: enteredTokens,
+                                semanticCLI: semanticCLI,
                                 cursorPosition: CursorPosition ?? CommandAst.ToString().Length
                             );
                         }
@@ -107,14 +107,14 @@ namespace PoshPredictiveText.Cmdlets
                                         ex,
                                         "Error-loading-syntax-tree",
                                         ErrorCategory.ObjectNotFound,
-                                        enteredTokens));
+                                        semanticCLI));
                                     break;
                                 default:
                                     WriteError(new ErrorRecord(
                                         ex,
                                         "Error-processing-record",
                                         ErrorCategory.InvalidOperation,
-                                        enteredTokens));
+                                        semanticCLI));
                                     break;
                             }
 #endif
