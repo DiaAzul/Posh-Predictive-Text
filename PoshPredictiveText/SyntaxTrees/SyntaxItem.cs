@@ -68,6 +68,34 @@ namespace PoshPredictiveText.SyntaxTrees
         }
 
         /// <summary>
+        /// Returns true if the syntax item has choices for positional or parameter values.
+        /// </summary>
+        internal bool HasChoices
+        {
+            get { return Choices is not null; }
+        }
+
+        /// <summary>
+        /// Gets the list of choices for the parameter or positional value.
+        /// If there are no choices return an empty string.
+        /// </summary>
+        internal List<string> GetChoices
+        {
+            get { return Choices ?? new List<string>(); }
+        }
+
+        /// <summary>
+        /// Get a list of intersecting parameter sets. Returns an empty string if no
+        /// sets match returns an empty list.
+        /// </summary>
+        /// <param name="choices">List of parameter sets to match with syntax item parameter sets.</param>
+        /// <returns>Intersecting parameter sets.</returns>
+        internal List<string> GetIntersectingParameterSets(List<string> parameterSets)
+        {
+            return ParameterSets?.Intersect(parameterSets).ToList() ?? new List<string>(); 
+        }
+
+        /// <summary>
         /// Returns true if the syntax item has an alias.
         /// </summary>
         internal bool HasAlias
