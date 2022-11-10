@@ -13,7 +13,7 @@ namespace PoshPredictiveText.SemanticParser
     /// The cache is reset once the command line is exectuted so that cached items do
     /// not influence subsequent command lines entries.
     /// </summary>
-    internal static class StateMachineItemCache
+    internal static class StateMachineStateCache
     {
         /// <summary>
         /// Dictionary of cached entries.

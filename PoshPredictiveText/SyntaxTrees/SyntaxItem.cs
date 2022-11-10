@@ -27,7 +27,7 @@ namespace PoshPredictiveText.SyntaxTrees
         public SyntaxItemType Type { get; init; } = default!;
         public string Name { get; init; } = default!;
         public string? Alias { get; init; }
-        public List<string> Sets { get; init; } = default!;
+        public List<string> ParameterSets { get; init; } = default!;
         public int? MaxUses { get; init; }
         public string? Value { get; init; }
         public List<string>? Choices { get; init; }

@@ -140,7 +140,7 @@ namespace PoshPredictiveText.SemanticParser
             state = State.NoCommand;
             syntaxTreeName = null;
             syntaxTree = null;
-            StateMachineItemCache.Reset();
+            StateMachineStateCache.Reset();
         }
 
         // ******** STATE MACHINE ********
@@ -162,7 +162,7 @@ namespace PoshPredictiveText.SemanticParser
 
             string cacheKey = commandPath + "+" + token.Value;
             bool doNotCache = syntaxTree is null;
-            StateMachineState? stateMachineState = StateMachineItemCache.Get(cacheKey);
+            StateMachineState? stateMachineState = StateMachineStateCache.Get(cacheKey);
 
             // If we have already processed and cached this argument use the cached version.
             if (stateMachineState is not null)
@@ -212,7 +212,7 @@ namespace PoshPredictiveText.SemanticParser
                                 ParameterSets = parameterSets
                             };
 
-                            StateMachineItemCache.Add(cacheKey, newCacheItem);
+                            StateMachineStateCache.Add(cacheKey, newCacheItem);
                             break;
                     }
                 }

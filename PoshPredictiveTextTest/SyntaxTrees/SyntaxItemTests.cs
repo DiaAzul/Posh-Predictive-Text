@@ -28,7 +28,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
                 Type = SyntaxItemType.PARAMETER,
                 Name = "--parameter",
                 Alias = "-p",
-                Sets = new List<string> { "1" },
+                ParameterSets = new List<string> { "1" },
                 MaxUses = 1,
                 Value = "ENVIRONMENT",
                 MinCount = 1,

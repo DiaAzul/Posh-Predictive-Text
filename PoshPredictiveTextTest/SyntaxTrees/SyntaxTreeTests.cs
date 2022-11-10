@@ -2,6 +2,7 @@
 namespace PoshPredictiveText.Test.SyntaxTrees
 {
     using PoshPredictiveText.SyntaxTrees;
+    using System.Management.Automation;
     using Xunit;
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
                 Type = SyntaxItemType.COMMAND,
                 Name = "activate",
                 Alias = null,
-                Sets = new List<string>() {"1"},
+                ParameterSets = new List<string>() {"1"},
                 MaxUses = null,
                 Value = null,
                 MinCount = null,
@@ -34,7 +35,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
                 Type = SyntaxItemType.COMMAND,
                 Name = "install",
                 Alias = null,
-                Sets = new List<string>() { "1" },
+                ParameterSets = new List<string>() { "2" },
                 MaxUses = null,
                 Value  = null,
                 MinCount = null,
@@ -48,6 +49,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
                 Type = SyntaxItemType.PARAMETER,
                 Name = "--help",
                 Alias = "-h",
+                ParameterSets = new List<string>() { "2" },
                 MaxUses = 1,
                 Value = null,
                 MinCount = 0,
@@ -130,6 +132,44 @@ namespace PoshPredictiveText.Test.SyntaxTrees
 
             // Assert
             Assert.Equal(2, countOfSubCommands);
+        }
+
+        /// <summary>
+        /// Test GetParametersAndOptions. Return parameters at a given
+        /// command path location.
+        /// </summary>
+        [Fact]
+        public void GetParametersAndOptions()
+        {
+            // Arrange
+            string commandPath = "conda.activate";
+
+            // Act
+            var paramsAndOptions = syntaxTree.ParametersAndOptions(commandPath);
+
+            // Assert
+            Assert.Single(paramsAndOptions);
+        }
+
+        /// <summary>
+        /// Test GetParameterAndOptions when a parameter set is also
+        /// defined. Returns parameter only if the parameter sets match.
+        /// </summary>
+        [Fact]
+        public void GetParametersAndOptionsSet()
+        {
+            // Arrange
+            List<string> parameterSetsMatch = new() { "2" };
+            List<string> parameterSetsNoMatch = new() { "1" };
+            string commandPath = "conda.activate";
+
+            // Act
+            var paramsAndOptions = syntaxTree.ParametersAndOptions(commandPath, parameterSetsMatch);
+            var paramsAndOptionsNo = syntaxTree.ParametersAndOptions(commandPath, parameterSetsNoMatch);
+
+            // Assert
+            Assert.Single(paramsAndOptions);
+            Assert.Empty(paramsAndOptionsNo);
         }
     }
 }

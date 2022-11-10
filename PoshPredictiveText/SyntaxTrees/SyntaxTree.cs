@@ -124,15 +124,38 @@ namespace PoshPredictiveText.SyntaxTrees
         {
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
-                                        && syntaxItem.IsCommand)
+                                      && syntaxItem.IsCommand)
                 .Count();
         }
 
+        // TODO {WIP][SYNTAXTREE] Update methods to filter by parameter set -> also Option Parameter no longer exists.
+        /// <summary>
+        /// Return parameters for a given command path.
+        /// </summary>
+        /// <param name="commandPath">Command path.</param>
+        /// <returns>Syntax Items.</returns>
         internal List<SyntaxItem> ParametersAndOptions(string commandPath)
         {
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
-                                        && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter))
+                                      && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter))
+                .ToList();
+        }
+
+        /// <summary>
+        /// Return parameters for a given command path and parameter set.
+        /// </summary>
+        /// <param name="commandPath">Command path.</param>
+        /// <param name="parameterSets">Parameter set.</param>
+        /// <returns>Syntax Items.</returns>
+        internal List<SyntaxItem> ParametersAndOptions(string commandPath, List<string>? parameterSets)
+        {
+            if (parameterSets is null) return ParametersAndOptions(commandPath);
+
+            return syntaxItems
+                .Where(syntaxItem => (syntaxItem.Path == commandPath)
+                                      && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter)
+                                      && syntaxItem.ParameterSets.Intersect(parameterSets).Any())
                 .ToList();
         }
 
@@ -306,7 +329,7 @@ namespace PoshPredictiveText.SyntaxTrees
                             Type = type,
                             Name = (string)row[3],
                             Alias = (string?)row[4],
-                            Sets = sets,
+                            ParameterSets = sets,
                             MaxUses = (int?)row[6],
                             Value = (string?)row[7],
                             Choices = choices,

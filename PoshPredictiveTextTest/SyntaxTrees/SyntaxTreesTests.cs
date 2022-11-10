@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText.Test.SyntaxTree
+namespace PoshPredictiveText.Test.SyntaxTrees
 {
     using PoshPredictiveText.SyntaxTrees;
     using Xunit;
@@ -21,7 +21,7 @@ namespace PoshPredictiveText.Test.SyntaxTree
                 Name = "activate",
                 Alias = null,
                 MaxUses = 1,
-                Sets = new List<string>() {"1"},
+                ParameterSets = new List<string>() {"1"},
                 Value = null,
                 MinCount = null,
                 MaxCount = null,
@@ -34,6 +34,7 @@ namespace PoshPredictiveText.Test.SyntaxTree
                 Name = "install",
                 Alias = null,
                 MaxUses = 1,
+                ParameterSets = new List<string>() {"2"},
                 Value  = null,
                 MinCount = null,
                 MaxCount = null,
@@ -46,6 +47,7 @@ namespace PoshPredictiveText.Test.SyntaxTree
                 Name = "--help",
                 Alias = "-h",
                 MaxUses = 1,
+                ParameterSets = new List<string>() {"1"},
                 Value = null,
                 MinCount = 0,
                 MaxCount = 0,
