@@ -8,7 +8,7 @@ namespace PoshPredictiveText.SemanticParser
     /// parsed the command line prior to tab-expansion call to parse exactly
     /// the same command line.
     /// 
-    /// Note, during testing multiple predictors are created and tested. These
+    /// During testing multiple predictors are created and tested. These
     /// will store values in the cache. Each predictor created during testing 
     /// has a unique guid. This is used to store the generated tokeniser for 
     /// that specific test in the cache. Tab-expansion will only use the cached

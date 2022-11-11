@@ -13,21 +13,23 @@ namespace PoshPredictiveText.SemanticParser
     /// The cache is reset once the command line is exectuted so that cached items do
     /// not influence subsequent command lines entries.
     /// </summary>
-    internal static class StateMachineStateCache
+    /// 
+    // TODO [HIGH][STATEMACHINE] Get rid of the state machine class and include in state machine.
+    internal static class MachineStateCache
     {
         /// <summary>
         /// Dictionary of cached entries.
         /// </summary>
-        private static readonly ConcurrentDictionary<string, StateMachineState> cache = new();
+        private static readonly ConcurrentDictionary<string, MachineState> cache = new();
 
         /// <summary>
         /// Add an item to the cache.
         /// </summary>
         /// <param name="key">Key to the cache item.</param>
         /// <param name="stateMachineState">Cached item.</param>
-        internal static void Add(string key, StateMachineState stateMachineState)
+        internal static void Add(string key, MachineState cachedMachineState)
         {
-            if (cache.TryAdd(key, stateMachineState))
+            if (cache.TryAdd(key, cachedMachineState))
                 LOGGER.Write($"CACHE: Added value for key: {key}");
         }
 
@@ -36,11 +38,25 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="key">Key to the cache item.</param>
         /// <returns>Cached item. Null if no cached item.</returns>
-        internal static StateMachineState? Get(string key)
+        internal static MachineState? Get(string key)
         {
             if (cache.TryGetValue(key, out var stateMachineState))
                 LOGGER.Write($"CACHE: Got value for key: {key}");
             return stateMachineState;
+        }
+
+        internal static bool TryGetValue(string key, out MachineState cachedMachineState)
+        {
+            if (cache.TryGetValue(key, out MachineState? stateMachineState))
+            {
+                if (stateMachineState is not null)
+                {
+                    cachedMachineState = stateMachineState;
+                    return true;
+                }
+            };
+            cachedMachineState= new MachineState();
+            return false;
         }
 
         /// <summary>

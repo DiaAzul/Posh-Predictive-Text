@@ -19,7 +19,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
             {
                 Command  = "conda",
                 Path = "conda",
-                Type = SyntaxItemType.COMMAND,
+                ItemType = SyntaxItemType.COMMAND,
                 Name = "activate",
                 Alias = null,
                 ParameterSets = new List<string>() {"1"},
@@ -32,7 +32,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
             new SyntaxItem {
                 Command = "conda",
                 Path = "conda" ,
-                Type = SyntaxItemType.COMMAND,
+                ItemType = SyntaxItemType.COMMAND,
                 Name = "install",
                 Alias = null,
                 ParameterSets = new List<string>() { "2" },
@@ -46,7 +46,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
             new SyntaxItem {
                 Command = "activate",
                 Path = "conda.activate",
-                Type = SyntaxItemType.PARAMETER,
+                ItemType = SyntaxItemType.PARAMETER,
                 Name = "--help",
                 Alias = "-h",
                 ParameterSets = new List<string>() { "2" },

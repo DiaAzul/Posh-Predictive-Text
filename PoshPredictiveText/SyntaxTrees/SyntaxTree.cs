@@ -128,7 +128,6 @@ namespace PoshPredictiveText.SyntaxTrees
                 .Count();
         }
 
-        // TODO {WIP][SYNTAXTREE] Update methods to filter by parameter set -> also Option Parameter no longer exists.
         /// <summary>
         /// Return parameters for a given command path.
         /// </summary>
@@ -186,7 +185,7 @@ namespace PoshPredictiveText.SyntaxTrees
         internal List<SyntaxItem> PositionalValues(string commandPath)
         {
             return FilteredByCommandPath(commandPath)
-                        .Where(syntaxItem => syntaxItem.IsPositionalParameter)
+                        .Where(syntaxItem => syntaxItem.IsPositional)
                         .ToList();
         }
 
@@ -242,7 +241,6 @@ namespace PoshPredictiveText.SyntaxTrees
 
             return toolTip;
         }
-
 
         /// <summary>
         /// Loads the syntax tree for a named command into the dictionary of syntax trees
@@ -326,7 +324,7 @@ namespace PoshPredictiveText.SyntaxTrees
                         {
                             Command = (string)row[0],
                             Path = (string)row[1],
-                            Type = type,
+                            ItemType = type,
                             Name = (string)row[3],
                             Alias = (string?)row[4],
                             ParameterSets = sets,

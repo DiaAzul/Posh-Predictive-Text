@@ -42,7 +42,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         {
             {"conda", "conda" },
             {"conda.exe", "conda" },
-            {"mamba", "conda" }  // Note, this is not strictly correct.
+            {"mamba", "conda" }  // TODO [MED][SYNTAXTREECONFIG] Remove mamba to conda alias.
         };
 
         /// <summary>

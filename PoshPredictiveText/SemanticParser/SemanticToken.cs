@@ -39,8 +39,8 @@ namespace PoshPredictiveText.SemanticParser
         // Semantic type of the token.
         internal TokenType? SemanticType { get; set; } = null;
 
-        // If a positional value what is the positional refreence
-        internal int? PositonalReference { get; set; } = null;
+        // If a positional value what is the positional index
+        internal int? PositonalIndex { get; set; } = null;
 
         // True if the token is recognised.
         internal bool IsComplete { get; set; } = false;
@@ -48,8 +48,9 @@ namespace PoshPredictiveText.SemanticParser
         // Parameter Value name (matches syntax tree helper).
         internal string? ParameterValueName { get; set; } = null;
 
-        // Maximum number of parameter values for a parameter.
-        internal int MaximumParameterValues { get; set; } = 0;
+        // Minium and maximum number of parameter values for a parameter.
+        internal int? MinimumParameterValues { get; set; } = null;
+        internal int? MaximumParameterValues { get; set; } = null;
 
         // List of suggestions for this token (if partial word).
         internal List<SyntaxItem>? SuggestedSyntaxItems { get; set; } = null;
@@ -79,6 +80,23 @@ namespace PoshPredictiveText.SemanticParser
         internal bool IsPositionalValue
         {
             get { return SemanticType == TokenType.PositionalValue; }
+        }
+
+        internal void LoadFromSyntaxItem(SyntaxItem syntaxItem)
+        {
+            SemanticType = syntaxItem.ItemType switch
+            {
+                SyntaxItemType.COMMAND => (TokenType?)TokenType.Command,
+                SyntaxItemType.PARAMETER => (TokenType?)TokenType.Parameter,
+                SyntaxItemType.POSITIONAL => (TokenType?)TokenType.PositionalValue,
+                SyntaxItemType.REDIRECTION => (TokenType?)TokenType.Redirection,
+                _ => null,
+            };
+
+            PositonalIndex = syntaxItem.PositionalIndex;
+            ParameterValueName = syntaxItem.Value;
+            MinimumParameterValues = syntaxItem.MinCount;
+            MaximumParameterValues = syntaxItem.MaxCount;
         }
     }
 }
