@@ -247,7 +247,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="tokens"></param>
         /// <returns></returns>
-        private List<SemanticToken> EvaluateItem(SemanticToken token)
+        internal List<SemanticToken> EvaluateItem(SemanticToken token)
         {
             return token.SemanticType switch
             {
@@ -270,7 +270,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        private List<SemanticToken> EvaluateParameter(SemanticToken token)
+        internal List<SemanticToken> EvaluateParameter(SemanticToken token)
         {
             // POSIX single-hyphen has a complex set of rules.
             if (parseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
@@ -339,7 +339,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="token">Token to enhance.</param>
         /// <returns>Enhanced token.</returns>
-        private List<SemanticToken> EvaluateRedirection(SemanticToken token)
+        internal List<SemanticToken> EvaluateRedirection(SemanticToken token)
         {
             // Remove any text after the symbols. Note the Ast extracts the path and provides
             // it as a value in the next token.
@@ -371,7 +371,7 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="token">Token to evaluate.</param>
         /// <returns>Enhanced token.</returns>
-        private List<SemanticToken> EvaluateStringConstant(SemanticToken token)
+        internal List<SemanticToken> EvaluateStringConstant(SemanticToken token)
         {
             string enteredValue = token.Value.ToLower();
             List<SyntaxItem> subCommands = syntaxTree!.SubCommands(this.ms.CommandPath.ToString());
@@ -410,7 +410,7 @@ namespace PoshPredictiveText.SemanticParser
 
 
         // ******** STATE 2 ********
-        private List<SemanticToken> EvaluatePosixOption(SemanticToken token)
+        internal List<SemanticToken> EvaluatePosixOption(SemanticToken token)
         {
             // TODO [HIGH][STATEMACHINE] Implement evaluate posix options.
             return new List<SemanticToken> { token };
@@ -418,7 +418,7 @@ namespace PoshPredictiveText.SemanticParser
 
         // ******** STATE 3 ********
 
-        private List<SemanticToken> EvaluateValue(SemanticToken token)
+        internal List<SemanticToken> EvaluateValue(SemanticToken token)
         {
             if (this.ms.ParameterSyntaxItem is not null && this.ms.ParameterValues != 0)
             {

@@ -163,7 +163,7 @@ namespace PoshPredictiveText.PSReadLinePredictor
         public void OnCommandLineExecuted(PredictionClient client, string commandLine, bool success)
         {
             // Reset the cache once the command is executed.
-            StateMachineStateCache.Reset();
+            MachineStateCache.Reset();
             using SemanticCLICache cachedTokeniser = new();
             if (cachedTokeniser.Acquired)
             {
