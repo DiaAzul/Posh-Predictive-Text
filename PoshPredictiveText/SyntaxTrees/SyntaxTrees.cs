@@ -3,6 +3,7 @@
 namespace PoshPredictiveText.SyntaxTrees
 {
     using PoshPredictiveText.SyntaxTreeSpecs;
+    using System.Collections.Concurrent;
     /// <summary>
     /// Maintains a database of syntax trees for predicting text completion
     /// 
@@ -13,7 +14,7 @@ namespace PoshPredictiveText.SyntaxTrees
     /// </summary>
     internal static class SyntaxTrees
     {
-        private static readonly Dictionary<string, SyntaxTree> syntaxTrees = new();
+        private static readonly ConcurrentDictionary<string, SyntaxTree> syntaxTrees = new();
 
         /// <summary>
         /// Get the syntax tree.
@@ -33,33 +34,12 @@ namespace PoshPredictiveText.SyntaxTrees
             if (SyntaxTreesConfig.IsSupportedCommand(syntaxTreeName))
             {
                 LOGGER.Write($"SYNTAX TREES: Adding {syntaxTreeName} to parsed syntax trees.");
-                Add(syntaxTreeName);
-                return syntaxTrees[syntaxTreeName];
-            }
-            return null;
-        }
 
-        /// <summary>
-        /// Load and add a syntax tree to the database of syntax trees.
-        /// </summary>
-        /// <param name="syntaxTreeName">Name of syntax tree</param>
-        /// <param name="syntaxTree">Syntax tree</param>
-        /// <exception cref="SyntaxTreeException">Thrown if the syntax tree already
-        /// exists in the database.</exception>
-        internal static void Add(string syntaxTreeName)
-        {
-            if (syntaxTrees.ContainsKey(syntaxTreeName))
-                throw new SyntaxTreeException($"Syntax Tree {syntaxTreeName} already exists.");
-
-            try
-            {
-                syntaxTrees[syntaxTreeName] = new SyntaxTree(syntaxTreeName);
+                SyntaxTree syntaxTree = new(syntaxTreeName);
+                syntaxTrees.TryAdd(syntaxTreeName, syntaxTree);
+                return syntaxTree;
             }
-            catch (SyntaxTreeException ex)
-            {
-                LOGGER.Write($"SYNTAX TREES: Unable to add {syntaxTreeName} to syntax tree database.");
-                throw new SyntaxTreeException($"Unable to add {syntaxTreeName} to syntax tree database.", ex);
-            }
+            throw new SyntaxTreeException($"SYNTAX TREES: Syntax tree {syntaxTreeName} didn't exist and couldn't be loaded.");
         }
 
         /// <summary>
@@ -68,9 +48,10 @@ namespace PoshPredictiveText.SyntaxTrees
         /// <param name="syntaxTree">Syntax tree</param>
         internal static void Add(SyntaxTree syntaxTree)
         {
-            if (syntaxTrees.ContainsKey(syntaxTree.Name))
-                throw new SyntaxTreeException($"Syntax Tree {syntaxTree.Name} already exists.");
-            syntaxTrees[syntaxTree.Name] = syntaxTree;
+            if(!syntaxTrees.TryAdd(syntaxTree.Name, syntaxTree))
+            {
+                throw new SyntaxTreeException($"SYNTAX TREES: Syntax Tree {syntaxTree.Name} already exists.");
+            }
         }
 
         /// <summary>
@@ -81,7 +62,7 @@ namespace PoshPredictiveText.SyntaxTrees
         {
             if (syntaxTrees.ContainsKey(syntaxTreeName))
             {
-                syntaxTrees.Remove(syntaxTreeName);
+                syntaxTrees.TryRemove(syntaxTreeName, out _);
             }
         }
 

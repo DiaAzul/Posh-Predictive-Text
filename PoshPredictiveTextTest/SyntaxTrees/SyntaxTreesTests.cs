@@ -119,17 +119,16 @@ namespace PoshPredictiveText.Test.SyntaxTrees
         }
 
         /// <summary>
-        /// Attempt to access a non-existent tree should return null
+        /// Attempt to access a non-existent tree should throw an exception.
         /// </summary>
         [Fact]
         public void AccessNonExistentTreeTest()
         {
             // Arrange
             string nonExistentTree = "non-existent-tree";
-            // Act
-            var syntaxTree = SyntaxTrees.Tree(nonExistentTree);
+
             // Assert
-            Assert.Null(syntaxTree);
+            Assert.Throws<SyntaxTreeException>(() => SyntaxTrees.Tree(nonExistentTree));
         }
 
         /// <summary>

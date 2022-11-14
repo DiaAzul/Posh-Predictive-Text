@@ -55,11 +55,12 @@ namespace PoshPredictiveText.Test.Helpers
         /// <summary>
         /// Tests that conda environments are returned.
         /// 
-        /// NOTE: This is a stub: The test needs implementing.
+        /// This is a stub: The test needs implementing.
         /// Need to consider how a conda environment could be created
         /// in a test environment so that this could be tested in a
         /// controlled manner.
         /// </summary>
+        // TODO [LOW][CONDA] Implement environment tests.
         [Fact]
         public void EnvironmentsTest()
         {
@@ -74,7 +75,7 @@ namespace PoshPredictiveText.Test.Helpers
         /// <summary>
         /// Test Get Parameter Values
         /// 
-        /// Note: A method is created within the CondaHelper class which
+        /// A method is created within the CondaHelper class which
         /// is called to generate a successful test. A second attribute to
         /// identify the fail condition is applied to both the default and
         /// test methods within the class.

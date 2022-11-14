@@ -14,7 +14,6 @@ namespace PoshPredictiveText.SemanticParser
     /// not influence subsequent command lines entries.
     /// </summary>
     /// 
-    // TODO [HIGH][STATEMACHINE] Get rid of the state machine class and include in state machine.
     internal static class MachineStateCache
     {
         /// <summary>
@@ -30,7 +29,18 @@ namespace PoshPredictiveText.SemanticParser
         internal static void Add(string key, MachineState cachedMachineState)
         {
             if (cache.TryAdd(key, cachedMachineState))
+            {
                 LOGGER.Write($"CACHE: Added value for key: {key}");
+                return;
+            }
+            if (cache.TryRemove(key,out _))
+            {
+                if (cache.TryAdd(key, cachedMachineState))
+                {
+                    LOGGER.Write($"CACHE: Updated value for key: {key}");
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -41,8 +51,12 @@ namespace PoshPredictiveText.SemanticParser
         internal static MachineState? Get(string key)
         {
             if (cache.TryGetValue(key, out var stateMachineState))
+            {
                 LOGGER.Write($"CACHE: Got value for key: {key}");
-            return stateMachineState;
+                return stateMachineState;
+            }
+            return null;
+
         }
 
         internal static bool TryGetValue(string key, out MachineState cachedMachineState)
@@ -55,7 +69,7 @@ namespace PoshPredictiveText.SemanticParser
                     return true;
                 }
             };
-            cachedMachineState= new MachineState();
+            cachedMachineState = new MachineState();
             return false;
         }
 

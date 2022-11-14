@@ -128,7 +128,7 @@ namespace PoshPredictiveText.Test.Cmdlets
         /// <summary>
         /// Remove conda tab expansion test.
         /// 
-        /// NOTE: Need to activate conda in PowerShell first.
+        /// Need to activate conda in PowerShell first.
         /// </summary>
         [Fact]
         public void RemoveCondaTabExpansionTest()

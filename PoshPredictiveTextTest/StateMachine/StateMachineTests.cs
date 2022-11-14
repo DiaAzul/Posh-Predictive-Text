@@ -1,6 +1,6 @@
 ﻿
 
-namespace PoshPredictiveText.Test.Tokeniser
+namespace PoshPredictiveText.Test.StateMachine
 {
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTrees;
@@ -45,7 +45,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             Assert.Equal("conda", stateMachine.CommandPath.ToString());
             Assert.Equal("conda", stateMachine.SyntaxTreeName);
             Assert.NotNull(stateMachine.SyntaxTree);
-            Assert.Equal(StateMachine.State.Item, stateMachine.CurrentState);
+            Assert.Equal(MachineState.State.Item, stateMachine.CurrentState);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             Assert.Equal("", stateMachine.CommandPath.ToString());
             Assert.Null(stateMachine.SyntaxTreeName);
             Assert.Null(stateMachine.SyntaxTree);
-            Assert.Equal(StateMachine.State.NoCommand, stateMachine.CurrentState);
+            Assert.Equal(MachineState.State.NoCommand, stateMachine.CurrentState);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             Assert.True(result3.First().IsParameter);
             Assert.True(result3.First().IsComplete);
             Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
-            Assert.Equal(StateMachine.State.Item, stateAfterParameter);
+            Assert.Equal(MachineState.State.Item, stateAfterParameter);
         }
 
 
@@ -278,7 +278,7 @@ namespace PoshPredictiveText.Test.Tokeniser
             Assert.True(firstItem.IsParameter);
             Assert.False(firstItem.IsComplete);
             Assert.Equal(TokenType.Parameter, firstItem.SemanticType);
-            Assert.Equal(StateMachine.State.Item, stateAfterParameter);
+            Assert.Equal(MachineState.State.Item, stateAfterParameter);
             Assert.NotNull(firstItem.SuggestedSyntaxItems);
             List<SyntaxItem> syntaxItems = firstItem.SuggestedSyntaxItems;
             Assert.Equal(2, syntaxItems.Count);
@@ -358,12 +358,12 @@ namespace PoshPredictiveText.Test.Tokeniser
             Assert.True(result3.First().IsParameter);
             Assert.True(result3.First().IsComplete);
             Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
-            Assert.Equal(StateMachine.State.Value, stateAfterParameter);
+            Assert.Equal(MachineState.State.Value, stateAfterParameter);
             Assert.Single(result4);
             Assert.True(result4.First().IsComplete);
             Assert.Equal(TokenType.ParameterValue, result4.First().SemanticType);
             Assert.Equal("NEWENVIRONMENT", result4.First().ParameterValueName);
-            Assert.Equal(StateMachine.State.Item, stateAfterParameterValue);
+            Assert.Equal(MachineState.State.Item, stateAfterParameterValue);
         }
 
         /// <summary>
@@ -375,7 +375,7 @@ namespace PoshPredictiveText.Test.Tokeniser
 
             // Arrange
             StateMachine stateMachine = new(
-                StateMachine.State.Item,
+                MachineState.State.Item,
                 "conda",
                 new SyntaxTree("conda"),
                 PoshPredictiveText.SyntaxTreeSpecs.ParseMode.Posix,

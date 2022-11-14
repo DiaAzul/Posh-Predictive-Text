@@ -10,9 +10,20 @@ namespace PoshPredictiveText.SemanticParser
     internal class MachineState
     {
         /// <summary>
+        /// Permissible states within the state machine
+        /// </summary>
+        internal enum State
+        {
+            NoCommand, // No command has been identified.
+            Item, // Process the token as command, option, parameter.
+            Value, // Process the token as a value
+            Inert, // No further processing required.
+        }
+
+        /// <summary>
         /// State of the statemachine after the argument was parsed.
         /// </summary>
-        internal StateMachine.State State { get; set; } = StateMachine.State.NoCommand;
+        internal State CurrentState { get; set; } = State.NoCommand;
 
         /// <summary>
         /// Command path after the argument was parsed.
@@ -39,5 +50,27 @@ namespace PoshPredictiveText.SemanticParser
         /// The list of tokens to be returned following parsing the argument.
         /// </summary>
         internal List<SemanticToken>? ReturnTokens { get; set; } = null;
+
+        /// <summary>
+        /// Return a clone with a deep copy of CommandPath.
+        /// </summary>
+        /// <returns></returns>
+        public MachineState DeepCopy()
+        {
+            MachineState newState = (MachineState)MemberwiseClone();
+            newState.CommandPath = CommandPath.DeepCopy();
+            if (ReturnTokens is not null) newState.ReturnTokens= new(ReturnTokens);
+            return newState;
+        }
+
+        /// <summary>
+        /// Return a clone with a shallow copy of CommandPath.
+        /// </summary>
+        /// <returns></returns>
+        public MachineState Copy()
+        {
+            MachineState newState = (MachineState)MemberwiseClone();
+            return newState;
+        }
     }
 }

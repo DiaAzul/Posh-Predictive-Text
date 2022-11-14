@@ -29,7 +29,7 @@
         // This creates problems if the logfile is already opened by another thread.
         // Using a lock mitigates threading issues, however, during production this issue
         // should not arise.
-        private static object locker = new();
+        private static object logLock = new();
 
         /// <summary>
         /// Initialises and enables the logfile for reporting information and errors.
@@ -109,7 +109,7 @@
 
         internal static void Write(string text, LOGLEVEL level = LOGLEVEL.INFO)
         {
-            lock (locker)
+            lock(logLock)
             {
                 if (logFile is not null && (int)level >= (int)logLevel)
                 {
@@ -144,7 +144,7 @@
 
         internal static void DeleteLogFile()
         {
-            lock (locker)
+            lock (logLock)
             {
                 if (File.Exists(logFile))
                 {

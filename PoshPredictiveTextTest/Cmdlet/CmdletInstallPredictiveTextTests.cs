@@ -30,7 +30,7 @@ namespace PoshPredictiveText.Test.Cmdlets
                                                            .Invoke();
 
             // Test for cmdlet installed.
-            // Note: The testing installs cmdlets individually, they are not installed from a module.
+            // The testing installs cmdlets individually, they are not installed from a module.
             // Therefore, we cannot test for a module, only the cmdlets.
             powerShell.Commands.Clear();
             Collection<PSObject> IsCmdLetListed = powerShell.AddCommand("Get-Command")

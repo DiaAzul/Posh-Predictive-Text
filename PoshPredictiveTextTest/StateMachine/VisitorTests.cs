@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText.Test.Tokeniser
+namespace PoshPredictiveText.Test.StateMachine
 {
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTrees;
@@ -18,7 +18,7 @@ namespace PoshPredictiveText.Test.Tokeniser
     /// possibilty of error if an unexpected type is assigned to token
     /// and other code relies on Token having known types.
     /// </summary>
-    public class VisitorTokenTest
+    public class VisitorTokenTests
     {
         /// <summary>
         /// Test Token create, store and immutability.
@@ -171,7 +171,7 @@ namespace PoshPredictiveText.Test.Tokeniser
         [Fact]
         public void AllTokensTest()
         {
-            // Note: This test is already covered in TestCommandAstVisitorVisitTest
+            // This test is already covered in TestCommandAstVisitorVisitTest
             // So just do a quick test of count and one token.
             // Act
             Dictionary<int, SemanticParser.SemanticToken> tokens = tokenisedInput.All;

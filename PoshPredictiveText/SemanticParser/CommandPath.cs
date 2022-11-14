@@ -1,6 +1,9 @@
 ﻿
 namespace PoshPredictiveText.SemanticParser
 {
+    using System.Collections.Immutable;
+    using System.Management.Automation;
+
     /// <summary>
     /// Commands on the CLI are made from multi-token commands.
     /// The available suggestions are determined by the command tokens
@@ -10,14 +13,14 @@ namespace PoshPredictiveText.SemanticParser
     /// </summary>
     internal class CommandPath
     {
-        internal readonly List<string> commands;
+        internal ImmutableList<string> commands;
 
         /// <summary>
         /// Initialise an empty command path.
         /// </summary>
         internal CommandPath()
         {
-            commands = new List<string>();
+            commands = new List<string>().ToImmutableList();
         }
 
         /// <summary>
@@ -29,7 +32,7 @@ namespace PoshPredictiveText.SemanticParser
             commands = new List<string>
             {
                 command.ToLower()
-            };
+            }.ToImmutableList();
         }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <param name="commandPath"></param>
         internal CommandPath(CommandPath commandPath)
         {
-            commands = new List<string>(commandPath.commands);
+            commands = new List<string>(commandPath.commands).ToImmutableList();
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <param name="command"></param>
         internal void Add(string command)
         {
-            commands.Add(command.ToLower());
+            commands =  commands.Add(command.ToLower());
         }
 
         /// <summary>
@@ -65,6 +68,13 @@ namespace PoshPredictiveText.SemanticParser
         public override string ToString()
         {
             return string.Join(".", commands);
+        }
+
+        public CommandPath DeepCopy()
+        {
+            CommandPath newPath = (CommandPath)MemberwiseClone();
+            newPath.commands = new List<string>(commands).ToImmutableList();
+            return newPath;
         }
     }
 }

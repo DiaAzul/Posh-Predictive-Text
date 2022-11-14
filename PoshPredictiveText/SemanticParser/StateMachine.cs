@@ -15,17 +15,6 @@ namespace PoshPredictiveText.SemanticParser
     internal class StateMachine
     {
         /// <summary>
-        /// Permissible states within the state machine
-        /// </summary>
-        internal enum State
-        {
-            NoCommand, // No command has been identified.
-            Item, // Process the token as command, option, parameter.
-            Value, // Process the token as a value
-            Inert, // No further processing required.
-        }
-
-        /// <summary>
         /// Name of the syntax tree.
         /// </summary>
         private string? syntaxTreeName = null;
@@ -62,12 +51,12 @@ namespace PoshPredictiveText.SemanticParser
         /// <param name="syntaxTree">Syntax tree</param>
         /// <param name="parseMode">Parse mode (Windows, Posix, Python)</param>
         /// <param name="commandPath">Command Path</param>
-        internal StateMachine(State state, string? syntaxTreeName, SyntaxTree? syntaxTree, ParseMode parseMode, CommandPath commandPath)
+        internal StateMachine(MachineState.State currentState, string? syntaxTreeName, SyntaxTree? syntaxTree, ParseMode parseMode, CommandPath commandPath)
         {
             this.syntaxTreeName=syntaxTreeName;
             this.syntaxTree=syntaxTree;
             this.parseMode=parseMode;
-            this.ms.State = state;
+            this.ms.CurrentState = currentState;
             this.ms.CommandPath=commandPath;
         }
 
@@ -89,7 +78,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Get the current state of the state machine.
         /// </summary>
-        internal State CurrentState => this.ms.State;
+        internal MachineState.State CurrentState => this.ms.CurrentState;
 
         /// <summary>
         /// Get the Parameter sets available for this command path
@@ -126,40 +115,44 @@ namespace PoshPredictiveText.SemanticParser
 
             List<SemanticToken> returnTokens;
             string cacheKey = this.ms.CommandPath + "+" + token.Value;
+            bool syntaxTreeLoaded = syntaxTree is not null;
 
             // If the result is already in the cache return early.
             if (MachineStateCache.TryGetValue(cacheKey, out MachineState cachedMachineState))
             {
                 LOGGER.Write("STATE MACHINE: Use cached token results.");
-                ms = cachedMachineState;
+                ms = cachedMachineState.DeepCopy();
                 return this.ms.ReturnTokens ?? new List<SemanticToken>();
             }
 
             // Otherwise parse the argument and add semantic information.
             LOGGER.Write("STATE MACHINE: Parse argument.");
-            returnTokens = this.ms.State switch
+            returnTokens = this.ms.CurrentState switch
             {
-                State.NoCommand => NoCommand(token),
-                State.Item => EvaluateItem(token),
-                State.Value => EvaluateValue(token),
-                State.Inert => new List<SemanticToken> { token },
+                MachineState.State.NoCommand => NoCommand(token),
+                MachineState.State.Item => EvaluateItem(token),
+                MachineState.State.Value => EvaluateValue(token),
+                MachineState.State.Inert => new List<SemanticToken> { token },
                 _ => new List<SemanticToken> { token },
             };
 
-            // TODO [HIGH][STATEMACHINE] Update Parameter sets.
-            if (returnTokens.Count > 0 && returnTokens.First().IsComplete)
-            {
-                foreach (var returnToken in returnTokens)
-                {
-                    if (returnToken.IsCommand || returnToken.IsParameter || returnToken.IsPositionalValue)
-                    {
+            //// TODO [HIGH][STATEMACHINE] Update Parameter sets.
+            //if (returnTokens.Count > 0 && returnTokens.First().IsComplete)
+            //{
+            //    foreach (var returnToken in returnTokens)
+            //    {
+            //        if (returnToken.IsCommand || returnToken.IsParameter || returnToken.IsPositionalValue)
+            //        {
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
             // Cache the result if the argument is complete.
-            if ((syntaxTree is not null) && returnTokens.Count > 0 && returnTokens.First().IsComplete)
+            if (
+                syntaxTreeLoaded
+                && returnTokens.Count > 0
+                && returnTokens.First().IsComplete)
             {
                 switch (returnTokens.First().SemanticType)
                 {
@@ -170,7 +163,7 @@ namespace PoshPredictiveText.SemanticParser
                     default:
                         LOGGER.Write("STATE MACHINE: Cache parsed token results.");
                         ms.ReturnTokens = returnTokens;
-                        MachineStateCache.Add(cacheKey, ms);
+                        MachineStateCache.Add(cacheKey, ms.DeepCopy());
                         break;
                 }
             }
@@ -186,42 +179,39 @@ namespace PoshPredictiveText.SemanticParser
         {
             string command = token.Value.ToLower();
 
-            // If this is a supported command then load syntax tree.
             if (SyntaxTreesConfig.IsSupportedCommand(command))
             {
-                LOGGER.Write($"STATE MACHINE: Supported command: {command}");
                 syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
+
+                LOGGER.Write($"STATE MACHINE: Supported command: {command}");
                 LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {syntaxTreeName}");
                 try
                 {
                     syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
-                    if (syntaxTree != null)
-                    {
-                        LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
-                    }
-                    else
-                    {
-                        LOGGER.Write("STATE MACHINE: SYNTAX TREE NOT LOADED!");
-                    }
                 }
-                catch (SyntaxTreeException)
+                catch (SyntaxTreeException ex)
                 {
                     LOGGER.Write("STATE MACHINE: ERROR LOADING SYNTAX TREE!");
+#if DEBUG
+                    throw new SyntaxTreeException("STATE MACHINE: Error loading syntax tree: ", ex);
+#endif
                 }
 
                 parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
                 this.ms.CommandPath = new(SyntaxTreeName!);
-                LOGGER.Write($"STATE MACHINE: Command path={this.ms.CommandPath}");
                 token.SemanticType = SemanticToken.TokenType.Command;
                 token.IsComplete = true;
-                this.ms.State = State.Item;
-            }
-            else
-            {
-                // See if this is a partial command and add suggested completion.
-                List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
-                if (suggestedCommands.Count == 0) return new List<SemanticToken> { token };
+                this.ms.CurrentState = MachineState.State.Item;
 
+                LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
+                LOGGER.Write($"STATE MACHINE: Command path={this.ms.CommandPath}");
+
+                return new List<SemanticToken> { token };
+            }
+
+            List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
+            if (suggestedCommands.Count > 0)
+            {
                 List<SyntaxItem> suggestions = new();
                 foreach (string suggestedCommand in suggestedCommands)
                 {
@@ -233,6 +223,7 @@ namespace PoshPredictiveText.SemanticParser
                 }
                 token.SuggestedSyntaxItems = suggestions;
             }
+
             return new List<SemanticToken> { token };
         }
 
@@ -292,7 +283,7 @@ namespace PoshPredictiveText.SemanticParser
                     // If we don't identify a valid parameter then just return the token.
                     // User may have mis-spelled parameter name.
                     token.IsComplete = false;
-                    this.ms.State = State.Item;
+                    this.ms.CurrentState = MachineState.State.Item;
                     break;
                 case 1:
                     SyntaxItem parameter = suggestedParameters.First();
@@ -304,13 +295,13 @@ namespace PoshPredictiveText.SemanticParser
                             // TODO [HIGH][STATEMACHINE] Calculate how many more parameter values can be entered.
                             this.ms.ParameterValues = parameter.MaxCount ?? -1;
                             this.ms.ParameterSyntaxItem = parameter;
-                            this.ms.State = State.Value;
+                            this.ms.CurrentState = MachineState.State.Value;
                         }
                         else // IsOption
                         {
                             this.ms.ParameterValues = 0;
                             this.ms.ParameterSyntaxItem = null;
-                            this.ms.State = State.Item;
+                            this.ms.CurrentState = MachineState.State.Item;
                         }
                         token.IsComplete = true;
                     }
@@ -318,14 +309,14 @@ namespace PoshPredictiveText.SemanticParser
                     {
                         token.SuggestedSyntaxItems = suggestedParameters;
                         token.IsComplete = false;
-                        this.ms.State = State.Item;
+                        this.ms.CurrentState = MachineState.State.Item;
                     }
 
                     break;
                 default:
                     token.SuggestedSyntaxItems = suggestedParameters;
                     token.IsComplete = false;
-                    this.ms.State = State.Item;
+                    this.ms.CurrentState = MachineState.State.Item;
                     break;
             }
 
@@ -361,7 +352,7 @@ namespace PoshPredictiveText.SemanticParser
             // See: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection
             this.ms.ParameterValues = 1;
             this.ms.ParameterSyntaxItem = new SyntaxItem() { ItemType = SyntaxItemType.REDIRECTION, Name="PATH" };
-            this.ms.State = State.Value;
+            this.ms.CurrentState = MachineState.State.Value;
             return new List<SemanticToken> { redirectionToken };
         }
 
@@ -374,6 +365,7 @@ namespace PoshPredictiveText.SemanticParser
         internal List<SemanticToken> EvaluateStringConstant(SemanticToken token)
         {
             string enteredValue = token.Value.ToLower();
+
             List<SyntaxItem> subCommands = syntaxTree!.SubCommands(this.ms.CommandPath.ToString());
 
             List<SyntaxItem> suggestedCommands = subCommands
@@ -385,7 +377,7 @@ namespace PoshPredictiveText.SemanticParser
             {
                 // If we don't recognise a command or partial command perhaps this is a positional value.
                 case 0:
-                    this.ms.State = State.Value;
+                    this.ms.CurrentState = MachineState.State.Value;
                     token.SemanticType = SemanticToken.TokenType.PositionalValue;
                     resultTokens = EvaluateValue(token);
                     break;
@@ -394,14 +386,14 @@ namespace PoshPredictiveText.SemanticParser
                     this.ms.CommandPath.Add(enteredValue);
                     token.IsComplete = true;
                     token.SemanticType = SemanticToken.TokenType.Command;
-                    this.ms.State = State.Item;
+                    this.ms.CurrentState = MachineState.State.Item;
                     resultTokens = new() { token };
                     break;
                 // Otherwise add suggestions to response.
                 default:
                     token.SuggestedSyntaxItems = suggestedCommands;
                     token.IsComplete = false;
-                    this.ms.State = State.Item;
+                    this.ms.CurrentState = MachineState.State.Item;
                     resultTokens = new() { token };
                     break;
             }
@@ -431,12 +423,12 @@ namespace PoshPredictiveText.SemanticParser
                     case 0:
                         {
                             this.ms.ParameterSyntaxItem = null;
-                            this.ms.State = State.Item;
+                            this.ms.CurrentState = MachineState.State.Item;
                             break;
                         }
                     default:
                         {
-                            this.ms.State = State.Value;
+                            this.ms.CurrentState = MachineState.State.Value;
                             break;
                         }
                 }
@@ -444,7 +436,7 @@ namespace PoshPredictiveText.SemanticParser
             else
             {
                 token.SemanticType = SemanticToken.TokenType.PositionalValue;
-                this.ms.State = State.Value;
+                this.ms.CurrentState = MachineState.State.Value;
             }
 
             token.IsComplete = true;

@@ -1,6 +1,6 @@
 ﻿
 
-namespace PoshPredictiveText.Test.Tokeniser
+namespace PoshPredictiveText.Test.StateMachine
 {
     using PoshPredictiveText.SemanticParser;
     using Xunit;
@@ -50,15 +50,22 @@ namespace PoshPredictiveText.Test.Tokeniser
 
             // Act
             CommandPath commandPath = new(command1);
+            // The immutable probe holds a copy of the first list of commands
+            // Within the command path. If this is immutable then the count of
+            // commands will be one after all other commands have been added to
+            // the list.
+            var immutableProbe = commandPath.commands;
+            // Add remaining commands.
             commandPath.Add(command2);
             CommandPath commandPath2 = new(commandPath);
             commandPath.Add(command3);
 
             // Assert
+            Assert.Single(immutableProbe);
             Assert.Equal("conda.env", commandPath2.ToString());
             Assert.Equal(2, commandPath2.Count);
             Assert.Equal(result, commandPath.ToString());
             Assert.Equal(3, commandPath.Count);
-        }
+       }
     }
 }
