@@ -68,24 +68,17 @@ namespace PoshPredictiveText.SemanticParser
         internal List<SemanticToken>? SemanticTokens { get; set; } = null;
 
         /// <summary>
-        /// Return a clone with a deep copy of CommandPath.
+        /// Return a clone with a deep copy of CommandPath and SemanticTokens
+        /// if it is defined.
+        /// 
+        /// Do not deepcopy SyntaxTree as it is immutable.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Clone of the machine state.</returns>
         public MachineState DeepCopy()
         {
             MachineState newState = (MachineState)MemberwiseClone();
             newState.CommandPath = CommandPath.DeepCopy();
             if (SemanticTokens is not null) newState.SemanticTokens= new(SemanticTokens);
-            return newState;
-        }
-
-        /// <summary>
-        /// Return a clone with a shallow copy of CommandPath.
-        /// </summary>
-        /// <returns></returns>
-        public MachineState Copy()
-        {
-            MachineState newState = (MachineState)MemberwiseClone();
             return newState;
         }
     }
