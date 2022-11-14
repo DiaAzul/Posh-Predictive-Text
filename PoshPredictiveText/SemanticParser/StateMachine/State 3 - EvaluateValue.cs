@@ -13,23 +13,22 @@ namespace PoshPredictiveText.SemanticParser
     {
         internal List<SemanticToken> EvaluateValue(SemanticToken token)
         {
-            if (this.ms.ParameterSyntaxItem is not null && this.ms.ParameterValues != 0)
+            if (machineState.ParameterSyntaxItem is not null && machineState.ParameterValues != 0)
             {
                 token.SemanticType = SemanticToken.TokenType.ParameterValue;
-                token.ParameterValueName = this.ms.ParameterSyntaxItem.Value;
-                if (this.ms.ParameterValues > 0) this.ms.ParameterValues--;
+                token.ParameterValueName = machineState.ParameterSyntaxItem.Value;
+                if (machineState.ParameterValues > 0) machineState.ParameterValues--;
 
-                switch (this.ms.ParameterValues)
+                switch (machineState.ParameterValues)
                 {
                     case 0:
                         {
-                            this.ms.ParameterSyntaxItem = null;
-                            this.ms.CurrentState = MachineState.State.Item;
+                            machineState.ParameterSyntaxItem = null;
+                            machineState.CurrentState = MachineState.State.Item;
                             break;
                         }
                     default:
                         {
-                            this.ms.CurrentState = MachineState.State.Value;
                             break;
                         }
                 }
@@ -37,10 +36,11 @@ namespace PoshPredictiveText.SemanticParser
             else
             {
                 token.SemanticType = SemanticToken.TokenType.PositionalValue;
-                this.ms.CurrentState = MachineState.State.Value;
+                machineState.CurrentState = MachineState.State.Value;
             }
 
             token.IsComplete = true;
+            token.ParameterSet = null;
             return new List<SemanticToken> { token };
         }
     }

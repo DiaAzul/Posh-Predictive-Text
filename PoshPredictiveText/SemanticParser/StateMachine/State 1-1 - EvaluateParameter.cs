@@ -12,8 +12,8 @@ namespace PoshPredictiveText.SemanticParser
         /// - Split single letters.
         /// - Split single letter and values.
         /// 
-        /// - Other modes: Do we have a complete parameter
-        /// - How many parameter values?
+        /// - Other modes: Do we have a complete syntaxItem
+        /// - How many syntaxItem values?
         /// - Set state machine to expect value.
         /// </summary>
         /// <param name="token"></param>
@@ -21,59 +21,59 @@ namespace PoshPredictiveText.SemanticParser
         internal List<SemanticToken> EvaluateParameter(SemanticToken token)
         {
             // POSIX single-hyphen has a complex set of rules.
-            if (ms.ParseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
+            if (machineState.ParseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
                 EvaluatePosixOption(token);
 
             string enteredParameter = token.Value.ToLower();
 
-            List<SyntaxItem> parameters = ms.SyntaxTree!.ParametersAndOptions(this.ms.CommandPath.ToString());
+            List<SyntaxItem> parameters = machineState.SyntaxTree!.ParametersAndOptions(machineState.CommandPath.ToString());
 
-            List<SyntaxItem> suggestedParameters = parameters
+            List<SyntaxItem> syntaxItems = parameters
                 .Where(syntaxItem => (syntaxItem.Name?.StartsWith(enteredParameter) ?? false) ||
                                         (syntaxItem.Alias?.StartsWith(enteredParameter) ?? false))
                 .ToList();
 
             // Issue - If we enter an alias then it may not show as complete if there is also a long form name.
-            switch (suggestedParameters.Count)
+            // Branch execution based upon the number of matching syntaxItems returned.
+            // Zero syntax items implies no matches (perhaps mis-spelled entry on the CLI).
+            // One syntax item implies a direct match and complete syntaxItem name.
+            // More than one syntax item implies multiple suggested completions.
+            switch (syntaxItems.Count)
             {
                 case 0:
-                    // If we don't identify a valid parameter then just return the token.
-                    // User may have mis-spelled parameter name.
                     token.IsComplete = false;
-                    this.ms.CurrentState = MachineState.State.Item;
+                    machineState.CurrentState = MachineState.State.Item;
                     break;
                 case 1:
-                    SyntaxItem parameter = suggestedParameters.First();
+                    SyntaxItem syntaxItem = syntaxItems.First();
 
-                    if (enteredParameter == parameter.Name || enteredParameter == parameter.Alias)
+                    if (!(enteredParameter == syntaxItem.Name || enteredParameter == syntaxItem.Alias)) goto default;
+
+                    if (syntaxItem.IsParameter)
                     {
-                        if (parameter.IsParameter)
-                        {
-                            // TODO [HIGH][STATEMACHINE] Calculate how many more parameter values can be entered.
-                            this.ms.ParameterValues = parameter.MaxCount ?? -1;
-                            this.ms.ParameterSyntaxItem = parameter;
-                            this.ms.CurrentState = MachineState.State.Value;
-                        }
-                        else // IsOption
-                        {
-                            this.ms.ParameterValues = 0;
-                            this.ms.ParameterSyntaxItem = null;
-                            this.ms.CurrentState = MachineState.State.Item;
-                        }
-                        token.IsComplete = true;
-                    }
-                    else // Partial completion
-                    {
-                        token.SuggestedSyntaxItems = suggestedParameters;
-                        token.IsComplete = false;
-                        this.ms.CurrentState = MachineState.State.Item;
+                        // TODO [HIGH][STATEMACHINE] Calculate how many more syntaxItem values can be entered.
+                        machineState.ParameterValues = syntaxItem.MaxCount ?? -1;
+                        machineState.ParameterSyntaxItem = syntaxItem;
+                        machineState.CurrentState = MachineState.State.Value;
+                        LOGGER.Write($"STATE MACHINE: Parameter {enteredParameter} complete. Sets - {String.Join(", ", syntaxItem.ParameterSet)}.");
                     }
 
+                    if (syntaxItem.IsOptionParameter)
+                    {
+                        machineState.ParameterValues = 0;
+                        machineState.ParameterSyntaxItem = null;
+                        machineState.CurrentState = MachineState.State.Item;
+                        LOGGER.Write($"STATE MACHINE: Optional {enteredParameter} complete. Sets - {String.Join(", ", syntaxItem.ParameterSet)}.");
+                    }
+                    token.ParameterSet = syntaxItem.ParameterSet;
+                    token.IsComplete = true;
                     break;
+
+
                 default:
-                    token.SuggestedSyntaxItems = suggestedParameters;
+                    token.SuggestedSyntaxItems = syntaxItems;
                     token.IsComplete = false;
-                    this.ms.CurrentState = MachineState.State.Item;
+                    machineState.CurrentState = MachineState.State.Item;
                     break;
             }
 

@@ -154,7 +154,7 @@ namespace PoshPredictiveText.SyntaxTrees
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
                                       && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter)
-                                      && syntaxItem.ParameterSets.Intersect(parameterSets).Any())
+                                      && syntaxItem.ParameterSet.Intersect(parameterSets).Any())
                 .ToList();
         }
 
@@ -327,7 +327,7 @@ namespace PoshPredictiveText.SyntaxTrees
                             ItemType = type,
                             Name = (string)row[3],
                             Alias = (string?)row[4],
-                            ParameterSets = sets,
+                            ParameterSet = sets,
                             MaxUses = (int?)row[6],
                             Value = (string?)row[7],
                             Choices = choices,

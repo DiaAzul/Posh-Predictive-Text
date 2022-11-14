@@ -37,7 +37,7 @@ namespace PoshPredictiveText.Test.StateMachine
 
         /// <summary>
         /// Basic test to add item to the cache and retrieve
-        /// it using Get adn TryGet methods.
+        /// it using Get and TryGet methods.
         /// </summary>
         [Fact]
         public void ChangePropertyOfCachedItemTest()
@@ -50,7 +50,7 @@ namespace PoshPredictiveText.Test.StateMachine
             };
 
             // Act
-            MachineStateCache.Add(key1, state1.Copy());
+            MachineStateCache.Add(key1, state1.DeepCopy());
             state1.CommandPath = new CommandPath("Changed");
             var outState1 = MachineStateCache.Get(key1);
             // Update key-value.

@@ -6,7 +6,7 @@ namespace PoshPredictiveText.SemanticParser
     using PoshPredictiveText.SyntaxTreeSpecs;
 
     /// <summary>
-    /// Macine state information for command line arguments which have already been parsed.
+    /// Machine state information for command line arguments which have already been parsed.
     /// </summary>
     internal class MachineState
     {
@@ -58,9 +58,9 @@ namespace PoshPredictiveText.SemanticParser
         internal SyntaxItem? ParameterSyntaxItem { get; set; } = null;
 
         /// <summary>
-        /// Parameter sets the are in force for this command path.
+        /// Parameter sets that are in force for this command path.
         /// </summary>
-        internal List<string>? ParameterSets { get; set; } = null!;
+        internal List<string>? ParameterSet { get; set; } = null!;
 
         /// <summary>
         /// The list of semantic tokens to be returned once input token parsed.

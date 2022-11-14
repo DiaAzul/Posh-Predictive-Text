@@ -4,6 +4,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
     using PoshPredictiveText;
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.Test;
+    using PoshPredictiveText.SyntaxTrees;
     using Xunit;
 
     /// <summary>
@@ -111,6 +112,34 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             bool isAppveyor = appveyor == "true";
             if (!isAppveyor)
                 Assert.Contains("base", environments);
+        }
+
+        /// <summary>
+        /// Test to load and inspect conda syntax tree.
+        /// </summary>
+        [Fact]
+        public void LoadCondaSyntaxTree()
+        {
+            // Arrange
+            string syntaxTreeName = "conda";
+
+            // Act
+            var syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+
+            // Assert.
+            Assert.IsType<SyntaxTree>(syntaxTree);
+            Assert.NotEqual(0, syntaxTree.Count);
+
+            // Act
+            var syntaxItems = syntaxTree.SubCommands("conda");
+            var firstItem = syntaxItems.First();
+            var parameterSet = firstItem.ParameterSet;
+
+            Assert.Equal(17, syntaxItems.Count);
+            Assert.IsType<List<string>>(parameterSet);
+            Assert.Single(parameterSet);
+            Assert.Equal("1", parameterSet.First());
+            Assert.IsType<SyntaxItem>(firstItem);
         }
     }
 }

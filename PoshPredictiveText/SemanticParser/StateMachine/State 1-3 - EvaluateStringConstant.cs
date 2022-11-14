@@ -2,8 +2,6 @@
 namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
-    using PoshPredictiveText.SyntaxTreeSpecs;
-    using System.Management.Automation.Language;
 
     /// <summary>
     /// The state machine evaluates the command line input and appends
@@ -24,38 +22,42 @@ namespace PoshPredictiveText.SemanticParser
         {
             string enteredValue = token.Value.ToLower();
 
-            List<SyntaxItem> subCommands = ms.SyntaxTree!.SubCommands(this.ms.CommandPath.ToString());
+            List<SyntaxItem> subCommands = machineState.SyntaxTree!.SubCommands(machineState.CommandPath.ToString());
 
-            List<SyntaxItem> suggestedCommands = subCommands
+            List<SyntaxItem> syntaxItems = subCommands
                 .Where(syntaxItem => syntaxItem.Name?.StartsWith(enteredValue) ?? false)
                 .ToList();
 
-            List<SemanticToken> resultTokens;
-            switch (suggestedCommands.Count)
+            List<SemanticToken> semanticTokens;
+            // Branch execution based upon the number of matching syntaxItems returned.
+            // Zero - no command was recognised, but this may be a positional value.
+            // One - Direct match of a command name.
+            // More than one - Provide suggested completions.
+            switch (syntaxItems.Count)
             {
-                // If we don't recognise a command or partial command perhaps this is a positional value.
                 case 0:
-                    this.ms.CurrentState = MachineState.State.Value;
+                    machineState.CurrentState = MachineState.State.Value;
                     token.SemanticType = SemanticToken.TokenType.PositionalValue;
-                    resultTokens = EvaluateValue(token);
+                    semanticTokens = EvaluateValue(token);
                     break;
-                // When there is one suggestion and it is an exact match.
-                case 1 when enteredValue == suggestedCommands.First().Name:
-                    this.ms.CommandPath.Add(enteredValue);
+
+                case 1 when enteredValue == syntaxItems.First().Name:
+                    machineState.CommandPath.Add(enteredValue);
                     token.IsComplete = true;
                     token.SemanticType = SemanticToken.TokenType.Command;
-                    this.ms.CurrentState = MachineState.State.Item;
-                    resultTokens = new() { token };
+                    token.ParameterSet = syntaxItems.First().ParameterSet;
+                    machineState.CurrentState = MachineState.State.Item;
+                    semanticTokens = new() { token };
                     break;
-                // Otherwise add suggestions to response.
+
                 default:
-                    token.SuggestedSyntaxItems = suggestedCommands;
+                    token.SuggestedSyntaxItems = syntaxItems;
                     token.IsComplete = false;
-                    this.ms.CurrentState = MachineState.State.Item;
-                    resultTokens = new() { token };
+                    machineState.CurrentState = MachineState.State.Item;
+                    semanticTokens = new() { token };
                     break;
             }
-            return resultTokens;
+            return semanticTokens;
         }
     }
 }

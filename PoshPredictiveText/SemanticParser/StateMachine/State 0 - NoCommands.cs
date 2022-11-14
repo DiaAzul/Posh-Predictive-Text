@@ -23,35 +23,35 @@ namespace PoshPredictiveText.SemanticParser
 
             if (SyntaxTreesConfig.IsSupportedCommand(command))
             {
-                ms.SyntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
+                machineState.SyntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
 
                 LOGGER.Write($"STATE MACHINE: Supported command: {command}");
-                LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {ms.SyntaxTreeName}");
+                LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {machineState.SyntaxTreeName}");
                 try
                 {
-                    ms.SyntaxTree = SyntaxTrees.Tree(ms.SyntaxTreeName);
+                    machineState.SyntaxTree = SyntaxTrees.Tree(machineState.SyntaxTreeName);
                 }
 #if DEBUG
                 catch (SyntaxTreeException ex)
                 {
                     LOGGER.Write("STATE MACHINE: ERROR LOADING SYNTAX TREE!");
-                    throw new SyntaxTreeException("STATE MACHINE: Error loading syntax tree: ", ex);
+                    throw new SyntaxTreeException($"STATE MACHINE: Error loading {machineState.SyntaxTreeName} syntax tree: ", ex);
                 }
 #else
                 catch (SyntaxTreeException)
                 {
-                    LOGGER.Write("STATE MACHINE: ERROR LOADING SYNTAX TREE!");
+                    LOGGER.Write($"STATE MACHINE: Error loading {machineState.SyntaxTreeName} syntax tree.");
                 }
 #endif
 
-                ms.ParseMode = SyntaxTreesConfig.ParseMode(ms.SyntaxTreeName);
-                ms.CommandPath = new(SyntaxTreeName!);
+                machineState.ParseMode = SyntaxTreesConfig.ParseMode(machineState.SyntaxTreeName);
+                machineState.CommandPath = new(SyntaxTreeName!);
                 token.SemanticType = SemanticToken.TokenType.Command;
                 token.IsComplete = true;
-                ms.CurrentState = MachineState.State.Item;
+                machineState.CurrentState = MachineState.State.Item;
 
                 LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
-                LOGGER.Write($"STATE MACHINE: Command path={ms.CommandPath}");
+                LOGGER.Write($"STATE MACHINE: Command path={machineState.CommandPath}");
 
                 return new List<SemanticToken> { token };
             }

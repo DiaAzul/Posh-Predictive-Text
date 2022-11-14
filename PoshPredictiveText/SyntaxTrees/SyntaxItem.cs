@@ -24,7 +24,7 @@ namespace PoshPredictiveText.SyntaxTrees
         public SyntaxItemType ItemType { get; init; } = default!;
         public string Name { get; init; } = default!;
         public string? Alias { get; init; }
-        public List<string> ParameterSets { get; init; } = default!;
+        public List<string> ParameterSet { get; init; } = default!;
         public int? MaxUses { get; init; }
         public string? Value { get; init; }
         public List<string>? Choices { get; init; }
@@ -90,7 +90,7 @@ namespace PoshPredictiveText.SyntaxTrees
         /// <returns>Intersecting parameter sets.</returns>
         internal List<string> GetIntersectingParameterSets(List<string> parameterSets)
         {
-            return ParameterSets?.Intersect(parameterSets).ToList() ?? new List<string>(); 
+            return ParameterSet?.Intersect(parameterSets).ToList() ?? new List<string>(); 
         }
 
         /// <summary>
