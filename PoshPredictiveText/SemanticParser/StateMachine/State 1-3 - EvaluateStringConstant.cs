@@ -24,7 +24,7 @@ namespace PoshPredictiveText.SemanticParser
         {
             string enteredValue = token.Value.ToLower();
 
-            List<SyntaxItem> subCommands = syntaxTree!.SubCommands(this.ms.CommandPath.ToString());
+            List<SyntaxItem> subCommands = ms.SyntaxTree!.SubCommands(this.ms.CommandPath.ToString());
 
             List<SyntaxItem> suggestedCommands = subCommands
                 .Where(syntaxItem => syntaxItem.Name?.StartsWith(enteredValue) ?? false)

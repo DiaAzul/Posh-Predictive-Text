@@ -21,12 +21,12 @@ namespace PoshPredictiveText.SemanticParser
         internal List<SemanticToken> EvaluateParameter(SemanticToken token)
         {
             // POSIX single-hyphen has a complex set of rules.
-            if (parseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
+            if (ms.ParseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
                 EvaluatePosixOption(token);
 
             string enteredParameter = token.Value.ToLower();
 
-            List<SyntaxItem> parameters = syntaxTree!.ParametersAndOptions(this.ms.CommandPath.ToString());
+            List<SyntaxItem> parameters = ms.SyntaxTree!.ParametersAndOptions(this.ms.CommandPath.ToString());
 
             List<SyntaxItem> suggestedParameters = parameters
                 .Where(syntaxItem => (syntaxItem.Name?.StartsWith(enteredParameter) ?? false) ||

@@ -23,30 +23,35 @@ namespace PoshPredictiveText.SemanticParser
 
             if (SyntaxTreesConfig.IsSupportedCommand(command))
             {
-                syntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
+                ms.SyntaxTreeName = SyntaxTreesConfig.CommandFromAlias(command);
 
                 LOGGER.Write($"STATE MACHINE: Supported command: {command}");
-                LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {syntaxTreeName}");
+                LOGGER.Write($"STATE MACHINE: Syntax Tree Name: {ms.SyntaxTreeName}");
                 try
                 {
-                    syntaxTree = SyntaxTrees.Tree(syntaxTreeName);
+                    ms.SyntaxTree = SyntaxTrees.Tree(ms.SyntaxTreeName);
                 }
+#if DEBUG
                 catch (SyntaxTreeException ex)
                 {
                     LOGGER.Write("STATE MACHINE: ERROR LOADING SYNTAX TREE!");
-#if DEBUG
                     throw new SyntaxTreeException("STATE MACHINE: Error loading syntax tree: ", ex);
-#endif
                 }
+#else
+                catch (SyntaxTreeException)
+                {
+                    LOGGER.Write("STATE MACHINE: ERROR LOADING SYNTAX TREE!");
+                }
+#endif
 
-                parseMode = SyntaxTreesConfig.ParseMode(syntaxTreeName);
-                this.ms.CommandPath = new(SyntaxTreeName!);
+                ms.ParseMode = SyntaxTreesConfig.ParseMode(ms.SyntaxTreeName);
+                ms.CommandPath = new(SyntaxTreeName!);
                 token.SemanticType = SemanticToken.TokenType.Command;
                 token.IsComplete = true;
-                this.ms.CurrentState = MachineState.State.Item;
+                ms.CurrentState = MachineState.State.Item;
 
                 LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
-                LOGGER.Write($"STATE MACHINE: Command path={this.ms.CommandPath}");
+                LOGGER.Write($"STATE MACHINE: Command path={ms.CommandPath}");
 
                 return new List<SemanticToken> { token };
             }

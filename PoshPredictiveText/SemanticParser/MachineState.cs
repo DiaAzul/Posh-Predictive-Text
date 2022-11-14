@@ -3,12 +3,28 @@
 namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
+    using PoshPredictiveText.SyntaxTreeSpecs;
 
     /// <summary>
     /// Macine state information for command line arguments which have already been parsed.
     /// </summary>
     internal class MachineState
     {
+        /// <summary>
+        /// Name of the syntax tree.
+        /// </summary>
+        internal string? SyntaxTreeName = null;
+
+        /// <summary>
+        /// Syntax tree, loaded once the base command is identified.
+        /// </summary>
+        internal SyntaxTree? SyntaxTree = null;
+
+        /// <summary>
+        /// Parse mode for the command.
+        /// </summary>
+        internal ParseMode ParseMode = ParseMode.Windows;
+
         /// <summary>
         /// Permissible states within the state machine
         /// </summary>
@@ -47,9 +63,9 @@ namespace PoshPredictiveText.SemanticParser
         internal List<string>? ParameterSets { get; set; } = null!;
 
         /// <summary>
-        /// The list of tokens to be returned following parsing the argument.
+        /// The list of semantic tokens to be returned once input token parsed.
         /// </summary>
-        internal List<SemanticToken>? ReturnTokens { get; set; } = null;
+        internal List<SemanticToken>? SemanticTokens { get; set; } = null;
 
         /// <summary>
         /// Return a clone with a deep copy of CommandPath.
@@ -59,7 +75,7 @@ namespace PoshPredictiveText.SemanticParser
         {
             MachineState newState = (MachineState)MemberwiseClone();
             newState.CommandPath = CommandPath.DeepCopy();
-            if (ReturnTokens is not null) newState.ReturnTokens= new(ReturnTokens);
+            if (SemanticTokens is not null) newState.SemanticTokens= new(SemanticTokens);
             return newState;
         }
 

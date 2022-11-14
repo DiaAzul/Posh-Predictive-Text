@@ -29,7 +29,7 @@
         // This creates problems if the logfile is already opened by another thread.
         // Using a lock mitigates threading issues, however, during production this issue
         // should not arise.
-        private static object logLock = new();
+        private static readonly object logLock = new();
 
         /// <summary>
         /// Initialises and enables the logfile for reporting information and errors.
@@ -107,8 +107,22 @@
             }
         }
 
+        /// <summary>
+        /// Write a message to the log file.
+        /// 
+        /// Messages are only written to the log file if they are at or exceed the minimum
+        /// reporting level. The default message level is INFO. Each message is preceded by
+        /// a timestamp when written to the log file.
+        /// 
+        /// The function only contains an implementation when the DEBUG compile flag is set.
+        /// When the DEBUG flag is not set then the method is an empty implementation and all
+        /// logging write method invocations will be optimised out of the code.
+        /// </summary>
+        /// <param name="text">Text of the message.</param>
+        /// <param name="level">Level for the message.</param>
         internal static void Write(string text, LOGLEVEL level = LOGLEVEL.INFO)
         {
+#if DEBUG
             lock(logLock)
             {
                 if (logFile is not null && (int)level >= (int)logLevel)
@@ -140,6 +154,7 @@
                     }
                 }
             }
+#endif
         }
 
         internal static void DeleteLogFile()

@@ -15,21 +15,6 @@ namespace PoshPredictiveText.SemanticParser
     internal partial class StateMachine
     {
         /// <summary>
-        /// Name of the syntax tree.
-        /// </summary>
-        private string? syntaxTreeName = null;
-
-        /// <summary>
-        /// Syntax tree, loaded once the base command is identified.
-        /// </summary>
-        private SyntaxTree? syntaxTree = null;
-
-        /// <summary>
-        /// Parse mode for the command.
-        /// </summary>
-        private ParseMode parseMode = ParseMode.Windows;
-
-        /// <summary>
         /// Machine state. Held as a cacheable object.
         /// </summary>
         private MachineState ms = new();
@@ -53,9 +38,9 @@ namespace PoshPredictiveText.SemanticParser
         /// <param name="commandPath">Command Path</param>
         internal StateMachine(MachineState.State currentState, string? syntaxTreeName, SyntaxTree? syntaxTree, ParseMode parseMode, CommandPath commandPath)
         {
-            this.syntaxTreeName=syntaxTreeName;
-            this.syntaxTree=syntaxTree;
-            this.parseMode=parseMode;
+            this.ms.SyntaxTreeName=syntaxTreeName;
+            this.ms.SyntaxTree=syntaxTree;
+            this.ms.ParseMode=parseMode;
             this.ms.CurrentState = currentState;
             this.ms.CommandPath=commandPath;
         }
@@ -63,12 +48,12 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Name of the SyntaxTree used to tokenise the command line.
         /// </summary>
-        internal string? SyntaxTreeName => this.syntaxTreeName;
+        internal string? SyntaxTreeName => this.ms.SyntaxTreeName;
 
         /// <summary>
         /// Get the SyntaxTree used to tokenise the command line.
         /// </summary>
-        internal SyntaxTree? SyntaxTree => this.syntaxTree;
+        internal SyntaxTree? SyntaxTree => this.ms.SyntaxTree;
 
         /// <summary>
         /// Get the Command Path for command tokens entered on the command line.
@@ -91,9 +76,10 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal void Reset()
         {
+            this.ms.SyntaxTreeName = null;
+            this.ms.SyntaxTree = null;
+            this.ms.ParseMode= ParseMode.Windows;
             this.ms = new();
-            this.syntaxTreeName = null;
-            this.syntaxTree = null;
             MachineStateCache.Reset();
         }
 
@@ -107,26 +93,25 @@ namespace PoshPredictiveText.SemanticParser
         /// tokens for a given input token.
         /// </summary>
         /// <param name="tokens">Input tokens to which semantic information will be added</param>
-        /// <returns>Tokens with semantic information added.</returns>
+        /// <returns>Tokens enhanced with semantic information.</returns>
         internal List<SemanticToken> Evaluate(SemanticToken token)
         {
+            List<SemanticToken> semanticTokens;
+            string cacheKey = this.ms.CommandPath + "+" + token.Value;
+
             LOGGER.Write($"STATE MACHINE: Evaluate {token.Value}.");
 
-            List<SemanticToken> returnTokens;
-            string cacheKey = this.ms.CommandPath + "+" + token.Value;
-            bool syntaxTreeLoaded = syntaxTree is not null;
-
-            // If the result is already in the cache return early.
+            // If the result is in the cache return early.
             if (MachineStateCache.TryGetValue(cacheKey, out MachineState cachedMachineState))
             {
-                LOGGER.Write("STATE MACHINE: Use cached token results.");
+                LOGGER.Write($"STATE MACHINE: Use cached token results with key {cacheKey}.");
                 ms = cachedMachineState.DeepCopy();
-                return this.ms.ReturnTokens ?? new List<SemanticToken>();
+                return this.ms.SemanticTokens ?? new List<SemanticToken>();
             }
 
-            // Otherwise parse the argument and add semantic information.
-            LOGGER.Write("STATE MACHINE: Parse argument.");
-            returnTokens = this.ms.CurrentState switch
+            // Parse the token and add semantic information.
+            LOGGER.Write("STATE MACHINE: Parsing the token.");
+            semanticTokens = this.ms.CurrentState switch
             {
                 MachineState.State.NoCommand => NoCommand(token),
                 MachineState.State.Item => EvaluateItem(token),
@@ -135,40 +120,39 @@ namespace PoshPredictiveText.SemanticParser
                 _ => new List<SemanticToken> { token },
             };
 
-            //// TODO [HIGH][STATEMACHINE] Update Parameter sets.
-            //if (returnTokens.Count > 0 && returnTokens.First().IsComplete)
-            //{
-            //    foreach (var returnToken in returnTokens)
-            //    {
-            //        if (returnToken.IsCommand || returnToken.IsParameter || returnToken.IsPositionalValue)
-            //        {
-
-            //        }
-            //    }
-            //}
-
-            // Cache the result if the argument is complete.
-            if (
-                syntaxTreeLoaded
-                && returnTokens.Count > 0
-                && returnTokens.First().IsComplete)
+            // Update parameter sets.
+            if (semanticTokens.Count > 0 && semanticTokens.First().IsComplete)
             {
-                switch (returnTokens.First().SemanticType)
+                foreach (var semanticToken in semanticTokens)
                 {
-                    // Do not cache parameter and positional values.
-                    case SemanticToken.TokenType.ParameterValue:
-                    case SemanticToken.TokenType.PositionalValue:
-                        break;
-                    default:
-                        LOGGER.Write("STATE MACHINE: Cache parsed token results.");
-                        ms.ReturnTokens = returnTokens;
-                        MachineStateCache.Add(cacheKey, ms.DeepCopy());
-                        break;
+                    if (semanticToken.IsCommand || semanticToken.IsParameter || semanticToken.IsPositionalValue)
+                    {
+                        if (ms.ParameterSets is null)
+                        {
+                            ms.ParameterSets = semanticToken.ParameterSet;
+                        }
+                        else if (semanticToken.ParameterSet is not null)
+                        {
+                            ms.ParameterSets = (List<string>?)ms.ParameterSets.Intersect(semanticToken.ParameterSet);
+                        }
+                    }
                 }
+                LOGGER.Write($"STATE MACHINE: Resultant parameter set is {ms.ParameterSets}.");
             }
 
-            LOGGER.Write($"STATE MACHINE: Complete {token.Value} evaluation.");
-            return returnTokens;
+            // Cache the result if the argument is complete.
+            if (semanticTokens.Count > 0
+                && semanticTokens.First().IsComplete
+                && !(semanticTokens.First().SemanticType == SemanticToken.TokenType.Parameter
+                    || semanticTokens.First().SemanticType == SemanticToken.TokenType.PositionalValue))
+            {
+                LOGGER.Write($"STATE MACHINE: Caching parsed token results with key {cacheKey}.");
+                ms.SemanticTokens = semanticTokens;
+                MachineStateCache.Add(cacheKey, ms.DeepCopy());
+            }
+
+            LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
+            return semanticTokens;
         }
     }
 }

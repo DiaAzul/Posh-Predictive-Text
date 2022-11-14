@@ -78,10 +78,8 @@ namespace PoshPredictiveText
                 return suggestions;
             }
 
-#if DEBUG
             LOGGER.Write($"RESOLVER: The syntaxTree {syntaxTreeName} exists. "
                 + $"There are {syntaxTree.Count} entries in the tree.");
-#endif
 
             // ----- IDENTIFY SUB-COMMANDS -----
             // Many CLI apps use several tokens to identify sub-commands. These are parsed
