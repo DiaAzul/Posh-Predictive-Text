@@ -120,6 +120,7 @@ namespace PoshPredictiveText.SemanticParser
                 _ => new List<SemanticToken> { token },
             };
 
+            // BUG [HIGH][STATEMACHINE] Parameter sets are applicable for each commanPath and should be reset when the commandPath changes.
             // Update parameter sets.
             if (semanticTokens.Count > 0 && semanticTokens.First().IsComplete)
             {
