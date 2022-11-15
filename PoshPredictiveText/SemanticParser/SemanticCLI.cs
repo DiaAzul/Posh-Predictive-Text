@@ -54,15 +54,15 @@ namespace PoshPredictiveText.SemanticParser
         /// <param name="token">Token to add to the tokeniser</param>
         internal void AddToken(SemanticToken token)
         {
-#if DEBUG
-            LOGGER.Write($"PARSE TOKEN: {token.Value}, {token.SemanticType}");
-#endif
-            List<SemanticToken> returnedTokens = stateMachine.Evaluate(token);
+            LOGGER.Write($"SEMANTIC CLI: Parse ->{token.Value}<- of type {token.SemanticType}.");
 
-            foreach (SemanticToken returnedToken in returnedTokens)
+            List<SemanticToken> semanticTokens = stateMachine.Evaluate(token);
+            foreach (SemanticToken semanticToken in semanticTokens)
             {
-                this.tokens.Add(this.TokenPosition, returnedToken);
+                this.tokens.Add(this.TokenPosition, semanticToken);
             }
+
+            LOGGER.Write($"SEMANTIC CLI: Added {semanticTokens.Count} tokens, there are now {this.tokens.Count} tokens.");
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace PoshPredictiveText.SemanticParser
         }
 
         /// <summary>
-        /// Resets the Tokeniser to the initial state.
+        /// Resets the SemanticCLI to the initial state.
         /// </summary>
         internal void Reset()
         {

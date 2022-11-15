@@ -39,7 +39,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Stash a new tokeniser in the cache for a given guid.
         /// </summary>
-        /// <param name="newTokeniser">Tokeniser to stash.</param>
+        /// <param name="newTokeniser">SemanticCLI to stash.</param>
         /// <param name="guid">Guid of the application stashing the tokeniser.</param>
         internal static void Stash(SemanticCLI semanticCLI, string key)
         {
@@ -50,7 +50,7 @@ namespace PoshPredictiveText.SemanticParser
         /// Get the tokeniser associated with a guid from the cache.
         /// </summary>
         /// <param name="guid">guid of tokeniser to get.</param>
-        /// <returns>Tokeniser</returns>
+        /// <returns>SemanticCLI</returns>
         internal static SemanticCLI? Get(string key)
         {
             _ = cache.TryGetValue(key, out SemanticCLI? semanticCLI);

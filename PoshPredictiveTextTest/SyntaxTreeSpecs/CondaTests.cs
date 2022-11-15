@@ -67,7 +67,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             // Act
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            var enteredTokens = visitor.Tokeniser;
+            var enteredTokens = visitor.SemanticCLI;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 
             // Assert
@@ -94,7 +94,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             // Act
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            var enteredTokens = visitor.Tokeniser;
+            var enteredTokens = visitor.SemanticCLI;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 
             // Assert - As we don't know conda environment all we can test for is

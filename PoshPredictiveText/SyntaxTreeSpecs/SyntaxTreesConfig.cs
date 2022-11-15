@@ -89,15 +89,13 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         /// <returns>Supported commands as comma separated list.</returns>
         internal static string SupportedCommands()
         {
-            StringBuilder commands = new();
-            string delimeter = "";
-            foreach (var command in SUPPORTED_COMMANDS.Keys)
+            List<string> wrappedCommands = new();
+            foreach (string command in SUPPORTED_COMMANDS.Keys)
             {
-                commands.Append(delimeter);
-                commands.Append(command);
-                delimeter = ", ";
+                wrappedCommands.Add("\"" + command + "\"");
             }
-            return commands.ToString();
+
+            return String.Join(", ", wrappedCommands);
         }
 
         /// <summary>

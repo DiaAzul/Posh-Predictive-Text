@@ -133,21 +133,23 @@ namespace PoshPredictiveText {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
-        ///    param(
-        ///        [string]$wordToComplete, 
-        ///        [System.Management.Automation.Language.CommandAst]$commandAst,
-        ///        [int]$cursorPosition)
+        ///   Looks up a localized string similar to $callBack = @&quot;
+        ///param(
+        ///    [string]`$wordToComplete,
+        ///    [System.Management.Automation.Language.CommandAst]`$commandAst,
+        ///    [int]`$cursorPosition)
         ///
-        ///    try {
-        ///        $suggestions = Get-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
-        ///    }
-        ///    catch {
-        ///        Write-Host &quot;Error.&quot;
-        ///    }
-        ///    
-        ///    $suggestions 
-        ///}.
+        ///try {
+        ///   `$suggestions = Get-PredictiveText -WordToComplete `$wordToComplete -CommandAst `$commandAst -CursorPosition `$cursorPosition
+        ///}
+        ///catch {
+        ///    Write-Error &quot;PoshPredictiveText had an error resolving !cmdName!.&quot;
+        ///}
+        ///`$suggestions
+        ///&quot;@
+        ///
+        ///foreach($cmdName in $cmdNames) {
+        ///    $callBackScript = [scriptblock]::Create($callBack.Replace(&quot;!cmdName!&quot;, $cmd [rest of string was truncated]&quot;;.
         /// </summary>
         public static string REGISTER_COMMAND_SCRIPT {
             get {

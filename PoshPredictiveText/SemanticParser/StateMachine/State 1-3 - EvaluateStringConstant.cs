@@ -42,7 +42,9 @@ namespace PoshPredictiveText.SemanticParser
                     break;
 
                 case 1 when enteredValue == syntaxItems.First().Name:
+                    // Update the command path and reset the parameter set.
                     machineState.CommandPath.Add(enteredValue);
+                    machineState.ParameterSet = null; // TODO AAAARRRRRGGGH!
                     token.IsComplete = true;
                     token.SemanticType = SemanticToken.TokenType.Command;
                     token.ParameterSet = syntaxItems.First().ParameterSet;

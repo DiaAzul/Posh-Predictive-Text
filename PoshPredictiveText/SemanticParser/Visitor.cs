@@ -27,9 +27,29 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// Tokenised command line.
         /// </summary>
-        internal SemanticCLI Tokeniser
+        internal SemanticCLI SemanticCLI
         {
             get { return this.semanticCLI; }
+        }
+
+        /// <summary>
+        /// Adds a blank token when there is a space after the last
+        /// token in the CLI which does not get parsed by the visitor.
+        /// 
+        /// This is used in the state machine to trigger suggestions for
+        /// the next token.
+        /// </summary>
+        public void BlankVisit(string tokenValue, int lowerExtent, int upperExtent)
+        {
+            SemanticToken token = new()
+            {
+                Value = tokenValue,
+                AstType = typeof(StringConstantExpressionAst),
+                LowerExtent = lowerExtent,
+                UpperExtent = upperExtent,
+                SemanticType = SemanticToken.TokenType.Space,
+            };
+            this.semanticCLI.AddToken(token);
         }
 
         /// <summary>

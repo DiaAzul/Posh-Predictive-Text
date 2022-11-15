@@ -99,18 +99,24 @@ namespace PoshPredictiveText.SemanticParser
             List<SemanticToken> semanticTokens;
             string cacheKey = this.machineState.CommandPath + "+" + token.Value;
 
-            LOGGER.Write($"STATE MACHINE: Evaluate {token.Value}.");
+            LOGGER.Write($"STATE MACHINE: Evaluate ->{token.Value}<-.");
 
             // If the result is in the cache return early.
             if (MachineStateCache.TryGetValue(cacheKey, out MachineState cachedMachineState))
             {
                 LOGGER.Write($"STATE MACHINE: Use cached token results with key {cacheKey}.");
+
                 machineState = cachedMachineState.DeepCopy();
-                return this.machineState.SemanticTokens ?? new List<SemanticToken>();
+                semanticTokens= machineState.SemanticTokens ?? new List<SemanticToken>();
+
+                LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
+                LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.SuggestedSyntaxItems?.Count ?? 0} suggestions.");
+
+                return semanticTokens;
             }
 
-            // Parse the token and add semantic information.
             LOGGER.Write("STATE MACHINE: Parsing the token.");
+
             semanticTokens = this.machineState.CurrentState switch
             {
                 MachineState.State.NoCommand => NoCommand(token),
@@ -155,6 +161,7 @@ namespace PoshPredictiveText.SemanticParser
             }
 
             LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
+            LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.SuggestedSyntaxItems?.Count ?? 0} suggestions.");
             return semanticTokens;
         }
     }

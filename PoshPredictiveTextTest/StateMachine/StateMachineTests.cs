@@ -429,7 +429,7 @@ namespace PoshPredictiveText.Test.StateMachine
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            SemanticCLI enteredTokens = visitor.Tokeniser;
+            SemanticCLI enteredTokens = visitor.SemanticCLI;
             var returnedTokens = enteredTokens.All;
 
             // Assert
@@ -471,7 +471,7 @@ namespace PoshPredictiveText.Test.StateMachine
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            SemanticCLI enteredTokens = visitor.Tokeniser;
+            SemanticCLI enteredTokens = visitor.SemanticCLI;
             var returnedTokens = enteredTokens.All;
 
             // Assert

@@ -20,6 +20,7 @@ namespace PoshPredictiveText.SemanticParser
             PositionalValue,
             Redirection,
             Separator,
+            Space,
             StringConstant
         }
 

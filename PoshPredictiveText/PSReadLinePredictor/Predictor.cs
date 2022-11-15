@@ -75,28 +75,32 @@ namespace PoshPredictiveText.PSReadLinePredictor
 
             // Tokenise the syntax tree.
             List<PredictiveSuggestion> predictiveSuggestions = new();
-            using (SemanticCLICache cachedTokeniser = new())
+            using (SemanticCLICache semanticCLICache = new())
             {
-                if (cachedTokeniser.Acquired)
+                if (semanticCLICache.Acquired)
                 {
                     Visitor visitor = new();
                     context.InputAst.Visit(visitor);
-                    SemanticCLI semanticCLI = visitor.Tokeniser;
-                    SemanticCLICache.Stash(visitor.Tokeniser, context.InputAst.ToString());
-
-                    // If there is no base command, or the base command is not supported then return.
-                    if (semanticCLI.BaseCommand is null) return default;
-                    baseCommand = semanticCLI.BaseCommand;
-                    if (!SyntaxTreesConfig.IsSupportedCommand(semanticCLI.BaseCommand)) return default;
+                    SemanticCLI semanticCLI = visitor.SemanticCLI;
 
                     string wordToComplete = semanticCLI.LastToken?.Value ?? "";
                     if (inputText[^1] == ' ')
                     {
                         wordToComplete = "";
+                        visitor.BlankVisit("", inputText.Length, inputText.Length);
+                        semanticCLI = visitor.SemanticCLI;
                     }
                     string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
 
+                    SemanticCLICache.Stash(visitor.SemanticCLI, context.InputAst.ToString());
+
+                    // If there is no base command, or the base command is not supported then return.
+                    baseCommand = semanticCLI.BaseCommand;
+                    if (baseCommand is null || !SyntaxTreesConfig.IsSupportedCommand(baseCommand)) return default;
+
                     var results = Resolver.Suggestions(wordToComplete, semanticCLI, cursorPosition);
+                    LOGGER.Write($"PREDICTOR: Suggesting {results.Count} completions");
+
                     if (results.Count == 0) return default;
 
                     foreach (Suggestion result in results)

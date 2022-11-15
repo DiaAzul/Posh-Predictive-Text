@@ -3,6 +3,7 @@ namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
+    using System.Linq;
 
     internal partial class StateMachine
     {
@@ -22,7 +23,7 @@ namespace PoshPredictiveText.SemanticParser
         {
             // POSIX single-hyphen has a complex set of rules.
             if (machineState.ParseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
-                EvaluatePosixOption(token);
+                return EvaluatePosixOption(token);
 
             string enteredParameter = token.Value.ToLower();
 
@@ -31,6 +32,12 @@ namespace PoshPredictiveText.SemanticParser
             List<SyntaxItem> syntaxItems = parameters
                 .Where(syntaxItem => (syntaxItem.Name?.StartsWith(enteredParameter) ?? false) ||
                                         (syntaxItem.Alias?.StartsWith(enteredParameter) ?? false))
+                .ToList();
+
+            // BUG [HIGH][STATEMACHINE] Mark token complete when an exact match entered. (But also provide suggestions).
+            List<SyntaxItem> exactMatch = parameters
+                .Where(syntaxItem => (syntaxItem.Name?.Contains(enteredParameter) ?? false) ||
+                                        (syntaxItem.Alias?.Contains(enteredParameter)?? false))
                 .ToList();
 
             // Issue - If we enter an alias then it may not show as complete if there is also a long form name.
@@ -65,6 +72,7 @@ namespace PoshPredictiveText.SemanticParser
                         machineState.CurrentState = MachineState.State.Item;
                         LOGGER.Write($"STATE MACHINE: Optional {enteredParameter} complete. Sets - {String.Join(", ", syntaxItem.ParameterSet)}.");
                     }
+                    token.SemanticType = SemanticToken.TokenType.Parameter;
                     token.ParameterSet = syntaxItem.ParameterSet;
                     token.IsComplete = true;
                     break;

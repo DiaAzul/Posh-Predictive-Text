@@ -8,18 +8,28 @@ if (Test-Path Function:\TabExpansion) {
         }
     }
 }
-Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
-    param(
-        [string]$wordToComplete, 
-        [System.Management.Automation.Language.CommandAst]$commandAst,
-        [int]$cursorPosition)
 
+$callBack = @"
+param(
+    [string]`$wordToComplete,
+    [System.Management.Automation.Language.CommandAst]`$commandAst,
+    [int]`$cursorPosition)
+
+try {
+   `$suggestions = Get-PredictiveText -WordToComplete `$wordToComplete -CommandAst `$commandAst -CursorPosition `$cursorPosition
+}
+catch {
+    Write-Error "PoshPredictiveText had an error resolving !cmdName!."
+}
+`$suggestions
+"@
+
+foreach($cmdName in $cmdNames) {
+    $callBackScript = [scriptblock]::Create($callBack.Replace("!cmdName!", $cmdName))
     try {
-        $suggestions = Install-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+        Register-ArgumentCompleter -CommandName $cmdName -Native -ScriptBlock $callBackScript
     }
     catch {
-        Write-Host "Error."
+        Write-Error $"Unable to register argument completer for {$cmdName}"
     }
-    
-    $suggestions 
 }

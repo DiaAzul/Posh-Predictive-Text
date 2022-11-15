@@ -20,8 +20,9 @@ namespace PoshPredictiveText.SemanticParser
                 SemanticToken.TokenType.Parameter => EvaluateParameter(token),
                 SemanticToken.TokenType.Redirection => EvaluateRedirection(token),
                 SemanticToken.TokenType.StringConstant => EvaluateStringConstant(token),
+                SemanticToken.TokenType.Space => SuggestNextToken(token),
                 _ => new List<SemanticToken> { token },
-            };
+            }; ;
         }
     }
 }

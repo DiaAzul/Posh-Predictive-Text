@@ -78,7 +78,7 @@ namespace PoshPredictiveText.Test.StateMachine
 
             // Act
             ast.Visit(visitor);
-            var tokeniser = visitor.Tokeniser;
+            var tokeniser = visitor.SemanticCLI;
             var tokens = tokeniser.All;
 
             // Assert
@@ -123,7 +123,7 @@ namespace PoshPredictiveText.Test.StateMachine
             CommandAst ast = PowerShellMock.CreateCommandAst(inputText);
             Visitor visitor = new();
             ast.Visit(visitor);
-            tokenisedInput = visitor.Tokeniser;
+            tokenisedInput = visitor.SemanticCLI;
         }
 
         /// <summary>

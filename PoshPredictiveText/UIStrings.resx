@@ -142,20 +142,29 @@
     <value>Unable to create log file. Use Get-Error for more detail.</value>
   </data>
   <data name="REGISTER_COMMAND_SCRIPT" xml:space="preserve">
-    <value>Register-ArgumentCompleter -CommandName $cmdNames -Native -ScriptBlock {
-    param(
-        [string]$wordToComplete, 
-        [System.Management.Automation.Language.CommandAst]$commandAst,
-        [int]$cursorPosition)
+    <value>$callBack = @"
+param(
+    [string]`$wordToComplete,
+    [System.Management.Automation.Language.CommandAst]`$commandAst,
+    [int]`$cursorPosition)
 
+try {
+   `$suggestions = Get-PredictiveText -WordToComplete `$wordToComplete -CommandAst `$commandAst -CursorPosition `$cursorPosition
+}
+catch {
+    Write-Error "PoshPredictiveText had an error resolving !cmdName!."
+}
+`$suggestions
+"@
+
+foreach($cmdName in $cmdNames) {
+    $callBackScript = [scriptblock]::Create($callBack.Replace("!cmdName!", $cmdName))
     try {
-        $suggestions = Get-PredictiveText -WordToComplete $wordToComplete -CommandAst $commandAst -CursorPosition $cursorPosition
+        Register-ArgumentCompleter -CommandName $cmdName -Native -ScriptBlock $callBackScript
     }
     catch {
-        Write-Host "Error."
+        Write-Error $"Unable to register argument completer for {$cmdName}"
     }
-    
-    $suggestions 
 }</value>
   </data>
   <data name="REMOVE_CONDA_SCRIPT" xml:space="preserve">

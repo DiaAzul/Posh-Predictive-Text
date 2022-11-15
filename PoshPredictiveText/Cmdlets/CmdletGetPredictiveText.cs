@@ -53,7 +53,7 @@ namespace PoshPredictiveText.Cmdlets
         {
             // The algorithm uses the command abstract syntrax tree to tokenise the input text. 
             // If it is not available then return no values.
-            Write("CMDLET: Processing...");
+            Write("CMDLET: Processing.");
             if (CommandAst is not null)
             {
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
@@ -70,7 +70,7 @@ namespace PoshPredictiveText.Cmdlets
                             LOGGER.Write("CMDLET: Creating tokeniser from cmdlet CommandAst");
                             Visitor visitor = new();
                             CommandAst.Visit(visitor);
-                            semanticCLI = visitor.Tokeniser;
+                            semanticCLI = visitor.SemanticCLI;
                             LOGGER.Write($"CMDLET: Finished visiting CommandAst. {semanticCLI.Count} tokens.");
                         }
                         else
