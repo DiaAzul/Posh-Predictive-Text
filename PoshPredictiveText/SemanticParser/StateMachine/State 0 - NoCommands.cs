@@ -47,7 +47,7 @@ namespace PoshPredictiveText.SemanticParser
                 machineState.ParseMode = SyntaxTreesConfig.ParseMode(machineState.SyntaxTreeName);
                 machineState.CommandPath = new(SyntaxTreeName!);
                 token.SemanticType = SemanticToken.TokenType.Command;
-                token.IsComplete = true;
+                token.IsExactMatch = true;
                 machineState.CurrentState = MachineState.State.Item;
 
                 LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");

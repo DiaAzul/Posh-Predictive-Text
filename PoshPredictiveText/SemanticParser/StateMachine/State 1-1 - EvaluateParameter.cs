@@ -48,7 +48,7 @@ namespace PoshPredictiveText.SemanticParser
             switch (syntaxItems.Count)
             {
                 case 0:
-                    token.IsComplete = false;
+                    token.IsExactMatch = false;
                     machineState.CurrentState = MachineState.State.Item;
                     break;
                 case 1:
@@ -74,13 +74,13 @@ namespace PoshPredictiveText.SemanticParser
                     }
                     token.SemanticType = SemanticToken.TokenType.Parameter;
                     token.ParameterSet = syntaxItem.ParameterSet;
-                    token.IsComplete = true;
+                    token.IsExactMatch = true;
                     break;
 
 
                 default:
                     token.SuggestedSyntaxItems = syntaxItems;
-                    token.IsComplete = false;
+                    token.IsExactMatch = false;
                     machineState.CurrentState = MachineState.State.Item;
                     break;
             }

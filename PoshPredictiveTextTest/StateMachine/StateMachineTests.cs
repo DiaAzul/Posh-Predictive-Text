@@ -16,7 +16,7 @@ namespace PoshPredictiveText.Test.StateMachine
         /// Add a single command to the syntax tree.
         /// 
         /// => Added semantic information.
-        /// => IsComplete, IsCommand.
+        /// => IsExactMatch, IsCommand.
         /// => Added syntaxTreeName and syntaxTree.
         /// </summary>
         [Fact]
@@ -39,7 +39,7 @@ namespace PoshPredictiveText.Test.StateMachine
 
             // Assert
             Assert.Single(result);
-            Assert.True(result.First().IsComplete);
+            Assert.True(result.First().IsExactMatch);
             Assert.True(result.First().IsCommand);
             Assert.Equal(1, stateMachine.CommandPath.Count);
             Assert.Equal("conda", stateMachine.CommandPath.ToString());
@@ -73,7 +73,7 @@ namespace PoshPredictiveText.Test.StateMachine
 
             // Assert
             Assert.Single(result);
-            Assert.False(result.First().IsComplete);
+            Assert.False(result.First().IsExactMatch);
             Assert.False(result.First().IsCommand);
             var suggestedItems = result.First().SuggestedSyntaxItems;
             Assert.NotNull(suggestedItems);
@@ -122,11 +122,11 @@ namespace PoshPredictiveText.Test.StateMachine
 
             // Assert
             Assert.Single(result1);
-            Assert.True(result1.First().IsComplete);
+            Assert.True(result1.First().IsExactMatch);
             Assert.True(result1.First().IsCommand);
             Assert.Equal("conda", result1.First().Value);
             Assert.Single(result2);
-            Assert.True(result2.First().IsComplete);
+            Assert.True(result2.First().IsExactMatch);
             Assert.True(result2.First().IsCommand);
             Assert.Equal("env", result2.First().Value);
             Assert.Equal("conda.env", stateMachine.CommandPath.ToString());
@@ -170,7 +170,7 @@ namespace PoshPredictiveText.Test.StateMachine
 
             // Assert
             Assert.Single(result1);
-            Assert.True(result1.First().IsComplete);
+            Assert.True(result1.First().IsExactMatch);
             Assert.True(result1.First().IsCommand);
             Assert.Equal(1, stateMachine.CommandPath.Count);
             Assert.Equal("conda", stateMachine.CommandPath.ToString());
@@ -178,7 +178,7 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.NotNull(stateMachine.SyntaxTree);
 
             Assert.Single(result2);
-            Assert.False(result2.First().IsComplete);
+            Assert.False(result2.First().IsExactMatch);
             var syntaxItems = result2.First().SuggestedSyntaxItems;
             Assert.NotNull(syntaxItems);
             Assert.Equal(3, syntaxItems.Count);
@@ -227,7 +227,7 @@ namespace PoshPredictiveText.Test.StateMachine
             // Assert
             Assert.Single(result3);
             Assert.True(result3.First().IsParameter);
-            Assert.True(result3.First().IsComplete);
+            Assert.True(result3.First().IsExactMatch);
             Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
             Assert.Equal(MachineState.State.Item, stateAfterParameter);
         }
@@ -276,7 +276,7 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.Single(result2);
             var firstItem = result2.First();
             Assert.True(firstItem.IsParameter);
-            Assert.False(firstItem.IsComplete);
+            Assert.False(firstItem.IsExactMatch);
             Assert.Equal(TokenType.Parameter, firstItem.SemanticType);
             Assert.Equal(MachineState.State.Item, stateAfterParameter);
             Assert.NotNull(firstItem.SuggestedSyntaxItems);
@@ -356,11 +356,11 @@ namespace PoshPredictiveText.Test.StateMachine
             // Assert
             Assert.Single(result3);
             Assert.True(result3.First().IsParameter);
-            Assert.True(result3.First().IsComplete);
+            Assert.True(result3.First().IsExactMatch);
             Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
             Assert.Equal(MachineState.State.Value, stateAfterParameter);
             Assert.Single(result4);
-            Assert.True(result4.First().IsComplete);
+            Assert.True(result4.First().IsExactMatch);
             Assert.Equal(TokenType.ParameterValue, result4.First().SemanticType);
             Assert.Equal("NEWENVIRONMENT", result4.First().ParameterValueName);
             Assert.Equal(MachineState.State.Item, stateAfterParameterValue);

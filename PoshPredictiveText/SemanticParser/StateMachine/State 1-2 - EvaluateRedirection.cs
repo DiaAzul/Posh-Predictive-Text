@@ -35,7 +35,7 @@ namespace PoshPredictiveText.SemanticParser
                 LowerExtent = token.LowerExtent,
                 UpperExtent = token.LowerExtent + redirectSymbol.Length - 1,
                 SemanticType = SemanticToken.TokenType.Redirection,
-                IsComplete = true,
+                IsExactMatch = true,
             };
 
             // NOTE [LOW][STATEMACHINE] Redirection assumed to path only, not between streams (&3 > &1)

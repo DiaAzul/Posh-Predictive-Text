@@ -54,7 +54,7 @@ namespace PoshPredictiveText.SemanticParser
         /// <param name="token">Token to add to the tokeniser</param>
         internal void AddToken(SemanticToken token)
         {
-            LOGGER.Write($"SEMANTIC CLI: Parse ->{token.Value}<- of type {token.SemanticType}.");
+            LOGGER.Write($"SEMANTIC CLI: Parse '{token.Value}' of type {token.SemanticType}.");
 
             List<SemanticToken> semanticTokens = stateMachine.Evaluate(token);
             foreach (SemanticToken semanticToken in semanticTokens)

@@ -43,8 +43,8 @@ namespace PoshPredictiveText.SemanticParser
         // If a positional value what is the positional index
         internal int? PositonalIndex { get; set; } = null;
 
-        // True if the token is recognised.
-        internal bool IsComplete { get; set; } = false;
+        // True if the token is an exact match for a syntax item.
+        internal bool IsExactMatch { get; set; } = false;
 
         // Parameter Value name (matches syntax tree helper).
         internal string? ParameterValueName { get; set; } = null;

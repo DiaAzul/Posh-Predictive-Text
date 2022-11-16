@@ -28,7 +28,7 @@ namespace PoshPredictiveText.SemanticParser
             }
 
             token.SuggestedSyntaxItems = syntaxItems;
-            token.IsComplete = false;
+            token.IsExactMatch = false;
             machineState.CurrentState = MachineState.State.Item;
       
             return  new List<SemanticToken>() { token };

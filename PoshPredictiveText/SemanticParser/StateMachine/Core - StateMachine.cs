@@ -99,18 +99,19 @@ namespace PoshPredictiveText.SemanticParser
             List<SemanticToken> semanticTokens;
             string cacheKey = this.machineState.CommandPath + "+" + token.Value;
 
-            LOGGER.Write($"STATE MACHINE: Evaluate ->{token.Value}<-.");
+            LOGGER.Write($"STATE MACHINE: Evaluate '{token.Value}'.");
 
             // If the result is in the cache return early.
             if (MachineStateCache.TryGetValue(cacheKey, out MachineState cachedMachineState))
             {
-                LOGGER.Write($"STATE MACHINE: Use cached token results with key {cacheKey}.");
+                LOGGER.Write($"STATE MACHINE: Using cached token results with key {cacheKey}.");
 
                 machineState = cachedMachineState.DeepCopy();
                 semanticTokens= machineState.SemanticTokens ?? new List<SemanticToken>();
 
                 LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
                 LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.SuggestedSyntaxItems?.Count ?? 0} suggestions.");
+                LOGGER.Write($"STATE MACHINE: Resultant parameter set is {String.Join(", ", machineState.ParameterSet ?? new List<string>())}.");
 
                 return semanticTokens;
             }
@@ -126,38 +127,40 @@ namespace PoshPredictiveText.SemanticParser
                 _ => new List<SemanticToken> { token },
             };
 
-            // BUG [HIGH][STATEMACHINE] Parameter sets are applicable for each commanPath and should be reset when the commandPath changes.
-            // Update parameter sets.
-            if (semanticTokens.Count > 0 && semanticTokens.First().IsComplete)
+            // If we have an exact match then process parameter sets and cache results if appropriate.
+            if (semanticTokens.Count > 0 && semanticTokens.First().IsExactMatch)
             {
-                foreach (var semanticToken in semanticTokens)
+                switch (semanticTokens.First().SemanticType)
                 {
-                    if (semanticToken.IsCommand || semanticToken.IsParameter || semanticToken.IsPositionalValue)
-                    {
-                        if (machineState.ParameterSet is null)
+                    case SemanticToken.TokenType.Parameter:
+                    case SemanticToken.TokenType.PositionalValue:
+                        foreach (var semanticToken in semanticTokens)
                         {
-                            machineState.ParameterSet = semanticToken.ParameterSet;
+                            if (machineState.ParameterSet is null)
+                            {
+                                machineState.ParameterSet = semanticToken.ParameterSet;
+                            }
+                            else if (semanticToken.ParameterSet is not null)
+                            {
+                                LOGGER.Write($"STATE MACHINE: machine state parameter set is {String.Join(", ", machineState.ParameterSet)}.");
+                                LOGGER.Write($"STATE MACHINE: semantic token parameter set is {String.Join(", ", semanticToken.ParameterSet)}.");
+                                machineState.ParameterSet = machineState.ParameterSet.Intersect(semanticToken.ParameterSet).ToList();
+                            }
+                            LOGGER.Write($"STATE MACHINE: Resultant parameter set is {String.Join(", ", machineState.ParameterSet ?? new List<string>())}.");
                         }
-                        else if (semanticToken.ParameterSet is not null)
-                        {
-                            LOGGER.Write($"STATE MACHINE: machine state parameter set is {String.Join(", ",machineState.ParameterSet)}.");
-                            LOGGER.Write($"STATE MACHINE: semantic token parameter set is {String.Join(", ", semanticToken.ParameterSet)}.");
-                            machineState.ParameterSet = machineState.ParameterSet.Intersect(semanticToken.ParameterSet).ToList();
-                        }
-                    }
-                }
-                LOGGER.Write($"STATE MACHINE: Resultant parameter set is {String.Join(", ", machineState.ParameterSet ?? new List<string>())}.");
-            }
+                        goto default;
 
-            // Cache the result if the argument is complete.
-            if (semanticTokens.Count > 0
-                && semanticTokens.First().IsComplete
-                && !(semanticTokens.First().SemanticType == SemanticToken.TokenType.Parameter
-                    || semanticTokens.First().SemanticType == SemanticToken.TokenType.PositionalValue))
-            {
-                LOGGER.Write($"STATE MACHINE: Caching parsed token results with key {cacheKey}.");
-                machineState.SemanticTokens = semanticTokens;
-                MachineStateCache.Add(cacheKey, machineState.DeepCopy());
+                    case SemanticToken.TokenType.Command:
+                        LOGGER.Write($"STATE MACHINE: Reset parameter sets for command {semanticTokens.First().Value}");
+                        machineState.ParameterSet = null;
+                        goto default;
+
+                    default:
+                        LOGGER.Write($"STATE MACHINE: Caching parsed tokens with key {cacheKey}.");
+                        machineState.SemanticTokens = semanticTokens;
+                        MachineStateCache.Add(cacheKey, machineState.DeepCopy());
+                        break;
+                }
             }
 
             LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
