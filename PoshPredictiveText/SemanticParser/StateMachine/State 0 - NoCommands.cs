@@ -44,16 +44,18 @@ namespace PoshPredictiveText.SemanticParser
                 }
 #endif
 
+                LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
+                LOGGER.Write($"STATE MACHINE: Command path={machineState.CommandPath}");
+
                 machineState.ParseMode = SyntaxTreesConfig.ParseMode(machineState.SyntaxTreeName);
                 machineState.CommandPath = new(SyntaxTreeName!);
                 token.SemanticType = SemanticToken.TokenType.Command;
                 token.IsExactMatch = true;
                 machineState.CurrentState = MachineState.State.Item;
 
-                LOGGER.Write("STATE MACHINE: Loaded Syntax Tree.");
-                LOGGER.Write($"STATE MACHINE: Command path={machineState.CommandPath}");
+                List<SemanticToken> returnTokens = SuggestNextToken(token);
 
-                return new List<SemanticToken> { token };
+                return returnTokens;
             }
 
             List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
