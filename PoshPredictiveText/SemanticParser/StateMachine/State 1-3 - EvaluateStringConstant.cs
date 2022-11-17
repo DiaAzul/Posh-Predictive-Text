@@ -48,14 +48,14 @@ namespace PoshPredictiveText.SemanticParser
                     token.SemanticType = SemanticToken.TokenType.Command;
                     token.ParameterSet = syntaxItems.First().ParameterSet;
                     machineState.CurrentState = MachineState.State.Item;
-                    semanticTokens = new() { token };
+                    semanticTokens = AddSuggestionsForTokenCompletion(token);
                     break;
 
                 default:
                     token.SuggestedSyntaxItems = syntaxItems;
                     token.IsExactMatch = false;
                     machineState.CurrentState = MachineState.State.Item;
-                    semanticTokens = new() { token };
+                    semanticTokens = AddSuggestionsForTokenCompletion(token);
                     break;
             }
             return semanticTokens;

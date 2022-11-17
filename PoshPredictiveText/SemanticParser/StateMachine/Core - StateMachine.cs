@@ -3,7 +3,6 @@ namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
-    using System.Management.Automation.Language;
 
     /// <summary>
     /// The state machine evaluates the command line input and appends
@@ -76,9 +75,6 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal void Reset()
         {
-            this.machineState.SyntaxTreeName = null;
-            this.machineState.SyntaxTree = null;
-            this.machineState.ParseMode= ParseMode.Windows;
             this.machineState = new();
             MachineStateCache.Reset();
         }
@@ -165,6 +161,10 @@ namespace PoshPredictiveText.SemanticParser
 
             LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
             LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.SuggestedSyntaxItems?.Count ?? 0} suggestions.");
+
+            machineState.CLISemanticTokens.AddRange(semanticTokens);
+            LOGGER.Write($"STATE MACHINE: There are {machineState.CLISemanticTokens.Count} semantic tokens on the CLI.");
+
             return semanticTokens;
         }
     }

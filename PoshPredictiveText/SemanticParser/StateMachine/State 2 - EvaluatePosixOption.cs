@@ -17,7 +17,7 @@ namespace PoshPredictiveText.SemanticParser
         internal List<SemanticToken> EvaluatePosixOption(SemanticToken token)
         {
             // TODO [HIGH][STATEMACHINE] Implement evaluate posix options.
-            return new List<SemanticToken> { token };
+            return AddSuggestionsForTokenCompletion(token);
         }
     }
 }

@@ -85,7 +85,7 @@ namespace PoshPredictiveText.SemanticParser
                     break;
             }
 
-            return new List<SemanticToken> { token };
+            return AddSuggestionsForTokenCompletion(token);
         }
     }
 }

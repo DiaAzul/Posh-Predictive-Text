@@ -65,7 +65,12 @@ namespace PoshPredictiveText.SemanticParser
         /// <summary>
         /// The list of semantic tokens to be returned once input token parsed.
         /// </summary>
-        internal List<SemanticToken>? SemanticTokens { get; set; } = null;
+        internal List<SemanticToken> SemanticTokens { get; set; } = new();
+
+        /// <summary>
+        /// Hitory of semantic tokens added to the command line.
+        /// </summary>
+        internal List<SemanticToken> CLISemanticTokens { get; set; } = new()!;
 
         /// <summary>
         /// Return a clone with a deep copy of CommandPath and SemanticTokens

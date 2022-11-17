@@ -53,13 +53,14 @@ namespace PoshPredictiveText.SemanticParser
                 token.IsExactMatch = true;
                 machineState.CurrentState = MachineState.State.Item;
 
-                List<SemanticToken> returnTokens = SuggestNextToken(token);
+                List<SemanticToken> semanticTokens = AddSuggestionsForTokenCompletion(token);
 
-                return returnTokens;
+                return semanticTokens;
             }
 
+            // If the command is not complete then suggest possible commands from those supported.
             List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
-            if (suggestedCommands.Count > 0)
+            if (suggestedCommands.Count > 0 && machineState.CLISemanticTokens.Count == 0)
             {
                 List<SyntaxItem> suggestions = new();
                 foreach (string suggestedCommand in suggestedCommands)

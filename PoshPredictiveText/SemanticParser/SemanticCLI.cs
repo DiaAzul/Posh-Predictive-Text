@@ -57,6 +57,8 @@ namespace PoshPredictiveText.SemanticParser
             LOGGER.Write($"SEMANTIC CLI: Parse '{token.Value}' of type {token.SemanticType}.");
 
             List<SemanticToken> semanticTokens = stateMachine.Evaluate(token);
+
+            // TODO: [MED][SemanticCLI] The list of tokens is in the state machine, this can be removed.
             foreach (SemanticToken semanticToken in semanticTokens)
             {
                 this.tokens.Add(this.TokenPosition, semanticToken);
@@ -73,7 +75,7 @@ namespace PoshPredictiveText.SemanticParser
             SemanticToken token = new()
             {
                 Value = "",
-                SemanticType = null
+                SemanticType = SemanticToken.TokenType.Space
             };
             this.AddToken(token);
         }

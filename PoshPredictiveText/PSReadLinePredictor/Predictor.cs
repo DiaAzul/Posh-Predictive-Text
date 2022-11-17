@@ -53,6 +53,16 @@ namespace PoshPredictiveText.PSReadLinePredictor
         public string Description => "PowerShell tab-expansion of arguments for popular command line tools.";
 
         /// <summary>
+        /// Create a suggestions package with the one suggestion using suggestion text and no tooltip.
+        /// </summary>
+        /// <param name="suggestionText">Text to returned as a suggestion.</param>
+        /// <returns>Suggestion package with one predictive suggestion.</returns>
+        private static SuggestionPackage SimpleSuggestionPackage(string suggestionText)
+        {
+            return new(new List<PredictiveSuggestion>() { new PredictiveSuggestion(suggestionText, "") });
+        }
+
+        /// <summary>
         /// Get the predictive suggestions. It indicates the start of a suggestion rendering session.
         /// </summary>
         /// <param name="client">Represents the client that initiates the call.</param>
@@ -68,10 +78,10 @@ namespace PoshPredictiveText.PSReadLinePredictor
             string inputText = context.InputAst.Extent.Text;
             var cursorPosition = context.CursorPosition.Offset;
 
-            if (string.IsNullOrWhiteSpace(inputText)) return default;
-
-            // If there is no abstract syntax tree return.
-            if (context.InputAst is null) return default;
+            if (string.IsNullOrWhiteSpace(inputText) || context.InputAst is null)
+            {
+                return SimpleSuggestionPackage(inputText);
+            }
 
             // Tokenise the syntax tree.
             List<PredictiveSuggestion> predictiveSuggestions = new();
@@ -96,12 +106,18 @@ namespace PoshPredictiveText.PSReadLinePredictor
 
                     // If there is no base command, or the base command is not supported then return.
                     baseCommand = semanticCLI.BaseCommand;
-                    if (baseCommand is null || !SyntaxTreesConfig.IsSupportedCommand(baseCommand)) return default;
+                    if (baseCommand is null || !SyntaxTreesConfig.IsSupportedCommand(baseCommand))
+                    {
+                        return SimpleSuggestionPackage(inputText);
+                    }
 
                     var results = Resolver.Suggestions(wordToComplete, semanticCLI, cursorPosition);
                     LOGGER.Write($"PREDICTOR: Suggesting {results.Count} completions");
 
-                    if (results.Count == 0) return default;
+                    if (results.Count == 0)
+                    {
+                        return SimpleSuggestionPackage(inputText);
+                    }
 
                     foreach (Suggestion result in results)
                     {

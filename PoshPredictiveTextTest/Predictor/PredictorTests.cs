@@ -18,9 +18,10 @@ namespace PoshPredictiveText.Test.Predictor
         /// <param name="expectedSuggestions">Expected number of suggestions.</param>
         [Theory]
         [InlineData("conda ", 19)]
-        [InlineData("conda env remove ", 10)]
+        [InlineData("conda env remove ", 9)]
         [InlineData("conda i", 3)]
-        [InlineData("conda list --name --md5 ", 13)]
+        [InlineData("conda list --name --md5 ", 11)]
+        [InlineData("conda list --help ", 1)]
         [InlineData("conda activate -", 3)]
         public void PoshPredictiveTextPredictorTest(string inputString, int expectedSuggestions)
         {

@@ -59,9 +59,9 @@ namespace PoshPredictiveText.Cmdlets
                 // Convert the CommandAst to a list of tokens which will be used to evaluate
                 // which options are avaialble for the next parameter.
                 List<Suggestion> suggestions = new();
-                using (SemanticCLICache cachedTokeniser = new())
+                using (SemanticCLICache semanticCLICache = new())
                 {
-                    if (cachedTokeniser.Acquired)
+                    if (semanticCLICache.Acquired)
                     {
                         LOGGER.Write("CMDLET: Acquired cached tokeniser.");
                         SemanticCLI? semanticCLI = SemanticCLICache.Get(CommandAst.ToString());
@@ -70,6 +70,10 @@ namespace PoshPredictiveText.Cmdlets
                             LOGGER.Write("CMDLET: Creating tokeniser from cmdlet CommandAst");
                             Visitor visitor = new();
                             CommandAst.Visit(visitor);
+                            if (WordToComplete == string.Empty)
+                            {
+                                visitor.BlankVisit(WordToComplete, CommandAst.Extent.EndColumnNumber, CommandAst.Extent.EndColumnNumber);
+                            }
                             semanticCLI = visitor.SemanticCLI;
                             LOGGER.Write($"CMDLET: Finished visiting CommandAst. {semanticCLI.Count} tokens.");
                         }
@@ -86,11 +90,27 @@ namespace PoshPredictiveText.Cmdlets
 
                         try
                         {
-                            suggestions = Resolver.Suggestions(
-                                wordToComplete: WordToComplete ?? "",
-                                semanticCLI: semanticCLI,
-                                cursorPosition: CursorPosition ?? CommandAst.ToString().Length
-                            );
+                            SemanticToken? lastToken = semanticCLI.LastToken;
+                            SyntaxTree? syntaxTree = semanticCLI.SyntaxTree;
+                            if (lastToken is not null && lastToken.SuggestedSyntaxItems is not null)
+                            {
+                                foreach (var syntaxItem in lastToken.SuggestedSyntaxItems)
+                                {
+                                    Suggestion suggestion = new()
+                                    {
+                                        CompletionText = syntaxItem.Name??"",
+                                        ListText = syntaxItem.Name??"",
+                                        Type = syntaxItem.ResultType,
+                                        ToolTip = syntaxTree?.Tooltip(syntaxItem.ToolTip) ?? ""
+                                    };
+                                    suggestions.Add(suggestion);
+                                }
+                            }
+                            //suggestions = Resolver.Suggestions(
+                            //    wordToComplete: WordToComplete ?? "",
+                            //    semanticCLI: semanticCLI,
+                            //    cursorPosition: CursorPosition ?? CommandAst.ToString().Length
+                            //);
                         }
                         // Process any errors raised. Raise an error if DEBUG build,
                         // for RELEASE builds swallow excpetions (better to do nothing than

@@ -67,6 +67,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             // Act
             Visitor visitor = new();
             commandAst.Visit(visitor);
+            visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
             var enteredTokens = visitor.SemanticCLI;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 

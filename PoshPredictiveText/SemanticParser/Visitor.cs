@@ -160,7 +160,7 @@ namespace PoshPredictiveText.SemanticParser
             // Record strings starting with double-dash (--) as parameters.
             try
             {
-                if (Value[..2] == "--")
+                if (Value[..1] == "-")
                 {
                     astType = typeof(CommandParameterAst);
                     semanticType = SemanticToken.TokenType.Parameter;

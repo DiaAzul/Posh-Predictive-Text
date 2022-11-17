@@ -56,6 +56,7 @@ namespace PoshPredictiveText
 
             string? syntaxTreeName = semanticCLI.SyntaxTreeName;
             SyntaxTree? syntaxTree = semanticCLI.SyntaxTree;
+
             if (syntaxTree is null)
             {
                 LOGGER.Write($"RESOLVER: Syntax Tree {syntaxTreeName} null, suggesting command names.");
@@ -78,96 +79,10 @@ namespace PoshPredictiveText
                 return suggestions;
             }
 
-            LOGGER.Write($"RESOLVER: The syntaxTree {syntaxTreeName} exists. "
-                + $"There are {syntaxTree.Count} entries in the tree.");
-
-            // ----- IDENTIFY SUB-COMMANDS -----
-            // Many CLI apps use several tokens to identify sub-commands. These are parsed
-            // from the entered tokens to identify the path in the syntax tree which
-            // identifies the parameters for each sub-command. At each stage in the tree
-            // we may have the option to enter a sub-command or parameters. If we have
-            // entered parameters the it should not be possible to enter a sub-command,
-            // therefore, we need to identify if this particular command is complete so
-            // that we don't offer sub-commands as an option. Also, if the command is
-            // complete we may offer positional parameters.
-            List<string> uniqueCommands = syntaxTree.UniqueCommands;
-            string commandPath = semanticCLI.CommandPath.ToString();
-            int tokensInPath = semanticCLI.CommandPath.Count;
-            LOGGER.Write($"RESOLVER: Command path [{commandPath}], tokens in path: {tokensInPath}");
-            //var (commandPath, tokensInPath) = semanticCLI.CommandPath(uniqueCommands);
-
-            int countOfEnteredTokens = semanticCLI.Count + (wordToComplete == "" ? 1 : 0);
-            int expectedCommandTokens = tokensInPath + (syntaxTree.CountOfSubCommands(commandPath) > 0 ? 1 : 0);
-            bool commandComplete = countOfEnteredTokens > expectedCommandTokens;
-
-            // ----- PARAMETER VALUES -----
-            // If one of the previous tokens was a parameter token expecting a parameter value
-            // then we should not suggest other tokens until the parameter value has been 
-            // entered. If the paramter expects more than value then we can offer other
-            // suggestions once more than one value is entered. If the parameter value has a
-            // helper then the results of the helper should be suggested.
-            bool listOnlyParameterValues = false;
-            Dictionary<int, SemanticToken> enteredCommandParameters = semanticCLI.CommandParameters;
-            if (enteredCommandParameters.Count > 0)
+            SemanticToken? lastToken = semanticCLI.LastToken;
+            if (lastToken is not null && lastToken.SuggestedSyntaxItems is not null)
             {
-                int lastCommandPosition = enteredCommandParameters.Keys.Max();
-                int enteredValues = semanticCLI.Count - lastCommandPosition - 1;
-                // Can we enter more than one value?
-                string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
-                // Search prior parameters for both parameter AND aliases.
-                var parameterSyntaxItems = syntaxTree.ParameterSyntaxItems(commandPath, lastParameter);
-
-                if (parameterSyntaxItems.Count > 0)
-                {
-                    SyntaxItem syntaxItem = parameterSyntaxItems.First();
-                    bool acceptsMultipleParameterValues
-                        = syntaxItem.AcceptsMultipleParameterValues;
-                    bool isParameter = syntaxItem?.IsParameter ?? false;
-                    if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
-                    {
-                        List<Suggestion> parameterValueOptions
-                            = CondaHelpers.GetParamaterValues(syntaxItem?.Value ?? "",
-                                                              wordToComplete);
-                        suggestions.AddRange(parameterValueOptions);
-                        // If the parameter value is mandatory then don't provide
-                        // any more suggestions.
-                        listOnlyParameterValues = (enteredValues == 0);
-                    }
-                }
-            }
-
-            // ----- POSITIONAL VALUES -----
-            // If we have a helper for positional parameters then return the suggestions.
-            // BUG [HIGH][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.
-            // TODO [HIGH][RESOLVER] Check for sequencing of positional parameters.
-            if (!listOnlyParameterValues && commandComplete)
-            {
-                LOGGER.Write("RESOLVER: Listing positional parameters.");
-                var positionalValues = syntaxTree.PositionalValues(commandPath);
-                if (positionalValues.Count > 0)
-                {
-                    SyntaxItem positionalSyntaxItem = positionalValues.First();
-                    LOGGER.Write(positionalSyntaxItem.Value ?? "");
-                    List<Suggestion> positionalValueSuggestions
-                        = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Value ?? "",
-                                                          wordToComplete);
-
-                    suggestions.AddRange(positionalValueSuggestions);
-                }
-            }
-
-            // ----- SUB-COMMANDS, OPTIONAL and PARAMETER TOKENS -----
-            // If the command is not complete then offer sub-commands.
-            // Filter tokens already added from optional and parameter suggestions.
-            if (!listOnlyParameterValues)
-            {
-                List<SyntaxItem> availableOptions = syntaxTree.AvailableOptions(
-                                                                    commandPath,
-                                                                    commandComplete,
-                                                                    semanticCLI,
-                                                                    wordToComplete);
-
-                foreach (var syntaxItem in availableOptions)
+                foreach(var syntaxItem in lastToken.SuggestedSyntaxItems)
                 {
                     Suggestion suggestion = new()
                     {
@@ -179,6 +94,109 @@ namespace PoshPredictiveText
                     suggestions.Add(suggestion);
                 }
             }
+
+
+            LOGGER.Write($"RESOLVER: The syntaxTree {syntaxTreeName} exists. "
+                + $"There are {syntaxTree.Count} entries in the tree.");
+
+            //// ----- IDENTIFY SUB-COMMANDS -----
+            //// Many CLI apps use several tokens to identify sub-commands. These are parsed
+            //// from the entered tokens to identify the path in the syntax tree which
+            //// identifies the parameters for each sub-command. At each stage in the tree
+            //// we may have the option to enter a sub-command or parameters. If we have
+            //// entered parameters the it should not be possible to enter a sub-command,
+            //// therefore, we need to identify if this particular command is complete so
+            //// that we don't offer sub-commands as an option. Also, if the command is
+            //// complete we may offer positional parameters.
+            //List<string> uniqueCommands = syntaxTree.UniqueCommands;
+            //string commandPath = semanticCLI.CommandPath.ToString();
+            //int tokensInPath = semanticCLI.CommandPath.Count;
+            //LOGGER.Write($"RESOLVER: Command path [{commandPath}], tokens in path: {tokensInPath}");
+            ////var (commandPath, tokensInPath) = semanticCLI.CommandPath(uniqueCommands);
+
+            //int countOfEnteredTokens = semanticCLI.Count + (wordToComplete == "" ? 1 : 0);
+            //int expectedCommandTokens = tokensInPath + (syntaxTree.CountOfSubCommands(commandPath) > 0 ? 1 : 0);
+            //bool commandComplete = countOfEnteredTokens > expectedCommandTokens;
+
+            //// ----- PARAMETER VALUES -----
+            //// If one of the previous tokens was a parameter token expecting a parameter value
+            //// then we should not suggest other tokens until the parameter value has been 
+            //// entered. If the paramter expects more than value then we can offer other
+            //// suggestions once more than one value is entered. If the parameter value has a
+            //// helper then the results of the helper should be suggested.
+            //bool listOnlyParameterValues = false;
+            //Dictionary<int, SemanticToken> enteredCommandParameters = semanticCLI.CommandParameters;
+            //if (enteredCommandParameters.Count > 0)
+            //{
+            //    int lastCommandPosition = enteredCommandParameters.Keys.Max();
+            //    int enteredValues = semanticCLI.Count - lastCommandPosition - 1;
+            //    // Can we enter more than one value?
+            //    string lastParameter = enteredCommandParameters[lastCommandPosition].Value;
+            //    // Search prior parameters for both parameter AND aliases.
+            //    var parameterSyntaxItems = syntaxTree.ParameterSyntaxItems(commandPath, lastParameter);
+
+            //    if (parameterSyntaxItems.Count > 0)
+            //    {
+            //        SyntaxItem syntaxItem = parameterSyntaxItems.First();
+            //        bool acceptsMultipleParameterValues
+            //            = syntaxItem.AcceptsMultipleParameterValues;
+            //        bool isParameter = syntaxItem?.IsParameter ?? false;
+            //        if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
+            //        {
+            //            List<Suggestion> parameterValueOptions
+            //                = CondaHelpers.GetParamaterValues(syntaxItem?.Value ?? "",
+            //                                                  wordToComplete);
+            //            suggestions.AddRange(parameterValueOptions);
+            //            // If the parameter value is mandatory then don't provide
+            //            // any more suggestions.
+            //            listOnlyParameterValues = (enteredValues == 0);
+            //        }
+            //    }
+            //}
+
+            //// ----- POSITIONAL VALUES -----
+            //// If we have a helper for positional parameters then return the suggestions.
+            //// BUG [HIGH][RESOLVER] If only one positional parameter allowed do not permit repeat suggstions.
+            //// TODO [HIGH][RESOLVER] Check for sequencing of positional parameters.
+            //if (!listOnlyParameterValues && commandComplete)
+            //{
+            //    LOGGER.Write("RESOLVER: Listing positional parameters.");
+            //    var positionalValues = syntaxTree.PositionalValues(commandPath);
+            //    if (positionalValues.Count > 0)
+            //    {
+            //        SyntaxItem positionalSyntaxItem = positionalValues.First();
+            //        LOGGER.Write(positionalSyntaxItem.Value ?? "");
+            //        List<Suggestion> positionalValueSuggestions
+            //            = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Value ?? "",
+            //                                              wordToComplete);
+
+            //        suggestions.AddRange(positionalValueSuggestions);
+            //    }
+            //}
+
+            //// ----- SUB-COMMANDS, OPTIONAL and PARAMETER TOKENS -----
+            //// If the command is not complete then offer sub-commands.
+            //// Filter tokens already added from optional and parameter suggestions.
+            //if (!listOnlyParameterValues)
+            //{
+            //    List<SyntaxItem> availableOptions = syntaxTree.AvailableOptions(
+            //                                                        commandPath,
+            //                                                        commandComplete,
+            //                                                        semanticCLI,
+            //                                                        wordToComplete);
+
+            //    foreach (var syntaxItem in availableOptions)
+            //    {
+            //        Suggestion suggestion = new()
+            //        {
+            //            CompletionText = syntaxItem.Name??"",
+            //            ListText = syntaxItem.Name??"",
+            //            Type = syntaxItem.ResultType,
+            //            ToolTip = syntaxTree.Tooltip(syntaxItem.ToolTip) ?? "Tooltip was null."
+            //        };
+            //        suggestions.Add(suggestion);
+            //    }
+            //}
 
             // ----- RETURN SUGGESTIONS -----
 #if DEBUG
