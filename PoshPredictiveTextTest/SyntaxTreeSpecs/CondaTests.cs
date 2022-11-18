@@ -49,7 +49,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
         [InlineData("conda ", 19)]
         [InlineData("conda env remove ", 10)]
         [InlineData("conda i", 3)]
-        [InlineData("conda list --name --md5 ", 13)]
+        [InlineData("conda list --name --md5 ", 11)]
         [InlineData("conda activate -", 3)]
         [InlineData("conda config --file ", 0)]
 
@@ -67,7 +67,10 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             // Act
             Visitor visitor = new();
             commandAst.Visit(visitor);
-            visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
+            if (wordToComplete == "")
+            {
+                visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
+            }
             var enteredTokens = visitor.SemanticCLI;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 
@@ -81,12 +84,12 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
         /// <param name="inputString"></param>
         [InlineData("conda activate ")]
         [Theory]
-        public void CondaParameterValueTest(string inputString)
+        public void GetCondaEnvironmentSuggestions(string inputString)
         {
             // Arrange
             // WordToComplete. CommandAstVisitor. CursorPosition.
             string wordToComplete = "";
-            if (inputString[inputString.Length - 1] != ' ')
+            if (inputString[^1] != ' ')
                 wordToComplete = inputString.Split(' ').ToList().Last();
 
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
@@ -95,6 +98,10 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             // Act
             Visitor visitor = new();
             commandAst.Visit(visitor);
+            if (wordToComplete == "")
+            {
+                visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
+            }
             var enteredTokens = visitor.SemanticCLI;
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 

@@ -83,7 +83,9 @@ namespace PoshPredictiveText.SemanticParser
         {
             MachineState newState = (MachineState)MemberwiseClone();
             newState.CommandPath = CommandPath.DeepCopy();
-            if (SemanticTokens is not null) newState.SemanticTokens= new(SemanticTokens);
+            newState.SemanticTokens= new(SemanticTokens);
+            newState.CLISemanticTokens= new(CLISemanticTokens);
+
             return newState;
         }
     }
