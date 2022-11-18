@@ -2,6 +2,7 @@
 namespace PoshPredictiveText.PSReadLinePredictor
 {
     using PoshPredictiveText.SemanticParser;
+    using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
     using System;
     using System.Collections.Generic;
@@ -111,18 +112,28 @@ namespace PoshPredictiveText.PSReadLinePredictor
                         return SimpleSuggestionPackage(inputText);
                     }
 
-                    var results = Resolver.Suggestions(wordToComplete, semanticCLI, cursorPosition);
-                    LOGGER.Write($"PREDICTOR: Suggesting {results.Count} completions");
-
-                    if (results.Count == 0)
+                    try
                     {
-                        return SimpleSuggestionPackage(inputText);
+                        if (semanticCLI?.LastToken?.SuggestedSyntaxItems is not null)
+                        {
+                            predictiveSuggestions = semanticCLI.LastToken.SuggestedSyntaxItems
+                                .Select(syntaxItem => new PredictiveSuggestion(
+                                    suggestion: baseText + syntaxItem.Name??"",
+                                    toolTip: semanticCLI.SyntaxTree?.Tooltip(syntaxItem.ToolTip) ?? ""
+                                ))
+                                .ToList();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        LOGGER.Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
                     }
 
-                    foreach (Suggestion result in results)
+                    LOGGER.Write($"PREDICTOR: Suggesting {predictiveSuggestions.Count} completions");
+
+                    if (predictiveSuggestions.Count == 0)
                     {
-                        PredictiveSuggestion suggestion = new(baseText + result.CompletionText, result.ToolTip);
-                        predictiveSuggestions.Add(suggestion);
+                        return SimpleSuggestionPackage(inputText);
                     }
                 }
             }

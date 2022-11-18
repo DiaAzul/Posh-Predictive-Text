@@ -72,6 +72,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
                 visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
             }
             var enteredTokens = visitor.SemanticCLI;
+            // TODO [HIGH][RESOLVER] Replace Resolver.
             var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
 
             // Assert
