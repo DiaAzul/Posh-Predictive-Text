@@ -27,8 +27,7 @@ Use regex to pull out individual arguments:
 (parser\.add_argument\([\s\S]*?\))
  */
 
-
-namespace PoshPredictiveText.Helpers
+namespace PoshPredictiveText.SyntaxTreeSpecs
 {
     internal class PythonHelpers
     {

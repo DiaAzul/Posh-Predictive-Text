@@ -1,5 +1,5 @@
 ﻿
-namespace PoshPredictiveText.SyntaxTreeHelpers
+namespace PoshPredictiveText.SyntaxTrees
 {
     using System.Collections.Concurrent;
     using System.Runtime.ExceptionServices;

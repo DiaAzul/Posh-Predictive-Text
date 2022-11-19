@@ -1,8 +1,8 @@
 ﻿
 namespace PoshPredictiveText.Test.Helpers
 {
-    using PoshPredictiveText.Helpers;
     using PoshPredictiveText.SyntaxTrees;
+    using PoshPredictiveText.SyntaxTreeSpecs;
     using Xunit;
 
     /// <summary>
@@ -46,7 +46,7 @@ namespace PoshPredictiveText.Test.Helpers
             // Arrange
 
             // Act
-            var solvers = CondaHelpers.ExperimentalSolvers();
+            var solvers = SyntaxTreeHelpers.ExperimentalSolvers();
 
             // Assert
             Assert.IsType<List<string>>(solvers);
@@ -89,7 +89,7 @@ namespace PoshPredictiveText.Test.Helpers
             string wordToComplete = "WORD";
 
             // Act
-            var success = CondaHelpers.GetParamaterValues(successTest, wordToComplete);
+            var success = SyntaxTreeHelpers.GetParamaterValues(successTest, wordToComplete);
 
             // Assert
             Assert.Single(success);
@@ -97,7 +97,7 @@ namespace PoshPredictiveText.Test.Helpers
             Assert.Equal(wordToComplete, success[0].CompletionText);
 
             Assert.Throws<SyntaxTreeException>(
-                () => CondaHelpers.GetParamaterValues(failTest, wordToComplete));
+                () => SyntaxTreeHelpers.GetParamaterValues(failTest, wordToComplete));
         }
     }
 }

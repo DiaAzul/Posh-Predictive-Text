@@ -5,12 +5,12 @@ namespace PoshPredictiveText.SyntaxTrees
     using Parquet.Data.Rows;
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTreeSpecs;
-    using PoshPredictiveText.SyntaxTreeHelpers;
     using System.Collections;
     using System.IO;
     using System.Reflection;
     using System.Resources;
     using System.Threading.Tasks;
+
     /// <summary>
     /// Each command has a syntax tree which sets out the possible combination of tokens
     /// on the command line. The trees are strored as XML resource files embeded within

@@ -30,7 +30,6 @@ namespace PoshPredictiveText.SemanticParser
         /// PARAMETER and COMMAND, and exclude POSITIONAL items.</param>
         /// <returns>List of semantic tokens with suggestions included in the first token.</returns>
         internal List<SemanticToken> AddSuggestionsForTokenCompletion(SemanticToken token,  List<SyntaxItemType>? syntaxItemTypefilter = null)
-
         {
             List<SyntaxItemType> syntaxItemTypeFilter = syntaxItemTypefilter ??
                                             new List<SyntaxItemType>() { SyntaxItemType.PARAMETER, SyntaxItemType.COMMAND };
@@ -51,24 +50,11 @@ namespace PoshPredictiveText.SemanticParser
             // have been used, then filters the suggestions using that list against maximum times token can appear.
             if (machineState.SemanticTokens is not null)
             {
-                Dictionary<string, int> enteredTokensWithCounts = machineState.CLISemanticTokens
-                                              .Where(semanticToken => semanticToken.IsExactMatch
-                                                                        && (semanticToken.IsCommand
-                                                        || semanticToken.IsParameter
-                                                        || semanticToken.IsPositionalValue))
-                                              .GroupBy(semanticToken => semanticToken.Value)
-                                              .Select(countItem => new
-                                              {
-                                                  Token = countItem.Key,
-                                                  Count = countItem.Count(),
-                                              })
-                                              .ToDictionary(a => a.Token, a => a.Count);
-
+                Dictionary<string, int> tokensAlreadyEnteredWithCount = machineState.TokensAlreadyEnteredWithCount;
                 suggestedSyntaxItems = suggestedSyntaxItems
                     .Where(syntaxItem =>
                         syntaxItem.MaxUses is null
-                        || !(enteredTokensWithCounts.ContainsKey(syntaxItem.Name)
-                            && enteredTokensWithCounts.GetValueOrDefault(syntaxItem.Name) >= syntaxItem.MaxUses));
+                        || !(tokensAlreadyEnteredWithCount.GetValueOrDefault(syntaxItem.Name, 0) >= syntaxItem.MaxUses));
             }
 
             token.SuggestedSyntaxItems = suggestedSyntaxItems.ToList();

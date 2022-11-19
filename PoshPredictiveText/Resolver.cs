@@ -1,9 +1,7 @@
-﻿// TODO [HIGH][RESOLVER] Implement parameter sets.
-// TODO [HIGH][RESOLVER] Implement selection from choice.
+﻿// TODO [HIGH][RESOLVER] Implement selection from choice.
 
 namespace PoshPredictiveText
 {
-    using PoshPredictiveText.Helpers;
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.SyntaxTrees;
     using System.Linq;
@@ -144,7 +142,7 @@ namespace PoshPredictiveText
             //        if (isParameter && (enteredValues == 0 | acceptsMultipleParameterValues))
             //        {
             //            List<Suggestion> parameterValueOptions
-            //                = CondaHelpers.GetParamaterValues(syntaxItem?.Value ?? "",
+            //                = SyntaxTreeHelpers.GetParamaterValues(syntaxItem?.Value ?? "",
             //                                                  wordToComplete);
             //            suggestions.AddRange(parameterValueOptions);
             //            // If the parameter value is mandatory then don't provide
@@ -167,7 +165,7 @@ namespace PoshPredictiveText
             //        SyntaxItem positionalSyntaxItem = positionalValues.First();
             //        LOGGER.Write(positionalSyntaxItem.Value ?? "");
             //        List<Suggestion> positionalValueSuggestions
-            //            = CondaHelpers.GetParamaterValues(positionalSyntaxItem.Value ?? "",
+            //            = SyntaxTreeHelpers.GetParamaterValues(positionalSyntaxItem.Value ?? "",
             //                                              wordToComplete);
 
             //        suggestions.AddRange(positionalValueSuggestions);

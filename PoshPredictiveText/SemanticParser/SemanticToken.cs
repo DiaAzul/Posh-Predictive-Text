@@ -24,65 +24,83 @@ namespace PoshPredictiveText.SemanticParser
             StringConstant
         }
 
-        // Value recorded on the command line
+        /// <summary>
+        /// Get the text shown on the command line
+        /// </summary>
         internal string Value { get; init; } = default!;
 
-        // Abstract syntax type recorded for command line.
+        /// <summary>
+        /// Get the abstract syntax type for the command line token.
+        /// </summary>
         internal Type AstType { get; init; } = default!;
 
-        // Start position of text.
+        // Get the lower extent of the text on the command line.
         internal int LowerExtent { get; init; } = 0;
 
-        // End position of text.
+        /// <summary>
+        /// Get the upper extent of the text on the command line.
+        /// </summary>
         internal int UpperExtent { get; init; } = 0;
 
         // ** The following are mutable values.**
-        // Semantic type of the token.
+        /// <summary>
+        /// emantic type of the token.
+        /// </summary>
         internal TokenType? SemanticType { get; set; } = null;
 
-        // If a positional value what is the positional index
-        internal int? PositonalIndex { get; set; } = null;
-
-        // True if the token is an exact match for a syntax item.
+        /// <summary>
+        /// True if the token is an exact match for a syntax item.
+        /// </summary>
         internal bool IsExactMatch { get; set; } = false;
 
-        // Parameter Value name (matches syntax tree helper).
+        /// <summary>
+        /// Get the parameter value name.
+        /// </summary>
         internal string? ParameterValueName { get; set; } = null;
 
-        // Minium and maximum number of parameter values for a parameter.
+        /// <summary>
+        /// Get the minium number of parameter values for a parameter.
+        /// </summary>
         internal int? MinimumParameterValues { get; set; } = null;
+
+        /// <summary>
+        /// Get the maximum number of parameter values for a parameter.
+        /// </summary>
         internal int? MaximumParameterValues { get; set; } = null;
 
-        // List of suggestions for this token (if partial word).
+        // Get list of suggestions for this token (if partial word).
         internal List<SyntaxItem>? SuggestedSyntaxItems { get; set; } = null;
 
-        // Parameter sets membership of the token.
+        // Get parameter set membership of the token.
         internal List<string>? ParameterSet { get; set; } = null;
 
         /// <summary>
         /// True if the semantic token is a command.
         /// </summary>
-        internal bool IsCommand
-        {
-            get { return SemanticType == TokenType.Command; }
-        }
+        internal bool IsCommand => SemanticType == TokenType.Command;
 
         /// <summary>
         /// True if the semantic token is a parameter.
         /// </summary>
-        internal bool IsParameter
-        {
-            get { return SemanticType == TokenType.Parameter; }
-        }
+        internal bool IsParameter => SemanticType == TokenType.Parameter;
 
         /// <summary>
         /// True if the semantic token is a positional value.
         /// </summary>
-        internal bool IsPositionalValue
-        {
-            get { return SemanticType == TokenType.PositionalValue; }
-        }
+        internal bool IsPositionalValue => SemanticType == TokenType.PositionalValue;
 
+        /// <summary>
+        /// True if the semantic token is a parameter value.
+        /// </summary>
+        internal bool IsParameterValue => SemanticType == TokenType.ParameterValue;
+
+        /// <summary>
+        /// Load from syntax item.
+        /// 
+        /// Load token type, positional index, minumum and maximum parameter
+        /// values from the syntax item.
+        /// </summary>
+        /// <param name="syntaxItem"></param>
         internal void LoadFromSyntaxItem(SyntaxItem syntaxItem)
         {
             SemanticType = syntaxItem.ItemType switch
@@ -94,7 +112,6 @@ namespace PoshPredictiveText.SemanticParser
                 _ => null,
             };
 
-            PositonalIndex = syntaxItem.PositionalIndex;
             ParameterValueName = syntaxItem.Value;
             MinimumParameterValues = syntaxItem.MinCount;
             MaximumParameterValues = syntaxItem.MaxCount;

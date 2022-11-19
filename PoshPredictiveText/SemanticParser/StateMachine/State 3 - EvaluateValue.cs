@@ -1,7 +1,6 @@
 ﻿
 namespace PoshPredictiveText.SemanticParser
 {
-
     /// <summary>
     /// The state machine evaluates the command line input and appends
     /// semantic information to each token.
@@ -29,7 +28,11 @@ namespace PoshPredictiveText.SemanticParser
                         }
                     default:
                         {
-                            break;
+                            // Need to remove the CONDAHELPERS and make generic.
+                            //token.SuggestedSyntaxItems = SyntaxTreeHelpers.GetParamaterValues(PARAMETER_VALUE_NAME,
+                            //                                        token.Value);
+                        break;
+
                         }
                 }
             }

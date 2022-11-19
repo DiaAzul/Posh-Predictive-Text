@@ -1,6 +1,6 @@
 ﻿
 
-namespace PoshPredictiveText.Helpers
+namespace PoshPredictiveText.SyntaxTreeSpecs
 {
     using PoshPredictiveText;
     using PoshPredictiveText.SyntaxTrees;
@@ -18,13 +18,15 @@ namespace PoshPredictiveText.Helpers
     public class ParameterValueAttribute : Attribute
     {
         internal string Name { get; private set; }
+        internal string Command { get; private set; }
 
         /// <summary>
         /// Save the name of the parameter.
         /// </summary>
         /// <param name="name">Name of the Parameter Value</param>
-        public ParameterValueAttribute(string name)
+        public ParameterValueAttribute(string command, string name)
         {
+            Command = command;
             Name = name;
         }
     }
@@ -32,7 +34,7 @@ namespace PoshPredictiveText.Helpers
     /// <summary>
     /// Conda helpers to provide parameter values completions.
     /// </summary>
-    internal static class CondaHelpers
+    internal static class SyntaxTreeHelpers
     {
         // Constants defined within conda application.
         const string CONDA_ROOT = "_CONDA_ROOT";
@@ -60,12 +62,12 @@ namespace PoshPredictiveText.Helpers
                 return results;
             }
 
-            var methods = typeof(CondaHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+            var methods = typeof(SyntaxTreeHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
                 .Where(method =>
                 method.GetCustomAttributes(typeof(ParameterValueAttribute), false).FirstOrDefault() != null
                 && method.GetCustomAttributes<ParameterValueAttribute>()
                 .ToList()
-                .Contains(new ParameterValueAttribute(parameterName)));
+                .Contains(new ParameterValueAttribute("conda", parameterName)));
 
             switch (methods.Count())
             {
@@ -102,33 +104,33 @@ namespace PoshPredictiveText.Helpers
         /// that are not implemented.
         /// </summary>
         /// <returns>Empty list of suggestions.</returns>
-        [ParameterValue("CHANNEL")]
-        [ParameterValue("CWD")]
-        [ParameterValue("DESCRIBE")]
-        [ParameterValue("ENV")]
-        [ParameterValue("ENV_KEY")]
-        [ParameterValue("ENV_KEY_VALUE")]
-        [ParameterValue("EXECUTABLE_CALL")]
-        [ParameterValue("FILE")]
-        [ParameterValue("KEY")]
-        [ParameterValue("KEY_TO_REMOVE")]
-        [ParameterValue("KEY_VALUE")]
-        [ParameterValue("LIST_KEY_VALUE")]
-        [ParameterValue("PACKAGE_NAME")]
-        [ParameterValue("PACKAGE_SPEC")]
-        [ParameterValue("PATH")]
-        [ParameterValue("PKG_BUILD")]
-        [ParameterValue("PKG_NAME")]
-        [ParameterValue("PKG_VERSION")]
-        [ParameterValue("REGEX")]
-        [ParameterValue("REMOTE_DEFINITION")]
-        [ParameterValue("REPODATA_FNS")]
-        [ParameterValue("REVISION")]
-        [ParameterValue("SHELLS")]
-        [ParameterValue("SHOW")]
-        [ParameterValue("SUBDIR")]
-        [ParameterValue("TEMPFILES")]
-        [ParameterValue("CONDAHELPERTESTFAIL")]
+        [ParameterValue("conda", "CHANNEL")]
+        [ParameterValue("conda", "CWD")]
+        [ParameterValue("conda", "DESCRIBE")]
+        [ParameterValue("conda", "ENV")]
+        [ParameterValue("conda", "ENV_KEY")]
+        [ParameterValue("conda", "ENV_KEY_VALUE")]
+        [ParameterValue("conda", "EXECUTABLE_CALL")]
+        [ParameterValue("conda", "FILE")]
+        [ParameterValue("conda", "KEY")]
+        [ParameterValue("conda", "KEY_TO_REMOVE")]
+        [ParameterValue("conda", "KEY_VALUE")]
+        [ParameterValue("conda", "LIST_KEY_VALUE")]
+        [ParameterValue("conda", "PACKAGE_NAME")]
+        [ParameterValue("conda", "PACKAGE_SPEC")]
+        [ParameterValue("conda", "PATH")]
+        [ParameterValue("conda", "PKG_BUILD")]
+        [ParameterValue("conda", "PKG_NAME")]
+        [ParameterValue("conda", "PKG_VERSION")]
+        [ParameterValue("conda", "REGEX")]
+        [ParameterValue("conda", "REMOTE_DEFINITION")]
+        [ParameterValue("conda", "REPODATA_FNS")]
+        [ParameterValue("conda", "REVISION")]
+        [ParameterValue("conda", "SHELLS")]
+        [ParameterValue("conda", "SHOW")]
+        [ParameterValue("conda", "SUBDIR")]
+        [ParameterValue("conda", "TEMPFILES")]
+        [ParameterValue("conda", "CONDAHELPERTESTFAIL")]
         internal static List<Suggestion> NullReturn(string wordToComplete)
         {
             return new List<Suggestion>();
@@ -139,8 +141,8 @@ namespace PoshPredictiveText.Helpers
         /// </summary>
         /// <param name="wordToComplete"></param>
         /// <returns></returns>
-        [ParameterValue("CONDAHELPERTEST")]
-        [ParameterValue("CONDAHELPERTESTFAIL")]
+        [ParameterValue("conda", "CONDAHELPERTEST")]
+        [ParameterValue("conda", "CONDAHELPERTESTFAIL")]
         internal static List<Suggestion> Test(string wordToComplete)
         {
             var results = new List<Suggestion>()
@@ -160,7 +162,7 @@ namespace PoshPredictiveText.Helpers
         /// Get a list of conda environments.
         /// </summary>
         /// <returns>List of conda environments.</returns>
-        [ParameterValue("ENVIRONMENT")]
+        [ParameterValue("conda", "ENVIRONMENT")]
         internal static List<Suggestion> GetEnvironments(string wordToComplete)
         {
             List<Suggestion> environmentSuggestions = new();
@@ -196,7 +198,7 @@ namespace PoshPredictiveText.Helpers
                 {
                     Suggestion suggestion = new()
                     {
-                        CompletionText =  CommonTasks.EncapsulateIfSpaces(envName, '\''),
+                        CompletionText = CommonTasks.EncapsulateIfSpaces(envName, '\''),
                         ListText = envName,
                         Type = CompletionResultType.ParameterValue,
                         ToolTip = envPath
@@ -212,7 +214,7 @@ namespace PoshPredictiveText.Helpers
         /// Return a list of experimental solvers.
         /// </summary>
         /// <returns>List of suggested solvers.</returns>
-        [ParameterValue("SOLVER")]
+        [ParameterValue("conda", "SOLVER")]
         internal static List<string> ExperimentalSolvers()
         {
             List<string> solvers = new() { "classic", "libmamba", "libmamba-draft" };

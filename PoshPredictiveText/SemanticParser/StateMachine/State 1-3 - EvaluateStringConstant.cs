@@ -20,12 +20,11 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Enhanced token.</returns>
         internal List<SemanticToken> EvaluateStringConstant(SemanticToken token)
         {
-            string enteredValue = token.Value.ToLower();
-
             List<SyntaxItem> subCommands = machineState.SyntaxTree!.SubCommands(machineState.CommandPath.ToString());
 
+            // DO WE NEED TO MAKE SUB-COMMAND INTO AN EXACT MATCH?
             List<SyntaxItem> syntaxItems = subCommands
-                .Where(syntaxItem => syntaxItem.Name?.StartsWith(enteredValue) ?? false)
+                .Where(syntaxItem => syntaxItem.Name?.StartsWith(token.Value, StringComparison.OrdinalIgnoreCase) ?? false)
                 .ToList();
 
             List<SemanticToken> semanticTokens;
@@ -41,9 +40,9 @@ namespace PoshPredictiveText.SemanticParser
                     semanticTokens = EvaluateValue(token);
                     break;
 
-                case 1 when enteredValue == syntaxItems.First().Name:
+                case 1 when syntaxItems.First().Name.Equals(token.Value, StringComparison.OrdinalIgnoreCase):
                     // Update the command path and reset the parameter set.
-                    machineState.CommandPath.Add(enteredValue);
+                    machineState.CommandPath.Add(token.Value.ToLower());
                     token.IsExactMatch = true;
                     token.SemanticType = SemanticToken.TokenType.Command;
                     token.ParameterSet = syntaxItems.First().ParameterSet;
