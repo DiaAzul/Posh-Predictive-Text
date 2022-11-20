@@ -75,10 +75,10 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.Single(result);
             Assert.False(result.First().IsExactMatch);
             Assert.False(result.First().IsCommand);
-            var suggestedItems = result.First().SuggestedSyntaxItems;
+            var suggestedItems = result.First().Suggestions;
             Assert.NotNull(suggestedItems);
             Assert.Single(suggestedItems);
-            Assert.Equal("conda", suggestedItems.First().Command);
+            Assert.Equal("conda", suggestedItems.First().CompletionText);
             Assert.Equal(0, stateMachine.CommandPath.Count);
             Assert.Equal("", stateMachine.CommandPath.ToString());
             Assert.Null(stateMachine.SyntaxTreeName);
@@ -179,7 +179,7 @@ namespace PoshPredictiveText.Test.StateMachine
 
             Assert.Single(result2);
             Assert.False(result2.First().IsExactMatch);
-            var syntaxItems = result2.First().SuggestedSyntaxItems;
+            var syntaxItems = result2.First().Suggestions;
             Assert.NotNull(syntaxItems);
             Assert.Equal(3, syntaxItems.Count);
         }
@@ -279,16 +279,16 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.False(firstItem.IsExactMatch);
             Assert.Equal(TokenType.Parameter, firstItem.SemanticType);
             Assert.Equal(MachineState.State.Item, stateAfterParameter);
-            Assert.NotNull(firstItem.SuggestedSyntaxItems);
-            List<SyntaxItem> syntaxItems = firstItem.SuggestedSyntaxItems;
-            Assert.Equal(2, syntaxItems.Count);
-            List<string> suggestions = new();
-            foreach (SyntaxItem syntaxItem in syntaxItems)
+            Assert.NotNull(firstItem.Suggestions);
+            List<Suggestion> suggestions = firstItem.Suggestions;
+            Assert.Equal(2, suggestions.Count);
+            List<string> suggestedNames = new();
+            foreach (Suggestion suggestion in suggestions)
             {
-                suggestions.Add(syntaxItem.Name!);
+                suggestedNames.Add(suggestion.CompletionText!);
             }
-            Assert.Contains("--help", suggestions);
-            Assert.Contains("--version", suggestions);
+            Assert.Contains("--help", suggestedNames);
+            Assert.Contains("--version", suggestedNames);
         }
 
         /// <summary>
@@ -396,8 +396,8 @@ namespace PoshPredictiveText.Test.StateMachine
             // Assert
             Assert.Single(result);
             SemanticToken resultToken = result.First();
-            Assert.NotNull(resultToken.SuggestedSyntaxItems);
-            Assert.Equal(2, resultToken.SuggestedSyntaxItems.Count);
+            Assert.NotNull(resultToken.Suggestions);
+            Assert.Equal(2, resultToken.Suggestions.Count);
         }
 
         /// <summary>

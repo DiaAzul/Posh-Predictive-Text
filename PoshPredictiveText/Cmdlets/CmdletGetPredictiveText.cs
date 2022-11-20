@@ -87,14 +87,14 @@ namespace PoshPredictiveText.Cmdlets
 
                 try
                 {
-                    if (semanticCLI?.LastToken?.SuggestedSyntaxItems is not null)
+                    if (semanticCLI?.LastToken?.Suggestions is not null)
                     {
-                        cmdletSuggestions = semanticCLI.LastToken.SuggestedSyntaxItems
-                            .Select(syntaxItem => new CompletionResult(
-                                completionText: syntaxItem.Name??"",
-                                listItemText: syntaxItem.Name??"",
-                                resultType: syntaxItem.ResultType,
-                                toolTip: semanticCLI.SyntaxTree?.Tooltip(syntaxItem.ToolTip) ?? ""
+                        cmdletSuggestions = semanticCLI.LastToken.Suggestions
+                            .Select(suggestion => new CompletionResult(
+                                completionText: suggestion.CompletionText,
+                                listItemText: suggestion.ListText,
+                                resultType: suggestion.Type,
+                                toolTip: semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? ""
                             ))
                             .ToList();
                     }

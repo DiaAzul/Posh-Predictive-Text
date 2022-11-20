@@ -2,11 +2,12 @@
 namespace PoshPredictiveText.SyntaxTreeSpecs
 {
     using System.Management.Automation;
+    using PoshPredictiveText.SemanticParser;
     /// <summary>
     /// Conda helpers to provide parameter values completions.
     /// </summary>
 
-    internal static partial class CondaHelpers
+    internal static partial class SyntaxTreeHelpers
     {
         // Constants defined within conda application.
         const string CONDA_ROOT = "_CONDA_ROOT";
@@ -81,8 +82,12 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         internal static List<Suggestion> GetEnvironments(string wordToComplete)
         {
             List<Suggestion> environmentSuggestions = new();
-            string condaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process) ?? "";
-            // The environments are listed in ~\.conda\environments.txt
+
+            var condaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
+            if (condaRoot is null)
+            {
+                return environmentSuggestions;
+            }
             string home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string environmentsFile = Path.Combine(home, CONDA_SETTINGS_FOLDER, CONDA_ENVIRONMENTS_FILE);
 

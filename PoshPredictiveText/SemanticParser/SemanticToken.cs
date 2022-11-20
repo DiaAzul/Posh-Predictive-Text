@@ -69,7 +69,7 @@ namespace PoshPredictiveText.SemanticParser
         internal int? MaximumParameterValues { get; set; } = null;
 
         // Get list of suggestions for this token (if partial word).
-        internal List<SyntaxItem>? SuggestedSyntaxItems { get; set; } = null;
+        internal List<Suggestion>? Suggestions { get; set; } = null;
 
         // Get parameter set membership of the token.
         internal List<string>? ParameterSet { get; set; } = null;

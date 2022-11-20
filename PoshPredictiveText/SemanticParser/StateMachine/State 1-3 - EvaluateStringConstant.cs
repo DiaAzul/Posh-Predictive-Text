@@ -2,6 +2,7 @@
 namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
+    using System.Management.Automation;
 
     /// <summary>
     /// The state machine evaluates the command line input and appends
@@ -20,19 +21,29 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>Enhanced token.</returns>
         internal List<SemanticToken> EvaluateStringConstant(SemanticToken token)
         {
-            List<SyntaxItem> subCommands = machineState.SyntaxTree!.SubCommands(machineState.CommandPath.ToString());
+            // List<SyntaxItem> subCommands = machineState.SyntaxTree!.SubCommands(machineState.CommandPath.ToString());
 
-            // DO WE NEED TO MAKE SUB-COMMAND INTO AN EXACT MATCH?
-            List<SyntaxItem> syntaxItems = subCommands
-                .Where(syntaxItem => syntaxItem.Name?.StartsWith(token.Value, StringComparison.OrdinalIgnoreCase) ?? false)
-                .ToList();
+            List<SyntaxItem> subCommands = machineState.SyntaxTree!
+                                                    .FilteredByCommandPath(machineState.CommandPath.ToString())
+                                                    .Where(syntaxItem => syntaxItem.IsCommand
+                                                        && (syntaxItem.Name?.StartsWith(token.Value) ?? false)
+                                                            || (syntaxItem.Alias?.StartsWith(token.Value) ?? false))
+                                                    .ToList();
+
+            //List<Suggestion> suggestions = subCommands
+            //                                .Select(syntaxItem => new Suggestion {
+            //                                    CompletionText = syntaxItem.Name,
+            //                                    ListText = syntaxItem.Name,
+            //                                    Type = CompletionResultType.Command,
+            //                                    ToolTip = syntaxItem.ToolTip ?? ""})
+            //                                .ToList();
 
             List<SemanticToken> semanticTokens;
-            // Branch execution based upon the number of matching syntaxItems returned.
+            // Branch execution based upon the number of matching suggestions returned.
             // Zero - no command was recognised, but this may be a positional value.
             // One - Direct match of a command name.
             // More than one - Provide suggested completions.
-            switch (syntaxItems.Count)
+            switch (subCommands.Count)
             {
                 case 0:
                     machineState.CurrentState = MachineState.State.Value;
@@ -40,21 +51,23 @@ namespace PoshPredictiveText.SemanticParser
                     semanticTokens = EvaluateValue(token);
                     break;
 
-                case 1 when syntaxItems.First().Name.Equals(token.Value, StringComparison.OrdinalIgnoreCase):
+                case 1 when subCommands.First().Name.Equals(token.Value):
                     // Update the command path and reset the parameter set.
                     machineState.CommandPath.Add(token.Value.ToLower());
+                    token.ParameterSet = subCommands.First().ParameterSet;
+
                     token.IsExactMatch = true;
                     token.SemanticType = SemanticToken.TokenType.Command;
-                    token.ParameterSet = syntaxItems.First().ParameterSet;
-                    machineState.CurrentState = MachineState.State.Item;
+                    //token.Suggestions = suggestions;
+
                     semanticTokens = AddSuggestionsForTokenCompletion(token);
+                    machineState.CurrentState = MachineState.State.Item;
                     break;
 
                 default:
-                    token.SuggestedSyntaxItems = syntaxItems;
                     token.IsExactMatch = false;
-                    machineState.CurrentState = MachineState.State.Item;
                     semanticTokens = AddSuggestionsForTokenCompletion(token);
+                    machineState.CurrentState = MachineState.State.Item;
                     break;
             }
             return semanticTokens;

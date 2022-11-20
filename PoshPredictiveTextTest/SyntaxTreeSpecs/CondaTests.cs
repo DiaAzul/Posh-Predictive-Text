@@ -1,11 +1,11 @@
 ﻿
 namespace PoshPredictiveText.Test.SyntaxTreeSpecs
 {
-    using PoshPredictiveText;
     using PoshPredictiveText.SemanticParser;
     using PoshPredictiveText.Test;
     using PoshPredictiveText.SyntaxTrees;
     using Xunit;
+    using System.Management.Automation;
 
     /// <summary>
     /// Test conda syntax trees
@@ -34,7 +34,6 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             powershell.AddScript($"(& \"{conda}\" \"shell.powershell\" \"hook\") | Out-String | Invoke-Expression");
             var profile = powershell.Invoke();
             Assert.False(powershell.HadErrors, $"Unable to configure PowerShell with conda.Appveyor({isAppveyor}), Conda executable: {conda}. Check path for Miniconda in specification for build.");
-
         }
 
         /// <summary>
@@ -71,10 +70,19 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             {
                 visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
             }
-            var enteredTokens = visitor.SemanticCLI;
-            // TODO [HIGH][RESOLVER] Replace Resolver.
-            var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
-
+            var semanticCLI = visitor.SemanticCLI;
+            List<Suggestion> suggestions = new();
+            if (semanticCLI?.LastToken?.Suggestions is not null)
+            {
+                suggestions = semanticCLI.LastToken.Suggestions
+                    .Select(suggestion => new Suggestion {
+                        CompletionText = suggestion.CompletionText,
+                        ListText = suggestion.ListText,
+                        Type = suggestion.Type,
+                        ToolTip = semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? ""
+                    })
+                    .ToList();
+            }
             // Assert
             Assert.Equal(expectedSuggestions, suggestions.Count);
         }
@@ -103,8 +111,20 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
             {
                 visitor.BlankVisit("", commandAst.Extent.StartColumnNumber, commandAst.Extent.EndColumnNumber);
             }
-            var enteredTokens = visitor.SemanticCLI;
-            var suggestions = Resolver.Suggestions(wordToComplete, enteredTokens, cursorPosition);
+            var semanticCLI = visitor.SemanticCLI;
+            List<Suggestion> suggestions = new();
+            if (semanticCLI?.LastToken?.Suggestions is not null)
+            {
+                suggestions = semanticCLI.LastToken.Suggestions
+                    .Select(suggestion => new Suggestion
+                    {
+                        CompletionText = suggestion.CompletionText,
+                        ListText = suggestion.ListText,
+                        Type = suggestion.Type,
+                        ToolTip = semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? ""
+                    })
+                    .ToList();
+            }
 
             // Assert - As we don't know conda environment all we can test for is
             // that suggestions returned but we don't know how many.

@@ -114,12 +114,12 @@ namespace PoshPredictiveText.PSReadLinePredictor
 
                     try
                     {
-                        if (semanticCLI?.LastToken?.SuggestedSyntaxItems is not null)
+                        if (semanticCLI?.LastToken?.Suggestions is not null)
                         {
-                            predictiveSuggestions = semanticCLI.LastToken.SuggestedSyntaxItems
-                                .Select(syntaxItem => new PredictiveSuggestion(
-                                    suggestion: baseText + syntaxItem.Name??"",
-                                    toolTip: semanticCLI.SyntaxTree?.Tooltip(syntaxItem.ToolTip) ?? ""
+                            predictiveSuggestions = semanticCLI.LastToken.Suggestions
+                                .Select(suggestion => new PredictiveSuggestion(
+                                    suggestion: baseText + suggestion.CompletionText,
+                                    toolTip: semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? ""
                                 ))
                                 .ToList();
                         }

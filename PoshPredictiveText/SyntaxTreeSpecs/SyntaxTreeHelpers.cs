@@ -2,13 +2,11 @@
 
 namespace PoshPredictiveText.SyntaxTreeSpecs
 {
-    using PoshPredictiveText;
-    using PoshPredictiveText.SyntaxTrees;
     using System;
     using System.Collections.Generic;
-    using System.Management.Automation;
     using System.Reflection;
-
+    using PoshPredictiveText.SemanticParser;
+    using PoshPredictiveText.SyntaxTrees;
 
     /// <summary>
     /// Attribute declaring the Parameter value that the method provides
@@ -49,14 +47,6 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         internal static List<Suggestion> GetParamaterValues(string parameterName, string wordToComplete)
         {
             List<Suggestion> results = new();
-
-            // TODO [HIGH][SYNTAXTREEHELPER] Move conda tests to conda helpers.
-            // Test conda is installed.
-            //var testCondaRoot = Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process);
-            //if (Environment.GetEnvironmentVariable(CONDA_ROOT, EnvironmentVariableTarget.Process) is null)
-            //{
-            //    return results;
-            //}
 
             var methods = typeof(SyntaxTreeHelpers).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
                 .Where(method =>

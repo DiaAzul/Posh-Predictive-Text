@@ -62,16 +62,19 @@ namespace PoshPredictiveText.SemanticParser
             List<string> suggestedCommands = SyntaxTreesConfig.SuggestedCommands(token.Value);
             if (suggestedCommands.Count > 0 && machineState.CLISemanticTokens.Count == 0)
             {
-                List<SyntaxItem> suggestions = new();
+                List<Suggestion> suggestions = new();
                 foreach (string suggestedCommand in suggestedCommands)
                 {
-                    SyntaxItem suggestion = new()
+                    Suggestion suggestion = new()
                     {
-                        Command = suggestedCommand
+                        CompletionText= suggestedCommand,
+                        ListText = suggestedCommand,
+                        Type = System.Management.Automation.CompletionResultType.Command,
+                        ToolTip = ""
                     };
                     suggestions.Add(suggestion);
                 }
-                token.SuggestedSyntaxItems = suggestions;
+                token.Suggestions = suggestions;
             }
 
             return new List<SemanticToken> { token };

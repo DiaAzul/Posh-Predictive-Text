@@ -121,7 +121,7 @@ namespace PoshPredictiveText.SemanticParser
                 semanticTokens= machineState.SemanticTokens ?? new List<SemanticToken>();
 
                 LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
-                LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.SuggestedSyntaxItems?.Count ?? 0} suggestions.");
+                LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.Suggestions?.Count ?? 0} suggestions.");
                 LOGGER.Write($"STATE MACHINE: Resultant parameter set is {string.Join(", ", machineState.ParameterSet ?? new List<string>())}.");
 
                 return semanticTokens;
@@ -175,7 +175,7 @@ namespace PoshPredictiveText.SemanticParser
             }
 
             LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.Count} semantic tokens.");
-            LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.SuggestedSyntaxItems?.Count ?? 0} suggestions.");
+            LOGGER.Write($"STATE MACHINE: Returning {semanticTokens.First()?.Suggestions?.Count ?? 0} suggestions.");
 
             machineState.CLISemanticTokens.AddRange(semanticTokens);
             LOGGER.Write($"STATE MACHINE: There are {machineState.CLISemanticTokens.Count} semantic tokens on the CLI.");

@@ -1,6 +1,9 @@
 ﻿
+using PoshPredictiveText.SyntaxTrees;
+
 namespace PoshPredictiveText.SemanticParser
 {
+    using PoshPredictiveText.SyntaxTreeSpecs;
     /// <summary>
     /// The state machine evaluates the command line input and appends
     /// semantic information to each token.
@@ -10,6 +13,10 @@ namespace PoshPredictiveText.SemanticParser
     /// </summary>
     internal partial class StateMachine
     {
+        // listItemText: syntaxItem.Name,
+        // resultType: syntaxItem.ResultType,
+        // toolTip: syntaxItem.ToolTip) ?? ""
+
         internal List<SemanticToken> EvaluateValue(SemanticToken token)
         {
             if (machineState.ParameterSyntaxItem is not null && machineState.ParameterValues != 0)
@@ -28,11 +35,9 @@ namespace PoshPredictiveText.SemanticParser
                         }
                     default:
                         {
-                            // Need to remove the CONDAHELPERS and make generic.
-                            //token.SuggestedSyntaxItems = SyntaxTreeHelpers.GetParamaterValues(PARAMETER_VALUE_NAME,
-                            //                                        token.Value);
+                            token.Suggestions = SyntaxTreeHelpers
+                                                    .GetParamaterValues(token.ParameterValueName??"", token.Value);
                         break;
-
                         }
                 }
             }

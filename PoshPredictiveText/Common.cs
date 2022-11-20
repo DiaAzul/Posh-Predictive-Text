@@ -1,5 +1,4 @@
 ﻿
-
 namespace PoshPredictiveText
 {
     using System.Text.RegularExpressions;

@@ -2,6 +2,7 @@
 namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
+    using System.Management.Automation;
 
     /// <summary>
     /// The state machine evaluates the command line input and appends
@@ -12,17 +13,10 @@ namespace PoshPredictiveText.SemanticParser
     /// </summary>
     internal partial class StateMachine
     {
-        ///// <summary>
-        ///// Evaluate string constant expression. This is most likely
-        ///// to evaluate to either a command or positional value.
-        ///// </summary>
-        ///// <param name="token">Token to evaluate.</param>
-        ///// <returns>Enhanced token.</returns>
-        ///// 
-
-
         /// <summary>
-        /// Add suggested next items to the token.
+        /// Add suggestions for token completion.
+        /// 
+        /// If there are no parameter or command suggestions then consider that this may be a positional value.
         /// </summary>
         /// <param name="token">Token to which next suggestions will be added.</param>
         /// <param name="syntaxItemTypefilter">Optional type filter comprising a list of SyntaxItemTypes which are used
@@ -34,14 +28,15 @@ namespace PoshPredictiveText.SemanticParser
             List<SyntaxItemType> syntaxItemTypeFilter = syntaxItemTypefilter ??
                                             new List<SyntaxItemType>() { SyntaxItemType.PARAMETER, SyntaxItemType.COMMAND };
 
-            var suggestedSyntaxItems = machineState.SyntaxTree!.FilteredByCommandPath(machineState.CommandPath.ToString())
+            var suggestions = machineState.SyntaxTree!.FilteredByCommandPath(machineState.CommandPath.ToString())
                                             .Where(syntaxItem => syntaxItemTypeFilter.Contains(syntaxItem.ItemType)
-                                                                 && syntaxItem.Name.StartsWith(token.Value));
+                                                                 && (syntaxItem.Name.StartsWith(token.Value)
+                                                                   || syntaxItem.Name.StartsWith(token.Value)));
 
             // Filter by parameter sets.
             if (machineState.ParameterSet is not null)
             {
-                suggestedSyntaxItems = suggestedSyntaxItems
+                suggestions = suggestions
                     .Where(syntaxItem => syntaxItem.ParameterSet.Intersect(machineState.ParameterSet).Any());
             }
 
@@ -51,13 +46,19 @@ namespace PoshPredictiveText.SemanticParser
             if (machineState.SemanticTokens is not null)
             {
                 Dictionary<string, int> tokensAlreadyEnteredWithCount = machineState.TokensAlreadyEnteredWithCount;
-                suggestedSyntaxItems = suggestedSyntaxItems
+                suggestions = suggestions
                     .Where(syntaxItem =>
                         syntaxItem.MaxUses is null
                         || !(tokensAlreadyEnteredWithCount.GetValueOrDefault(syntaxItem.Name, 0) >= syntaxItem.MaxUses));
             }
 
-            token.SuggestedSyntaxItems = suggestedSyntaxItems.ToList();
+            token.Suggestions = suggestions.Select(syntaxItem => new Suggestion
+                                    {
+                                        CompletionText = syntaxItem.Name,
+                                        ListText = syntaxItem.Name,
+                                        Type = CompletionResultType.Command,
+                                        ToolTip = syntaxItem.ToolTip ?? ""
+                                    }).ToList();
       
             return  new List<SemanticToken>() { token };
         }
