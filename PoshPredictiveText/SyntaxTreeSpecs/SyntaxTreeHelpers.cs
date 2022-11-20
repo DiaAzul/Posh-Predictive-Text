@@ -43,7 +43,6 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         /// <remarks>This method uses internal reflection to look up the
         /// appropriate method to be called. If the method is not found an
         /// empty suggestions list is returned.</remarks>
-        // TODO [BUG][SYNTAXTREEHELPER] Review return types for suggestions -> Syntax item is not appropriate.
         internal static List<Suggestion> GetParamaterValues(string parameterName, string wordToComplete)
         {
             List<Suggestion> results = new();

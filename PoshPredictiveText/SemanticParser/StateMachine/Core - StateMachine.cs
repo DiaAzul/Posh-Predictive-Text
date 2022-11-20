@@ -6,10 +6,10 @@ namespace PoshPredictiveText.SemanticParser
 
     /// <summary>
     /// The state machine evaluates the command line input and appends
-    /// semantic information to each token.
+    /// semantic information to each semanticToken.
     /// 
     /// The semantic information is sourced from the syntax tree and used
-    /// to determine the token type.
+    /// to determine the semanticToken type.
     /// </summary>
     internal partial class StateMachine
     {
@@ -79,6 +79,38 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal MachineState.State CurrentState => machineState.CurrentState;
 
+        internal string? BaseCommand => machineState.CLISemanticTokens.Count > 0 ? machineState.CLISemanticTokens[0].Value : null;
+
+        internal SemanticToken? LastToken => machineState.CLISemanticTokens.Count > 0 ? machineState.CLISemanticTokens[^0] : null;
+
+        internal SemanticToken? PriorToken => machineState.CLISemanticTokens.Count > 1 ? machineState.CLISemanticTokens[^1] : null;
+
+        internal List<SemanticToken> All => machineState.CLISemanticTokens;
+
+        internal int Count => machineState.CLISemanticTokens.Count;
+
+        /// <summary>
+        /// Return the semanticToken at the index position in the list.
+        /// </summary>
+        /// <param name="index">Index position of required semanticToken.</param>
+        /// <returns>Token at the position in the list, null if index outside of scope of list.</returns>
+        internal SemanticToken? Index(int index)
+        {
+            SemanticToken? semanticToken;
+            try
+            {
+                semanticToken = this.machineState.CLISemanticTokens[index];
+            }
+            catch (Exception ex) when (
+            ex is ArgumentOutOfRangeException
+            || ex is IndexOutOfRangeException
+            || ex is KeyNotFoundException)
+            {
+                semanticToken = null;
+            }
+            return semanticToken;
+        }
+
         /// <summary>
         /// Get the Parameter sets available for this command path
         /// at this point in the command line.
@@ -98,10 +130,10 @@ namespace PoshPredictiveText.SemanticParser
         /// Main entry point to the state machine.
         /// 
         /// The routing function evaluates tokens depending upon the state
-        /// of the machine and the token value.
+        /// of the machine and the semanticToken value.
         /// 
         /// The machine may split tokens and return multiple semantically enhanced
-        /// tokens for a given input token.
+        /// tokens for a given input semanticToken.
         /// </summary>
         /// <param name="tokens">Input tokens to which semantic information will be added</param>
         /// <returns>Tokens enhanced with semantic information.</returns>

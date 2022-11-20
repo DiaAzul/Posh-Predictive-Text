@@ -174,7 +174,7 @@ namespace PoshPredictiveText.Test.StateMachine
             // This test is already covered in TestCommandAstVisitorVisitTest
             // So just do a quick test of count and one token.
             // Act
-            Dictionary<int, SemanticParser.SemanticToken> tokens = tokenisedInput.All;
+            List<SemanticToken> tokens = tokenisedInput.All;
             // Assert
             Assert.Equal(6, tokens.Count);
             Assert.Equal("12", tokens[5].Value);
@@ -194,24 +194,6 @@ namespace PoshPredictiveText.Test.StateMachine
         }
 
         /// <summary>
-        /// Test CommandParameters returns list of command tokens.
-        /// </summary>
-        [Fact]
-        public void CommandParametersTest()
-        {
-            // Act
-            Dictionary<int, SemanticParser.SemanticToken> commandTokens = tokenisedInput.CommandParameters;
-            // Assert
-            Assert.Equal(2, commandTokens.Count);
-
-            Assert.Equal("-parameter1", commandTokens[2].Value);
-            Assert.Equal(TokenType.Parameter, commandTokens[2].SemanticType);
-
-            Assert.Equal("--parameter2", commandTokens[3].Value);
-            Assert.Equal(TokenType.Parameter, commandTokens[3].SemanticType);
-        }
-
-        /// <summary>
         /// Test Index returns the correct token at a given index.
         /// Test for exceptions out of scope.
         /// </summary>
@@ -227,64 +209,6 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.Equal("env", secondToken.Value);
             Assert.Null(negativeIndex);
             Assert.Null(outOfBounds);
-        }
-
-        /// <summary>
-        /// Test CanUse. When given a syntaxItem will return
-        /// false if the syntax item already exists in the tokenised text
-        /// and can only be used once. Otherwise, CanUse will return
-        /// true indicating that the syntaxItem can be used again.
-        /// </summary>
-        [Fact]
-        public void CanUseTest()
-        {
-            // Arrange - create syntax items to test.
-            SyntaxItem singleUseDoesExist = new()
-            {
-                Command = "env",
-                Path = "conda.env",
-                ItemType = SyntaxItemType.PARAMETER,
-                Name = "-parameter1",
-                Alias = null,
-                MaxUses = 1,
-                MinCount = 0,
-                MaxCount = 0,
-
-            };
-
-            SyntaxItem singleUseDoesNotExist = new()
-            {
-                Command = "env",
-                Path = "conda.env",
-                ItemType = SyntaxItemType.PARAMETER,
-                Name = "-parameter3",
-                Alias = null,
-                MaxUses = 1,
-                MinCount = 0,
-                MaxCount = 0,
-            };
-
-            SyntaxItem multipleUseExists = new()
-            {
-                Command = "env",
-                Path = "conda.env",
-                ItemType = SyntaxItemType.PARAMETER,
-                Name = "-parameter3",
-                Alias = null,
-                MaxUses = null,
-                MinCount = 0,
-                MaxCount = 0,
-            };
-
-            // Act
-            bool singleUseDoesExitCanUse = tokenisedInput.CanUse(singleUseDoesExist);
-            bool singleUseDoesNotExistCanUse = tokenisedInput.CanUse(singleUseDoesNotExist);
-            bool multipleUseExistsCanUse = tokenisedInput.CanUse(multipleUseExists);
-
-            // Assert
-            Assert.False(singleUseDoesExitCanUse);
-            Assert.True(singleUseDoesNotExistCanUse);
-            Assert.True(multipleUseExistsCanUse);
         }
     }
 }
