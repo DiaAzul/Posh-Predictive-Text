@@ -25,10 +25,10 @@ namespace PoshPredictiveText.SemanticParser
             List<SemanticToken> semanticTokens;
 
             switch (positionalSyntaxItems.Count)
-            {
+{
                 case 1:
                     if (positionalSyntaxItems.First().MaxCount is not null && "NEED TO WORK OUT PRIOR POSITIONAL BY NAME" == "")
-                    { 
+    {
 
                     }
                     // TODO [WIP][STATEMACHINE] One positional item - test number of uses.
