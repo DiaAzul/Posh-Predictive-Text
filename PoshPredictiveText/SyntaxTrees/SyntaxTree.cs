@@ -147,7 +147,7 @@ namespace PoshPredictiveText.SyntaxTrees
         /// <param name="commandPath">Command path.</param>
         /// <param name="parameterSets">Parameter set.</param>
         /// <returns>Syntax Items.</returns>
-        internal List<SyntaxItem> ParametersAndOptions(string commandPath, List<string>? parameterSets)
+        internal List<SyntaxItem> Parameters(string commandPath, List<string>? parameterSets)
         {
             if (parameterSets is null) return Parameters(commandPath);
 
@@ -187,30 +187,6 @@ namespace PoshPredictiveText.SyntaxTrees
             return FilteredByCommandPath(commandPath)
                         .Where(syntaxItem => syntaxItem.IsPositional)
                         .ToList();
-        }
-
-        // TODO [HIGH][TOKENISER] Can this be moved to the tokeniser?
-        /// <summary>
-        /// Returns a list of available suggestions for the entered text.
-        /// </summary>
-        /// <param name="commandPath">Command path</param>
-        /// <param name="commandComplete">True if the command is complete.</param>
-        /// <param name="semanticCLI">Tokens entered on the command line.</param>
-        /// <param name="wordToComplete">Word to complete.</param>
-        /// <returns></returns>
-        internal List<SyntaxItem> AvailableOptions(
-            string commandPath,
-            bool commandComplete,
-            SemanticCLI semanticCLI,
-            string wordToComplete)
-        {
-            return FilteredByCommandPath(commandPath)
-                     .Where(syntaxItem =>
-                             !(syntaxItem.IsCommand && commandComplete)
-                             && syntaxItem.Name is not null
-                             && syntaxItem.Name.StartsWith(wordToComplete)
-                             && semanticCLI.CanUse(syntaxItem))
-                     .ToList();
         }
 
         /// <summary>
