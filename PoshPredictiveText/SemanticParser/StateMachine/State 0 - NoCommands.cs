@@ -53,7 +53,7 @@ namespace PoshPredictiveText.SemanticParser
                 token.IsExactMatch = true;
                 machineState.CurrentState = MachineState.State.Item;
 
-                List<SemanticToken> semanticTokens = AddSuggestionsForTokenCompletion(token);
+                List<SemanticToken> semanticTokens = SuggestNextToken(token);
 
                 return semanticTokens;
             }

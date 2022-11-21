@@ -167,5 +167,21 @@ namespace PoshPredictiveText.SemanticParser
                                                           Count = countItem.Count(),
                                                       })
                                                       .ToDictionary(a => a.Token, a => a.Count);
+
+
+        /// <summary>
+        /// Get a list of positional value tokens already entered on the command line with count
+        /// of coccurances.
+        /// </summary>
+        internal Dictionary<string, int> PositionalTokensAlreadyEnteredWithCount => CLISemanticTokens
+                                                      .Where(semanticToken => semanticToken.IsExactMatch
+                                                                              && semanticToken.IsPositionalValue)
+                                                      .GroupBy(semanticToken => semanticToken.Value)
+                                                      .Select(countItem => new
+                                                      {
+                                                          Token = countItem.Key,
+                                                          Count = countItem.Count(),
+                                                      })
+                                                      .ToDictionary(a => a.Token, a => a.Count);
     }
 }

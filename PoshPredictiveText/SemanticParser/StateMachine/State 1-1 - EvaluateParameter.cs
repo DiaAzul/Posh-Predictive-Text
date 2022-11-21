@@ -25,10 +25,10 @@ namespace PoshPredictiveText.SemanticParser
             if (machineState.ParseMode == ParseMode.Posix && !token.Value.StartsWith("--"))
                 return EvaluatePosixOption(token);
 
-            List<SyntaxItem> parameters = machineState.SyntaxTree!.ParametersAndOptions(machineState.CommandPath.ToString());
+            List<SyntaxItem> parameters = machineState.SyntaxTree!.Parameters(machineState.CommandPath.ToString());
             List<SyntaxItem> exactMatch = parameters
-                .Where(syntaxItem => (syntaxItem.Name?.Contains(token.Value, StringComparison.OrdinalIgnoreCase) ?? false) ||
-                                        (syntaxItem.Alias?.Contains(token.Value, StringComparison.OrdinalIgnoreCase)?? false))
+                .Where(syntaxItem => (syntaxItem.Name?.Equals(token.Value, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                                        (syntaxItem.Alias?.Equals(token.Value, StringComparison.OrdinalIgnoreCase)?? false))
                 .ToList();
 
             if (exactMatch.Count > 0)
@@ -55,7 +55,7 @@ namespace PoshPredictiveText.SemanticParser
                 token.IsExactMatch = true;
             }
 
-            return AddSuggestionsForTokenCompletion(token);
+            return SuggestNextToken(token);
         }
     }
 }
