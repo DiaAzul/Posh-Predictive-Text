@@ -81,9 +81,9 @@ namespace PoshPredictiveText.SemanticParser
 
         internal string? BaseCommand => machineState.CLISemanticTokens.Count > 0 ? machineState.CLISemanticTokens[0].Value : null;
 
-        internal SemanticToken? LastToken => machineState.CLISemanticTokens.Count > 0 ? machineState.CLISemanticTokens[^0] : null;
+        internal SemanticToken? LastToken => machineState.CLISemanticTokens.Count > 0 ? machineState.CLISemanticTokens[^1] : null;
 
-        internal SemanticToken? PriorToken => machineState.CLISemanticTokens.Count > 1 ? machineState.CLISemanticTokens[^1] : null;
+        internal SemanticToken? PriorToken => machineState.CLISemanticTokens.Count > 1 ? machineState.CLISemanticTokens[^2] : null;
 
         internal List<SemanticToken> All => machineState.CLISemanticTokens;
 
@@ -165,7 +165,7 @@ namespace PoshPredictiveText.SemanticParser
             {
                 MachineState.State.NoCommand => NoCommand(token),
                 MachineState.State.Item => EvaluateItem(token),
-                MachineState.State.Value => EvaluateValue(token),
+                MachineState.State.Value => EvaluateParameterValue(token),
                 MachineState.State.Inert => new List<SemanticToken> { token },
                 _ => new List<SemanticToken> { token },
             };

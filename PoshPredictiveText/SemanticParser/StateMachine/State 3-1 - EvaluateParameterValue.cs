@@ -17,7 +17,7 @@ namespace PoshPredictiveText.SemanticParser
         // resultType: syntaxItem.ResultType,
         // toolTip: syntaxItem.ToolTip) ?? ""
 
-        internal List<SemanticToken> EvaluateValue(SemanticToken token)
+        internal List<SemanticToken> EvaluateParameterValue(SemanticToken token)
         {
             if (machineState.ParameterSyntaxItem is not null && machineState.ParameterValues != 0)
             {

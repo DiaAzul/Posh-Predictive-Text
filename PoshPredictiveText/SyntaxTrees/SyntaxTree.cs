@@ -133,7 +133,7 @@ namespace PoshPredictiveText.SyntaxTrees
         /// </summary>
         /// <param name="commandPath">Command path.</param>
         /// <returns>Syntax Items.</returns>
-        internal List<SyntaxItem> ParametersAndOptions(string commandPath)
+        internal List<SyntaxItem> Parameters(string commandPath)
         {
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
@@ -149,7 +149,7 @@ namespace PoshPredictiveText.SyntaxTrees
         /// <returns>Syntax Items.</returns>
         internal List<SyntaxItem> ParametersAndOptions(string commandPath, List<string>? parameterSets)
         {
-            if (parameterSets is null) return ParametersAndOptions(commandPath);
+            if (parameterSets is null) return Parameters(commandPath);
 
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
@@ -158,6 +158,60 @@ namespace PoshPredictiveText.SyntaxTrees
                 .ToList();
         }
 
+        /// <summary>
+        /// Returns a syntax item for the last entered parameter
+        /// prior to the current token position. The last entered
+        /// parameter syntax item holds details for the number of
+        /// parameter values that can be entered after a parameter.
+        /// </summary>
+        /// <param name="commandPath">Command path</param>
+        /// <param name="lastParameter"></param>
+        /// <returns>Parameter syntax items.</returns>
+        internal List<SyntaxItem> ParameterSyntaxItems(
+                                                string commandPath,
+                                                string lastParameter)
+        {
+            return FilteredByCommandPath(commandPath)
+                .Where(syntaxItem => syntaxItem.Name == lastParameter
+                        | (syntaxItem.HasAlias && syntaxItem.Alias == lastParameter))
+                .ToList();
+        }
+
+        /// <summary>
+        /// List of positional value syntax items at command path
+        /// </summary>
+        /// <param name="commandPath">Command path.</param>
+        /// <returns>List of positional value syntax items.</returns>
+        internal List<SyntaxItem> PositionalValues(string commandPath)
+        {
+            return FilteredByCommandPath(commandPath)
+                        .Where(syntaxItem => syntaxItem.IsPositional)
+                        .ToList();
+        }
+
+        // TODO [HIGH][TOKENISER] Can this be moved to the tokeniser?
+        /// <summary>
+        /// Returns a list of available suggestions for the entered text.
+        /// </summary>
+        /// <param name="commandPath">Command path</param>
+        /// <param name="commandComplete">True if the command is complete.</param>
+        /// <param name="semanticCLI">Tokens entered on the command line.</param>
+        /// <param name="wordToComplete">Word to complete.</param>
+        /// <returns></returns>
+        internal List<SyntaxItem> AvailableOptions(
+            string commandPath,
+            bool commandComplete,
+            SemanticCLI semanticCLI,
+            string wordToComplete)
+        {
+            return FilteredByCommandPath(commandPath)
+                     .Where(syntaxItem =>
+                             !(syntaxItem.IsCommand && commandComplete)
+                             && syntaxItem.Name is not null
+                             && syntaxItem.Name.StartsWith(wordToComplete)
+                             && semanticCLI.CanUse(syntaxItem))
+                     .ToList();
+        }
 
         /// <summary>
         /// Gets the display string for a tooltip reference.

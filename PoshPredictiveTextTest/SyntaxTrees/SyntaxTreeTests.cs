@@ -145,7 +145,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
             string commandPath = "conda.activate";
 
             // Act
-            var paramsAndOptions = syntaxTree.ParametersAndOptions(commandPath);
+            var paramsAndOptions = syntaxTree.Parameters(commandPath);
 
             // Assert
             Assert.Single(paramsAndOptions);
