@@ -137,7 +137,7 @@ namespace PoshPredictiveText.SyntaxTrees
         {
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
-                                      && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter))
+                                      && syntaxItem.IsParameter)
                 .ToList();
         }
 
@@ -153,7 +153,7 @@ namespace PoshPredictiveText.SyntaxTrees
 
             return syntaxItems
                 .Where(syntaxItem => (syntaxItem.Path == commandPath)
-                                      && (syntaxItem.IsParameter || syntaxItem.IsOptionParameter)
+                                      && syntaxItem.IsParameter
                                       && syntaxItem.ParameterSet.Intersect(parameterSets).Any())
                 .ToList();
         }

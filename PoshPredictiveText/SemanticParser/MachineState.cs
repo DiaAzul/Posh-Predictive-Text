@@ -4,7 +4,6 @@ namespace PoshPredictiveText.SemanticParser
 {
     using PoshPredictiveText.SyntaxTrees;
     using PoshPredictiveText.SyntaxTreeSpecs;
-    using PoshPredictiveText.SemanticParser;
 
     /// <summary>
     /// Machine state information for command line arguments which have already been parsed.
@@ -47,16 +46,16 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal CommandPath CommandPath { get; set; } = new();
 
-        /// <summary>
-        /// Number of parameter values to be entered after the argument if the parsed item
-        /// was a parameter which expects values.
-        /// </summary>
-        internal int ParameterValues { get; set; } = 0;
+        ///// <summary>
+        ///// Number of parameter values to be entered after the argument if the parsed item
+        ///// was a parameter which expects values.
+        ///// </summary>
+        //internal int ParameterValues { get; set; } = 0;
 
-        /// <summary>
-        /// Parameter syntaxItem if the parsed item was a parameter expecting value arguments.
-        /// </summary>
-        internal SyntaxItem? ParameterSyntaxItem { get; set; } = null;
+        ///// <summary>
+        ///// Parameter syntaxItem if the parsed item was a parameter expecting value arguments.
+        ///// </summary>
+        //internal SyntaxItem? ParameterSyntaxItem { get; set; } = null;
 
         /// <summary>
         /// Parameter sets that are in force for this command path.
@@ -94,23 +93,19 @@ namespace PoshPredictiveText.SemanticParser
         /// Return the last parameter name and the number of parameter values
         /// already entered.
         /// </summary>
-        /// <param name="parameterName">Last parameter name.</param>
+        /// <param name="syntaxItem">Syntax item for the last parameter.</param>
         /// <param name="priorOccurances">Number of parameter values already entered.</param>
-        internal void LastParameterName(out string? parameterName, out int priorOccurances)
+        internal void LastParameterSyntaxItem(out SyntaxItem? syntaxItem, out int priorOccurances)
         {
             priorOccurances = 0;
-            if (CLISemanticTokens.Count == 0)
-            {
-                parameterName = null;
-                return;
-            }
+            syntaxItem = null;
+            if (CLISemanticTokens.Count == 0)   return;
 
-            parameterName = null;
             for (int index = CLISemanticTokens.Count - 1; index >=0; index--)
             {
-                if (CLISemanticTokens[index].IsParameter)
+                if (CLISemanticTokens[index].IsParameter || CLISemanticTokens[index].IsRedirection)
                 {
-                    parameterName = CLISemanticTokens[index].Value;
+                    syntaxItem = CLISemanticTokens[index].SyntaxItem;
                     break;
                 }
                 if (CLISemanticTokens[index].SemanticType != SemanticToken.TokenType.ParameterValue)
@@ -173,15 +168,16 @@ namespace PoshPredictiveText.SemanticParser
         /// Get a list of positional value tokens already entered on the command line with count
         /// of coccurances.
         /// </summary>
-        internal Dictionary<string, int> PositionalTokensAlreadyEnteredWithCount => CLISemanticTokens
+        internal Dictionary<SyntaxItem, int> PositionalTokensAlreadyEnteredWithCount => CLISemanticTokens
                                                       .Where(semanticToken => semanticToken.IsExactMatch
-                                                                              && semanticToken.IsPositionalValue)
-                                                      .GroupBy(semanticToken => semanticToken.Value)
-                                                      .Select(countItem => new
+                                                                              && semanticToken.IsPositionalValue
+                                                                              && semanticToken.SyntaxItem is not null)
+                                                      .GroupBy(semanticToken => semanticToken.SyntaxItem!)
+                                                      .Select(item => new
                                                       {
-                                                          Token = countItem.Key,
-                                                          Count = countItem.Count(),
+                                                          Token = item.Key,
+                                                          Count = item.Count(),
                                                       })
-                                                      .ToDictionary(a => a.Token, a => a.Count);
+                                                      .ToDictionary(item => item.Token, item => item.Count);
     }
 }

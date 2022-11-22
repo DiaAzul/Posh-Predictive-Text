@@ -35,21 +35,22 @@ namespace PoshPredictiveText.SemanticParser
             {
                 SyntaxItem syntaxItem = exactMatch.First();
 
-                if (syntaxItem.IsParameter)
+                if (syntaxItem.IsParameter && syntaxItem.Value is not null)
                 {
-                    machineState.ParameterValues = syntaxItem.MaxCount ?? -1;
-                    machineState.ParameterSyntaxItem = syntaxItem;
+                    //machineState.ParameterValues = syntaxItem.MaxCount ?? -1;
+                    //machineState.ParameterSyntaxItem = syntaxItem;
                     machineState.CurrentState = MachineState.State.Value;
                     LOGGER.Write($"STATE MACHINE: Parameter {token.Value} complete. Sets - {String.Join(", ", syntaxItem.ParameterSet)}.");
                 }
 
-                if (syntaxItem.IsOptionParameter)
+                if (syntaxItem.IsParameter && syntaxItem.Value is null)
                 {
-                    machineState.ParameterValues = 0;
-                    machineState.ParameterSyntaxItem = null;
+                    //machineState.ParameterValues = 0;
+                    //machineState.ParameterSyntaxItem = null;
                     machineState.CurrentState = MachineState.State.Item;
                     LOGGER.Write($"STATE MACHINE: Optional {token.Value} complete. Sets - {String.Join(", ", syntaxItem.ParameterSet)}.");
                 }
+                token.SyntaxItem= syntaxItem;
                 token.SemanticType = SemanticToken.TokenType.Parameter;
                 token.ParameterSet = syntaxItem.ParameterSet;
                 token.IsExactMatch = true;

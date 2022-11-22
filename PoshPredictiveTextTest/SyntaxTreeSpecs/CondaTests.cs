@@ -48,7 +48,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
         [InlineData("conda ", 19)]
         [InlineData("conda env remove ", 10)]
         [InlineData("conda i", 3)]
-        [InlineData("conda list --name --md5 ", 11)]
+        [InlineData("conda list --md5 --export ", 11)]
         [InlineData("conda activate -", 3)]
         [InlineData("conda config --file ", 0)]
 

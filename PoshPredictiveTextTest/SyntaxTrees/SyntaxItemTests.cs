@@ -40,7 +40,6 @@ namespace PoshPredictiveText.Test.SyntaxTrees
 
             Assert.False(syntaxItem.IsCommand);
             Assert.True(syntaxItem.IsParameter);
-            Assert.False(syntaxItem.IsOptionParameter);
             Assert.False(syntaxItem.IsPositional);
             Assert.True(syntaxItem.HasAlias);
 

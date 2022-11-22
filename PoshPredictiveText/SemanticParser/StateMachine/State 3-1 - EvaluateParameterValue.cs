@@ -13,33 +13,29 @@ namespace PoshPredictiveText.SemanticParser
     /// </summary>
     internal partial class StateMachine
     {
-        // listItemText: syntaxItem.Name,
-        // resultType: syntaxItem.ResultType,
-        // toolTip: syntaxItem.ToolTip) ?? ""
-
         internal List<SemanticToken> EvaluateParameterValue(SemanticToken token)
         {
-            if (machineState.ParameterSyntaxItem is not null && machineState.ParameterValues != 0)
+            machineState.LastParameterSyntaxItem(out SyntaxItem? syntaxItem, out int priorOccurances);
+
+            if (syntaxItem is not null && (syntaxItem.MaxCount is null || priorOccurances < syntaxItem.MaxCount))
             {
                 token.SemanticType = SemanticToken.TokenType.ParameterValue;
-                token.ParameterValueName = machineState.ParameterSyntaxItem.Value;
-                if (machineState.ParameterValues > 0) machineState.ParameterValues--;
+                token.ParameterValueName = syntaxItem.Value;
 
-                switch (machineState.ParameterValues)
+                token.Suggestions = SyntaxTreeHelpers
+                                        .GetParamaterValues(
+                                            command: machineState.SyntaxTreeName!,
+                                            parameterName: token.ParameterValueName??"",
+                                            wordToComplete: token.Value);
+
+                if (token.Suggestions.Select(suggestion => suggestion.CompletionText).Contains(token.Value))
                 {
-                    case 0:
-                        {
-                            machineState.ParameterSyntaxItem = null;
-                            machineState.CurrentState = MachineState.State.Item;
-                            break;
-                        }
-                    default:
-                        {
-                            token.Suggestions = SyntaxTreeHelpers
-                                                    .GetParamaterValues(token.ParameterValueName??"", token.Value);
-                        break;
-                        }
-                }
+                    token.IsExactMatch= true;
+                };
+
+                machineState.CurrentState = (priorOccurances + 1 >= syntaxItem.MaxCount) 
+                                                ? MachineState.State.Item
+                                                : MachineState.State.Value;
             }
             else
             {
@@ -47,8 +43,6 @@ namespace PoshPredictiveText.SemanticParser
                 machineState.CurrentState = MachineState.State.Value;
             }
 
-            token.IsExactMatch = true;
-            token.ParameterSet = null;
             return new List<SemanticToken> { token };
         }
     }

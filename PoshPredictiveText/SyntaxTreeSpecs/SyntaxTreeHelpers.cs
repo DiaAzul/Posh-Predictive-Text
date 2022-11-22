@@ -43,7 +43,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
         /// <remarks>This method uses internal reflection to look up the
         /// appropriate method to be called. If the method is not found an
         /// empty suggestions list is returned.</remarks>
-        internal static List<Suggestion> GetParamaterValues(string parameterName, string wordToComplete)
+        internal static List<Suggestion> GetParamaterValues(string command, string parameterName, string wordToComplete)
         {
             List<Suggestion> results = new();
 
@@ -52,7 +52,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
                 method.GetCustomAttributes(typeof(ParameterValueAttribute), false).FirstOrDefault() != null
                 && method.GetCustomAttributes<ParameterValueAttribute>()
                 .ToList()
-                .Contains(new ParameterValueAttribute("conda", parameterName)));
+                .Contains(new ParameterValueAttribute(command, parameterName)));
 
             switch (methods.Count())
             {

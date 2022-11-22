@@ -1,6 +1,7 @@
 ﻿
 namespace PoshPredictiveText.SyntaxTrees
 {
+    using PoshPredictiveText.SemanticParser;
     using System.Management.Automation;
 
     /// <summary>
@@ -38,19 +39,19 @@ namespace PoshPredictiveText.SyntaxTrees
         internal bool IsCommand => ItemType == SyntaxItemType.COMMAND;
 
         /// <summary>
-        /// True if the syntax item is an option parameter.
-        /// </summary>
-        internal bool IsOptionParameter => ItemType == SyntaxItemType.PARAMETER && Value is null;
-
-        /// <summary>
         /// True if the syntax item is a parameter that takes values.
         /// </summary>
-        internal bool IsParameter => ItemType == SyntaxItemType.PARAMETER && Value is not null;
+        internal bool IsParameter => ItemType == SyntaxItemType.PARAMETER;
 
         /// <summary>
         /// True if the syntax item is a positional parameter.
         /// </summary>
         internal bool IsPositional => ItemType == SyntaxItemType.POSITIONAL && Value is not null;
+
+        /// <summary>
+        /// True if the syntax item is a redirection.
+        /// </summary>
+        internal bool IsRedirection => ItemType == SyntaxItemType.REDIRECTION;
 
         /// <summary>
         /// Get the index of a positional parameter.

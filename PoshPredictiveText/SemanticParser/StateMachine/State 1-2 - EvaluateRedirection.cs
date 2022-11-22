@@ -40,9 +40,10 @@ namespace PoshPredictiveText.SemanticParser
 
             // NOTE [LOW][STATEMACHINE] Redirection assumed to path only, not between streams (&3 > &1)
             // See: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection
-            this.machineState.ParameterValues = 1;
-            this.machineState.ParameterSyntaxItem = new SyntaxItem() { ItemType = SyntaxItemType.REDIRECTION, Name="PATH" };
-            this.machineState.CurrentState = MachineState.State.Value;
+            //machineState.ParameterValues = 1;
+            //machineState.ParameterSyntaxItem = new SyntaxItem() { ItemType = SyntaxItemType.REDIRECTION, Name="PATH" };
+            redirectionToken.SyntaxItem = new SyntaxItem() { ItemType = SyntaxItemType.REDIRECTION, Name="PATH" };
+            machineState.CurrentState = MachineState.State.Value;
             return new List<SemanticToken> { redirectionToken };
         }
     }

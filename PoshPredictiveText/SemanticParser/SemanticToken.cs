@@ -53,6 +53,8 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal bool IsExactMatch { get; set; } = false;
 
+        internal SyntaxItem? SyntaxItem { get; set; } = null;
+
         /// <summary>
         /// Get the parameter value name.
         /// </summary>
@@ -68,11 +70,11 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         internal int? MaximumParameterValues { get; set; } = null;
 
-        // Get list of suggestions for this token (if partial word).
-        internal List<Suggestion>? Suggestions { get; set; } = null;
-
         // Get parameter set membership of the token.
         internal List<string>? ParameterSet { get; set; } = null;
+
+        // Get list of suggestions for this token (if partial word).
+        internal List<Suggestion>? Suggestions { get; set; } = null;
 
         /// <summary>
         /// True if the semantic token is a command.
@@ -95,6 +97,11 @@ namespace PoshPredictiveText.SemanticParser
         internal bool IsParameterValue => SemanticType == TokenType.ParameterValue;
 
         /// <summary>
+        /// True if the semantic token is a redirection.
+        /// </summary>
+        internal bool IsRedirection => SemanticType == TokenType.Redirection;
+
+        /// <summary>
         /// Load from syntax item.
         /// 
         /// Load token type, positional index, minumum and maximum parameter
@@ -112,6 +119,7 @@ namespace PoshPredictiveText.SemanticParser
                 _ => null,
             };
 
+            SyntaxItem= syntaxItem;
             ParameterValueName = syntaxItem.Value;
             MinimumParameterValues = syntaxItem.MinCount;
             MaximumParameterValues = syntaxItem.MaxCount;

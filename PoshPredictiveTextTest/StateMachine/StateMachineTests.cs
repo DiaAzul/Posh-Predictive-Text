@@ -317,7 +317,7 @@ namespace PoshPredictiveText.Test.StateMachine
                 UpperExtent = 5,
                 SemanticType = TokenType.StringConstant,
             };
-            string secondCommandToAdd = "create";
+            string secondCommandToAdd = "install";
             SemanticToken secondCommandToken = new()
             {
                 Value = secondCommandToAdd,
@@ -335,7 +335,7 @@ namespace PoshPredictiveText.Test.StateMachine
                 UpperExtent = 19,
                 SemanticType = TokenType.Parameter,
             };
-            string fourthCommandToAdd = "pyEnv";
+            string fourthCommandToAdd = "base";
             SemanticToken fourthCommandToken = new()
             {
                 Value = fourthCommandToAdd,
@@ -362,7 +362,7 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.Single(result4);
             Assert.True(result4.First().IsExactMatch);
             Assert.Equal(TokenType.ParameterValue, result4.First().SemanticType);
-            Assert.Equal("NEWENVIRONMENT", result4.First().ParameterValueName);
+            Assert.Equal("ENVIRONMENT", result4.First().ParameterValueName);
             Assert.Equal(MachineState.State.Item, stateAfterParameterValue);
         }
 

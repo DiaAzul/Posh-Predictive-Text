@@ -89,7 +89,7 @@ namespace PoshPredictiveText.Test.Helpers
             string wordToComplete = "WORD";
 
             // Act
-            var success = SyntaxTreeHelpers.GetParamaterValues(successTest, wordToComplete);
+            var success = SyntaxTreeHelpers.GetParamaterValues("conda", successTest, wordToComplete);
 
             // Assert
             Assert.Single(success);
@@ -97,7 +97,7 @@ namespace PoshPredictiveText.Test.Helpers
             Assert.Equal(wordToComplete, success[0].CompletionText);
 
             Assert.Throws<SyntaxTreeException>(
-                () => SyntaxTreeHelpers.GetParamaterValues(failTest, wordToComplete));
+                () => SyntaxTreeHelpers.GetParamaterValues("conda", failTest, wordToComplete));
         }
     }
 }

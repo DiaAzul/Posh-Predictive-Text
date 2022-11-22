@@ -20,7 +20,7 @@ namespace PoshPredictiveText.Test.Predictor
         [InlineData("conda ", 19)]
         [InlineData("conda env remove ", 10)]
         [InlineData("conda i", 3)]
-        [InlineData("conda list --name --md5 ", 11)]
+        [InlineData("conda list --export --md5 ", 11)]
         [InlineData("conda list --help ", 1)]
         [InlineData("conda activate -", 3)]
         public void PoshPredictiveTextPredictorTest(string inputString, int expectedSuggestions)
