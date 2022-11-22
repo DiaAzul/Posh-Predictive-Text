@@ -10,10 +10,10 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
     internal static partial class SyntaxTreeHelpers
     {
         // Constants defined within conda application.
-        const string CONDA_ROOT = "_CONDA_ROOT";
-        const string ROOT_ENV_NAME = "base";
-        const string CONDA_SETTINGS_FOLDER = ".conda";
-        const string CONDA_ENVIRONMENTS_FILE = "environments.txt";
+        internal const string CONDA_ROOT = "_CONDA_ROOT";
+        internal const string ROOT_ENV_NAME = "base";
+        internal const string CONDA_SETTINGS_FOLDER = ".conda";
+        internal const string CONDA_ENVIRONMENTS_FILE = "environments.txt";
 
         /// <summary>
         /// Return an empty list of suggestions for ParameterValues

@@ -52,10 +52,10 @@ namespace PoshPredictiveText.Test
         public static PowerShell GetConfiguredShell()
         {
             InitialSessionState inititalSessionState = ISS();
-            //RunspacePool pool = RunspaceFactory.CreateRunspacePool(inititalSessionState);
-            //pool.Open();
+            RunspacePool pool = RunspaceFactory.CreateRunspacePool(inititalSessionState);
+            pool.Open();
 
-            var testShellInstance = PowerShell.Create(inititalSessionState);
+            var testShellInstance = PowerShell.Create();
             //testShellInstance.RunspacePool = pool;
 
             return testShellInstance;

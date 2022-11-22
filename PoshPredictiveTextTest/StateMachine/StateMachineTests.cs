@@ -346,6 +346,9 @@ namespace PoshPredictiveText.Test.StateMachine
             };
 
             // Act
+            var envVariables = Environment.GetEnvironmentVariables();
+            var condaRoot = Environment.GetEnvironmentVariable("_CONDA_ROOT", EnvironmentVariableTarget.Process);
+
             var result1 = stateMachine.Evaluate(commandToken);
             var result2 = stateMachine.Evaluate(secondCommandToken);
             var result3 = stateMachine.Evaluate(thirdCommandToken);
