@@ -208,7 +208,12 @@ namespace PoshPredictiveText.SyntaxTrees
                 var resourceManager = new ResourceManager(
                                             baseName,
                                             Assembly.GetExecutingAssembly());
+
                 toolTip = resourceManager.GetString(toolTipRef) ?? "";
+            }
+            catch (MissingManifestResourceException)
+            {
+                toolTip = "";
             }
             catch (ArgumentNullException)
             {

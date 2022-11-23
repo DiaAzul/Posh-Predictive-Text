@@ -117,7 +117,7 @@ namespace PoshPredictiveText.Test.SyntaxTrees
             // Act
             var tooltip = syntaxTree.Tooltip(syntaxTree.GetItems[2].ToolTip);
             // Assert
-            Assert.Empty(tooltip);
+            Assert.Equal("", tooltip);
         }
 
         /// <summary>

@@ -95,7 +95,7 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
                 wrappedCommands.Add("\"" + command + "\"");
             }
 
-            return String.Join(", ", wrappedCommands);
+            return string.Join(", ", wrappedCommands);
         }
 
         /// <summary>
