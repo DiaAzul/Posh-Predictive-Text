@@ -23,11 +23,13 @@ namespace PoshPredictiveText.Test
             // Create a permissive authorisation manager.
             sessionState.AuthorizationManager = new("Microsoft.PowerShell");
 
+            // Add dependencies.
             string[] moduleDependencies = new string[]
             {
                 "PSReadLine"
             };
             sessionState.ImportPSModule(moduleDependencies);
+            
 
             // Add cmdlets
             SessionStateCmdletEntry cmdletToTestIPT = new("Install-PredictiveText", typeof(InstallPredictiveText), null);
@@ -39,6 +41,10 @@ namespace PoshPredictiveText.Test
             sessionState.Commands.Add(cmdletToTestGPTO);
             SessionStateCmdletEntry cmdletToTestSPTO = new("Set-PredictiveTextOption", typeof(SetPredictiveTextOption), null);
             sessionState.Commands.Add(cmdletToTestSPTO);
+
+            SessionStateVariableEntry condaRoot = new("_CONDA_ROOT", "D:\\mambaforge", "");
+
+            sessionState.EnvironmentVariables.Add(condaRoot);
 
             return sessionState;
         }
@@ -52,10 +58,10 @@ namespace PoshPredictiveText.Test
         public static PowerShell GetConfiguredShell()
         {
             InitialSessionState inititalSessionState = ISS();
-            RunspacePool pool = RunspaceFactory.CreateRunspacePool(inititalSessionState);
-            pool.Open();
+            //RunspacePool pool = RunspaceFactory.CreateRunspacePool(inititalSessionState);
+            //pool.Open();
 
-            var testShellInstance = PowerShell.Create();
+            var testShellInstance = PowerShell.Create(inititalSessionState);
             //testShellInstance.RunspacePool = pool;
 
             return testShellInstance;

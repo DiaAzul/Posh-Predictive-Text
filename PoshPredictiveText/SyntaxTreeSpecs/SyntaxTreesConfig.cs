@@ -193,9 +193,9 @@ namespace PoshPredictiveText.SyntaxTreeSpecs
             return returnValue;
         }
 
-        internal static string? ToolTips(string syntaxTreeName)
+        internal static string ToolTips(string syntaxTreeName)
         {
-            string? returnValue = null;
+            string returnValue = "";
             try
             {
                 returnValue = RESOURCE_ROOT + COMMAND_CONFIGS[syntaxTreeName].ToolTips;

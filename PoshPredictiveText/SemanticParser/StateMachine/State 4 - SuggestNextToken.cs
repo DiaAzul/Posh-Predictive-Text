@@ -56,9 +56,10 @@ namespace PoshPredictiveText.SemanticParser
             List<SyntaxItem> positionalItems = suggestions
                                                         .Where(syntaxItem => syntaxItem.IsPositional)
                                                         .ToList();
+
             if (positionalItems.Count > 0)
             {
-                //return EvaluateParameterValue(token);
+                token = EvaluatePositionalValue(token).First();
             }
 
             List<Suggestion> parameterSuggestions = suggestions
@@ -71,7 +72,15 @@ namespace PoshPredictiveText.SemanticParser
                                         ToolTip = syntaxItem.ToolTip ?? ""
                                     }).ToList();
 
-            token.Suggestions = parameterSuggestions;
+            if (token.Suggestions is not null && token.Suggestions.Count > 0)
+            {
+                token.Suggestions.AddRange(parameterSuggestions);
+            }
+            else
+            {
+                token.Suggestions = parameterSuggestions;
+            }
+
             return  new List<SemanticToken>() { token };
         }
     }

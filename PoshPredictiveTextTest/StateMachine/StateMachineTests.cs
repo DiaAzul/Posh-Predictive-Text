@@ -348,6 +348,7 @@ namespace PoshPredictiveText.Test.StateMachine
             // Act
             var envVariables = Environment.GetEnvironmentVariables();
             var condaRoot = Environment.GetEnvironmentVariable("_CONDA_ROOT", EnvironmentVariableTarget.Process);
+            Environment.SetEnvironmentVariable("_CONDA_ROOT", "D:\\mambaforge");
 
             var result1 = stateMachine.Evaluate(commandToken);
             var result2 = stateMachine.Evaluate(secondCommandToken);
@@ -365,8 +366,89 @@ namespace PoshPredictiveText.Test.StateMachine
             Assert.Single(result4);
             Assert.True(result4.First().IsExactMatch);
             Assert.Equal(TokenType.ParameterValue, result4.First().SemanticType);
-            Assert.Equal("ENVIRONMENT", result4.First().ParameterValueName);
+            Assert.NotEmpty(result4);
+            Assert.NotNull(result4.First().SyntaxItem);
+            Assert.Equal("ENVIRONMENT", result4.First()!.SyntaxItem!.Value);
             Assert.Equal(MachineState.State.Item, stateAfterParameterValue);
+        }
+
+
+
+        /// <summary>
+        /// Test that a parameter expects a value and then
+        /// expects more parameters after the parameter value
+        /// entered.
+        /// 
+        /// Test string => 'conda create --name '
+        /// 
+        /// Expect:
+        /// List of suggested python environments.
+        /// 
+        /// </summary>
+        [Fact]
+        public void AddParameterExpectingSuggestions()
+        {
+            // Arrange
+            StateMachine stateMachine = new();
+            string commandToAdd = "conda";
+            SemanticToken commandToken = new()
+            {
+                Value = commandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 1,
+                UpperExtent = 5,
+                SemanticType = TokenType.StringConstant,
+            };
+            string secondCommandToAdd = "install";
+            SemanticToken secondCommandToken = new()
+            {
+                Value = secondCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 7,
+                UpperExtent = 12,
+                SemanticType = TokenType.StringConstant,
+            };
+            string thirdCommandToAdd = "--name";
+            SemanticToken thirdCommandToken = new()
+            {
+                Value = thirdCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.CommandParameterAst),
+                LowerExtent = 14,
+                UpperExtent = 19,
+                SemanticType = TokenType.Parameter,
+            };
+            string fourthCommandToAdd = "";
+            SemanticToken fourthCommandToken = new()
+            {
+                Value = fourthCommandToAdd,
+                AstType = typeof(System.Management.Automation.Language.StringConstantExpressionAst),
+                LowerExtent = 21,
+                UpperExtent = 22,
+                SemanticType = TokenType.StringConstant,
+            };
+
+            // Act
+            var envVariables = Environment.GetEnvironmentVariables();
+            var condaRoot = Environment.GetEnvironmentVariable("_CONDA_ROOT", EnvironmentVariableTarget.Process);
+            Environment.SetEnvironmentVariable("_CONDA_ROOT", "D:\\mambaforge");
+
+            var result1 = stateMachine.Evaluate(commandToken);
+            var result2 = stateMachine.Evaluate(secondCommandToken);
+            var result3 = stateMachine.Evaluate(thirdCommandToken);
+            var stateAfterParameter = stateMachine.CurrentState;
+            var result4 = stateMachine.Evaluate(fourthCommandToken);
+            var stateAfterParameterValue = stateMachine.CurrentState;
+
+            // Assert
+            Assert.Single(result3);
+            Assert.True(result3.First().IsParameter);
+            Assert.True(result3.First().IsExactMatch);
+            Assert.Equal(TokenType.Parameter, result3.First().SemanticType);
+            Assert.Equal(MachineState.State.Value, stateAfterParameter);
+            Assert.Single(result4);
+            var firstToken = result4.First();
+            Assert.NotNull(firstToken.Suggestions);
+            Assert.NotEmpty(firstToken.Suggestions);
         }
 
         /// <summary>

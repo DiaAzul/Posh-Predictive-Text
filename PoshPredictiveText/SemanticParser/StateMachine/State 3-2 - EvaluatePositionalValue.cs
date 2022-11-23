@@ -25,18 +25,19 @@ namespace PoshPredictiveText.SemanticParser
 
             SyntaxItem? syntaxItem = null;
 
+            LOGGER.Write($"POSITIONAL VALUE: Number of positional items available {positionalSyntaxItems.Count}.");
             switch (positionalSyntaxItems.Count)
 {
                 case 1:
                     syntaxItem= positionalSyntaxItems[0];
                     int? maxCount = syntaxItem.MaxCount;
 
-                    // Create a local scope to contain the variable entered items (which otherwise clashes with
+                    // Create a local scope to contain the variable entered values (which otherwise clashes with
                     // the case > 1 instance of this variable.
                     {
-                        if (maxCount is not null && priorTokens.TryGetValue(syntaxItem, out int enteredItems))
+                        if (maxCount is not null && priorTokens.TryGetValue(syntaxItem, out int enteredValues))
                         {
-                            if (enteredItems > maxCount) goto default;
+                            if (enteredValues > maxCount) goto default;
                         }
                     }
                     break;
@@ -58,20 +59,13 @@ namespace PoshPredictiveText.SemanticParser
             }
 
             if (syntaxItem is null) return new List<SemanticToken> { token };
+            LOGGER.Write($"POSITIONAL VALUE: Positional item selectino {syntaxItem.Value}.");
             token.SyntaxItem = syntaxItem;
 
-            switch (syntaxItem.Choices)
+            switch (syntaxItem.Choices?.Count ?? 0)
             {
-                case null:
-
-                    token.Suggestions = SyntaxTreeHelpers
-                                .GetParamaterValues(
-                                    command: machineState.SyntaxTreeName!,
-                                    parameterName: syntaxItem!.Name??"",
-                                    wordToComplete: token.Value);
-                    break;
-
-                case not null:
+                case > 0:
+                    
                     token.Suggestions = syntaxItem.GetChoices
                                 .Where(choice => !choice.StartsWith("<") && choice.StartsWith(token.Value))
                                 .Select(choice => new Suggestion
@@ -79,9 +73,19 @@ namespace PoshPredictiveText.SemanticParser
                                     CompletionText = choice,
                                     ListText = choice,
                                     Type = CompletionResultType.ParameterValue,
-                                    ToolTip = choice
+                                    ToolTip = syntaxItem.ToolTip ?? ""
                                 })
                                 .ToList();
+                    LOGGER.Write($"POSITIONAL VALUE: Choice with {token.Suggestions.Count} suggestions.");
+                    break;
+
+               default:
+                    token.Suggestions = SyntaxTreeHelpers
+                                            .GetParamaterValues(
+                                                command: machineState.SyntaxTreeName!,
+                                                parameterName: syntaxItem!.Value??"",
+                                                wordToComplete: token.Value);
+                    LOGGER.Write($"POSITIONAL VALUE: Calculated with {token.Suggestions.Count} suggestions.");
                     break;
             }
 
@@ -89,6 +93,8 @@ namespace PoshPredictiveText.SemanticParser
             {
                 token.IsExactMatch= true;
             };
+
+            LOGGER.Write($"POSITIONAL VALUE: Is an exact match {token.IsExactMatch}.");
 
             return new List<SemanticToken> { token };
         }

@@ -102,6 +102,7 @@ namespace PoshPredictiveText.Test.SyntaxTreeSpecs
                 wordToComplete = inputString.Split(' ').ToList().Last();
 
             var commandAst = PowerShellMock.CreateCommandAst(inputString);
+            var condaRoot = Environment.GetEnvironmentVariable("_CONDA_ROOT", EnvironmentVariableTarget.Process);
             int cursorPosition = commandAst.Extent.EndOffset;
 
             // Act

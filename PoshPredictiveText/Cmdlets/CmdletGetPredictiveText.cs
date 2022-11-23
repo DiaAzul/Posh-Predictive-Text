@@ -60,70 +60,81 @@ namespace PoshPredictiveText.Cmdlets
 
             List<CompletionResult> cmdletSuggestions = new();
             using (SemanticCLICache semanticCLICache = new())
-            if (semanticCLICache.Acquired)
             {
-                LOGGER.Write("CMDLET: Acquired cached tokeniser.");
-                SemanticCLI? semanticCLI = SemanticCLICache.Get(CommandAst.ToString());
-                if (semanticCLI is null)
+                if (semanticCLICache.Acquired)
                 {
-                    LOGGER.Write("CMDLET: Creating tokeniser from cmdlet CommandAst");
-                    Visitor visitor = new();
-                    CommandAst.Visit(visitor);
-                    if (WordToComplete == string.Empty)
+                    LOGGER.Write($"CMDLET: Acquired state machine cache.");
+                    string key = CommandAst.ToString() + WordToComplete == "" ? " " : "";
+                    LOGGER.Write($"CMDLET: Fetching state machine with key {key}.");
+                    // If the WordToComplete is empty we need to add a space to retrieve the correct machine from the cache.
+                    SemanticCLI? semanticCLI = SemanticCLICache.Get(key);
+                    if (semanticCLI is null)
                     {
-                        visitor.BlankVisit(WordToComplete, CommandAst.Extent.EndColumnNumber, CommandAst.Extent.EndColumnNumber);
+                        LOGGER.Write("CMDLET: Creating tokeniser from cmdlet CommandAst");
+                        Visitor visitor = new();
+                        CommandAst.Visit(visitor);
+                        if (WordToComplete == string.Empty)
+                        {
+                            visitor.BlankVisit(WordToComplete, CommandAst.Extent.EndColumnNumber, CommandAst.Extent.EndColumnNumber);
+                        }
+                        semanticCLI = visitor.SemanticCLI;
+                        LOGGER.Write($"CMDLET: Finished visiting CommandAst. {semanticCLI.Count} tokens.");
                     }
-                    semanticCLI = visitor.SemanticCLI;
-                    LOGGER.Write($"CMDLET: Finished visiting CommandAst. {semanticCLI.Count} tokens.");
-                }
-                else
-                {
-                    LOGGER.Write("CMDLET: Cmdlet using cached tokeniser.");
-                }
-
-                LOGGER.Write("CMDLET: Resolving word: " + WordToComplete??"");
-                LOGGER.Write("CMDLET: Resolving AST: " + CommandAst);
-                LOGGER.Write($"CMDLET: Base Command: {semanticCLI.BaseCommand ?? "Caught null"}");
-
-                try
-                {
-                    if (semanticCLI?.LastToken?.Suggestions is not null)
+                    else
                     {
-                        cmdletSuggestions = semanticCLI.LastToken.Suggestions
-                            .Select(suggestion => new CompletionResult(
-                                completionText: suggestion.CompletionText,
-                                listItemText: suggestion.ListText,
-                                resultType: suggestion.Type,
-                                toolTip: semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? ""
-                            ))
-                            .ToList();
+                        LOGGER.Write("CMDLET: Cmdlet using cached tokeniser.");
                     }
-                }
-                catch (Exception ex)
-                {
+
+                    LOGGER.Write($"CMDLET: Resolving word: {WordToComplete}.");
+                    LOGGER.Write($"CMDLET: Base Command: {semanticCLI?.BaseCommand}");
+                    LOGGER.Write($"CMDLET: Prior token is {semanticCLI?.PriorToken?.Value}");
+                    LOGGER.Write($"CMDLET: Last token is {semanticCLI?.LastToken?.Value}");
+                    LOGGER.Write($"CMDLET: Suggestions {semanticCLI?.LastToken?.Suggestions?.Count}");
+
+                    try
+                    {
+                        if (semanticCLI?.LastToken?.Suggestions is not null)
+                        {
+                            cmdletSuggestions = semanticCLI.LastToken.Suggestions
+                                .Select(suggestion => new CompletionResult(
+                                    completionText: suggestion.CompletionText,
+                                    listItemText: suggestion.ListText,
+                                    resultType: suggestion.Type,
+                                    toolTip: suggestion.ToolTip
+                                ))
+                                .ToList();
+                        }
+                        else
+                        {
+                            LOGGER.Write("CMDLET: Returning no suggestions.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
 #if DEBUG
-                    LOGGER.Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
-                    switch (ex)
-                    {
-                        case SyntaxTreeException:
-                            WriteError(new ErrorRecord(
-                                ex,
-                                "Error-loading-syntax-tree",
-                                ErrorCategory.ObjectNotFound,
-                                semanticCLI));
-                            break;
-                        default:
-                            WriteError(new ErrorRecord(
-                                ex,
-                                "Error-processing-record",
-                                ErrorCategory.InvalidOperation,
-                                semanticCLI));
-                            break;
-                    }
+                        LOGGER.Write(ex.ToString(), LOGGER.LOGLEVEL.ERROR);
+                        switch (ex)
+                        {
+                            case SyntaxTreeException:
+                                WriteError(new ErrorRecord(
+                                    ex,
+                                    "Error-loading-syntax-tree",
+                                    ErrorCategory.ObjectNotFound,
+                                    semanticCLI));
+                                break;
+                            default:
+                                WriteError(new ErrorRecord(
+                                    ex,
+                                    "Error-processing-record",
+                                    ErrorCategory.InvalidOperation,
+                                    semanticCLI));
+                                break;
+                        }
 #endif
+                    }
                 }
             }
-        
+
             LOGGER.Write($"CMDLET: Writing {cmdletSuggestions.Count} suggestions.");
             WriteObject(cmdletSuggestions);
             base.EndProcessing();

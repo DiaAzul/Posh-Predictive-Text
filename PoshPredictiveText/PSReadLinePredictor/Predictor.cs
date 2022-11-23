@@ -103,7 +103,8 @@ namespace PoshPredictiveText.PSReadLinePredictor
                     }
                     string baseText = inputText[..(inputText.Length - wordToComplete.Length)];
 
-                    SemanticCLICache.Stash(visitor.SemanticCLI, context.InputAst.ToString());
+                    LOGGER.Write($"PREDICTOR: Stashing state machine. Key: {context.InputAst}");
+                    SemanticCLICache.Stash(context.InputAst.ToString(), visitor.SemanticCLI);
 
                     // If there is no base command, or the base command is not supported then return.
                     baseCommand = semanticCLI.BaseCommand;
@@ -119,7 +120,8 @@ namespace PoshPredictiveText.PSReadLinePredictor
                             predictiveSuggestions = semanticCLI.LastToken.Suggestions
                                 .Select(suggestion => new PredictiveSuggestion(
                                     suggestion: baseText + suggestion.CompletionText,
-                                    toolTip: semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? ""
+                                    // semanticCLI.SyntaxTree?.Tooltip(suggestion.ToolTip) ?? "
+                                    toolTip: suggestion.ToolTip
                                 ))
                                 .ToList();
                         }

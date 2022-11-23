@@ -20,6 +20,8 @@ namespace PoshPredictiveText.Test.Cmdlets
         [InlineData("conda i", 3)]
         [InlineData("conda list --export --md5 ", 11)]
         [InlineData("conda activate -", 3)]
+        [InlineData("conda activate ", 14)]
+        [InlineData("conda install --solver ", 3)]
         public void CondaSuggestionsTest(string inputString, int expectedSuggestions)
         {
             // Arrange

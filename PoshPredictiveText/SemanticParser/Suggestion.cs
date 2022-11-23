@@ -10,9 +10,9 @@ namespace PoshPredictiveText.SemanticParser
     /// </summary>
     internal record Suggestion
     {
-        internal string CompletionText { get; init; } = default!;
-        internal string ListText { get; init; } = default!;
-        internal CompletionResultType Type { get; init; }
-        internal string ToolTip { get; init; } = default!;
+        internal string CompletionText { get; init; } = "";
+        internal string ListText { get; init; } = "";
+        internal CompletionResultType Type { get; init; } = CompletionResultType.ParameterValue;
+        internal string ToolTip { get; init; } = "";
     }
 }

@@ -41,9 +41,14 @@ namespace PoshPredictiveText.SemanticParser
         /// </summary>
         /// <param name="newTokeniser">SemanticCLI to stash.</param>
         /// <param name="guid">Guid of the application stashing the tokeniser.</param>
-        internal static void Stash(SemanticCLI semanticCLI, string key)
+        internal static void Stash(string key, SemanticCLI semanticCLI)
         {
-            cache[key] = semanticCLI;
+            LOGGER.Write($"MS CACHE: Caching {key}. {semanticCLI.Count} tokens in state machine.");
+            if (cache.TryGetValue(key, out SemanticCLI? _))
+            {
+                LOGGER.Write($"MS CACHE: {key} Already exists.");
+            }
+            _ = cache.AddOrUpdate(key, semanticCLI, (key, oldValue) => semanticCLI);
         }
 
         /// <summary>
@@ -53,7 +58,14 @@ namespace PoshPredictiveText.SemanticParser
         /// <returns>SemanticCLI</returns>
         internal static SemanticCLI? Get(string key)
         {
-            _ = cache.TryGetValue(key, out SemanticCLI? semanticCLI);
+            if (cache.TryGetValue(key, out SemanticCLI? semanticCLI))
+            {
+                LOGGER.Write($"MS CACHE: Retrieved {key}. {semanticCLI.Count} tokens in state machine.");
+            }
+            else
+            {
+                LOGGER.Write($"MS CACHE: Cache miss for {key}.");
+            }
             return semanticCLI;
         }
 
