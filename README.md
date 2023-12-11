@@ -111,7 +111,7 @@ It is recommended to add the following PSReadLine options in the PowerShell prof
 suggestions appear below the command line as command arguments are entered.
 
 ```powershell
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionVewStyle ListView
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle ListView
 ```
 
 ## Contributing
